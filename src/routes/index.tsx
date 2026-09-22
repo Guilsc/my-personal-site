@@ -42,6 +42,39 @@ const expertise = [
   ["04", "Applied AI", "Technology supporting sharper analysis, documentation, and decisions."],
 ];
 
+const linkedInPosts = [
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_have-you-met-tuckman-applying-the-tuckman-activity-7132843115144458240-TB03?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Have You Met Tuckman? Applying the Tuckman Model",
+    summary: "Using the stages of group development to understand team dynamics, expectations, and practical ways to help teams perform better."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_businessanalysis-promptengineering-aiforbusiness-activity-7369335253288521731--KPq?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Business Analysis, Prompt Engineering & AI for Business",
+    summary: "Connecting prompt engineering skills to business analysis: how structured questions can speed up requirements, documentation, and decision support."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-artificialintelligence-activity-7503418242942656512-a3_E?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Coffee with ABA: Business Analysis & Artificial Intelligence",
+    summary: "A conversation-style reflection on how AI is changing the practice of business analysis and what stays essential in the analyst's toolkit."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-analysisdebt-activity-7505954913575669761-cKJA?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Coffee with ABA: Business Analysis & Analysis Debt",
+    summary: "Exploring the idea of analysis debt: shortcuts in understanding requirements that create cost, risk, and rework down the line."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_hypothesisdrivendevelopment-hdd-businessanalysis-activity-6665073059793289218-gHee?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: "MAY 10, 2020",
+    title: "Hypothesis-Driven Development: The Science Among Us",
+    summary: "A perspective on using hypotheses to guide product discovery, business analysis, and software development toward better-informed decisions."
+  },
+];
+
 function Portfolio() {
   const { data: projects } = useSuspenseQuery(projectsQueryOptions);
 
@@ -140,20 +173,27 @@ function Portfolio() {
             <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="hidden items-center gap-2 font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary sm:flex"><Linkedin className="size-4" /> ALL ACTIVITY</a>
           </div>
 
-          <a href="https://www.linkedin.com/posts/gsilvacosta_hypothesisdrivendevelopment-hdd-businessanalysis-activity-6665073059793289218-gHee?utm_source=share&amp;utm_medium=member_ios&amp;rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk" target="_blank" rel="noreferrer" className="group grid min-h-72 gap-8 border border-border bg-card p-6 transition-colors hover:border-primary/60 md:grid-cols-12 md:p-8">
-            <div className="flex items-start justify-between md:col-span-3">
-              <span className="grid size-10 place-items-center rounded-full border border-border text-primary transition-colors group-hover:border-primary"><BookOpen className="size-4" /></span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground md:hidden">MAY 10, 2020</span>
-            </div>
-            <div className="flex flex-col justify-between md:col-span-9">
-              <div>
-                <div className="hidden items-center gap-3 font-mono text-[9px] uppercase tracking-widest text-muted-foreground md:flex"><span>LINKEDIN POST</span><span className="size-1 rounded-full bg-border" /><span>MAY 10, 2020</span></div>
-                <h3 className="mt-6 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">Hypothesis-Driven Development: The Science Among Us</h3>
-                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">A perspective on using hypotheses to guide product discovery, business analysis, and software development toward better-informed decisions.</p>
-              </div>
-              <span className="mt-10 inline-flex items-center gap-2 self-start font-mono text-[10px] uppercase tracking-wider text-primary">READ ON LINKEDIN <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></span>
-            </div>
-          </a>
+          <div className="grid gap-4">
+            {linkedInPosts.map((post) => (
+              <a key={post.url} href={post.url} target="_blank" rel="noreferrer" className="group grid min-h-64 gap-8 border border-border bg-card p-6 transition-colors hover:border-primary/60 md:grid-cols-12 md:p-8">
+                <div className="flex items-start justify-between md:col-span-3">
+                  <span className="grid size-10 place-items-center rounded-full border border-border text-primary transition-colors group-hover:border-primary"><BookOpen className="size-4" /></span>
+                  {post.date ? <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground md:hidden">{post.date}</span> : null}
+                </div>
+                <div className="flex flex-col justify-between md:col-span-9">
+                  <div>
+                    <div className="hidden items-center gap-3 font-mono text-[9px] uppercase tracking-widest text-muted-foreground md:flex">
+                      <span>LINKEDIN POST</span>
+                      {post.date ? <><span className="size-1 rounded-full bg-border" /><span>{post.date}</span></> : null}
+                    </div>
+                    <h3 className="mt-6 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-4xl">{post.title}</h3>
+                    <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">{post.summary}</p>
+                  </div>
+                  <span className="mt-10 inline-flex items-center gap-2 self-start font-mono text-[10px] uppercase tracking-wider text-primary">READ ON LINKEDIN <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></span>
+                </div>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section id="projects" className="border-t border-border/60 bg-secondary/20">
