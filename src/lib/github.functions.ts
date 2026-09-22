@@ -37,7 +37,7 @@ export const getGitHubProjects = createServerFn({ method: "GET" }).handler(
     if (!response.ok) {
       const details = await response.text();
       console.error(`GitHub request failed [${response.status}]: ${details}`);
-      throw new Error("Não foi possível carregar os projetos do GitHub.");
+      return [];
     }
 
     const repositories = (await response.json()) as GitHubRepositoryResponse[];
