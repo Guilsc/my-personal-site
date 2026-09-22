@@ -5,3 +5,4 @@
 - [x] Exibir todos os repositórios públicos do GitHub do usuário Guilsc
 - [x] Validar a experiência em celular e desktop
 - [x] Manter todo o conteúdo visível em inglês
+- [x] Adicionar seção Articles & Posts com publicação selecionada do LinkedIn
