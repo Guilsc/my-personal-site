@@ -7,3 +7,6 @@
 - [x] Manter todo o conteúdo visível em inglês
 - [x] Adicionar seção Articles & Posts com publicação selecionada do LinkedIn
 - [x] Expandir Articles & Posts para 5 links curados do LinkedIn
+- [x] Adicionar estudos de caso de Business Analysis com narrativas estruturadas
+- [x] Adicionar timeline de carreira interativa com filtros por competência
+- [x] Adicionar visualização de currículo executivo na própria página
