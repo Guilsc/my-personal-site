@@ -2,7 +2,7 @@ import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
-import portrait from "../assets/guilherme-portrait.jpg";
+import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
 import { getGitHubProjects } from "../lib/github.functions";
 
 const projectsQueryOptions = queryOptions({
@@ -14,16 +14,16 @@ const projectsQueryOptions = queryOptions({
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Guilherme da Silva Costa — Business Analyst" },
+      { title: "Guilherme da Silva Costa — Senior Business Analyst" },
       {
         name: "description",
         content:
-          "Portfólio de Guilherme da Silva Costa, Senior Business Analyst conectando negócios, produto, sistemas, QA e IA aplicada.",
+          "Portfolio of Guilherme da Silva Costa, a Senior Business Analyst connecting business, product, systems, QA, and applied AI.",
       },
-      { property: "og:title", content: "Guilherme da Silva Costa — Business Analyst" },
+      { property: "og:title", content: "Guilherme da Silva Costa — Senior Business Analyst" },
       {
         property: "og:description",
-        content: "14+ anos transformando complexidade técnica em decisões claras e entregas viáveis.",
+        content: "14+ years turning technical complexity into clear decisions and actionable delivery.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,10 +36,10 @@ export const Route = createFileRoute("/")({
 });
 
 const expertise = [
-  ["01", "Business Analysis", "Necessidades complexas transformadas em decisões claras."],
-  ["02", "Produto & estratégia", "Priorização, alinhamento e entregas orientadas a valor."],
-  ["03", "Sistemas & QA", "Dependências, riscos e casos de borda além do happy path."],
-  ["04", "IA aplicada", "Análise, documentação e decisões apoiadas por tecnologia."],
+  ["01", "Business Analysis", "Complex needs translated into clear, actionable decisions."],
+  ["02", "Product & strategy", "Prioritization, alignment, and value-driven delivery."],
+  ["03", "Systems & QA", "Dependencies, risks, and edge cases beyond the happy path."],
+  ["04", "Applied AI", "Technology supporting sharper analysis, documentation, and decisions."],
 ];
 
 function Portfolio() {
@@ -52,9 +52,9 @@ function Portfolio() {
           <a href="#inicio" className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">
             GSC<span className="text-primary">/</span>PORTFOLIO
           </a>
-          <nav className="flex items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground" aria-label="Principal">
-            <a href="#sobre" className="transition-colors hover:text-foreground">SOBRE</a>
-            <a href="#projetos" className="transition-colors hover:text-foreground">PROJETOS</a>
+          <nav className="flex items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground" aria-label="Primary">
+            <a href="#about" className="transition-colors hover:text-foreground">ABOUT</a>
+            <a href="#projects" className="transition-colors hover:text-foreground">PROJECTS</a>
           </nav>
         </div>
       </header>
@@ -70,15 +70,15 @@ function Portfolio() {
             </h1>
             <div className="draw mt-10 h-px w-full bg-border" />
             <p className="reveal mt-8 max-w-2xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-3xl">
-              Decifrando complexidade técnica em valor real de negócio através de 14+ anos de experiência.
+              Turning technical complexity into real business value through 14+ years of experience.
             </p>
-            <a href="#sobre" aria-label="Ir para a apresentação" className="mt-10 inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+            <a href="#about" aria-label="Continue to profile" className="mt-10 inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
               <ArrowDown className="size-4" />
             </a>
           </div>
           <div className="reveal relative md:col-span-5 md:self-end">
             <div className="portrait-frame relative aspect-[4/5] overflow-hidden border border-border bg-card">
-              <img src={portrait} alt="Retrato editorial de Guilherme da Silva Costa" width={1200} height={1500} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
+              <img src={portraitAsset.url} alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-[linear-gradient(transparent,var(--background))] px-4 pb-4 pt-20 font-mono text-[9px] tracking-widest text-muted-foreground">
                 <span>LEAD ANALYST / EPAM</span><span>CURITIBA, BR</span>
               </div>
@@ -88,7 +88,7 @@ function Portfolio() {
 
         <section className="border-y border-border/60 bg-secondary/25">
           <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-5 py-12 md:grid-cols-4 md:px-8">
-            {[["Experiência", "14", "Y"], ["Localização", "CURITIBA", ""], ["Especialidade", "IA & QA", ""], ["Atuação", "SENIOR BA", ""]].map(([label, value, suffix]) => (
+            {[["Experience", "14", "Y"], ["Location", "CURITIBA", ""], ["Specialty", "AI & QA", ""], ["Role", "SENIOR BA", ""]].map(([label, value, suffix]) => (
               <div key={label}>
                 <p className="mb-2 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{label}</p>
                 <p className="font-display text-2xl font-semibold md:text-3xl">{value}<span className="text-lg text-primary">{suffix}</span></p>
@@ -97,15 +97,15 @@ function Portfolio() {
           </div>
         </section>
 
-        <section id="sobre" className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+        <section id="about" className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(01) SOBRE</p>
-            <h2 className="mt-5 font-display text-4xl font-semibold leading-none md:text-5xl">Negócio e tecnologia, sem ruído.</h2>
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(01) ABOUT</p>
+            <h2 className="mt-5 font-display text-4xl font-semibold leading-none md:text-5xl">Business and technology, without the noise.</h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:col-span-8 md:text-lg">
-            <p>Trabalho entre negócio e tecnologia, ajudando a transformar necessidades complexas em decisões claras e trabalho acionável. Minha trajetória atravessa Testes, Quality Assurance, Business Analysis e produto.</p>
-            <p>O background em QA ainda molda minha forma de pensar: procuro dependências, riscos, casos de borda e questiono se uma solução realmente faz sentido além do caminho feliz.</p>
-            <p>Hoje, exploro como a inteligência artificial pode apoiar melhores análises, decisões, documentação e entrega de software de forma prática.</p>
+            <p>I work between business and technology, turning complex needs into clear decisions and actionable work. My career spans software testing, Quality Assurance, Business Analysis, and product-focused delivery.</p>
+            <p>My QA background still shapes how I think: I look for dependencies, risks, and edge cases, and ask whether a solution truly works beyond the happy path.</p>
+            <p>Today, I explore practical ways for artificial intelligence to support better analysis, decision-making, documentation, and software delivery.</p>
             <div className="flex flex-wrap gap-3 pt-2 font-mono text-[10px] tracking-wider text-foreground">
               <span className="border border-border bg-card px-3 py-2">EPAM SYSTEMS</span>
               <span className="border border-border bg-card px-3 py-2">UTFPR</span>
@@ -116,7 +116,7 @@ function Portfolio() {
 
         <section className="border-y border-border/60 bg-secondary/20">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) ESPECIALIDADES</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) EXPERTISE</p>
             <div className="mt-8 divide-y divide-border border-y border-border">
               {expertise.map(([number, title, description]) => (
                 <div key={number} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
@@ -130,11 +130,11 @@ function Portfolio() {
           </div>
         </section>
 
-        <section id="projetos" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <section id="projects" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-8 flex items-end justify-between border-b border-border pb-4">
             <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) PROJETOS PÚBLICOS</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold">GitHub, ao vivo.</h2>
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) PUBLIC REPOSITORIES</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold">Live from GitHub.</h2>
             </div>
             <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="hidden items-center gap-2 font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary sm:flex"><Github className="size-4" /> @GUILSC</a>
           </div>
@@ -148,22 +148,22 @@ function Portfolio() {
                       <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.fork ? "FORK" : "ORIGINAL"}</span>
                     </div>
                     <h3 className="mt-8 break-words font-display text-2xl font-semibold">{project.name}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "Repositório público para experimentos, estudos e construção de soluções."}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
                   </div>
                   <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-                    <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">VER REPO <ArrowUpRight className="size-3" /></span>
+                    <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">VIEW REPO <ArrowUpRight className="size-3" /></span>
                   </div>
                 </a>
               ))}
             </div>
-          ) : <p className="border border-border bg-card p-6 text-muted-foreground">Nenhum repositório público disponível no momento.</p>}
+          ) : <p className="border border-border bg-card p-6 text-muted-foreground">No public repositories are available right now.</p>}
         </section>
 
         <section className="border-t border-border bg-secondary/30">
           <div className="mx-auto max-w-4xl px-5 py-20 text-center md:px-8 md:py-28">
-            <p className="font-mono text-[10px] tracking-[0.4em] text-primary">CONTATO</p>
-            <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">Vamos transformar complexidade em clareza.</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">Conheça meu trabalho e entre em contato pelo LinkedIn ou GitHub.</p>
+            <p className="font-mono text-[10px] tracking-[0.4em] text-primary">CONTACT</p>
+            <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">Let’s turn complexity into clarity.</h2>
+            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">Explore my work and connect with me on LinkedIn or GitHub.</p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent"><Linkedin className="size-4" /> LINKEDIN</a>
               <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-4 font-display text-sm font-bold transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> GITHUB</a>
@@ -182,9 +182,9 @@ function Portfolio() {
 }
 
 function ProjectsLoading() {
-  return <div className="grid min-h-screen place-items-center bg-background font-mono text-xs tracking-widest text-primary">CARREGANDO PORTFÓLIO…</div>;
+  return <div className="grid min-h-screen place-items-center bg-background font-mono text-xs tracking-widest text-primary">LOADING PORTFOLIO…</div>;
 }
 
 function ProjectsError() {
-  return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">O portfólio não pôde carregar agora. Tente novamente em instantes.</div>;
+  return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">The portfolio could not load right now. Please try again shortly.</div>;
 }
