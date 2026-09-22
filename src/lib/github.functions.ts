@@ -24,15 +24,21 @@ type GitHubRepositoryResponse = {
 
 export const getGitHubProjects = createServerFn({ method: "GET" }).handler(
   async (): Promise<GitHubRepository[]> => {
-    const response = await fetch(
-      "https://api.github.com/users/Guilsc/repos?sort=updated&per_page=12",
-      {
-        headers: {
-          Accept: "application/vnd.github+json",
-          "User-Agent": "guilherme-costa-portfolio",
+    let response: Response;
+    try {
+      response = await fetch(
+        "https://api.github.com/users/Guilsc/repos?sort=updated&per_page=12",
+        {
+          headers: {
+            Accept: "application/vnd.github+json",
+            "User-Agent": "guilherme-costa-portfolio",
+          },
         },
-      },
-    );
+      );
+    } catch (error) {
+      console.error("GitHub request error:", error);
+      return [];
+    }
 
     if (!response.ok) {
       const details = await response.text();
