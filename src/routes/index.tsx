@@ -42,6 +42,39 @@ const expertise = [
   ["04", "Applied AI", "Technology supporting sharper analysis, documentation, and decisions."],
 ];
 
+const linkedInPosts = [
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_have-you-met-tuckman-applying-the-tuckman-activity-7132843115144458240-TB03?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Have You Met Tuckman? Applying the Tuckman Model",
+    summary: "Using the stages of group development to understand team dynamics, expectations, and practical ways to help teams perform better."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_businessanalysis-promptengineering-aiforbusiness-activity-7369335253288521731--KPq?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Business Analysis, Prompt Engineering & AI for Business",
+    summary: "Connecting prompt engineering skills to business analysis: how structured questions can speed up requirements, documentation, and decision support."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-artificialintelligence-activity-7503418242942656512-a3_E?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Coffee with ABA: Business Analysis & Artificial Intelligence",
+    summary: "A conversation-style reflection on how AI is changing the practice of business analysis and what stays essential in the analyst's toolkit."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-analysisdebt-activity-7505954913575669761-cKJA?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: null,
+    title: "Coffee with ABA: Business Analysis & Analysis Debt",
+    summary: "Exploring the idea of analysis debt: shortcuts in understanding requirements that create cost, risk, and rework down the line."
+  },
+  {
+    url: "https://www.linkedin.com/posts/gsilvacosta_hypothesisdrivendevelopment-hdd-businessanalysis-activity-6665073059793289218-gHee?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+    date: "MAY 10, 2020",
+    title: "Hypothesis-Driven Development: The Science Among Us",
+    summary: "A perspective on using hypotheses to guide product discovery, business analysis, and software development toward better-informed decisions."
+  },
+];
+
 function Portfolio() {
   const { data: projects } = useSuspenseQuery(projectsQueryOptions);
 
