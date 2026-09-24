@@ -1,14 +1,43 @@
-# Roadmap
+# Personal Site Backlog
 
-- [x] Criar direção visual inspirada na referência Escadas Summit, adaptada para portfólio pessoal tech/design
-- [x] Incorporar perfil profissional e bio fornecidos nas imagens, usando a foto enviada
-- [x] Exibir todos os repositórios públicos do GitHub do usuário Guilsc
-- [x] Validar a experiência em celular e desktop
-- [x] Manter todo o conteúdo visível em inglês
-- [x] Adicionar seção Articles & Posts com publicação selecionada do LinkedIn
-- [x] Expandir Articles & Posts para 5 links curados do LinkedIn
-- [x] Adicionar estudos de caso de Business Analysis com narrativas estruturadas
-- [x] Adicionar timeline de carreira interativa com filtros por competência
-- [x] Adicionar visualização de currículo executivo na própria página
-- [x] Limitar Articles & Posts aos 3 mais recentes e alinhar o visual ao portfólio
-- [x] Centralizar os 3 posts do LinkedIn em um único arquivo de conteúdo
+Canonical repository: `Guilsc/my-personal-site`  
+Production branch: `main`  
+Production domain: `guilhermecosta.tech`
+
+## Infrastructure
+
+- [ ] Connect Hostinger production app directly to this GitHub repository
+- [ ] Configure Hostinger to deploy automatically from `main`
+- [ ] Confirm the correct Node.js build and start commands for the current TanStack Start/Nitro app
+- [ ] Verify custom domain and HTTPS after the first GitHub-driven deployment
+- [ ] Remove any manual deployment step that is no longer needed
+
+## Integrations
+
+- [x] Load public repositories dynamically from GitHub
+- [ ] Replace hardcoded LinkedIn post data with a low-maintenance dynamic integration where practical
+- [ ] Add graceful fallbacks for external content integrations
+
+## Content
+
+- [ ] Keep profile, experience, links, and other frequently edited copy in dedicated content files
+- [ ] Review current copy for freshness and consistency
+- [ ] Keep Articles & Posts limited to the most relevant recent items
+
+## Enhancements
+
+- [ ] Improve SEO/social metadata, including a dedicated Open Graph image
+- [ ] Add lightweight analytics only if there is a clear need and free/low-cost option
+- [ ] Review accessibility and performance after deployment migration
+
+## Completed foundation
+
+- [x] Create current portfolio visual direction
+- [x] Add professional profile and portrait
+- [x] Display public GitHub repositories
+- [x] Validate mobile and desktop experience
+- [x] Keep visible content in English
+- [x] Add Articles & Posts section
+- [x] Add Business Analysis case-study content
+- [x] Add career/profile content
+- [x] Centralize current LinkedIn post data in `src/content/linkedin-posts.json`
