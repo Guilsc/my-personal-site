@@ -134,22 +134,7 @@ function Portfolio() {
             <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-3 py-3 font-mono text-[9px] text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-[10px]"><Linkedin className="size-4" /> <span className="hidden sm:inline">MORE ON LINKEDIN</span><span className="sm:hidden">MORE</span></a>
           </div>
 
-          <div className="divide-y divide-border border-y border-border">
-            {linkedInPosts.map((post, index) => (
-              <a key={post.url} href={post.url} target="_blank" rel="noreferrer" className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9">
-                <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
-                <div className="md:col-span-3">
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{post.category}</p>
-                  <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">LINKEDIN POST</p>
-                </div>
-                <div className="md:col-span-7">
-                  <h3 className="font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-3xl">{post.title}</h3>
-                  <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{post.summary}</p>
-                </div>
-                <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-              </a>
-            ))}
-          </div>
+          <ArticlesFeed />
         </section>
 
         <section id="projects" className="border-t border-border/60 bg-secondary/20">
@@ -201,6 +186,69 @@ function Portfolio() {
           <span>© 2026 GUILHERME DA SILVA COSTA</span><span>CURITIBA, BR</span>
         </div>
       </footer>
+    </div>
+  );
+}
+
+const sociableKitLinkedInEmbedId =
+  import.meta.env.VITE_SOCIABLEKIT_LINKEDIN_EMBED_ID?.trim();
+
+function ArticlesFeed() {
+  if (sociableKitLinkedInEmbedId) {
+    return <SociableKitLinkedInFeed embedId={sociableKitLinkedInEmbedId} />;
+  }
+
+  return <CuratedLinkedInPosts />;
+}
+
+function SociableKitLinkedInFeed({ embedId }: { embedId: string }) {
+  return (
+    <div className="border-y border-border bg-card p-3 md:p-5">
+      <div
+        className="sk-ww-linkedin-profile-post"
+        data-embed-id={embedId}
+      />
+      <script
+        src="https://widgets.sociablekit.com/linkedin-profile-posts/widget.js"
+        defer
+      />
+    </div>
+  );
+}
+
+function CuratedLinkedInPosts() {
+  return (
+    <div className="divide-y divide-border border-y border-border">
+      {linkedInPosts.map((post, index) => (
+        <a
+          key={post.url}
+          href={post.url}
+          target="_blank"
+          rel="noreferrer"
+          className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9"
+        >
+          <span className="font-mono text-[10px] text-primary md:col-span-1">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="md:col-span-3">
+            <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+              {post.category}
+            </p>
+            <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
+              LINKEDIN POST
+            </p>
+          </div>
+          <div className="md:col-span-7">
+            <h3 className="font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-3xl">
+              {post.title}
+            </h3>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              {post.summary}
+            </p>
+          </div>
+          <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+        </a>
+      ))}
     </div>
   );
 }
