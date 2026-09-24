@@ -16,6 +16,7 @@ Production domain: `guilhermecosta.tech`
 
 - [x] Load public repositories dynamically from GitHub
 - [x] Add a SociableKIT-ready LinkedIn feed with curated JSON fallback
+- [ ] Create the SociableKIT widget using a Dark Mode template and limit it to 3 posts
 - [ ] Configure `VITE_SOCIABLEKIT_LINKEDIN_EMBED_ID` in Hostinger
 - [ ] Decide whether free manual sync is sufficient or automatic SociableKIT sync is worth the paid plan
 - [x] Add graceful fallbacks for external content integrations
