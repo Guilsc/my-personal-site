@@ -63,6 +63,16 @@ https://github.com/Guilsc/ba-content-engine/pull/2
 
 **Status:** active proof of concept.
 
+### Probe history
+
+**Run 1 — 2026-09-24**
+
+The keyless probe ran from a GitHub-hosted Actions runner. Firecrawl returned HTTP 403 because the shared runner IP was classified as suspicious for keyless usage.
+
+This failure happened at the Firecrawl gateway before LinkedIn was scraped, so it does **not** indicate whether the public LinkedIn activity page is scrapeable.
+
+Direct next action: add a free Firecrawl API key to this repository as the Actions secret `FIRECRAWL_API_KEY`, then manually re-run the **Firecrawl LinkedIn PoC** workflow. Do not paste the key into source files or chat.
+
 Goal: determine whether Firecrawl can retrieve the latest public posts from Guilherme's LinkedIn activity page without authenticating to LinkedIn.
 
 Target:
