@@ -15,9 +15,9 @@ Production domain: `guilhermecosta.tech`
 ## Integrations
 
 - [x] Load public repositories dynamically from GitHub
-- [ ] Read published LinkedIn portfolio posts from BA Content Engine Supabase
-- [ ] Configure Supabase portfolio feed environment variables in Hostinger
-- [ ] Validate latest-3 published-post rendering from Supabase
+- [x] Prepare the Articles & Posts section to consume the BA Content Engine v1 public publications API
+- [ ] Configure `BA_CONTENT_PUBLICATIONS_URL` in Hostinger after the BA public API exists
+- [ ] Validate latest-3 published-post rendering against the live BA public API
 - [x] Add graceful fallbacks for external content integrations
 
 ## Content
