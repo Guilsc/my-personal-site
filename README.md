@@ -36,19 +36,41 @@ Do not use Lovable as the day-to-day deployment path.
 
 ## LinkedIn feed
 
-The Articles & Posts section reads published portfolio content from the BA Content Engine Supabase project and renders the latest **3 LinkedIn posts** using this site's native React/Tailwind design.
+The Articles & Posts section is prepared to consume the BA Content Engine's versioned public publications API and render the latest **3 LinkedIn posts** using this site's native React/Tailwind design.
 
-Only rows matching all of these conditions are readable by the portfolio:
+The personal site does **not** connect directly to the BA Content Engine database. It only understands the public `v1` publications contract.
 
-- `status = 'Published'`
-- `show_on_portfolio = true`
-- `channel = 'linkedin'`
-
-Configure these environment variables in Hostinger:
+Configure the API endpoint in Hostinger when the BA Content Engine endpoint is implemented:
 
 ```text
-SUPABASE_URL=https://jzceajrfqtrdemptlfbp.supabase.co
-SUPABASE_PUBLISHABLE_KEY=<Supabase publishable key>
+BA_CONTENT_PUBLICATIONS_URL=<public BA Content Engine publications endpoint>
 ```
 
-The publishable key is intentionally used with a narrow Supabase RLS policy; drafts, scheduled items, and non-portfolio content remain inaccessible. If Supabase is unavailable, unconfigured, or returns no published portfolio items, the site falls back to `src/content/linkedin-posts.json`.
+The site requests:
+
+```text
+channel=linkedin
+portfolio=true
+limit=3
+```
+
+Expected response shape:
+
+```json
+{
+  "version": "1",
+  "publications": [
+    {
+      "id": "stable-public-id",
+      "channel": "linkedin",
+      "title": "Example title",
+      "summary": "Example summary",
+      "category": "Business Analysis",
+      "url": "https://www.linkedin.com/feed/update/...",
+      "publishedAt": "2026-09-23T11:45:21-03:00"
+    }
+  ]
+}
+```
+
+Until the endpoint exists—or whenever it is unavailable or returns an invalid response—the site falls back to `src/content/linkedin-posts.json`.
