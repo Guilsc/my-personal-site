@@ -24,4 +24,6 @@ jobs:
           node-version: 22
 
       - name: Probe public LinkedIn activity through Firecrawl
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: node scripts/test-firecrawl-linkedin.mjs
