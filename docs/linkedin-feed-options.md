@@ -61,7 +61,7 @@ https://github.com/Guilsc/ba-content-engine/pull/2
 
 ## Option B — Firecrawl public LinkedIn scrape
 
-**Status:** active proof of concept.
+**Status:** proof of concept failed for LinkedIn with Firecrawl's public scrape API.
 
 ### Probe history
 
@@ -71,7 +71,19 @@ The keyless probe ran from a GitHub-hosted Actions runner. Firecrawl returned HT
 
 This failure happened at the Firecrawl gateway before LinkedIn was scraped, so it does **not** indicate whether the public LinkedIn activity page is scrapeable.
 
-Direct next action: add a free Firecrawl API key to this repository as the Actions secret `FIRECRAWL_API_KEY`, then manually re-run the **Firecrawl LinkedIn PoC** workflow. Do not paste the key into source files or chat.
+The repository secret `FIRECRAWL_API_KEY` was then configured and the probe was rerun.
+
+**Run 2 — 2026-09-24**
+
+Firecrawl accepted the API key but returned HTTP 403 with: `We do not support this site` for LinkedIn.
+
+This is a provider-level restriction, not a parsing bug in the proof-of-concept script.
+
+### Conclusion
+
+Do not proceed with Firecrawl as the LinkedIn source for the personal website unless Firecrawl explicitly adds/supports LinkedIn in the future.
+
+No production site code should be changed for this experiment. The BA Content Engine public API option remains preserved above.
 
 Goal: determine whether Firecrawl can retrieve the latest public posts from Guilherme's LinkedIn activity page without authenticating to LinkedIn.
 
