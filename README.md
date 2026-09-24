@@ -36,12 +36,12 @@ Do not use Lovable as the day-to-day deployment path.
 
 ## LinkedIn feed
 
-The Articles & Posts section supports a SociableKIT LinkedIn Profile Posts widget while retaining `src/content/linkedin-posts.json` as a safe fallback.
+The Articles & Posts section reads the public SociableKIT JSON feed at runtime and renders the latest **3 posts** using the portfolio's own React/Tailwind design. SociableKIT is used only as the data source; its embedded visual widget is not used.
 
-Create the SociableKIT LinkedIn Profile Posts widget with **Dark Mode** enabled and configure it to show **3 posts**. Then enable it in production by adding this Hostinger environment variable:
+The current feed is:
 
 ```text
-VITE_SOCIABLEKIT_LINKEDIN_EMBED_ID=<your SociableKIT embed ID>
+https://data.accentapi.com/feed/25716546.json
 ```
 
-If the variable is missing, the site continues to render the curated JSON posts, capped at 3 items. The SociableKIT embed ID is not a secret; it is part of the public widget embed code.
+If the external feed is unavailable or its response cannot be parsed, the site falls back to the curated posts in `src/content/linkedin-posts.json`. No Hostinger environment variable is required for this integration.
