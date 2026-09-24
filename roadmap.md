@@ -6,17 +6,19 @@ Production domain: `guilhermecosta.tech`
 
 ## Infrastructure
 
-- [ ] Connect Hostinger production app directly to this GitHub repository
-- [ ] Configure Hostinger to deploy automatically from `main`
-- [ ] Confirm the correct Node.js build and start commands for the current TanStack Start/Nitro app
-- [ ] Verify custom domain and HTTPS after the first GitHub-driven deployment
-- [ ] Remove any manual deployment step that is no longer needed
+- [x] Connect Hostinger production app directly to this GitHub repository
+- [x] Configure Hostinger to deploy automatically from `main`
+- [x] Confirm the correct Node.js build and start commands for the current TanStack Start/Nitro app
+- [x] Verify custom domain and HTTPS after the first GitHub-driven deployment
+- [x] Remove any manual deployment step that is no longer needed
 
 ## Integrations
 
 - [x] Load public repositories dynamically from GitHub
-- [ ] Replace hardcoded LinkedIn post data with a low-maintenance dynamic integration where practical
-- [ ] Add graceful fallbacks for external content integrations
+- [x] Add a SociableKIT-ready LinkedIn feed with curated JSON fallback
+- [ ] Configure `VITE_SOCIABLEKIT_LINKEDIN_EMBED_ID` in Hostinger
+- [ ] Decide whether free manual sync is sufficient or automatic SociableKIT sync is worth the paid plan
+- [x] Add graceful fallbacks for external content integrations
 
 ## Content
 
