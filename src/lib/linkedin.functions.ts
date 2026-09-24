@@ -7,75 +7,95 @@ export type LinkedInPost = {
   url: string;
 };
 
-type PortfolioContentItem = {
-  category: string | null;
+type PublicPublication = {
+  id: string;
+  channel: string;
   title: string;
-  summary: string | null;
-  body: string;
-  external_url: string | null;
-  published_at: string | null;
+  summary: string;
+  category?: string | null;
+  url: string;
+  publishedAt: string;
+};
+
+type PublicPublicationsResponse = {
+  version: string;
+  publications: PublicPublication[];
 };
 
 export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
   async (): Promise<LinkedInPost[]> => {
-    const supabaseUrl = process.env.SUPABASE_URL?.trim();
-    const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY?.trim();
+    const endpoint = process.env.BA_CONTENT_PUBLICATIONS_URL?.trim();
 
-    if (!supabaseUrl || !publishableKey) {
-      console.warn("Supabase portfolio feed is not configured.");
+    if (!endpoint) {
+      console.warn("BA Content Engine publications API is not configured.");
       return [];
     }
 
-    const query = new URLSearchParams({
-      select:
-        "category,title,summary,body,external_url,published_at",
-      status: "eq.Published",
-      show_on_portfolio: "eq.true",
-      channel: "eq.linkedin",
-      order: "published_at.desc",
-      limit: "3",
-    });
-
     try {
-      const response = await fetch(
-        `${supabaseUrl.replace(/\/$/, "")}/rest/v1/content_items?${query.toString()}`,
-        {
-          headers: {
-            Accept: "application/json",
-            apikey: publishableKey,
-            Authorization: `Bearer ${publishableKey}`,
-            "User-Agent": "guilherme-costa-portfolio",
-          },
+      const url = new URL(endpoint);
+      url.searchParams.set("channel", "linkedin");
+      url.searchParams.set("portfolio", "true");
+      url.searchParams.set("limit", "3");
+
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "guilherme-costa-portfolio",
         },
-      );
+      });
 
       if (!response.ok) {
         console.error(
-          `Supabase portfolio feed failed [${response.status}]: ${await response.text()}`,
+          `BA Content Engine publications API failed [${response.status}]: ${await response.text()}`,
         );
         return [];
       }
 
-      const items = (await response.json()) as PortfolioContentItem[];
+      const payload = (await response.json()) as unknown;
+      const publications = parsePublications(payload);
 
-      return items.map((item) => ({
-        category: item.category?.trim() || "LATEST FROM LINKEDIN",
-        title: item.title.trim(),
-        summary: item.summary?.trim() || makeSummary(item.body),
-        url:
-          item.external_url?.trim() ||
-          "https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/",
+      return publications.slice(0, 3).map((publication) => ({
+        category:
+          publication.category?.trim() || "LATEST FROM LINKEDIN",
+        title: publication.title.trim(),
+        summary: publication.summary.trim(),
+        url: publication.url.trim(),
       }));
     } catch (error) {
-      console.error("Supabase portfolio feed request error:", error);
+      console.error("BA Content Engine publications API request error:", error);
       return [];
     }
   },
 );
 
-function makeSummary(body: string): string {
-  const normalized = body.replace(/\s+/g, " ").trim();
+function parsePublications(value: unknown): PublicPublication[] {
+  if (!isRecord(value)) return [];
+  if (value.version !== "1") return [];
+  if (!Array.isArray(value.publications)) return [];
 
-  if (normalized.length <= 240) return normalized;
-  return `${normalized.slice(0, 237).trimEnd()}…`;
+  return value.publications.filter(isPublicPublication);
+}
+
+function isPublicPublication(value: unknown): value is PublicPublication {
+  if (!isRecord(value)) return false;
+
+  return (
+    isNonEmptyString(value.id) &&
+    value.channel === "linkedin" &&
+    isNonEmptyString(value.title) &&
+    isNonEmptyString(value.summary) &&
+    (value.category === undefined ||
+      value.category === null ||
+      typeof value.category === "string") &&
+    isNonEmptyString(value.url) &&
+    isNonEmptyString(value.publishedAt)
+  );
+}
+
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
