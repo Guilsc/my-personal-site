@@ -36,12 +36,19 @@ Do not use Lovable as the day-to-day deployment path.
 
 ## LinkedIn feed
 
-The Articles & Posts section reads the public SociableKIT JSON feed at runtime and renders the latest **3 posts** using the portfolio's own React/Tailwind design. SociableKIT is used only as the data source; its embedded visual widget is not used.
+The Articles & Posts section reads published portfolio content from the BA Content Engine Supabase project and renders the latest **3 LinkedIn posts** using this site's native React/Tailwind design.
 
-The current feed is:
+Only rows matching all of these conditions are readable by the portfolio:
+
+- `status = 'Published'`
+- `show_on_portfolio = true`
+- `channel = 'linkedin'`
+
+Configure these environment variables in Hostinger:
 
 ```text
-https://data.accentapi.com/feed/25716546.json
+SUPABASE_URL=https://jzceajrfqtrdemptlfbp.supabase.co
+SUPABASE_PUBLISHABLE_KEY=<Supabase publishable key>
 ```
 
-If the external feed is unavailable or its response cannot be parsed, the site falls back to the curated posts in `src/content/linkedin-posts.json`. No Hostinger environment variable is required for this integration.
+The publishable key is intentionally used with a narrow Supabase RLS policy; drafts, scheduled items, and non-portfolio content remain inaccessible. If Supabase is unavailable, unconfigured, or returns no published portfolio items, the site falls back to `src/content/linkedin-posts.json`.
