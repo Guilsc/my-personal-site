@@ -15,8 +15,9 @@ Production domain: `guilhermecosta.tech`
 ## Integrations
 
 - [x] Load public repositories dynamically from GitHub
-- [x] Fetch LinkedIn posts from the SociableKIT JSON feed and render them with the native portfolio design
-- [ ] Decide whether manual SociableKIT sync is sufficient or automatic sync is worth the paid plan
+- [ ] Read published LinkedIn portfolio posts from BA Content Engine Supabase
+- [ ] Configure Supabase portfolio feed environment variables in Hostinger
+- [ ] Validate latest-3 published-post rendering from Supabase
 - [x] Add graceful fallbacks for external content integrations
 
 ## Content
