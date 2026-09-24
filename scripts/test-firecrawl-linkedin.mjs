@@ -1,3 +1,4 @@
+// Public-page proof of concept only; no LinkedIn authentication is used.
 const FIRECRAWL_SCRAPE_URL = "https://api.firecrawl.dev/v2/scrape";
 const LINKEDIN_ACTIVITY_URL =
   "https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/";
