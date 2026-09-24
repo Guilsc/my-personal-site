@@ -10,3 +10,4 @@
 - [x] Adicionar estudos de caso de Business Analysis com narrativas estruturadas
 - [x] Adicionar timeline de carreira interativa com filtros por competência
 - [x] Adicionar visualização de currículo executivo na própria página
+- [x] Limitar Articles & Posts aos 3 mais recentes e alinhar o visual ao portfólio

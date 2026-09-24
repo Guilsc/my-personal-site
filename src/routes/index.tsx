@@ -1,16 +1,8 @@
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
 import { getGitHubProjects } from "../lib/github.functions";
-
-const projectsQueryOptions = queryOptions({
-  queryKey: ["github-projects", "Guilsc"],
-  queryFn: () => getGitHubProjects(),
-  staleTime: 10 * 60 * 1000,
-});
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,7 +22,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(projectsQueryOptions),
+  loader: () => getGitHubProjects(),
   pendingComponent: ProjectsLoading,
   errorComponent: ProjectsError,
   component: Portfolio,
@@ -43,27 +35,29 @@ const expertise = [
   ["04", "Applied AI", "Technology supporting sharper analysis, documentation, and decisions."],
 ];
 
-function LinkedInPostsEmbed() {
-  useEffect(() => {
-    const scriptId = "sociablekit-linkedin-profile-posts";
-    const existingScript = document.getElementById(scriptId);
-
-    if (existingScript) {
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.id = scriptId;
-    script.src = "https://widgets.sociablekit.com/linkedin-profile-posts/widget.js";
-    script.defer = true;
-    document.body.appendChild(script);
-  }, []);
-
-  return <div className="sk-ww-linkedin-profile-post" data-embed-id="25716546" />;
-}
+const linkedInPosts = [
+  {
+    category: "AI FOR BUSINESS",
+    title: "Business Analysis, Prompt Engineering & AI for Business",
+    summary: "Practical ways to use structured prompting to sharpen analysis while keeping judgment and accountability human.",
+    url: "https://www.linkedin.com/posts/gsilvacosta_businessanalysis-promptengineering-aiforbusiness-activity-7369335253288521731--KPq?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+  },
+  {
+    category: "COFFEE WITH ABA",
+    title: "Business Analysis & Artificial Intelligence",
+    summary: "A grounded look at how artificial intelligence can support better questions, clearer documentation, and stronger decisions.",
+    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-artificialintelligence-activity-7503418242942656512-a3_E?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+  },
+  {
+    category: "COFFEE WITH ABA",
+    title: "Business Analysis & Analysis Debt",
+    summary: "How unresolved assumptions and rushed discovery create hidden costs—and how teams can make that debt visible.",
+    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-analysisdebt-activity-7505954913575669761-cKJA?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
+  },
+];
 
 function Portfolio() {
-  const { data: projects } = useSuspenseQuery(projectsQueryOptions);
+  const projects = Route.useLoaderData();
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -152,16 +146,29 @@ function Portfolio() {
         </section>
 
         <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div className="mb-8 flex items-end justify-between border-b border-border pb-4">
+          <div className="mb-8 flex items-end justify-between gap-5 border-b border-border pb-4">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) ARTICLES &amp; POSTS</p>
               <h2 className="mt-4 font-display text-4xl font-semibold">Ideas in practice.</h2>
             </div>
-            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="hidden items-center gap-2 font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary sm:flex"><Linkedin className="size-4" /> ALL ACTIVITY</a>
+            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-3 py-3 font-mono text-[9px] text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-[10px]"><Linkedin className="size-4" /> <span className="hidden sm:inline">MORE ON LINKEDIN</span><span className="sm:hidden">MORE</span></a>
           </div>
 
-          <div className="min-h-[320px] w-full overflow-hidden">
-            <LinkedInPostsEmbed />
+          <div className="divide-y divide-border border-y border-border">
+            {linkedInPosts.map((post, index) => (
+              <a key={post.url} href={post.url} target="_blank" rel="noreferrer" className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9">
+                <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
+                <div className="md:col-span-3">
+                  <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{post.category}</p>
+                  <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">LINKEDIN POST</p>
+                </div>
+                <div className="md:col-span-7">
+                  <h3 className="font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-3xl">{post.title}</h3>
+                  <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{post.summary}</p>
+                </div>
+                <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+              </a>
+            ))}
           </div>
         </section>
 
