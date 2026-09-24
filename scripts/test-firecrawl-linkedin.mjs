@@ -38,11 +38,21 @@ const requestBody = {
   ],
 };
 
+const apiKey = process.env.FIRECRAWL_API_KEY?.trim();
+
+if (!apiKey) {
+  console.error(
+    "FIRECRAWL_API_KEY is required for this GitHub Actions probe because Firecrawl rejects the shared runner IP for keyless access.",
+  );
+  process.exit(2);
+}
+
 const response = await fetch(FIRECRAWL_SCRAPE_URL, {
   method: "POST",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
+    Authorization: `Bearer ${apiKey}`,
   },
   body: JSON.stringify(requestBody),
   signal: AbortSignal.timeout(30_000),
