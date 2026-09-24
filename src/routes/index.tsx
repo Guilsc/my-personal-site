@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
+import linkedInPosts from "../content/linkedin-posts.json";
 import { getGitHubProjects } from "../lib/github.functions";
 
 export const Route = createFileRoute("/")({
@@ -33,27 +34,6 @@ const expertise = [
   ["02", "Product & strategy", "Prioritization, alignment, and value-driven delivery."],
   ["03", "Systems & QA", "Dependencies, risks, and edge cases beyond the happy path."],
   ["04", "Applied AI", "Technology supporting sharper analysis, documentation, and decisions."],
-];
-
-const linkedInPosts = [
-  {
-    category: "AI FOR BUSINESS",
-    title: "Business Analysis, Prompt Engineering & AI for Business",
-    summary: "Practical ways to use structured prompting to sharpen analysis while keeping judgment and accountability human.",
-    url: "https://www.linkedin.com/posts/gsilvacosta_businessanalysis-promptengineering-aiforbusiness-activity-7369335253288521731--KPq?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
-  },
-  {
-    category: "COFFEE WITH ABA",
-    title: "Business Analysis & Artificial Intelligence",
-    summary: "A grounded look at how artificial intelligence can support better questions, clearer documentation, and stronger decisions.",
-    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-artificialintelligence-activity-7503418242942656512-a3_E?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
-  },
-  {
-    category: "COFFEE WITH ABA",
-    title: "Business Analysis & Analysis Debt",
-    summary: "How unresolved assumptions and rushed discovery create hidden costs—and how teams can make that debt visible.",
-    url: "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-analysisdebt-activity-7505954913575669761-cKJA?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk",
-  },
 ];
 
 function Portfolio() {
