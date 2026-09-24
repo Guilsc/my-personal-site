@@ -22,3 +22,26 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+
+## Production workflow
+
+Production is deployed from `main` to Hostinger. Normal changes should follow:
+
+```text
+feature branch -> pull request -> CI build check -> merge to main -> Hostinger auto-deploy
+```
+
+Do not use Lovable as the day-to-day deployment path.
+
+## LinkedIn feed
+
+The Articles & Posts section supports a SociableKIT LinkedIn Profile Posts widget while retaining `src/content/linkedin-posts.json` as a safe fallback.
+
+To enable the widget in production, add this Hostinger environment variable:
+
+```text
+VITE_SOCIABLEKIT_LINKEDIN_EMBED_ID=<your SociableKIT embed ID>
+```
+
+If the variable is missing, the site continues to render the curated JSON posts. The SociableKIT embed ID is not a secret; it is part of the public widget embed code.
