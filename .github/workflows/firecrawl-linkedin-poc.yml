@@ -1,0 +1,27 @@
+name: Firecrawl LinkedIn PoC
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - experiment/linkedin-firecrawl
+    paths:
+      - "scripts/test-firecrawl-linkedin.mjs"
+      - ".github/workflows/firecrawl-linkedin-poc.yml"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Probe public LinkedIn activity through Firecrawl
+        run: node scripts/test-firecrawl-linkedin.mjs
