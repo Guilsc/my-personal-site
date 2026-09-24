@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
-import linkedInPosts from "../content/linkedin-posts.json";
+import curatedLinkedInPosts from "../content/linkedin-posts.json";
 import { getGitHubProjects } from "../lib/github.functions";
+import { getLinkedInPosts } from "../lib/linkedin.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,7 +24,14 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  loader: () => getGitHubProjects(),
+  loader: async () => {
+    const [projects, linkedInPosts] = await Promise.all([
+      getGitHubProjects(),
+      getLinkedInPosts(),
+    ]);
+
+    return { projects, linkedInPosts };
+  },
   pendingComponent: ProjectsLoading,
   errorComponent: ProjectsError,
   component: Portfolio,
@@ -37,7 +45,7 @@ const expertise = [
 ];
 
 function Portfolio() {
-  const projects = Route.useLoaderData();
+  const { projects, linkedInPosts } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -134,7 +142,7 @@ function Portfolio() {
             <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-3 py-3 font-mono text-[9px] text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-[10px]"><Linkedin className="size-4" /> <span className="hidden sm:inline">MORE ON LINKEDIN</span><span className="sm:hidden">MORE</span></a>
           </div>
 
-          <ArticlesFeed />
+          <ArticlesFeed livePosts={linkedInPosts} />
         </section>
 
         <section id="projects" className="border-t border-border/60 bg-secondary/20">
@@ -190,36 +198,26 @@ function Portfolio() {
   );
 }
 
-const sociableKitLinkedInEmbedId =
-  import.meta.env.VITE_SOCIABLEKIT_LINKEDIN_EMBED_ID?.trim();
+type ArticlePost = {
+  category: string;
+  title: string;
+  summary: string;
+  url: string;
+};
 
-function ArticlesFeed() {
-  if (sociableKitLinkedInEmbedId) {
-    return <SociableKitLinkedInFeed embedId={sociableKitLinkedInEmbedId} />;
-  }
+function ArticlesFeed({ livePosts }: { livePosts: ArticlePost[] }) {
+  const posts =
+    livePosts.length > 0
+      ? livePosts.slice(0, 3)
+      : curatedLinkedInPosts.slice(0, 3);
 
-  return <CuratedLinkedInPosts />;
+  return <LinkedInPostList posts={posts} />;
 }
 
-function SociableKitLinkedInFeed({ embedId }: { embedId: string }) {
-  return (
-    <div className="border-y border-border bg-card p-3 md:p-5">
-      <div
-        className="sk-ww-linkedin-profile-post"
-        data-embed-id={embedId}
-      />
-      <script
-        src="https://widgets.sociablekit.com/linkedin-profile-posts/widget.js"
-        defer
-      />
-    </div>
-  );
-}
-
-function CuratedLinkedInPosts() {
+function LinkedInPostList({ posts }: { posts: ArticlePost[] }) {
   return (
     <div className="divide-y divide-border border-y border-border">
-      {linkedInPosts.slice(0, 3).map((post, index) => (
+      {posts.map((post, index) => (
         <a
           key={post.url}
           href={post.url}
