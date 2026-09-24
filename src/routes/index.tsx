@@ -219,7 +219,7 @@ function SociableKitLinkedInFeed({ embedId }: { embedId: string }) {
 function CuratedLinkedInPosts() {
   return (
     <div className="divide-y divide-border border-y border-border">
-      {linkedInPosts.map((post, index) => (
+      {linkedInPosts.slice(0, 3).map((post, index) => (
         <a
           key={post.url}
           href={post.url}
