@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight, Github, Rocket, Star } from "lucide-react";
 
 import { portfolioProjects } from "../content/projects";
 import { getGitHubProjects } from "../lib/github.functions";
+import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/projects/")({
   loader: () => getGitHubProjects(),
@@ -24,6 +25,7 @@ function slugify(name: string) {
 
 function ProjectsPage() {
   const repositories = Route.useLoaderData();
+  const { language, setLanguage, t } = useLanguage();
   const [filter, setFilter] = useState<ProjectFilter>("all");
 
   const enriched = repositories.map((repository) => {
@@ -46,10 +48,10 @@ function ProjectsPage() {
   });
 
   const filters: { key: ProjectFilter; label: string; icon?: boolean }[] = [
-    { key: "all", label: "/ ALL" },
-    { key: "repositories", label: "/ REPOSITORIES" },
-    { key: "launch", label: "/ LAUNCH" },
-    { key: "starred", label: "STARRED", icon: true },
+    { key: "all", label: `/ ${t.filters.all}` },
+    { key: "repositories", label: `/ ${t.filters.repositories}` },
+    { key: "launch", label: `/ ${t.filters.launch}` },
+    { key: "starred", label: t.filters.starred, icon: true },
   ];
 
   return (
@@ -57,14 +59,14 @@ function ProjectsPage() {
       <header className="border-b border-border/60">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <Link to="/" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground transition-colors hover:text-primary"><ArrowLeft className="size-3" /> HOME</Link>
-          <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">GSC<span className="text-primary">/</span>PROJECTS</span>
+          <div className="flex items-center gap-3"><span className="hidden font-mono text-[10px] tracking-[0.3em] text-muted-foreground sm:inline">GSC<span className="text-primary">/</span>PROJECTS</span><LanguageSwitcher language={language} onChange={setLanguage} /></div>
         </div>
       </header>
 
       <main className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
         <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(05) PROJECTS</p>
-        <h1 className="mt-5 max-w-4xl font-display text-5xl font-semibold leading-none md:text-7xl">Systems I&apos;m building.</h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">Public repositories become project pages automatically. Launchable and starred work can be isolated without splitting the catalog.</p>
+        <h1 className="mt-5 max-w-4xl font-display text-5xl font-semibold leading-none md:text-7xl">{t.projectsTitle}</h1>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{t.projectsIntro}</p>
 
         <div className="mt-10 flex flex-wrap gap-2 border-y border-border py-3">
           {filters.map(({ key, label, icon }) => (
@@ -97,10 +99,10 @@ function ProjectsPage() {
               </div>
             </article>
           ))}
-          {visible.length === 0 && <p className="py-12 font-mono text-xs tracking-wider text-muted-foreground">NO PROJECTS IN THIS VIEW.</p>}
+          {visible.length === 0 && <p className="py-12 font-mono text-xs tracking-wider text-muted-foreground">{t.noProjects}</p>}
         </div>
 
-        <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="mt-10 inline-flex items-center gap-2 border border-border bg-card px-5 py-3 font-mono text-[10px] tracking-wider text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> ALL PUBLIC REPOSITORIES <ArrowUpRight className="size-3" /></a>
+        <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="mt-10 inline-flex items-center gap-2 border border-border bg-card px-5 py-3 font-mono text-[10px] tracking-wider text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> {t.allRepos} <ArrowUpRight className="size-3" /></a>
       </main>
     </div>
   );
