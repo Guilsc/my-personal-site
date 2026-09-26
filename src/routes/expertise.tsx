@@ -8,7 +8,7 @@ import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/expertise")({
   validateSearch: (search: Record<string, unknown>) => ({
-    focus: expertiseOrder.includes(search.focus as ExpertiseId) ? (search.focus as ExpertiseId) : "business-analysis",
+    focus: expertiseOrder.includes(search["focus"] as ExpertiseId) ? (search["focus"] as ExpertiseId) : "business-analysis",
   }),
   loader: () => getLinkedInPosts(),
   head: () => ({ meta: [{ title: "Expertise — Guilherme da Silva Costa" }, { name: "description", content: "Evidence-backed expertise across Business Analysis, Product Strategy, Systems & QA, and Applied AI." }] }),
