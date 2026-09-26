@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
-import linkedInPosts from "../content/linkedin-posts.json";
+import curatedLinkedInPosts from "../content/linkedin-posts.json";
 import { getGitHubProjects } from "../lib/github.functions";
+import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,9 +24,16 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  loader: () => getGitHubProjects(),
-  pendingComponent: ProjectsLoading,
-  errorComponent: ProjectsError,
+  loader: async () => {
+    const [projects, linkedInPosts] = await Promise.all([
+      getGitHubProjects(),
+      getLinkedInPosts(),
+    ]);
+
+    return { projects, linkedInPosts };
+  },
+  pendingComponent: PortfolioLoading,
+  errorComponent: PortfolioError,
   component: Portfolio,
 });
 
@@ -37,7 +45,7 @@ const expertise = [
 ];
 
 function Portfolio() {
-  const projects = Route.useLoaderData();
+  const { projects, linkedInPosts } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -134,22 +142,7 @@ function Portfolio() {
             <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-3 py-3 font-mono text-[9px] text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-[10px]"><Linkedin className="size-4" /> <span className="hidden sm:inline">MORE ON LINKEDIN</span><span className="sm:hidden">MORE</span></a>
           </div>
 
-          <div className="divide-y divide-border border-y border-border">
-            {linkedInPosts.map((post, index) => (
-              <a key={post.url} href={post.url} target="_blank" rel="noreferrer" className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9">
-                <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
-                <div className="md:col-span-3">
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{post.category}</p>
-                  <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">LINKEDIN POST</p>
-                </div>
-                <div className="md:col-span-7">
-                  <h3 className="font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-3xl">{post.title}</h3>
-                  <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{post.summary}</p>
-                </div>
-                <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-              </a>
-            ))}
-          </div>
+          <ArticlesFeed livePosts={linkedInPosts} />
         </section>
 
         <section id="projects" className="border-t border-border/60 bg-secondary/20">
@@ -205,10 +198,87 @@ function Portfolio() {
   );
 }
 
-function ProjectsLoading() {
+const MAX_ARTICLE_POSTS = 3;
+
+function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
+  const posts = mergeLinkedInPosts(livePosts, curatedLinkedInPosts).slice(
+    0,
+    MAX_ARTICLE_POSTS,
+  );
+
+  return <LinkedInPostList posts={posts} />;
+}
+
+function mergeLinkedInPosts(
+  livePosts: LinkedInPost[],
+  curatedPosts: LinkedInPost[],
+): LinkedInPost[] {
+  const seenUrls = new Set<string>();
+
+  return [...livePosts, ...curatedPosts].filter((post) => {
+    const url = normalizePostUrl(post.url);
+
+    if (seenUrls.has(url)) {
+      return false;
+    }
+
+    seenUrls.add(url);
+    return true;
+  });
+}
+
+function normalizePostUrl(value: string): string {
+  try {
+    const url = new URL(value);
+    url.search = "";
+    url.hash = "";
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return value.trim();
+  }
+}
+
+function LinkedInPostList({ posts }: { posts: LinkedInPost[] }) {
+  return (
+    <div className="divide-y divide-border border-y border-border">
+      {posts.map((post, index) => (
+        <a
+          key={post.url}
+          href={post.url}
+          target="_blank"
+          rel="noreferrer"
+          className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9"
+        >
+          <span className="font-mono text-[10px] text-primary md:col-span-1">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="md:col-span-3">
+            <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+              {post.category}
+            </p>
+            <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
+              LINKEDIN POST
+            </p>
+          </div>
+          <div className="md:col-span-7">
+            <h3 className="font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-3xl">
+              {post.title}
+            </h3>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              {post.summary}
+            </p>
+          </div>
+          <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function PortfolioLoading() {
   return <div className="grid min-h-screen place-items-center bg-background font-mono text-xs tracking-widest text-primary">LOADING PORTFOLIO…</div>;
 }
 
-function ProjectsError() {
+function PortfolioError() {
   return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">The portfolio could not load right now. Please try again shortly.</div>;
 }

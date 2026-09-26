@@ -6,17 +6,23 @@ Production domain: `guilhermecosta.tech`
 
 ## Infrastructure
 
-- [ ] Connect Hostinger production app directly to this GitHub repository
-- [ ] Configure Hostinger to deploy automatically from `main`
-- [ ] Confirm the correct Node.js build and start commands for the current TanStack Start/Nitro app
-- [ ] Verify custom domain and HTTPS after the first GitHub-driven deployment
-- [ ] Remove any manual deployment step that is no longer needed
+- [x] Gate pull requests with lint, TypeScript typecheck, and production build validation
+
+- [x] Connect Hostinger production app directly to this GitHub repository
+- [x] Configure Hostinger to deploy automatically from `main`
+- [x] Confirm the correct Node.js build and start commands for the current TanStack Start/Nitro app
+- [x] Verify custom domain and HTTPS after the first GitHub-driven deployment
+- [x] Remove any manual deployment step that is no longer needed
 
 ## Integrations
 
 - [x] Load public repositories dynamically from GitHub
-- [ ] Replace hardcoded LinkedIn post data with a low-maintenance dynamic integration where practical
-- [ ] Add graceful fallbacks for external content integrations
+- [x] Prepare the Articles & Posts section to consume the BA Content Engine v1 public publications API
+- [ ] Configure `BA_CONTENT_PUBLICATIONS_URL` in Hostinger after the BA public API exists
+- [ ] Validate latest-3 published-post rendering against the live BA public API
+- [x] Add graceful fallbacks for external content integrations
+- [x] Add timeout and runtime validation to the publications API client
+- [x] Keep Articles & Posts filled up to 3 items using curated fallback content
 
 ## Content
 

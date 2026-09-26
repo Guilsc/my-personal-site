@@ -1,24 +1,80 @@
-# My Tech Palette
+# Guilherme Costa — Personal Site
 
-Create a personal website com foco tech.design parecido com https://www.escadassummit.com.br/v2?utm_source=IG_Bio_v2&utm_medium=social&utm_content=link_in_bio&lp_variant=v2 porém falando um pouco de mim e aí a sessão de projetos que puxará do git.
+Personal portfolio for Guilherme da Silva Costa, focused on Business Analysis, product delivery, systems/QA, applied AI, public projects, and published content.
 
-This project was built with [Lovable](https://lovable.dev).
+Canonical repository: `Guilsc/my-personal-site`  
+Production: `https://guilhermecosta.tech`
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/5c324007-f76d-59a8-987a-7168b68c50bc).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+The project was originally bootstrapped with Lovable and remains connected to it, but GitHub is the canonical application source and the normal development/deployment path.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requirements:
+- Node.js 22
+- npm
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+git clone https://github.com/Guilsc/my-personal-site.git
+cd my-personal-site
+npm install
 npm run dev
 ```
+
+Before opening or updating a pull request, run:
+
+```sh
+npm run lint
+npm run typecheck
+npm run build
+```
+
+## Production workflow
+
+Production is deployed automatically from `main` to Hostinger.
+
+```text
+feature branch -> pull request -> lint/typecheck/build -> review -> merge to main -> Hostinger auto-deploy
+```
+
+Treat `main` as production. Do not use Lovable as the day-to-day deployment path.
+
+## LinkedIn feed
+
+The Articles & Posts section is prepared to consume the BA Content Engine's versioned public publications API while keeping this site's native React/Tailwind presentation.
+
+The personal site does **not** connect directly to the BA Content Engine database. It only understands the public `v1` publications contract.
+
+Configure the endpoint in Hostinger after the BA Content Engine public API is implemented:
+
+```text
+BA_CONTENT_PUBLICATIONS_URL=<public BA Content Engine publications endpoint>
+```
+
+The site requests:
+
+```text
+channel=linkedin
+portfolio=true
+limit=3
+```
+
+Expected response shape:
+
+```json
+{
+  "version": "1",
+  "publications": [
+    {
+      "id": "stable-public-id",
+      "channel": "linkedin",
+      "title": "Example title",
+      "summary": "Example summary",
+      "category": "Business Analysis",
+      "url": "https://www.linkedin.com/feed/update/...",
+      "publishedAt": "2026-09-23T11:45:21-03:00"
+    }
+  ]
+}
+```
+
+The external request has a short server-side timeout and strict runtime validation. If the API is unavailable, unconfigured, invalid, or returns fewer than three posts, curated entries from `src/content/linkedin-posts.json` are used to keep the section populated up to three cards. Duplicate URLs are removed before rendering.
