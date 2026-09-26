@@ -24,6 +24,14 @@ type GitHubRepositoryResponse = {
 };
 
 const CACHE_TTL_MS = 15 * 60 * 1000;
+
+// Repositories that are public on GitHub but intentionally excluded from the
+// portfolio. Keep this list explicit so GitHub remains the source of truth for
+// every other public repository.
+const PORTFOLIO_EXCLUDED_REPOSITORIES = new Set([
+  "my-personal-site",
+]);
+
 let repositoryCache: { value: GitHubRepository[]; expiresAt: number } | null = null;
 
 function githubHeaders() {
@@ -76,6 +84,10 @@ async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
     }
 
     const result = repositories
+      .filter(
+        (repository) =>
+          !PORTFOLIO_EXCLUDED_REPOSITORIES.has(repository.name.toLowerCase()),
+      )
       .map((repository) => ({
         id: repository.id,
         name: repository.name,
