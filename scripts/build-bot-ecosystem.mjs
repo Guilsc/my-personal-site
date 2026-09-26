@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 const root = process.cwd();
 const tempRoot = resolve(root, ".tmp");
 const ecosystemRoot = resolve(tempRoot, "bot-ecosystem");
-const output = resolve(root, ".output", "public", "ecosystem");
+const output = resolve(root, "public", "ecosystem");
 
 rmSync(ecosystemRoot, { recursive: true, force: true });
 mkdirSync(tempRoot, { recursive: true });
@@ -27,4 +27,4 @@ rmSync(output, { recursive: true, force: true });
 mkdirSync(output, { recursive: true });
 cpSync(dist, output, { recursive: true });
 
-console.log("Bot Ecosystem mounted at /ecosystem");
+console.log("Bot Ecosystem staged at public/ecosystem for the main Nitro build");
