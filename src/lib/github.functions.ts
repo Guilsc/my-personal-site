@@ -23,35 +23,59 @@ type GitHubRepositoryResponse = {
   updated_at: string;
 };
 
-const headers = {
-  Accept: "application/vnd.github+json",
-  "User-Agent": "guilherme-costa-portfolio",
-};
+const CACHE_TTL_MS = 15 * 60 * 1000;
+let repositoryCache: { value: GitHubRepository[]; expiresAt: number } | null = null;
+
+function githubHeaders() {
+  const token = process.env.GITHUB_TOKEN?.trim();
+  return {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "guilherme-costa-portfolio",
+    "X-GitHub-Api-Version": "2022-11-28",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+}
 
 async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
+  if (repositoryCache && repositoryCache.expiresAt > Date.now()) {
+    return repositoryCache.value;
+  }
+
   try {
-    const [response, starredResponse] = await Promise.all([
-      fetch("https://api.github.com/users/Guilsc/repos?sort=updated&per_page=100", { headers }),
-      fetch("https://api.github.com/users/Guilsc/starred?per_page=100", { headers }),
-    ]);
+    const headers = githubHeaders();
+    const response = await fetch(
+      "https://api.github.com/users/Guilsc/repos?type=owner&sort=updated&direction=desc&per_page=100",
+      { headers },
+    );
 
     if (!response.ok) {
-      console.error(`GitHub request failed [${response.status}]`);
-      return [];
+      console.error(`GitHub repositories request failed [${response.status}]`);
+      return repositoryCache?.value ?? [];
     }
 
     const repositories = (await response.json()) as GitHubRepositoryResponse[];
-    const starredRepositories = starredResponse.ok
-      ? ((await starredResponse.json()) as GitHubRepositoryResponse[])
-      : [];
 
-    const starredNames = new Set(
-      starredRepositories
-        .filter((repository) => repository.html_url.toLowerCase().includes("github.com/guilsc/"))
-        .map((repository) => repository.name.toLowerCase()),
-    );
+    // Star metadata is useful, but it must never prevent the repository catalog
+    // from loading. Fetch it independently after the canonical repo list.
+    let starredNames = new Set<string>();
+    try {
+      const starredResponse = await fetch(
+        "https://api.github.com/users/Guilsc/starred?per_page=100",
+        { headers },
+      );
+      if (starredResponse.ok) {
+        const starredRepositories = (await starredResponse.json()) as GitHubRepositoryResponse[];
+        starredNames = new Set(
+          starredRepositories
+            .filter((repository) => repository.html_url.toLowerCase().includes("github.com/guilsc/"))
+            .map((repository) => repository.name.toLowerCase()),
+        );
+      }
+    } catch (error) {
+      console.error("GitHub starred request error:", error);
+    }
 
-    return repositories
+    const result = repositories
       .map((repository) => ({
         id: repository.id,
         name: repository.name,
@@ -64,9 +88,12 @@ async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
         starred: starredNames.has(repository.name.toLowerCase()),
       }))
       .sort((a, b) => Number(a.fork) - Number(b.fork));
+
+    repositoryCache = { value: result, expiresAt: Date.now() + CACHE_TTL_MS };
+    return result;
   } catch (error) {
     console.error("GitHub request error:", error);
-    return [];
+    return repositoryCache?.value ?? [];
   }
 }
 
