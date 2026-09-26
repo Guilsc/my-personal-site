@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 import { useState } from "react";
 
-import curatedLinkedInPosts from "../content/linkedin-posts.json";
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 
@@ -183,7 +182,7 @@ function Portfolio() {
 const ITEMS_PER_PAGE = 3;
 
 function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
-  const posts = mergeLinkedInPosts(livePosts, curatedLinkedInPosts);
+  const posts = sortLinkedInPosts(livePosts);
   return <ArticlesCarousel posts={posts} />;
 }
 
@@ -249,22 +248,11 @@ function CarouselControls({ page, pageCount, onChange, label }: { page: number; 
   );
 }
 
-function mergeLinkedInPosts(
-  livePosts: LinkedInPost[],
-  curatedPosts: LinkedInPost[],
-): LinkedInPost[] {
-  const seenUrls = new Set<string>();
-
-  return [...livePosts, ...curatedPosts].filter((post) => {
-    const url = normalizePostUrl(post.url);
-
-    if (seenUrls.has(url)) {
-      return false;
-    }
-
-    seenUrls.add(url);
-    return true;
-  });
+function sortLinkedInPosts(posts: LinkedInPost[]): LinkedInPost[] {
+  return [...posts].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
 }
 
 function normalizePostCategory(value: string): string {
