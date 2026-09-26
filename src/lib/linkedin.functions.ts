@@ -43,9 +43,7 @@ export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
     try {
       const url = new URL(endpoint);
       url.searchParams.set("channel", "linkedin");
-      url.searchParams.set("status", "Published");
       url.searchParams.set("portfolio", "true");
-      url.searchParams.set("active", "true");
       url.searchParams.set("limit", String(LINKEDIN_POSTS_PAGE_SIZE));
 
       const response = await fetch(url, {
