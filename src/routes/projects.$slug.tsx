@@ -2,12 +2,30 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, Github, Lightbulb, Rocket, Tags } from "lucide-react";
 
 import { getPortfolioProject } from "../content/projects";
+import { getGitHubProject } from "../lib/github.functions";
 
 export const Route = createFileRoute("/projects/$slug")({
-  loader: ({ params }) => {
-    const project = getPortfolioProject(params.slug);
-    if (!project) throw notFound();
-    return project;
+  loader: async ({ params }) => {
+    const curated = getPortfolioProject(params.slug);
+    const repository = await getGitHubProject({ data: params.slug });
+    if (!repository && !curated) throw notFound();
+
+    return {
+      slug: params.slug,
+      name: curated?.name ?? repository!.name,
+      eyebrow: curated?.eyebrow ?? (repository?.fork ? "FORKED REPOSITORY" : "PUBLIC REPOSITORY"),
+      summary: curated?.summary ?? repository?.description ?? "A public repository for experiments, learning, and building solutions.",
+      description: curated?.description ?? repository?.description ?? "This project is published from GitHub and uses the portfolio's standard project template. More editorial context can be added as the project evolves.",
+      repository: curated?.repository ?? repository!.htmlUrl,
+      launchUrl: curated?.launchUrl,
+      status: curated?.status ?? "ACTIVE",
+      tags: curated?.tags ?? [repository?.language ?? "GITHUB", repository?.fork ? "FORK" : "ORIGINAL"],
+      takeaways: curated?.takeaways ?? [
+        repository?.description ?? "A public project in Guilherme's active portfolio.",
+        repository?.language ? `Built primarily with ${repository.language}.` : "Implementation details are available in the source repository.",
+        "This page is generated automatically from the public GitHub repository and can be enriched with curated project metadata later.",
+      ],
+    };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
