@@ -359,7 +359,7 @@ function PortfolioError() {
 
 function getLocalAppUrl(repositoryName: string) {
   const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
-  return normalized === "bot-ecosystem" ? "http://localhost:5274" : undefined;
+  return normalized === "bot-ecosystem" ? "/ecosystem/" : undefined;
 }
 
 function getInternalProjectSlug(repositoryName: string) {
