@@ -38,6 +38,7 @@ jobs:
         run: |
           test -f .output/server/index.mjs
           test -d .output/public
+          test -f .output/public/ecosystem/index.html
 
       - name: Smoke test production server
         run: |
@@ -51,3 +52,5 @@ jobs:
             sleep 1
           done
           curl --fail --silent --show-error http://127.0.0.1:4173/ | grep -q "Guilherme"
+          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/ | grep -q "<div id=\"app\">"
+          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/api/threads | grep -q "\"threads\""
