@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, FolderGit2, Linkedin } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { expertiseEvidence, expertiseOrder, type ExpertiseId } from "../content/expertise";
 import { portfolioProjects } from "../content/projects";
 import { getLinkedInPosts } from "../lib/linkedin.functions";
@@ -8,7 +8,7 @@ import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/expertise")({
   validateSearch: (search: Record<string, unknown>) => ({
-    focus: expertiseOrder.includes(search.focus as ExpertiseId) ? (search.focus as ExpertiseId) : "business-analysis",
+    focus: expertiseOrder.includes(search["focus"] as ExpertiseId) ? (search["focus"] as ExpertiseId) : "business-analysis",
   }),
   loader: () => getLinkedInPosts(),
   head: () => ({ meta: [{ title: "Expertise — Guilherme da Silva Costa" }, { name: "description", content: "Evidence-backed expertise across Business Analysis, Product Strategy, Systems & QA, and Applied AI." }] }),
@@ -46,7 +46,7 @@ function ExpertisePage() {
           const item = t.expertiseItems[id];
           const evidence = expertiseEvidence[id];
           const projectNames = evidence.projectSlugs.map(slug => portfolioProjects.find(p => p.slug === slug)?.name ?? slug);
-          return <section key={id} onMouseEnter={() => setHovered(id)} onMouseLeave={() => setHovered(null)} onClick={() => setFocus(id)} className={`cursor-pointer border transition-all duration-300 ${selected ? "border-primary bg-card opacity-100" : active ? "border-border bg-card opacity-100" : "border-border/60 bg-secondary/10 opacity-40"}`}>
+          return <section key={id} onMouseEnter={() => setHovered(id)} onMouseLeave={() => setHovered(null)} onClick={() => setFocus(id)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFocus(id); } }} role="button" tabIndex={0} aria-expanded={selected} className={`cursor-pointer border transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-primary ${selected ? "border-primary bg-card opacity-100" : active ? "border-border bg-card opacity-100" : "border-border/60 bg-secondary/10 opacity-40"}`}>
             <div className="grid gap-4 p-5 md:grid-cols-12 md:items-center md:p-7">
               <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2,"0")}</span>
               <div className="md:col-span-4"><h2 className="font-display text-2xl font-semibold md:text-3xl">{item.title}</h2><p className="mt-2 text-sm text-muted-foreground">{item.description}</p></div>
@@ -55,10 +55,11 @@ function ExpertisePage() {
               </div>
               <ArrowUpRight className={`size-5 transition-transform md:col-span-1 ${active ? "text-primary -translate-y-1 translate-x-1" : "text-muted-foreground"}`} />
             </div>
-            {selected && <div className="grid gap-6 border-t border-border p-5 md:grid-cols-3 md:p-7">
+            {selected && <div className={`grid gap-6 border-t border-border p-5 md:p-7 ${evidence.evidence.aiContexts?.length ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
               <Evidence icon={<FolderGit2 className="size-4" />} label={t.projectsEvidence} items={projectNames} />
               <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.careerEvidence} items={evidence.career} />
               <Evidence icon={<Linkedin className="size-4" />} label={t.evidence} items={evidence.signals} />
+              {evidence.evidence.aiContexts?.length ? <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.contextsEvidence} items={evidence.evidence.aiContexts} /> : null}
             </div>}
           </section>;
         })}
@@ -74,6 +75,6 @@ function formatCareerDuration(months: number, language: "en" | "pt") {
   return remaining ? `${years}y ${remaining}m` : `${years}y`;
 }
 
-function Evidence({icon,label,items}:{icon:React.ReactNode;label:string;items:string[]}) {
+function Evidence({icon,label,items}:{icon:ReactNode;label:string;items:string[]}) {
   return <div><div className="flex items-center gap-2 text-primary">{icon}<p className="font-mono text-[9px] tracking-widest">{label}</p></div><div className="mt-4 flex flex-wrap gap-2">{items.map(item => <span key={item} className="border border-border px-2.5 py-2 font-mono text-[9px] text-muted-foreground">{item}</span>)}</div></div>;
 }

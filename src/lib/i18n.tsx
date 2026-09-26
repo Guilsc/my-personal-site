@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+let runtimeLanguage: Language = "en";
+
 export type Language = "en" | "pt";
 
 export const copy = {
@@ -21,7 +23,7 @@ export const copy = {
       "systems-qa": { title: "Systems & QA", description: "Dependencies, risks, and edge cases beyond the happy path." },
       "applied-ai": { title: "Applied AI", description: "Technology supporting sharper analysis, documentation, and decisions." },
     },
-    evidence: "EVIDENCE", projectsEvidence: "PROJECTS", writingEvidence: "WRITING", careerEvidence: "CAREER",
+    evidence: "CAPABILITIES", projectsEvidence: "PROJECTS", writingEvidence: "WRITING", careerEvidence: "CAREER", contextsEvidence: "CONTEXTS",
     articles: "ARTICLES & POSTS",
     ideas: "Ideas in practice.",
     moreLinkedIn: "MORE ON LINKEDIN",
@@ -57,7 +59,7 @@ export const copy = {
       "systems-qa": { title: "Sistemas & QA", description: "Dependências, riscos e casos de borda além do caminho feliz." },
       "applied-ai": { title: "IA Aplicada", description: "Tecnologia apoiando análises, documentação e decisões mais precisas." },
     },
-    evidence: "EVIDÊNCIAS", projectsEvidence: "PROJETOS", writingEvidence: "PUBLICAÇÕES", careerEvidence: "CARREIRA",
+    evidence: "CAPACIDADES", projectsEvidence: "PROJETOS", writingEvidence: "PUBLICAÇÕES", careerEvidence: "CARREIRA", contextsEvidence: "CONTEXTOS",
     articles: "ARTIGOS & POSTS",
     ideas: "Ideias na prática.",
     moreLinkedIn: "MAIS NO LINKEDIN",
@@ -78,21 +80,26 @@ export const copy = {
 } as const;
 
 export function useLanguage() {
-  const [language, setLanguageState] = useState<Language>("en");
-  useEffect(() => {
-    document.documentElement.lang = "en";
-  }, []);
+  const [language, setLanguageState] = useState<Language>(() => runtimeLanguage);
+
   const setLanguage = (next: Language) => {
+    runtimeLanguage = next;
     setLanguageState(next);
-    window.localStorage.setItem("gsc-language", next);
     document.documentElement.lang = next === "pt" ? "pt-BR" : "en";
     window.dispatchEvent(new CustomEvent("gsc-language-change", { detail: next }));
   };
+
   useEffect(() => {
-    const sync = (event: Event) => setLanguageState((event as CustomEvent<Language>).detail);
+    document.documentElement.lang = runtimeLanguage === "pt" ? "pt-BR" : "en";
+    const sync = (event: Event) => {
+      const next = (event as CustomEvent<Language>).detail;
+      runtimeLanguage = next;
+      setLanguageState(next);
+    };
     window.addEventListener("gsc-language-change", sync);
     return () => window.removeEventListener("gsc-language-change", sync);
   }, []);
+
   return { language, setLanguage, t: copy[language] };
 }
 

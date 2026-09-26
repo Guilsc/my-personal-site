@@ -21,8 +21,8 @@ const githubHeaders = () => {
     Accept: "application/vnd.github+json",
     "User-Agent": "guilherme-costa-bot-ecosystem",
   };
-  const token = process.env.GITHUB_TOKEN;
-  if (token) headers.Authorization = `Bearer ${token}`;
+  const token = process.env["GITHUB_TOKEN"];
+  if (token) headers["Authorization"] = `Bearer ${token}`;
   return headers;
 };
 
