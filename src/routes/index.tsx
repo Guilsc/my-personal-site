@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 import { portfolioProjects } from "../content/projects";
+import { expertiseOrder, expertiseHref } from "../content/expertise";
 import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -38,12 +39,7 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-const expertise = [
-  ["01", "Business Analysis", "Complex needs translated into clear, actionable decisions."],
-  ["02", "Product & strategy", "Prioritization, alignment, and value-driven delivery."],
-  ["03", "Systems & QA", "Dependencies, risks, and edge cases beyond the happy path."],
-  ["04", "Applied AI", "Technology supporting sharper analysis, documentation, and decisions."],
-];
+
 
 function Portfolio() {
   const { projects, linkedInPosts } = Route.useLoaderData();
@@ -121,14 +117,14 @@ function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) {t.expertise}</p>
             <div className="mt-8 divide-y divide-border border-y border-border">
-              {expertise.map(([number, title, description]) => (
-                <div key={number} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
-                  <span className="font-mono text-[10px] text-primary md:col-span-1">{number}</span>
-                  <h3 className="font-display text-2xl font-semibold md:col-span-4 md:text-3xl">{title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">{description}</p>
+              {expertiseOrder.map((id, index) => { const item = t.expertiseItems[id]; return (
+                <a key={id} href={expertiseHref(id)} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
+                  <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="font-display text-2xl font-semibold md:col-span-4 md:text-3xl">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">{item.description}</p>
                   <ArrowUpRight className="hidden size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary md:block" />
-                </div>
-              ))}
+                </a>
+              ); })}
             </div>
           </div>
         </section>
