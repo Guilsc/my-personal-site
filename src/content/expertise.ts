@@ -2,7 +2,9 @@ export type ExpertiseId = "business-analysis" | "product-strategy" | "systems-qa
 
 export const expertiseOrder: ExpertiseId[] = ["business-analysis", "product-strategy", "systems-qa", "applied-ai"];
 
-export type ExpertiseEvidence = { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[]; aiContexts?: string[] };\n\nexport const expertiseEvidence: Record<ExpertiseId, ExpertiseEvidence> = {
+export type ExpertiseEvidence = { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[]; aiContexts?: string[] };
+
+export const expertiseEvidence: Record<ExpertiseId, ExpertiseEvidence> = {
   "business-analysis": {
     projectSlugs: ["ba-content-engine", "olympus-os"],
     career: ["EPAM Systems", "CI&T", "McFadyen Digital", "Wipro"],
