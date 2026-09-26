@@ -33,3 +33,8 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Verify Hostinger Nitro artifact
+        run: |
+          test -f .output/server/index.mjs
+          test -d .output/public
