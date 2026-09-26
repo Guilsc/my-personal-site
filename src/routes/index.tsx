@@ -156,10 +156,10 @@ function Portfolio() {
 
         <section className="border-t border-border bg-secondary/30">
           <div className="mx-auto max-w-4xl px-5 py-20 text-center md:px-8 md:py-28">
-            <p className="font-mono text-[10px] tracking-[0.4em] text-primary">CONTACT</p>
+            <a href="mailto:guilherme.silva.costa@hotmail.com" className="inline-block font-mono text-[10px] tracking-[0.4em] text-primary transition-opacity hover:opacity-70">CONTACT</a>
             <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">{t.contactTitle}</h2>
             <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">{t.contactText}</p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <div className="mt-9 flex flex-wrap justify-center gap-3"><a href="mailto:guilherme.silva.costa@hotmail.com" className="inline-flex items-center gap-2 bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent">CONTACT</a>
               <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent"><Linkedin className="size-4" /> LINKEDIN</a>
               <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-4 font-display text-sm font-bold transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> GITHUB</a>
             </div>
