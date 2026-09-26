@@ -183,22 +183,84 @@ function Portfolio() {
 const ITEMS_PER_PAGE = 3;
 
 function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
-  const posts = sortLinkedInPosts(livePosts);
-  return <ArticlesCarousel posts={posts} />;
-}
-
-function ArticlesCarousel({ posts }: { posts: LinkedInPost[] }) {
   const [page, setPage] = useState(0);
-  const pageCount = Math.max(1, Math.ceil(posts.length / ITEMS_PER_PAGE));
+  const posts = [...livePosts].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+
+  if (posts.length === 0) {
+    return (
+      <p className="border-y border-border py-8 text-sm text-muted-foreground">
+        No LinkedIn posts are available right now.
+      </p>
+    );
+  }
+
+  const pageCount = Math.ceil(posts.length / ITEMS_PER_PAGE);
   const safePage = Math.min(page, pageCount - 1);
-  const visiblePosts = posts.slice(safePage * ITEMS_PER_PAGE, (safePage + 1) * ITEMS_PER_PAGE);
+  const startIndex = safePage * ITEMS_PER_PAGE;
+  const visiblePosts = posts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <div>
-      <LinkedInPostList posts={visiblePosts} startIndex={safePage * ITEMS_PER_PAGE} />
-      {pageCount > 1 && <CarouselControls page={safePage} pageCount={pageCount} onChange={setPage} label="article posts" />}
+      <div className="grid gap-4 md:grid-cols-3">
+        {visiblePosts.map((post, index) => (
+          <a
+            key={post.url}
+            href={post.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex min-h-72 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60"
+          >
+            <div>
+              <div className="flex items-start justify-between gap-4">
+                <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">
+                  {String(startIndex + index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                  {post.category || "LINKEDIN"}
+                </span>
+              </div>
+              <p className="mt-8 font-mono text-[9px] uppercase tracking-wider text-primary">
+                {formatPublicationDate(post.publishedAt)}
+              </p>
+              <h3 className="mt-3 font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary">
+                {post.title}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {post.summary}
+              </p>
+            </div>
+            <span className="mt-8 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
+              OPEN ON LINKEDIN <ArrowUpRight className="size-3" />
+            </span>
+          </a>
+        ))}
+      </div>
+      {pageCount > 1 && (
+        <CarouselControls
+          page={safePage}
+          pageCount={pageCount}
+          onChange={setPage}
+          label="LinkedIn posts"
+        />
+      )}
     </div>
   );
+}
+
+function formatPublicationDate(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "RECENT";
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "America/Sao_Paulo",
+  })
+    .format(date)
+    .toUpperCase();
 }
 
 type Repository = Awaited<ReturnType<typeof getGitHubProjects>>[number];
@@ -264,86 +326,6 @@ function CarouselControls({ page, pageCount, onChange, label }: { page: number; 
         <button type="button" onClick={() => onChange(Math.max(0, page - 1))} disabled={page === 0} aria-label={`Previous ${label}`} className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"><ArrowLeft className="size-4" /></button>
         <button type="button" onClick={() => onChange(Math.min(pageCount - 1, page + 1))} disabled={page === pageCount - 1} aria-label={`Next ${label}`} className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"><ArrowRight className="size-4" /></button>
       </div>
-    </div>
-  );
-}
-
-function sortLinkedInPosts(posts: LinkedInPost[]): LinkedInPost[] {
-  return [...posts].sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-  );
-}
-
-function normalizePostCategory(value: string): string {
-  const normalized = value.trim().toUpperCase().replace(/\s+/g, " ");
-  if (normalized === "COFFE WITH ABA" || normalized === "COFFEE WITH ABA" || normalized === "COFFE WITH A BA" || normalized === "COFFEE WITH BA") {
-    return "COFFEE WITH A BA";
-  }
-  return value;
-}
-
-function normalizePostUrl(value: string): string {
-  try {
-    const url = new URL(value);
-    url.search = "";
-    url.hash = "";
-    return url.toString().replace(/\/$/, "");
-  } catch {
-    return value.trim();
-  }
-}
-
-function formatPublicationDate(value: string): string {
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return "RECENT";
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "America/Sao_Paulo",
-  })
-    .format(date)
-    .toUpperCase();
-}
-
-function LinkedInPostList({ posts, startIndex = 0 }: { posts: LinkedInPost[]; startIndex?: number }) {
-  return (
-    <div className="divide-y divide-border border-y border-border">
-      {posts.map((post, index) => (
-        <a
-          key={post.url}
-          href={post.url}
-          target="_blank"
-          rel="noreferrer"
-          className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9"
-        >
-          <span className="font-mono text-[10px] text-primary md:col-span-1">
-            {String(startIndex + index + 1).padStart(2, "0")}
-          </span>
-          <div className="md:col-span-3">
-            <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
-              {normalizePostCategory(post.category)}
-            </p>
-            <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
-              {formatPublicationDate(post.publishedAt)} · LINKEDIN POST
-            </p>
-          </div>
-          <div className="md:col-span-7">
-            <h3 className="font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-3xl">
-              {post.title}
-            </h3>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              {post.summary}
-            </p>
-          </div>
-          <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-        </a>
-      ))}
     </div>
   );
 }
