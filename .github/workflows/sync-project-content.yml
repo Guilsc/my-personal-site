@@ -1,0 +1,32 @@
+name: Sync project content
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 8 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Sync repository source content
+        run: node scripts/sync-project-content.mjs
+      - name: Commit source changes
+        run: |
+          if git diff --quiet -- src/content/generated; then
+            echo "No project content changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/generated
+          git commit -m "Sync project source content"
+          git push
