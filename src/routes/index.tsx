@@ -123,7 +123,7 @@ function Portfolio() {
                   <h3 className="font-display text-2xl font-semibold md:col-span-4 md:text-3xl">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">{item.description}</p>
                   <ArrowUpRight className="hidden size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary md:block" />
-                </a>
+                </Link>
               ); })}
             </div>
           </div>
