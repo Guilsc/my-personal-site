@@ -22,8 +22,7 @@ type GitHubRepositoryResponse = {
   updated_at: string;
 };
 
-export const getGitHubProjects = createServerFn({ method: "GET" }).handler(
-  async (): Promise<GitHubRepository[]> => {
+async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
     let response: Response;
     try {
       response = await fetch(
@@ -60,5 +59,21 @@ export const getGitHubProjects = createServerFn({ method: "GET" }).handler(
         updatedAt: repository.updated_at,
       }))
       .sort((a, b) => Number(a.fork) - Number(b.fork));
-  },
+}
+
+export const getGitHubProjects = createServerFn({ method: "GET" }).handler(
+  async (): Promise<GitHubRepository[]> => fetchGitHubProjects(),
 );
+
+export const getGitHubProject = createServerFn({ method: "GET" })
+  .inputValidator((slug: string) => slug)
+  .handler(async ({ data }): Promise<GitHubRepository | null> => {
+    const normalizedSlug = data.toLowerCase().replace(/[_\s]+/g, "-");
+    const repositories = await fetchGitHubProjects();
+    return (
+      repositories.find(
+        (repository) =>
+          repository.name.toLowerCase().replace(/[_\s]+/g, "-") === normalizedSlug,
+      ) ?? null
+    );
+  });
