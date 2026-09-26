@@ -42,12 +42,7 @@ function ProjectsPage() {
 
         <div className="mt-14 divide-y divide-border border-y border-border">
           {portfolioProjects.map((project, index) => (
-            <Link
-              key={project.slug}
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              className="group grid gap-5 py-8 md:grid-cols-12 md:items-center md:py-10"
-            >
+            <article key={project.slug} className="group grid gap-5 py-8 md:grid-cols-12 md:items-center md:py-10">
               <span className="font-mono text-[10px] text-primary md:col-span-1">
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -55,15 +50,21 @@ function ProjectsPage() {
                 <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.eyebrow}</p>
                 <p className="mt-2 font-mono text-[9px] tracking-wider text-primary">{project.status}</p>
               </div>
-              <div className="md:col-span-7">
+              <Link to="/projects/$slug" params={{ slug: project.slug }} className="md:col-span-6">
                 <h2 className="font-display text-3xl font-semibold transition-colors group-hover:text-primary md:text-4xl">{project.name}</h2>
                 <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+              </Link>
+              <div className="flex items-center gap-2 md:col-span-2 md:justify-end">
+                {project.launchUrl && (
+                  <a href={project.launchUrl} target={project.launchUrl.startsWith("http") ? "_blank" : undefined} rel={project.launchUrl.startsWith("http") ? "noreferrer" : undefined} className="inline-flex items-center gap-1 bg-primary px-3 py-2 font-mono text-[9px] font-semibold tracking-wider text-primary-foreground transition-opacity hover:opacity-90">
+                    <Rocket className="size-3" /> LAUNCH
+                  </a>
+                )}
+                <Link to="/projects/$slug" params={{ slug: project.slug }} aria-label={`View ${project.name} project`} className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+                  <ArrowUpRight className="size-4" />
+                </Link>
               </div>
-              <div className="flex items-center justify-between gap-3 md:justify-end">
-                {project.launchUrl && <span className="inline-flex items-center gap-1 bg-primary px-3 py-2 font-mono text-[9px] font-semibold tracking-wider text-primary-foreground"><Rocket className="size-3" /> LAUNCH</span>}
-                <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-              </div>
-            </Link>
+            </article>
           ))}
         </div>
 
