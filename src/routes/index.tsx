@@ -345,15 +345,5 @@ function getLocalAppUrl(repositoryName: string) {
 }
 
 function getInternalProjectSlug(repositoryName: string) {
-  const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
-
-  // Bot Ecosystem is surfaced as a public repository, not an internal portfolio detail page.
-  if (normalized === "bot-ecosystem") {
-    return undefined;
-  }
-
-  return portfolioProjects.find((project) => {
-    const repoName = project.repository.split("/").pop()?.toLowerCase().replace(/[_\s]+/g, "-");
-    return repoName === normalized;
-  })?.slug;
+  return repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
 }
