@@ -40,6 +40,10 @@ export const copy = {
     allRepos: "ALL PUBLIC REPOSITORIES",
     backHome: "HOME", backProjects: "PROJECTS", source: "SOURCE", status: "STATUS",
     takeaways: "KEY TAKEAWAYS", lens: "PROJECT LENS", capabilities: "CAPABILITIES",
+    myRole: "MY ROLE", problem: "PROBLEM", approach: "APPROACH", outcomes: "OUTCOMES", next: "NEXT",
+    selectedImpact: "SELECTED IMPACT", impactTitle: "Work that connects analysis to outcomes.", impactIntro: "Selected evidence across enterprise delivery, product building, and agent-system design.",
+    enterpriseTitle: "Enterprise Transformation", enterpriseEyebrow: "PROFESSIONAL WORK", enterpriseSummary: "Senior Business Analysis across enterprise onboarding, integrations, process design, UAT, and AI-assisted delivery.", enterpriseRole: "Senior Business Analyst · EPAM", enterpriseEvidence: ["Salesforce and MuleSoft integration analysis", "Onboarding and field-mapping design across multiple channels", "UAT coordination, test-data collaboration, and edge-case analysis", "AI-assisted workflows and internal AI initiatives"],
+    professionalAI: "PROFESSIONAL AI", aiPlatforms: "PLATFORMS", aiArchitecture: "ARCHITECTURE",
   },
   pt: {
     nav: { about: "SOBRE", articles: "ARTIGOS", projects: "PROJETOS", expertise: "ESPECIALIDADES" },
@@ -76,6 +80,10 @@ export const copy = {
     allRepos: "TODOS OS REPOSITÓRIOS PÚBLICOS",
     backHome: "INÍCIO", backProjects: "PROJETOS", source: "CÓDIGO", status: "STATUS",
     takeaways: "PRINCIPAIS APRENDIZADOS", lens: "VISÃO DO PROJETO", capabilities: "CAPACIDADES",
+    myRole: "MEU PAPEL", problem: "PROBLEMA", approach: "ABORDAGEM", outcomes: "RESULTADOS", next: "PRÓXIMOS PASSOS",
+    selectedImpact: "IMPACTO SELECIONADO", impactTitle: "Trabalho que conecta análise a resultados.", impactIntro: "Evidências selecionadas entre entrega enterprise, construção de produtos e design de sistemas de agentes.",
+    enterpriseTitle: "Transformação Enterprise", enterpriseEyebrow: "ATUAÇÃO PROFISSIONAL", enterpriseSummary: "Business Analysis sênior em onboarding enterprise, integrações, desenho de processos, UAT e entrega assistida por IA.", enterpriseRole: "Senior Business Analyst · EPAM", enterpriseEvidence: ["Análise de integrações Salesforce e MuleSoft", "Desenho de onboarding e mapeamento de campos em múltiplos canais", "Coordenação de UAT, colaboração em dados de teste e análise de casos de borda", "Workflows assistidos por IA e iniciativas internas de IA"],
+    professionalAI: "IA PROFISSIONAL", aiPlatforms: "PLATAFORMAS", aiArchitecture: "ARQUITETURA",
   },
 } as const;
 
