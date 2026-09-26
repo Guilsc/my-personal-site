@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github, Lightbulb, Rocket, Tags } from "lucide-react";
 
 import { getPortfolioProject } from "../content/projects";
 
@@ -42,8 +42,16 @@ function ProjectDetail() {
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">{project.eyebrow}</p>
             <h1 className="mt-6 font-display text-5xl font-semibold leading-[0.95] md:text-7xl">{project.name}</h1>
             <p className="mt-7 max-w-3xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-2xl">{project.summary}</p>
-            <div className="mt-10 h-px bg-border" />
-            <p className="mt-10 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">{project.description}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {project.launchUrl && (
+                <a href={project.launchUrl} target={project.launchUrl.startsWith("http") ? "_blank" : undefined} rel={project.launchUrl.startsWith("http") ? "noreferrer" : undefined} className="inline-flex items-center gap-2 bg-primary px-5 py-3 font-mono text-[10px] font-semibold tracking-wider text-primary-foreground transition-opacity hover:opacity-90">
+                  <Rocket className="size-4" /> LAUNCH <ArrowUpRight className="size-3" />
+                </a>
+              )}
+              <a href={project.repository} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border bg-card px-5 py-3 font-mono text-[10px] tracking-wider text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+                <Github className="size-4" /> SOURCE <ArrowUpRight className="size-3" />
+              </a>
+            </div>
           </div>
 
           <aside className="md:col-span-4">
@@ -55,12 +63,30 @@ function ProjectDetail() {
                   <span key={tag} className="border border-border px-2.5 py-2 font-mono text-[9px] tracking-wider text-muted-foreground">{tag}</span>
                 ))}
               </div>
-              <a href={project.repository} target="_blank" rel="noreferrer" className="mt-8 inline-flex w-full items-center justify-between border border-border px-4 py-3 font-mono text-[10px] tracking-wider transition-colors hover:border-primary hover:text-primary">
-                <span className="inline-flex items-center gap-2"><Github className="size-4" /> SOURCE REPOSITORY</span>
-                <ArrowUpRight className="size-3" />
-              </a>
             </div>
           </aside>
+        </div>
+
+        <div className="mt-16 grid gap-4 border-t border-border pt-8 md:grid-cols-12">
+          <section className="border border-border bg-card p-6 md:col-span-7">
+            <div className="flex items-center gap-2 text-primary"><Lightbulb className="size-4" /><p className="font-mono text-[10px] tracking-widest">KEY TAKEAWAYS</p></div>
+            <ul className="mt-6 space-y-4">
+              {project.takeaways.map((takeaway) => (
+                <li key={takeaway} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />{takeaway}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="border border-border bg-card p-6 md:col-span-5">
+            <div className="flex items-center gap-2 text-primary"><Tags className="size-4" /><p className="font-mono text-[10px] tracking-widest">PROJECT LENS</p></div>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+            <p className="mt-7 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">CAPABILITIES</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {project.tags.map((tag) => <span key={tag} className="bg-secondary px-2.5 py-2 font-mono text-[9px] tracking-wider text-secondary-foreground">{tag}</span>)}
+            </div>
+          </section>
         </div>
       </main>
     </div>
