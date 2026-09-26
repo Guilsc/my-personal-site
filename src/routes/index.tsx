@@ -130,9 +130,14 @@ function Portfolio() {
         </section>
 
         <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.selectedImpact}</p>
-          <h2 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-none md:text-5xl">{t.impactTitle}</h2>
-          <p className="mt-5 max-w-2xl text-muted-foreground">{t.impactIntro}</p>
+          <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
+            <div className="min-w-0">
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.selectedImpact}</p>
+              <h2 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-none md:text-5xl">{t.impactTitle}</h2>
+              <p className="mt-5 max-w-2xl text-muted-foreground">{t.impactIntro}</p>
+            </div>
+            <Link to="/projects" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link>
+          </div>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             <article className="flex flex-col border border-primary/50 bg-card p-6">
               <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{t.enterpriseEyebrow}</p>
@@ -148,7 +153,7 @@ function Portfolio() {
                 <h3 className="mt-5 font-display text-3xl font-semibold group-hover:text-primary">{project.name}</h3>
                 <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{project.role}</p>
                 <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
-                <span className="mt-auto pt-8 inline-flex items-center gap-2 font-mono text-[9px] text-primary">{t.viewAll} <ArrowUpRight className="size-3"/></span>
+                <span className="mt-auto pt-8 inline-flex items-center gap-2 font-mono text-[9px] text-primary">{t.viewMore} <ArrowUpRight className="size-3"/></span>
               </Link>;
             })}
           </div>
@@ -157,7 +162,7 @@ function Portfolio() {
         <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.articles}</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) {t.articles}</p>
               <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.ideas}</h2>
             </div>
             <div className="flex flex-wrap gap-2"><Link to="/articles" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link><a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>{t.moreLinkedIn}</span></a></div>
