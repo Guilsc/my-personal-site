@@ -17,14 +17,14 @@ export const expertiseEvidence = {
   },
   "systems-qa": {
     projectSlugs: ["bot-ecosystem", "olympus-os", "ba-content-engine"],
-    career: ["EPAM Systems", "Wipro", "Bornlogic"],
-    careerMonths: 99,
+    career: ["EPAM Systems", "Wipro", "Bornlogic", "Jaycon Systems", "CINQ"],
+    careerMonths: 122,
     signals: ["Quality Assurance", "Testing", "Edge Cases", "Integration", "System Dependencies"],
   },
   "applied-ai": {
     projectSlugs: ["olympus-os", "bot-ecosystem", "ba-content-engine"],
     career: ["EPAM Systems"],
-    careerMonths: 54,
+    careerMonths: 0,
     signals: ["AI Agents", "Multi-Agent Systems", "Context", "Memory", "Automation"],
   },
 } satisfies Record<ExpertiseId, { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[] }>;
