@@ -45,7 +45,7 @@ function ExpertisePage() {
           const active = selected || hovered === id;
           const item = t.expertiseItems[id];
           const evidence = expertiseEvidence[id];
-          const projectNames = evidence.projectSlugs.map(slug => portfolioProjects.find(p => p.slug === slug)?.name ?? slug);
+          const projectNames = evidence.projectSlugs.map(slug => portfolioProjects.find(p => p.slug === slug)?.name ?? slug);\n          const aiContexts = "aiContexts" in evidence ? evidence.aiContexts : undefined;
           return <section key={id} onMouseEnter={() => setHovered(id)} onMouseLeave={() => setHovered(null)} onClick={() => setFocus(id)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFocus(id); } }} role="button" tabIndex={0} aria-expanded={selected} className={`cursor-pointer border transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-primary ${selected ? "border-primary bg-card opacity-100" : active ? "border-border bg-card opacity-100" : "border-border/60 bg-secondary/10 opacity-40"}`}>
             <div className="grid gap-4 p-5 md:grid-cols-12 md:items-center md:p-7">
               <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2,"0")}</span>
@@ -55,10 +55,10 @@ function ExpertisePage() {
               </div>
               <ArrowUpRight className={`size-5 transition-transform md:col-span-1 ${active ? "text-primary -translate-y-1 translate-x-1" : "text-muted-foreground"}`} />
             </div>
-            {selected && <div className={`grid gap-6 border-t border-border p-5 md:p-7 ${evidence.aiContexts?.length ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
+            {selected && <div className={`grid gap-6 border-t border-border p-5 md:p-7 ${aiContexts?.length ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
               <Evidence icon={<FolderGit2 className="size-4" />} label={t.projectsEvidence} items={projectNames} />
               <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.careerEvidence} items={evidence.career} />
-              <Evidence icon={<Linkedin className="size-4" />} label={t.evidence} items={evidence.signals} />\n              {evidence.aiContexts?.length ? <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.contextsEvidence} items={evidence.aiContexts} /> : null}
+              <Evidence icon={<Linkedin className="size-4" />} label={t.evidence} items={evidence.signals} />\n              {aiContexts?.length ? <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.contextsEvidence} items={aiContexts} /> : null}
             </div>}
           </section>;
         })}
