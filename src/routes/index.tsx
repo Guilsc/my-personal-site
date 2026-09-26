@@ -218,6 +218,7 @@ function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
       <div className="grid gap-4 md:grid-cols-3">
         {visibleProjects.map((project, index) => {
           const internalSlug = getInternalProjectSlug(project.name);
+          const localAppUrl = getLocalAppUrl(project.name);
           const cardClassName = "group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60";
           const cardContent = (
             <>
@@ -230,12 +231,16 @@ function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
               </div>
               <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-                <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">{internalSlug ? "VIEW PROJECT" : "VIEW REPO"} <ArrowUpRight className="size-3" /></span>
+                <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">{localAppUrl ? "OPEN APP" : internalSlug ? "VIEW PROJECT" : "VIEW REPO"} <ArrowUpRight className="size-3" /></span>
               </div>
             </>
           );
 
-          return internalSlug ? (
+          return localAppUrl ? (
+            <a key={project.id} href={localAppUrl} className={cardClassName}>
+              {cardContent}
+            </a>
+          ) : internalSlug ? (
             <Link key={project.id} to="/projects/$slug" params={{ slug: internalSlug }} className={cardClassName}>
               {cardContent}
             </Link>
@@ -351,6 +356,11 @@ function PortfolioError() {
   return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">The portfolio could not load right now. Please try again shortly.</div>;
 }
 
+
+function getLocalAppUrl(repositoryName: string) {
+  const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
+  return normalized === "bot-ecosystem" ? "http://localhost:5274" : undefined;
+}
 
 function getInternalProjectSlug(repositoryName: string) {
   const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
