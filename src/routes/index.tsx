@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
+import { portfolioProjects } from "../content/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -215,21 +216,35 @@ function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
   return (
     <div>
       <div className="grid gap-4 md:grid-cols-3">
-        {visibleProjects.map((project, index) => (
-          <a key={project.id} href={project.htmlUrl} target="_blank" rel="noreferrer" className="group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60">
-            <div>
-              <div className="flex items-start justify-between gap-4">
-                <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">{String(safePage * ITEMS_PER_PAGE + index + 1).padStart(2, "0")}</span>
-                <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.fork ? "FORK" : "ORIGINAL"}</span>
+        {visibleProjects.map((project, index) => {
+          const internalSlug = getInternalProjectSlug(project.name);
+          const cardClassName = "group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60";
+          const cardContent = (
+            <>
+              <div>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">{String(safePage * ITEMS_PER_PAGE + index + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.fork ? "FORK" : "ORIGINAL"}</span>
+                </div>
+                <h3 className="mt-8 break-words font-display text-2xl font-semibold">{project.name}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
               </div>
-              <h3 className="mt-8 break-words font-display text-2xl font-semibold">{project.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
-            </div>
-            <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-              <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">VIEW REPO <ArrowUpRight className="size-3" /></span>
-            </div>
-          </a>
-        ))}
+              <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+                <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">{internalSlug ? "VIEW PROJECT" : "VIEW REPO"} <ArrowUpRight className="size-3" /></span>
+              </div>
+            </>
+          );
+
+          return internalSlug ? (
+            <Link key={project.id} to="/projects/$slug" params={{ slug: internalSlug }} className={cardClassName}>
+              {cardContent}
+            </Link>
+          ) : (
+            <a key={project.id} href={project.htmlUrl} target="_blank" rel="noreferrer" className={cardClassName}>
+              {cardContent}
+            </a>
+          );
+        })}
       </div>
       {pageCount > 1 && <CarouselControls page={safePage} pageCount={pageCount} onChange={setPage} label="repositories" />}
     </div>
@@ -334,4 +349,18 @@ function PortfolioLoading() {
 
 function PortfolioError() {
   return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">The portfolio could not load right now. Please try again shortly.</div>;
+}
+
+
+function getInternalProjectSlug(repositoryName: string) {
+  const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
+
+  if (normalized === "bot-crossing") {
+    return "olympus-os";
+  }
+
+  return portfolioProjects.find((project) => {
+    const repoName = project.repository.split("/").pop()?.toLowerCase().replace(/[_\s]+/g, "-");
+    return repoName === normalized;
+  })?.slug;
 }
