@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const MAX_LINKEDIN_POSTS = 3;
+const LINKEDIN_POSTS_PAGE_SIZE = 50;
 const PUBLICATIONS_API_TIMEOUT_MS = 3_000;
 
 export type LinkedInPost = {
@@ -44,7 +44,7 @@ export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
       const url = new URL(endpoint);
       url.searchParams.set("channel", "linkedin");
       url.searchParams.set("portfolio", "true");
-      url.searchParams.set("limit", String(MAX_LINKEDIN_POSTS));
+      url.searchParams.set("limit", String(LINKEDIN_POSTS_PAGE_SIZE));
 
       const response = await fetch(url, {
         headers: {
@@ -74,9 +74,7 @@ export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
         return [];
       }
 
-      return parsed.data.publications
-        .slice(0, MAX_LINKEDIN_POSTS)
-        .map((publication) => ({
+      return parsed.data.publications.map((publication) => ({
           category:
             publication.category?.trim() || "LATEST FROM LINKEDIN",
           title: publication.title,
