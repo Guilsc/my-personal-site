@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, Github, Lightbulb, Rocket, Tags } from "lucide-react";
 
 import { getPortfolioProject } from "../content/projects";
+import { getLocalizedProjectContent } from "../content/project-content";
 import { getGitHubProject } from "../lib/github.functions";
 import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
@@ -42,6 +43,8 @@ export const Route = createFileRoute("/projects/$slug")({
 function ProjectDetail() {
   const project = Route.useLoaderData();
   const { language, setLanguage, t } = useLanguage();
+  const localized = getLocalizedProjectContent(project.slug, language);
+  const displayProject = localized ? { ...project, ...localized } : project;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -57,9 +60,9 @@ function ProjectDetail() {
       <main className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">{project.eyebrow}</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">{displayProject.eyebrow}</p>
             <h1 className="mt-6 font-display text-5xl font-semibold leading-[0.95] md:text-7xl">{project.name}</h1>
-            <p className="mt-7 max-w-3xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-2xl">{project.summary}</p>
+            <p className="mt-7 max-w-3xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-2xl">{displayProject.summary}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               {project.launchUrl && (
                 <a href={project.launchUrl} target={project.launchUrl.startsWith("http") ? "_blank" : undefined} rel={project.launchUrl.startsWith("http") ? "noreferrer" : undefined} className="inline-flex items-center gap-2 bg-primary px-5 py-3 font-mono text-[10px] font-semibold tracking-wider text-primary-foreground transition-opacity hover:opacity-90">
@@ -89,7 +92,7 @@ function ProjectDetail() {
           <section className="border border-border bg-card p-6 md:col-span-7">
             <div className="flex items-center gap-2 text-primary"><Lightbulb className="size-4" /><p className="font-mono text-[10px] tracking-widest">{t.takeaways}</p></div>
             <ul className="mt-6 space-y-4">
-              {project.takeaways.map((takeaway) => (
+              {displayProject.takeaways.map((takeaway) => (
                 <li key={takeaway} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
                   <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />{takeaway}
                 </li>
@@ -99,7 +102,7 @@ function ProjectDetail() {
 
           <section className="border border-border bg-card p-6 md:col-span-5">
             <div className="flex items-center gap-2 text-primary"><Tags className="size-4" /><p className="font-mono text-[10px] tracking-widest">{t.lens}</p></div>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{displayProject.description}</p>
             <p className="mt-7 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{t.capabilities}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {project.tags.map((tag) => <span key={tag} className="bg-secondary px-2.5 py-2 font-mono text-[9px] tracking-wider text-secondary-foreground">{tag}</span>)}
