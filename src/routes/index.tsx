@@ -255,16 +255,21 @@ function mergeLinkedInPosts(
 ): LinkedInPost[] {
   const seenUrls = new Set<string>();
 
-  return [...livePosts, ...curatedPosts].filter((post) => {
-    const url = normalizePostUrl(post.url);
+  return [...livePosts, ...curatedPosts]
+    .filter((post) => {
+      const url = normalizePostUrl(post.url);
 
-    if (seenUrls.has(url)) {
-      return false;
-    }
+      if (seenUrls.has(url)) {
+        return false;
+      }
 
-    seenUrls.add(url);
-    return true;
-  });
+      seenUrls.add(url);
+      return true;
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    );
 }
 
 function normalizePostCategory(value: string): string {
