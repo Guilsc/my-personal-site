@@ -1,20 +1,23 @@
 [
   {
-    "category": "AI FOR BUSINESS",
-    "title": "Business Analysis, Prompt Engineering & AI for Business",
-    "summary": "Practical ways to use structured prompting to sharpen analysis while keeping judgment and accountability human.",
-    "url": "https://www.linkedin.com/posts/gsilvacosta_businessanalysis-promptengineering-aiforbusiness-activity-7369335253288521731--KPq?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk"
+    "category": "COFFEE WITH A BA",
+    "title": "The requirements phase is over.",
+    "summary": "Why Business Analysis works better as a continuous capability than as a phase completed before development.",
+    "url": "https://www.linkedin.com/feed/update/urn:li:share:7503383957867053057",
+    "publishedAt": "2026-09-23T11:45:21-03:00"
   },
   {
-    "category": "COFFEE WITH ABA",
-    "title": "Business Analysis & Artificial Intelligence",
-    "summary": "A grounded look at how artificial intelligence can support better questions, clearer documentation, and stronger decisions.",
-    "url": "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-artificialintelligence-activity-7503418242942656512-a3_E?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk"
+    "category": "COFFEE WITH A BA",
+    "title": "Your project may have Analysis Debt.",
+    "summary": "How lost assumptions, decisions, and context make systems harder to understand and evolve.",
+    "url": "https://www.linkedin.com/feed/update/urn:li:share:7503381887449587712",
+    "publishedAt": "2026-09-16T11:45:05-03:00"
   },
   {
-    "category": "COFFEE WITH ABA",
-    "title": "Business Analysis & Analysis Debt",
-    "summary": "How unresolved assumptions and rushed discovery create hidden costs—and how teams can make that debt visible.",
-    "url": "https://www.linkedin.com/posts/gsilvacosta_coffeewithaba-businessanalysis-analysisdebt-activity-7505954913575669761-cKJA?utm_source=share&utm_medium=member_ios&rcm=ACoAABgu-BcBSWipJ2aNN0s_L41Gf8-7Ac7CnJk"
+    "category": "COFFEE WITH A BA",
+    "title": "AI can increasingly do the work. So who decides what it is allowed to do?",
+    "summary": "How AI autonomy, human approval, guardrails, and exception handling are becoming core Business Analysis concerns.",
+    "url": "https://www.linkedin.com/feed/update/urn:li:share:7503377080550797312",
+    "publishedAt": "2026-09-09T11:45:15-03:00"
   }
 ]

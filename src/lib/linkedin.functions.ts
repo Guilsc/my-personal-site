@@ -9,6 +9,7 @@ export type LinkedInPost = {
   title: string;
   summary: string;
   url: string;
+  publishedAt: string;
 };
 
 const PublicPublicationSchema = z.object({
@@ -81,6 +82,7 @@ export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
           title: publication.title,
           summary: publication.summary,
           url: publication.url,
+          publishedAt: publication.publishedAt,
         }));
     } catch (error) {
       console.error("BA Content Engine publications API request error:", error);

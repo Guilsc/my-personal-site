@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
@@ -57,7 +57,7 @@ function Portfolio() {
           <nav className="flex items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground" aria-label="Primary">
             <a href="#about" className="transition-colors hover:text-foreground">ABOUT</a>
             <a href="#articles" className="transition-colors hover:text-foreground">ARTICLES</a>
-            <a href="#projects" className="transition-colors hover:text-foreground">PROJECTS</a>
+            <Link to="/projects" className="transition-colors hover:text-foreground">PROJECTS</Link>
           </nav>
         </div>
       </header>
@@ -238,6 +238,23 @@ function normalizePostUrl(value: string): string {
   }
 }
 
+function formatPublicationDate(value: string): string {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "RECENT";
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "America/Sao_Paulo",
+  })
+    .format(date)
+    .toUpperCase();
+}
+
 function LinkedInPostList({ posts }: { posts: LinkedInPost[] }) {
   return (
     <div className="divide-y divide-border border-y border-border">
@@ -257,7 +274,7 @@ function LinkedInPostList({ posts }: { posts: LinkedInPost[] }) {
               {post.category}
             </p>
             <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
-              LINKEDIN POST
+              {formatPublicationDate(post.publishedAt)} · LINKEDIN POST
             </p>
           </div>
           <div className="md:col-span-7">
