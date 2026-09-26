@@ -12,6 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BaContentEngineRouteImport } from './routes/ba-content-engine'
+
+const BaContentEngineRoute = BaContentEngineRouteImport.update({
+  id: '/ba-content-engine',
+  path: '/ba-content-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   id: '/projects/$slug',
@@ -33,30 +40,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ba-content-engine': typeof BaContentEngineRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$slug': typeof ProjectsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ba-content-engine': typeof BaContentEngineRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/$slug': typeof ProjectsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ba-content-engine': typeof BaContentEngineRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$slug': typeof ProjectsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/' | '/projects/$slug'
+  fullPaths: '/' | '/ba-content-engine' | '/projects/' | '/projects/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects' | '/projects/$slug'
-  id: '__root__' | '/' | '/projects/' | '/projects/$slug'
+  to: '/' | '/ba-content-engine' | '/projects' | '/projects/$slug'
+  id: '__root__' | '/' | '/ba-content-engine' | '/projects/' | '/projects/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BaContentEngineRoute: typeof BaContentEngineRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
 }
@@ -68,6 +79,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ba-content-engine': {
+      id: '/ba-content-engine'
+      path: '/ba-content-engine'
+      fullPath: '/ba-content-engine'
+      preLoaderRoute: typeof BaContentEngineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -89,6 +107,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BaContentEngineRoute: BaContentEngineRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
 }
