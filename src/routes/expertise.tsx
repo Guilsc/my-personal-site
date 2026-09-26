@@ -51,7 +51,7 @@ function ExpertisePage() {
               <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2,"0")}</span>
               <div className="md:col-span-4"><h2 className="font-display text-2xl font-semibold md:text-3xl">{item.title}</h2><p className="mt-2 text-sm text-muted-foreground">{item.description}</p></div>
               <div className="grid grid-cols-3 gap-3 md:col-span-6">
-                {[[metrics[id][0],t.projectsEvidence],[metrics[id][1],t.writingEvidence],[metrics[id][2],t.careerEvidence]].map(([value,label]) => <div key={String(label)}><p className="font-display text-2xl font-semibold">{value}</p><p className="font-mono text-[8px] tracking-wider text-muted-foreground">{label}</p></div>)}
+                {[[metrics[id][0],t.projectsEvidence],[metrics[id][1],t.writingEvidence],[metrics[id][2],t.careerEvidence]].map(([value,label]) => <div key={String(label)}><p className="font-display text-2xl font-semibold">{label === t.careerEvidence ? `${value} (${formatCareerDuration(expertiseEvidence[id].careerMonths, language)})` : value}</p><p className="font-mono text-[8px] tracking-wider text-muted-foreground">{label}</p></div>)}
               </div>
               <ArrowUpRight className={`size-5 transition-transform md:col-span-1 ${active ? "text-primary -translate-y-1 translate-x-1" : "text-muted-foreground"}`} />
             </div>
@@ -65,6 +65,13 @@ function ExpertisePage() {
       </div>
     </main>
   </div>;
+}
+
+function formatCareerDuration(months: number, language: "en" | "pt") {
+  const years = Math.floor(months / 12);
+  const remaining = months % 12;
+  if (language === "pt") return remaining ? `${years}a ${remaining}m` : `${years}a`;
+  return remaining ? `${years}y ${remaining}m` : `${years}y`;
 }
 
 function Evidence({icon,label,items}:{icon:React.ReactNode;label:string;items:string[]}) {
