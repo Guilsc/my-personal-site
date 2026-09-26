@@ -134,12 +134,12 @@ function Portfolio() {
         </section>
 
         <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div className="mb-8 flex items-end justify-between gap-5 border-b border-border pb-4">
-            <div>
+          <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
+            <div className="min-w-0">
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) ARTICLES &amp; POSTS</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold">Ideas in practice.</h2>
+              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">Ideas in practice.</h2>
             </div>
-            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-3 py-3 font-mono text-[9px] text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-[10px]"><Linkedin className="size-4" /> <span className="hidden sm:inline">MORE ON LINKEDIN</span><span className="sm:hidden">MORE</span></a>
+            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>MORE ON LINKEDIN</span></a>
           </div>
 
           <ArticlesFeed livePosts={linkedInPosts} />
@@ -147,12 +147,12 @@ function Portfolio() {
 
         <section id="projects" className="border-t border-border/60 bg-secondary/20">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div className="mb-8 flex items-end justify-between border-b border-border pb-4">
-            <div>
+          <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
+            <div className="min-w-0">
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) PUBLIC REPOSITORIES</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold">Live from GitHub.</h2>
+              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">Live from GitHub.</h2>
             </div>
-            <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="hidden items-center gap-2 font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary sm:flex"><Github className="size-4" /> @GUILSC</a>
+            <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> @GUILSC</a>
           </div>
           <RepositoriesCarousel projects={projects} />
           </div>
