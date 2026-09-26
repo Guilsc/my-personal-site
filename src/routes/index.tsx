@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 import { portfolioProjects } from "../content/projects";
+import { getLocalizedProjectContent } from "../content/project-content";
 import { expertiseOrder } from "../content/expertise";
 import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
@@ -54,6 +55,7 @@ function Portfolio() {
           </a>
           <div className="flex items-center gap-3 md:gap-5"><nav className="hidden items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground sm:flex" aria-label="Primary">
             <a href="#about" className="transition-colors hover:text-foreground">{t.nav.about}</a>
+            <Link to="/expertise" className="transition-colors hover:text-foreground">{t.nav.expertise}</Link>
             <a href="#articles" className="transition-colors hover:text-foreground">{t.nav.articles}</a>
             <Link to="/projects" className="transition-colors hover:text-foreground">{t.nav.projects}</Link>
           </nav><LanguageSwitcher language={language} onChange={setLanguage} /></div>
@@ -81,7 +83,7 @@ function Portfolio() {
             <div className="portrait-frame relative aspect-[4/5] overflow-hidden border border-border bg-card">
               <img src="https://avatars.githubusercontent.com/u/12737257?v=4" alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-[linear-gradient(transparent,var(--background))] px-4 pb-4 pt-20 font-mono text-[9px] tracking-widest text-muted-foreground">
-                <span>LEAD ANALYST / EPAM</span><span>CURITIBA, BR</span>
+                <span>SENIOR BUSINESS ANALYST / EPAM</span><span>CURITIBA, BR</span>
               </div>
             </div>
           </div>
@@ -148,11 +150,12 @@ function Portfolio() {
             </article>
             {["ba-content-engine","olympus-os"].map(slug => {
               const project = portfolioProjects.find(item => item.slug === slug)!;
+              const localizedProject = getLocalizedProjectContent(slug, language);
               return <Link key={slug} to="/projects/$slug" params={{slug}} className="group flex flex-col border border-border bg-card p-6 transition-colors hover:border-primary/60">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{project.eyebrow}</p>
+                <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{localizedProject?.eyebrow ?? project.eyebrow}</p>
                 <h3 className="mt-5 font-display text-3xl font-semibold group-hover:text-primary">{project.name}</h3>
-                <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{project.role}</p>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+                <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{localizedProject?.role ?? project.role}</p>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{localizedProject?.summary ?? project.summary}</p>
                 <span className="mt-auto pt-8 inline-flex items-center gap-2 font-mono text-[9px] text-primary">{t.viewMore} <ArrowUpRight className="size-3"/></span>
               </Link>;
             })}
