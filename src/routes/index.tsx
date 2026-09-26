@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 import { portfolioProjects } from "../content/projects";
+import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,6 +47,7 @@ const expertise = [
 
 function Portfolio() {
   const { projects, linkedInPosts } = Route.useLoaderData();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -54,11 +56,11 @@ function Portfolio() {
           <a href="#inicio" className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">
             GSC<span className="text-primary">/</span>PORTFOLIO
           </a>
-          <nav className="flex items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground" aria-label="Primary">
-            <a href="#about" className="transition-colors hover:text-foreground">ABOUT</a>
-            <a href="#articles" className="transition-colors hover:text-foreground">ARTICLES</a>
-            <Link to="/projects" className="transition-colors hover:text-foreground">PROJECTS</Link>
-          </nav>
+          <div className="flex items-center gap-3 md:gap-5"><nav className="hidden items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground sm:flex" aria-label="Primary">
+            <a href="#about" className="transition-colors hover:text-foreground">{t.nav.about}</a>
+            <a href="#articles" className="transition-colors hover:text-foreground">{t.nav.articles}</a>
+            <Link to="/projects" className="transition-colors hover:text-foreground">{t.nav.projects}</Link>
+          </nav><LanguageSwitcher language={language} onChange={setLanguage} /></div>
         </div>
       </header>
 
@@ -73,7 +75,7 @@ function Portfolio() {
             </h1>
             <div className="draw mt-10 h-px w-full bg-border" />
             <p className="reveal mt-8 max-w-2xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-3xl">
-              Turning technical complexity into real business value through 14+ years of experience.
+              {t.hero}
             </p>
             <a href="#about" aria-label="Continue to profile" className="mt-10 inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
               <ArrowDown className="size-4" />
@@ -103,12 +105,10 @@ function Portfolio() {
         <section id="about" className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
           <div className="md:col-span-4">
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(01) ABOUT</p>
-            <h2 className="mt-5 font-display text-4xl font-semibold leading-none md:text-5xl">Business and technology, without the noise.</h2>
+            <h2 className="mt-5 font-display text-4xl font-semibold leading-none md:text-5xl">{t.aboutTitle}</h2>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:col-span-8 md:text-lg">
-            <p>I work between business and technology, turning complex needs into clear decisions and actionable work. My career spans software testing, Quality Assurance, Business Analysis, and product-focused delivery.</p>
-            <p>My QA background still shapes how I think: I look for dependencies, risks, and edge cases, and ask whether a solution truly works beyond the happy path.</p>
-            <p>Today, I explore practical ways for artificial intelligence to support better analysis, decision-making, documentation, and software delivery.</p>
+            {t.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <div className="flex flex-wrap gap-3 pt-2 font-mono text-[10px] tracking-wider text-foreground">
               <span className="border border-border bg-card px-3 py-2">EPAM SYSTEMS</span>
               <span className="border border-border bg-card px-3 py-2">UTFPR</span>
@@ -119,7 +119,7 @@ function Portfolio() {
 
         <section className="border-y border-border/60 bg-secondary/20">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) EXPERTISE</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) {t.expertise}</p>
             <div className="mt-8 divide-y divide-border border-y border-border">
               {expertise.map(([number, title, description]) => (
                 <div key={number} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
@@ -136,10 +136,10 @@ function Portfolio() {
         <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) ARTICLES &amp; POSTS</p>
-              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">Ideas in practice.</h2>
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.articles}</p>
+              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.ideas}</h2>
             </div>
-            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>MORE ON LINKEDIN</span></a>
+            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>{t.moreLinkedIn}</span></a>
           </div>
 
           <ArticlesFeed livePosts={linkedInPosts} />
@@ -149,8 +149,8 @@ function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) PUBLIC REPOSITORIES</p>
-              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">Live from GitHub.</h2>
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) {t.repositories}</p>
+              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.githubLive}</h2>
             </div>
             <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> @GUILSC</a>
           </div>
@@ -161,8 +161,8 @@ function Portfolio() {
         <section className="border-t border-border bg-secondary/30">
           <div className="mx-auto max-w-4xl px-5 py-20 text-center md:px-8 md:py-28">
             <p className="font-mono text-[10px] tracking-[0.4em] text-primary">CONTACT</p>
-            <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">Let’s turn complexity into clarity.</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">Explore my work and connect with me on LinkedIn or GitHub.</p>
+            <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">{t.contactTitle}</h2>
+            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">{t.contactText}</p>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent"><Linkedin className="size-4" /> LINKEDIN</a>
               <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-4 font-display text-sm font-bold transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> GITHUB</a>
