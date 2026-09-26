@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
+import { useState } from "react";
 
-import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
 import curatedLinkedInPosts from "../content/linkedin-posts.json";
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
@@ -81,7 +81,7 @@ function Portfolio() {
           </div>
           <div className="reveal relative md:col-span-5 md:self-end">
             <div className="portrait-frame relative aspect-[4/5] overflow-hidden border border-border bg-card">
-              <img src={portraitAsset.url} alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
+              <img src="https://avatars.githubusercontent.com/u/12737257?v=4" alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-[linear-gradient(transparent,var(--background))] px-4 pb-4 pt-20 font-mono text-[9px] tracking-widest text-muted-foreground">
                 <span>LEAD ANALYST / EPAM</span><span>CURITIBA, BR</span>
               </div>
@@ -154,25 +154,7 @@ function Portfolio() {
             </div>
             <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="hidden items-center gap-2 font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary sm:flex"><Github className="size-4" /> @GUILSC</a>
           </div>
-          {projects.length > 0 ? (
-            <div className="grid gap-4 md:grid-cols-2">
-              {projects.map((project, index) => (
-                <a key={project.id} href={project.htmlUrl} target="_blank" rel="noreferrer" className="group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60">
-                  <div>
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">{String(index + 1).padStart(2, "0")}</span>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.fork ? "FORK" : "ORIGINAL"}</span>
-                    </div>
-                    <h3 className="mt-8 break-words font-display text-2xl font-semibold">{project.name}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
-                  </div>
-                  <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-                    <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">VIEW REPO <ArrowUpRight className="size-3" /></span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          ) : <p className="border border-border bg-card p-6 text-muted-foreground">No public repositories are available right now.</p>}
+          <RepositoriesCarousel projects={projects} />
           </div>
         </section>
 
@@ -198,15 +180,73 @@ function Portfolio() {
   );
 }
 
-const MAX_ARTICLE_POSTS = 3;
+const ITEMS_PER_PAGE = 3;
 
 function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
-  const posts = mergeLinkedInPosts(livePosts, curatedLinkedInPosts).slice(
-    0,
-    MAX_ARTICLE_POSTS,
-  );
+  const posts = mergeLinkedInPosts(livePosts, curatedLinkedInPosts);
+  return <ArticlesCarousel posts={posts} />;
+}
 
-  return <LinkedInPostList posts={posts} />;
+function ArticlesCarousel({ posts }: { posts: LinkedInPost[] }) {
+  const [page, setPage] = useState(0);
+  const pageCount = Math.max(1, Math.ceil(posts.length / ITEMS_PER_PAGE));
+  const safePage = Math.min(page, pageCount - 1);
+  const visiblePosts = posts.slice(safePage * ITEMS_PER_PAGE, (safePage + 1) * ITEMS_PER_PAGE);
+
+  return (
+    <div>
+      <LinkedInPostList posts={visiblePosts} startIndex={safePage * ITEMS_PER_PAGE} />
+      {pageCount > 1 && <CarouselControls page={safePage} pageCount={pageCount} onChange={setPage} label="article posts" />}
+    </div>
+  );
+}
+
+type Repository = Awaited<ReturnType<typeof getGitHubProjects>>[number];
+
+function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
+  const [page, setPage] = useState(0);
+  const pageCount = Math.max(1, Math.ceil(projects.length / ITEMS_PER_PAGE));
+  const safePage = Math.min(page, pageCount - 1);
+  const visibleProjects = projects.slice(safePage * ITEMS_PER_PAGE, (safePage + 1) * ITEMS_PER_PAGE);
+
+  if (projects.length === 0) {
+    return <p className="border border-border bg-card p-6 text-muted-foreground">No public repositories are available right now.</p>;
+  }
+
+  return (
+    <div>
+      <div className="grid gap-4 md:grid-cols-3">
+        {visibleProjects.map((project, index) => (
+          <a key={project.id} href={project.htmlUrl} target="_blank" rel="noreferrer" className="group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60">
+            <div>
+              <div className="flex items-start justify-between gap-4">
+                <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">{String(safePage * ITEMS_PER_PAGE + index + 1).padStart(2, "0")}</span>
+                <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.fork ? "FORK" : "ORIGINAL"}</span>
+              </div>
+              <h3 className="mt-8 break-words font-display text-2xl font-semibold">{project.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
+            </div>
+            <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+              <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">VIEW REPO <ArrowUpRight className="size-3" /></span>
+            </div>
+          </a>
+        ))}
+      </div>
+      {pageCount > 1 && <CarouselControls page={safePage} pageCount={pageCount} onChange={setPage} label="repositories" />}
+    </div>
+  );
+}
+
+function CarouselControls({ page, pageCount, onChange, label }: { page: number; pageCount: number; onChange: (page: number) => void; label: string }) {
+  return (
+    <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
+      <span className="font-mono text-[9px] tracking-widest text-muted-foreground">{String(page + 1).padStart(2, "0")} / {String(pageCount).padStart(2, "0")}</span>
+      <div className="flex gap-2">
+        <button type="button" onClick={() => onChange(Math.max(0, page - 1))} disabled={page === 0} aria-label={`Previous ${label}`} className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"><ArrowLeft className="size-4" /></button>
+        <button type="button" onClick={() => onChange(Math.min(pageCount - 1, page + 1))} disabled={page === pageCount - 1} aria-label={`Next ${label}`} className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"><ArrowRight className="size-4" /></button>
+      </div>
+    </div>
+  );
 }
 
 function mergeLinkedInPosts(
@@ -225,6 +265,14 @@ function mergeLinkedInPosts(
     seenUrls.add(url);
     return true;
   });
+}
+
+function normalizePostCategory(value: string): string {
+  const normalized = value.trim().toUpperCase().replace(/\s+/g, " ");
+  if (normalized === "COFFE WITH ABA" || normalized === "COFFEE WITH ABA" || normalized === "COFFE WITH A BA" || normalized === "COFFEE WITH BA") {
+    return "COFFEE WITH A BA";
+  }
+  return value;
 }
 
 function normalizePostUrl(value: string): string {
@@ -255,7 +303,7 @@ function formatPublicationDate(value: string): string {
     .toUpperCase();
 }
 
-function LinkedInPostList({ posts }: { posts: LinkedInPost[] }) {
+function LinkedInPostList({ posts, startIndex = 0 }: { posts: LinkedInPost[]; startIndex?: number }) {
   return (
     <div className="divide-y divide-border border-y border-border">
       {posts.map((post, index) => (
@@ -267,11 +315,11 @@ function LinkedInPostList({ posts }: { posts: LinkedInPost[] }) {
           className="group grid gap-4 py-7 transition-colors md:grid-cols-12 md:items-center md:py-9"
         >
           <span className="font-mono text-[10px] text-primary md:col-span-1">
-            {String(index + 1).padStart(2, "0")}
+            {String(startIndex + index + 1).padStart(2, "0")}
           </span>
           <div className="md:col-span-3">
             <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
-              {post.category}
+              {normalizePostCategory(post.category)}
             </p>
             <p className="mt-2 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
               {formatPublicationDate(post.publishedAt)} · LINKEDIN POST
