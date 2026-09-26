@@ -62,6 +62,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/articles': typeof ArticlesRoute
+  '/expertise': typeof ExpertiseRoute
   '/ba-content-engine': typeof BaContentEngineRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/$slug': typeof ProjectsSlugRoute
@@ -69,6 +71,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/articles': typeof ArticlesRoute
+  '/expertise': typeof ExpertiseRoute
   '/ba-content-engine': typeof BaContentEngineRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$slug': typeof ProjectsSlugRoute
