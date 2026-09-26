@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, Github, Lightbulb, Rocket, Tags } from "lucide
 
 import { getPortfolioProject } from "../content/projects";
 import { getGitHubProject } from "../lib/github.functions";
+import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: async ({ params }) => {
@@ -40,17 +41,16 @@ export const Route = createFileRoute("/projects/$slug")({
 
 function ProjectDetail() {
   const project = Route.useLoaderData();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="border-b border-border/60">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <Link to="/projects" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground transition-colors hover:text-primary">
-            <ArrowLeft className="size-3" /> PROJECTS
+            <ArrowLeft className="size-3" /> {t.backProjects}
           </Link>
-          <span className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">
-            GSC<span className="text-primary">/</span>{project.slug.toUpperCase()}
-          </span>
+          <div className="flex items-center gap-3"><span className="hidden font-mono text-[10px] tracking-[0.3em] text-muted-foreground sm:inline">GSC<span className="text-primary">/</span>{project.slug.toUpperCase()}</span><LanguageSwitcher language={language} onChange={setLanguage} /></div>
         </div>
       </header>
 
@@ -67,14 +67,14 @@ function ProjectDetail() {
                 </a>
               )}
               <a href={project.repository} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border bg-card px-5 py-3 font-mono text-[10px] tracking-wider text-muted-foreground transition-colors hover:border-primary hover:text-primary">
-                <Github className="size-4" /> SOURCE <ArrowUpRight className="size-3" />
+                <Github className="size-4" /> {t.source} <ArrowUpRight className="size-3" />
               </a>
             </div>
           </div>
 
           <aside className="md:col-span-4">
             <div className="border border-border bg-card p-6">
-              <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">STATUS</p>
+              <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{t.status}</p>
               <p className="mt-2 font-mono text-xs text-primary">{project.status}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
@@ -87,7 +87,7 @@ function ProjectDetail() {
 
         <div className="mt-16 grid gap-4 border-t border-border pt-8 md:grid-cols-12">
           <section className="border border-border bg-card p-6 md:col-span-7">
-            <div className="flex items-center gap-2 text-primary"><Lightbulb className="size-4" /><p className="font-mono text-[10px] tracking-widest">KEY TAKEAWAYS</p></div>
+            <div className="flex items-center gap-2 text-primary"><Lightbulb className="size-4" /><p className="font-mono text-[10px] tracking-widest">{t.takeaways}</p></div>
             <ul className="mt-6 space-y-4">
               {project.takeaways.map((takeaway) => (
                 <li key={takeaway} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
@@ -98,9 +98,9 @@ function ProjectDetail() {
           </section>
 
           <section className="border border-border bg-card p-6 md:col-span-5">
-            <div className="flex items-center gap-2 text-primary"><Tags className="size-4" /><p className="font-mono text-[10px] tracking-widest">PROJECT LENS</p></div>
+            <div className="flex items-center gap-2 text-primary"><Tags className="size-4" /><p className="font-mono text-[10px] tracking-widest">{t.lens}</p></div>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-            <p className="mt-7 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">CAPABILITIES</p>
+            <p className="mt-7 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{t.capabilities}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {project.tags.map((tag) => <span key={tag} className="bg-secondary px-2.5 py-2 font-mono text-[9px] tracking-wider text-secondary-foreground">{tag}</span>)}
             </div>
