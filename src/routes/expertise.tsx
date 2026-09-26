@@ -55,10 +55,11 @@ function ExpertisePage() {
               </div>
               <ArrowUpRight className={`size-5 transition-transform md:col-span-1 ${active ? "text-primary -translate-y-1 translate-x-1" : "text-muted-foreground"}`} />
             </div>
-            {selected && <div className={`grid gap-6 border-t border-border p-5 md:p-7 ${aiContexts?.length ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
+            {selected && <div className={`grid gap-6 border-t border-border p-5 md:p-7 ${evidence.aiContexts?.length ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
               <Evidence icon={<FolderGit2 className="size-4" />} label={t.projectsEvidence} items={projectNames} />
               <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.careerEvidence} items={evidence.career} />
-              <Evidence icon={<Linkedin className="size-4" />} label={t.evidence} items={evidence.signals} />\n              {aiContexts?.length ? <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.contextsEvidence} items={aiContexts} /> : null}
+              <Evidence icon={<Linkedin className="size-4" />} label={t.evidence} items={evidence.signals} />
+              {evidence.aiContexts?.length ? <Evidence icon={<BriefcaseBusiness className="size-4" />} label={t.contextsEvidence} items={evidence.aiContexts} /> : null}
             </div>}
           </section>;
         })}
