@@ -45,7 +45,8 @@ function ExpertisePage() {
           const active = selected || hovered === id;
           const item = t.expertiseItems[id];
           const evidence = expertiseEvidence[id];
-          const projectNames = evidence.projectSlugs.map(slug => portfolioProjects.find(p => p.slug === slug)?.name ?? slug);\n          const aiContexts = "aiContexts" in evidence ? evidence.aiContexts : undefined;
+          const projectNames = evidence.projectSlugs.map(slug => portfolioProjects.find(p => p.slug === slug)?.name ?? slug);
+          const aiContexts = "aiContexts" in evidence ? evidence.aiContexts : undefined;
           return <section key={id} onMouseEnter={() => setHovered(id)} onMouseLeave={() => setHovered(null)} onClick={() => setFocus(id)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFocus(id); } }} role="button" tabIndex={0} aria-expanded={selected} className={`cursor-pointer border transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-primary ${selected ? "border-primary bg-card opacity-100" : active ? "border-border bg-card opacity-100" : "border-border/60 bg-secondary/10 opacity-40"}`}>
             <div className="grid gap-4 p-5 md:grid-cols-12 md:items-center md:p-7">
               <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2,"0")}</span>
