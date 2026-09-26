@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { portfolioProjects } from "../content/projects";
 
 export type GitHubRepository = {
   id: number;
@@ -28,9 +29,7 @@ const CACHE_TTL_MS = 15 * 60 * 1000;
 // Repositories that are public on GitHub but intentionally excluded from the
 // portfolio. Keep this list explicit so GitHub remains the source of truth for
 // every other public repository.
-const PORTFOLIO_EXCLUDED_REPOSITORIES = new Set([
-  "my-personal-site",
-]);
+const PORTFOLIO_EXCLUDED_REPOSITORIES = new Set(["my-personal-site"]);
 
 let repositoryCache: { value: GitHubRepository[]; expiresAt: number } | null = null;
 
@@ -44,8 +43,28 @@ function githubHeaders() {
   };
 }
 
+function fallbackProjects(): GitHubRepository[] {
+  return portfolioProjects
+    .filter((project) => !PORTFOLIO_EXCLUDED_REPOSITORIES.has(project.slug.toLowerCase()))
+    .map((project, index) => ({
+      id: -(index + 1),
+      name: project.slug,
+      description: project.summary,
+      htmlUrl: project.repository,
+      language: null,
+      stars: 0,
+      fork: false,
+      updatedAt: "",
+      starred: false,
+    }));
+}
+
+function cachedOrFallback(): GitHubRepository[] {
+  return repositoryCache?.value?.length ? repositoryCache.value : fallbackProjects();
+}
+
 async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
-  if (repositoryCache && repositoryCache.expiresAt > Date.now()) {
+  if (repositoryCache && repositoryCache.expiresAt > Date.now() && repositoryCache.value.length) {
     return repositoryCache.value;
   }
 
@@ -58,13 +77,11 @@ async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
 
     if (!response.ok) {
       console.error(`GitHub repositories request failed [${response.status}]`);
-      return repositoryCache?.value ?? [];
+      return cachedOrFallback();
     }
 
     const repositories = (await response.json()) as GitHubRepositoryResponse[];
 
-    // Star metadata is useful, but it must never prevent the repository catalog
-    // from loading. Fetch it independently after the canonical repo list.
     let starredNames = new Set<string>();
     try {
       const starredResponse = await fetch(
@@ -101,11 +118,16 @@ async function fetchGitHubProjects(): Promise<GitHubRepository[]> {
       }))
       .sort((a, b) => Number(a.fork) - Number(b.fork));
 
+    if (result.length === 0) {
+      console.error("GitHub repositories request returned no portfolio repositories");
+      return cachedOrFallback();
+    }
+
     repositoryCache = { value: result, expiresAt: Date.now() + CACHE_TTL_MS };
     return result;
   } catch (error) {
     console.error("GitHub request error:", error);
-    return repositoryCache?.value ?? [];
+    return cachedOrFallback();
   }
 }
 
