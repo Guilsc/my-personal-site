@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "sync:projects": "node scripts/sync-project-content.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"
