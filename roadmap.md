@@ -6,6 +6,8 @@ Production domain: `guilhermecosta.tech`
 
 ## Infrastructure
 
+- [x] Gate pull requests with lint, TypeScript typecheck, and production build validation
+
 - [x] Connect Hostinger production app directly to this GitHub repository
 - [x] Configure Hostinger to deploy automatically from `main`
 - [x] Confirm the correct Node.js build and start commands for the current TanStack Start/Nitro app
@@ -19,6 +21,8 @@ Production domain: `guilhermecosta.tech`
 - [ ] Configure `BA_CONTENT_PUBLICATIONS_URL` in Hostinger after the BA public API exists
 - [ ] Validate latest-3 published-post rendering against the live BA public API
 - [x] Add graceful fallbacks for external content integrations
+- [x] Add timeout and runtime validation to the publications API client
+- [x] Keep Articles & Posts filled up to 3 items using curated fallback content
 
 ## Content
 
