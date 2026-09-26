@@ -2,7 +2,7 @@ export type ExpertiseId = "business-analysis" | "product-strategy" | "systems-qa
 
 export const expertiseOrder: ExpertiseId[] = ["business-analysis", "product-strategy", "systems-qa", "applied-ai"];
 
-export const expertiseEvidence = {
+export type ExpertiseEvidence = { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[]; aiContexts?: string[] };\n\nexport const expertiseEvidence: Record<ExpertiseId, ExpertiseEvidence> = {
   "business-analysis": {
     projectSlugs: ["ba-content-engine", "olympus-os"],
     career: ["EPAM Systems", "CI&T", "McFadyen Digital", "Wipro"],
@@ -28,7 +28,7 @@ export const expertiseEvidence = {
     signals: ["AI Factory", "AI Agents", "Multi-Agent Systems", "Multi-Model Orchestration", "Google AI Studio", "Salesforce Agentforce", "Claude", "OpenAI", "Context & Memory", "Automation"],
     aiContexts: ["Equifax client delivery", "EPAM internal initiatives"],
   },
-} satisfies Record<ExpertiseId, { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[]; aiContexts?: string[] }>;
+};
 
 export function expertiseHref(id: ExpertiseId) {
   return `/expertise?focus=${id}`;
