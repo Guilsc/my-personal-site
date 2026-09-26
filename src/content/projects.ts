@@ -9,6 +9,11 @@ export type PortfolioProject = {
   status: "ACTIVE" | "BUILDING" | "EXPERIMENT";
   tags: string[];
   takeaways: string[];
+  role?: string;
+  problem?: string;
+  approach?: string[];
+  outcomes?: string[];
+  next?: string;
 };
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -24,6 +29,11 @@ export const portfolioProjects: PortfolioProject[] = [
     launchUrl: "https://ba-content-engine.guilhermecosta.tech/",
     status: "ACTIVE",
     tags: ["BUSINESS ANALYSIS", "AI", "EDITORIAL SYSTEMS", "SUPABASE"],
+    role: "Product owner, workflow designer, and builder",
+    problem: "Turn fragmented trend discovery, research, drafting, approval, publishing, and learning into one governed editorial workflow.",
+    approach: ["Designed an explicit content lifecycle from signal to learning.", "Separated editorial intelligence from persistent application data.", "Made human approval a hard boundary before publishing."],
+    outcomes: ["A working, launchable system with a defined editorial operating model.", "A reusable lifecycle that connects discovery, creation, publishing, and learning without removing human approval."],
+    next: "Continue integrating persistent data, automation, and post-publication learning while preserving explicit approval boundaries.",
     takeaways: [
       "Separates editorial intelligence from persistent application data.",
       "Uses explicit human approval as a hard publishing boundary.",
@@ -42,6 +52,11 @@ export const portfolioProjects: PortfolioProject[] = [
     launchUrl: "/ecosystem/",
     status: "BUILDING",
     tags: ["AI AGENTS", "REPOSITORIES", "VISUALIZATION", "EXPERIMENT"],
+    role: "Product designer and builder",
+    problem: "Make repository and coding-agent activity easier to understand than a conventional list of files, commits, and logs.",
+    approach: ["Evolved the original Bot Crossing concept into a reusable visualization layer.", "Kept the application independent from Olympus OS so it can visualize other repositories.", "Integrated the app into the portfolio deployment without collapsing its application boundary."],
+    outcomes: ["A launchable visual interface for exploring repository activity.", "A reusable project boundary that can support Olympus OS and other repositories."],
+    next: "Expand repository signals and agent activity views as the underlying projects evolve.",
     takeaways: [
       "Turns repository activity into a visual, explorable interface.",
       "Remains reusable instead of being coupled to a single agent system.",
@@ -59,6 +74,11 @@ export const portfolioProjects: PortfolioProject[] = [
     repository: "https://github.com/Guilsc/olympus_OS",
     status: "BUILDING",
     tags: ["MULTI-AGENT", "AGENT ARCHITECTURE", "MEMORY", "GOVERNANCE"],
+    role: "Operating-model designer and agent-system architect",
+    problem: "Coordinate persistent AI agents without collapsing ownership, memory, governance, and execution into one oversized assistant.",
+    approach: ["Defined explicit agent and Realm ownership boundaries.", "Separated working context, agent memory, and curated shared knowledge.", "Designed reusable Skills, lifecycle policies, escalation paths, and human approval boundaries."],
+    outcomes: ["A documented multi-agent operating model with explicit authority and memory boundaries.", "Self-checks that expose technical limitations instead of treating behavioral instructions as enforced permissions."],
+    next: "Validate orchestration, permission enforcement, shared knowledge, and observability as implementation matures.",
     takeaways: [
       "Makes agent ownership and responsibility explicit.",
       "Separates working context, agent memory, and curated shared knowledge.",
