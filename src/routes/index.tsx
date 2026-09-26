@@ -129,6 +129,31 @@ function Portfolio() {
           </div>
         </section>
 
+        <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.selectedImpact}</p>
+          <h2 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-none md:text-5xl">{t.impactTitle}</h2>
+          <p className="mt-5 max-w-2xl text-muted-foreground">{t.impactIntro}</p>
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+            <article className="flex flex-col border border-primary/50 bg-card p-6">
+              <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{t.enterpriseEyebrow}</p>
+              <h3 className="mt-5 font-display text-3xl font-semibold">{t.enterpriseTitle}</h3>
+              <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{t.enterpriseRole}</p>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{t.enterpriseSummary}</p>
+              <div className="mt-6 space-y-2">{t.enterpriseEvidence.map(item => <p key={item} className="text-xs leading-relaxed text-muted-foreground">+ {item}</p>)}</div>
+            </article>
+            {["ba-content-engine","olympus-os"].map(slug => {
+              const project = portfolioProjects.find(item => item.slug === slug)!;
+              return <Link key={slug} to="/projects/$slug" params={{slug}} className="group flex flex-col border border-border bg-card p-6 transition-colors hover:border-primary/60">
+                <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{project.eyebrow}</p>
+                <h3 className="mt-5 font-display text-3xl font-semibold group-hover:text-primary">{project.name}</h3>
+                <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{project.role}</p>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+                <span className="mt-auto pt-8 inline-flex items-center gap-2 font-mono text-[9px] text-primary">{t.viewAll} <ArrowUpRight className="size-3"/></span>
+              </Link>;
+            })}
+          </div>
+        </section>
+
         <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
@@ -145,7 +170,7 @@ function Portfolio() {
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) {t.repositories}</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(05) {t.repositories}</p>
               <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.githubLive}</h2>
             </div>
             <div className="flex flex-wrap gap-2"><Link to="/projects" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link><a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> @GUILSC</a></div>
