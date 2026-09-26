@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import fallbackPosts from "../content/linkedin-posts.json";
 
 const LINKEDIN_POSTS_PAGE_SIZE = 50;
 const PUBLICATIONS_API_TIMEOUT_MS = 3_000;
@@ -55,18 +56,18 @@ async function getPostsFromSupabase(): Promise<LinkedInPost[]> {
     });
     if (!response.ok) {
       console.error(`Supabase portfolio publications failed [${response.status}]`);
-      return [];
+      return fallbackPosts;
     }
 
     const parsed = z.array(SupabasePublicationSchema).safeParse(await response.json());
     if (!parsed.success) {
       console.error("Supabase portfolio publications returned an invalid response");
-      return [];
+      return fallbackPosts;
     }
-    return parsed.data.map(toLinkedInPost);
+    return parsed.data.length ? parsed.data.map(toLinkedInPost) : fallbackPosts;
   } catch (error) {
     console.error("Supabase portfolio publications request error:", error);
-    return [];
+    return fallbackPosts;
   }
 }
 
