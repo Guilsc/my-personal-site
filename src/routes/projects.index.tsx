@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github, Rocket } from "lucide-react";
 
 import { portfolioProjects } from "../content/projects";
 
@@ -59,7 +59,10 @@ function ProjectsPage() {
                 <h2 className="font-display text-3xl font-semibold transition-colors group-hover:text-primary md:text-4xl">{project.name}</h2>
                 <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
               </div>
-              <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+              <div className="flex items-center justify-between gap-3 md:justify-end">
+                {project.launchUrl && <span className="inline-flex items-center gap-1 bg-primary px-3 py-2 font-mono text-[9px] font-semibold tracking-wider text-primary-foreground"><Rocket className="size-3" /> LAUNCH</span>}
+                <ArrowUpRight className="size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
+              </div>
             </Link>
           ))}
         </div>
