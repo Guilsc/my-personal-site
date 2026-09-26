@@ -5,8 +5,6 @@ Personal portfolio for Guilherme da Silva Costa, focused on Business Analysis, p
 Canonical repository: `Guilsc/my-personal-site`  
 Production: `https://guilhermecosta.tech`
 
-The project was originally bootstrapped with Lovable and remains connected to it, but GitHub is the canonical application source and the normal development/deployment path.
-
 ## Development
 
 Requirements:
@@ -36,7 +34,7 @@ Production is deployed automatically from `main` to Hostinger.
 feature branch -> pull request -> lint/typecheck/build -> review -> merge to main -> Hostinger auto-deploy
 ```
 
-Treat `main` as production. Do not use Lovable as the day-to-day deployment path.
+Treat `main` as production.
 
 ## LinkedIn feed
 
