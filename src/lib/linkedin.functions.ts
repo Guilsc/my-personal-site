@@ -14,21 +14,6 @@ export type LinkedInPost = {
   publishedAt: string;
 };
 
-const PublicPublicationSchema = z.object({
-  id: z.string().trim().min(1),
-  channel: z.literal("linkedin"),
-  title: z.string().trim().min(1),
-  summary: z.string().trim().min(1),
-  category: z.string().trim().nullable().optional(),
-  url: z.string().trim().url(),
-  publishedAt: z.string().trim().refine((value) => !Number.isNaN(Date.parse(value))),
-});
-
-const PublicPublicationsResponseSchema = z.object({
-  version: z.literal("1"),
-  publications: z.array(PublicPublicationSchema),
-});
-
 const SupabasePublicationSchema = z.object({
   public_id: z.string().trim().min(1),
   channel: z.literal("linkedin"),
@@ -49,34 +34,6 @@ function toLinkedInPost(publication: PublicationRow): LinkedInPost {
     url: publication.url,
     publishedAt: publication.published_at,
   };
-}
-
-async function getPostsFromConfiguredEndpoint(endpoint: string): Promise<LinkedInPost[] | null> {
-  try {
-    const url = new URL(endpoint);
-    url.searchParams.set("channel", "linkedin");
-    url.searchParams.set("portfolio", "true");
-    url.searchParams.set("limit", String(LINKEDIN_POSTS_PAGE_SIZE));
-
-    const response = await fetch(url, {
-      headers: { Accept: "application/json", "User-Agent": "guilherme-costa-portfolio" },
-      signal: AbortSignal.timeout(PUBLICATIONS_API_TIMEOUT_MS),
-    });
-    if (!response.ok) return null;
-
-    const parsed = PublicPublicationsResponseSchema.safeParse(await response.json());
-    if (!parsed.success) return null;
-
-    return parsed.data.publications.map((publication) => ({
-      category: publication.category?.trim() || "LATEST FROM LINKEDIN",
-      title: publication.title,
-      summary: publication.summary,
-      url: publication.url,
-      publishedAt: publication.publishedAt,
-    }));
-  } catch {
-    return null;
-  }
 }
 
 async function getPostsFromSupabase(): Promise<LinkedInPost[]> {
@@ -113,14 +70,5 @@ async function getPostsFromSupabase(): Promise<LinkedInPost[]> {
 }
 
 export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
-  async (): Promise<LinkedInPost[]> => {
-    const endpoint = process.env["BA_CONTENT_PUBLICATIONS_URL"]?.trim();
-
-    if (endpoint) {
-      const posts = await getPostsFromConfiguredEndpoint(endpoint);
-      if (posts !== null) return posts;
-    }
-
-    return getPostsFromSupabase();
-  },
+  async (): Promise<LinkedInPost[]> => getPostsFromSupabase(),
 );
