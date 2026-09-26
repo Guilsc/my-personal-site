@@ -4,7 +4,7 @@ import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react"
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
 import curatedLinkedInPosts from "../content/linkedin-posts.json";
 import { getGitHubProjects } from "../lib/github.functions";
-import { getLinkedInPosts } from "../lib/linkedin.functions";
+import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,8 +32,8 @@ export const Route = createFileRoute("/")({
 
     return { projects, linkedInPosts };
   },
-  pendingComponent: ProjectsLoading,
-  errorComponent: ProjectsError,
+  pendingComponent: PortfolioLoading,
+  errorComponent: PortfolioError,
   component: Portfolio,
 });
 
@@ -198,23 +198,47 @@ function Portfolio() {
   );
 }
 
-type ArticlePost = {
-  category: string;
-  title: string;
-  summary: string;
-  url: string;
-};
+const MAX_ARTICLE_POSTS = 3;
 
-function ArticlesFeed({ livePosts }: { livePosts: ArticlePost[] }) {
-  const posts =
-    livePosts.length > 0
-      ? livePosts.slice(0, 3)
-      : curatedLinkedInPosts.slice(0, 3);
+function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
+  const posts = mergeLinkedInPosts(livePosts, curatedLinkedInPosts).slice(
+    0,
+    MAX_ARTICLE_POSTS,
+  );
 
   return <LinkedInPostList posts={posts} />;
 }
 
-function LinkedInPostList({ posts }: { posts: ArticlePost[] }) {
+function mergeLinkedInPosts(
+  livePosts: LinkedInPost[],
+  curatedPosts: LinkedInPost[],
+): LinkedInPost[] {
+  const seenUrls = new Set<string>();
+
+  return [...livePosts, ...curatedPosts].filter((post) => {
+    const url = normalizePostUrl(post.url);
+
+    if (seenUrls.has(url)) {
+      return false;
+    }
+
+    seenUrls.add(url);
+    return true;
+  });
+}
+
+function normalizePostUrl(value: string): string {
+  try {
+    const url = new URL(value);
+    url.search = "";
+    url.hash = "";
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return value.trim();
+  }
+}
+
+function LinkedInPostList({ posts }: { posts: LinkedInPost[] }) {
   return (
     <div className="divide-y divide-border border-y border-border">
       {posts.map((post, index) => (
@@ -251,10 +275,10 @@ function LinkedInPostList({ posts }: { posts: ArticlePost[] }) {
   );
 }
 
-function ProjectsLoading() {
+function PortfolioLoading() {
   return <div className="grid min-h-screen place-items-center bg-background font-mono text-xs tracking-widest text-primary">LOADING PORTFOLIO…</div>;
 }
 
-function ProjectsError() {
+function PortfolioError() {
   return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">The portfolio could not load right now. Please try again shortly.</div>;
 }
