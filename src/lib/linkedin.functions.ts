@@ -42,6 +42,7 @@ async function getPostsFromSupabase(): Promise<LinkedInPost[]> {
     url.searchParams.set("select", "public_id,channel,title,summary,category,url,published_at");
     url.searchParams.set("channel", "eq.linkedin");
     url.searchParams.set("portfolio", "eq.true");
+    url.searchParams.set("publication_status", "eq.published");
     url.searchParams.set("order", "published_at.desc");
     url.searchParams.set("limit", String(LINKEDIN_POSTS_PAGE_SIZE));
 
