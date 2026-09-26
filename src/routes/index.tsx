@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 
 import portraitAsset from "../assets/guilherme-photo.jpeg.asset.json";
@@ -57,7 +57,7 @@ function Portfolio() {
           <nav className="flex items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground" aria-label="Primary">
             <a href="#about" className="transition-colors hover:text-foreground">ABOUT</a>
             <a href="#articles" className="transition-colors hover:text-foreground">ARTICLES</a>
-            <a href="#projects" className="transition-colors hover:text-foreground">PROJECTS</a>
+            <Link to="/projects" className="transition-colors hover:text-foreground">PROJECTS</Link>
           </nav>
         </div>
       </header>
