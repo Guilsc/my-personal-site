@@ -18,11 +18,13 @@ Production domain: `guilhermecosta.tech`
 
 - [x] Load public repositories dynamically from GitHub
 - [x] Prepare the Articles & Posts section to consume the BA Content Engine v1 public publications API
-- [ ] Configure `BA_CONTENT_PUBLICATIONS_URL` in Hostinger after the BA public API exists
+- [x] Deploy the BA Content Engine v1 public publications endpoint
+- [ ] Configure `BA_CONTENT_PUBLICATIONS_URL` in Hostinger
 - [ ] Validate latest-3 published-post rendering against the live BA public API
 - [x] Add graceful fallbacks for external content integrations
 - [x] Add timeout and runtime validation to the publications API client
 - [x] Keep Articles & Posts filled up to 3 items using curated fallback content
+- [x] Show publication dates and keep fallback content aligned with the live feed
 
 ## Content
 
