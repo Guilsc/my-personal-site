@@ -4,7 +4,7 @@ export type Language = "en" | "pt";
 
 export const copy = {
   en: {
-    nav: { about: "ABOUT", articles: "ARTICLES", projects: "PROJECTS" },
+    nav: { about: "ABOUT", articles: "ARTICLES", projects: "PROJECTS", expertise: "EXPERTISE" },
     hero: "Turning technical complexity into real business value through 14+ years of experience.",
     aboutTitle: "Business and technology, without the noise.",
     about: [
@@ -13,6 +13,15 @@ export const copy = {
       "Today, I explore practical ways for artificial intelligence to support better analysis, decision-making, documentation, and software delivery.",
     ],
     expertise: "EXPERTISE",
+    expertiseTitle: "Evidence behind the expertise.",
+    expertiseIntro: "Projects, writing, and career experience connected to each area of practice.",
+    expertiseItems: {
+      "business-analysis": { title: "Business Analysis", description: "Complex needs translated into clear, actionable decisions." },
+      "product-strategy": { title: "Product & Strategy", description: "Prioritization, alignment, and value-driven delivery." },
+      "systems-qa": { title: "Systems & QA", description: "Dependencies, risks, and edge cases beyond the happy path." },
+      "applied-ai": { title: "Applied AI", description: "Technology supporting sharper analysis, documentation, and decisions." },
+    },
+    evidence: "EVIDENCE", projectsEvidence: "PROJECTS", writingEvidence: "WRITING", careerEvidence: "CAREER",
     articles: "ARTICLES & POSTS",
     ideas: "Ideas in practice.",
     moreLinkedIn: "MORE ON LINKEDIN",
@@ -29,7 +38,7 @@ export const copy = {
     takeaways: "KEY TAKEAWAYS", lens: "PROJECT LENS", capabilities: "CAPABILITIES",
   },
   pt: {
-    nav: { about: "SOBRE", articles: "ARTIGOS", projects: "PROJETOS" },
+    nav: { about: "SOBRE", articles: "ARTIGOS", projects: "PROJETOS", expertise: "ESPECIALIDADES" },
     hero: "Transformando complexidade técnica em valor real para o negócio através de mais de 14 anos de experiência.",
     aboutTitle: "Negócios e tecnologia, sem ruído.",
     about: [
@@ -38,6 +47,15 @@ export const copy = {
       "Hoje, exploro formas práticas de usar inteligência artificial para apoiar melhores análises, decisões, documentação e entrega de software.",
     ],
     expertise: "ESPECIALIDADES",
+    expertiseTitle: "Evidências por trás da experiência.",
+    expertiseIntro: "Projetos, publicações e trajetória profissional conectados a cada área de atuação.",
+    expertiseItems: {
+      "business-analysis": { title: "Business Analysis", description: "Necessidades complexas transformadas em decisões claras e acionáveis." },
+      "product-strategy": { title: "Produto & Estratégia", description: "Priorização, alinhamento e entrega orientada a valor." },
+      "systems-qa": { title: "Sistemas & QA", description: "Dependências, riscos e casos de borda além do caminho feliz." },
+      "applied-ai": { title: "IA Aplicada", description: "Tecnologia apoiando análises, documentação e decisões mais precisas." },
+    },
+    evidence: "EVIDÊNCIAS", projectsEvidence: "PROJETOS", writingEvidence: "PUBLICAÇÕES", careerEvidence: "CARREIRA",
     articles: "ARTIGOS & POSTS",
     ideas: "Ideias na prática.",
     moreLinkedIn: "MAIS NO LINKEDIN",
@@ -58,8 +76,7 @@ export const copy = {
 export function useLanguage() {
   const [language, setLanguageState] = useState<Language>("en");
   useEffect(() => {
-    const saved = window.localStorage.getItem("gsc-language");
-    if (saved === "pt" || saved === "en") setLanguageState(saved);
+    document.documentElement.lang = "en";
   }, []);
   const setLanguage = (next: Language) => {
     setLanguageState(next);
