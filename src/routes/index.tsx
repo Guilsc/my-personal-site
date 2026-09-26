@@ -135,7 +135,7 @@ function Portfolio() {
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.articles}</p>
               <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.ideas}</h2>
             </div>
-            <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>{t.moreLinkedIn}</span></a>
+            <div className="flex flex-wrap gap-2"><Link to="/articles" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link><a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>{t.moreLinkedIn}</span></a></div>
           </div>
 
           <ArticlesFeed livePosts={linkedInPosts} />
@@ -148,7 +148,7 @@ function Portfolio() {
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) {t.repositories}</p>
               <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.githubLive}</h2>
             </div>
-            <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> @GUILSC</a>
+            <div className="flex flex-wrap gap-2"><Link to="/projects" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link><a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> @GUILSC</a></div>
           </div>
           <RepositoriesCarousel projects={projects} />
           </div>
