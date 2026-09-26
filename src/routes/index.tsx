@@ -355,10 +355,6 @@ function PortfolioError() {
 function getInternalProjectSlug(repositoryName: string) {
   const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");
 
-  if (normalized === "bot-crossing") {
-    return "olympus-os";
-  }
-
   return portfolioProjects.find((project) => {
     const repoName = project.repository.split("/").pop()?.toLowerCase().replace(/[_\s]+/g, "-");
     return repoName === normalized;
