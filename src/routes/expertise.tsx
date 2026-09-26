@@ -18,10 +18,9 @@ export const Route = createFileRoute("/expertise")({
 function ExpertisePage() {
   const posts = Route.useLoaderData();
   const search = Route.useSearch();
-  const navigate = Route.useNavigate();
   const { language, setLanguage, t } = useLanguage();
   const [hovered, setHovered] = useState<ExpertiseId | null>(null);
-  const focus = search.focus;
+  const [focus, setFocus] = useState<ExpertiseId>(search.focus);
   const publicationCount = posts.length;
 
   const metrics = useMemo(() => ({
@@ -47,7 +46,7 @@ function ExpertisePage() {
           const item = t.expertiseItems[id];
           const evidence = expertiseEvidence[id];
           const projectNames = evidence.projectSlugs.map(slug => portfolioProjects.find(p => p.slug === slug)?.name ?? slug);
-          return <section key={id} onMouseEnter={() => setHovered(id)} onMouseLeave={() => setHovered(null)} onClick={() => navigate({ search: { focus: id }, replace: true })} className={`cursor-pointer border transition-all duration-300 ${selected ? "border-primary bg-card opacity-100" : active ? "border-border bg-card opacity-100" : "border-border/60 bg-secondary/10 opacity-40"}`}>
+          return <section key={id} onMouseEnter={() => setHovered(id)} onMouseLeave={() => setHovered(null)} onClick={() => setFocus(id)} className={`cursor-pointer border transition-all duration-300 ${selected ? "border-primary bg-card opacity-100" : active ? "border-border bg-card opacity-100" : "border-border/60 bg-secondary/10 opacity-40"}`}>
             <div className="grid gap-4 p-5 md:grid-cols-12 md:items-center md:p-7">
               <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2,"0")}</span>
               <div className="md:col-span-4"><h2 className="font-display text-2xl font-semibold md:text-3xl">{item.title}</h2><p className="mt-2 text-sm text-muted-foreground">{item.description}</p></div>
