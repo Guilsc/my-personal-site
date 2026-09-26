@@ -5,7 +5,7 @@ import { useState } from "react";
 import { getGitHubProjects } from "../lib/github.functions";
 import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 import { portfolioProjects } from "../content/projects";
-import { expertiseOrder, expertiseHref } from "../content/expertise";
+import { expertiseOrder } from "../content/expertise";
 import { LanguageSwitcher, useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -118,7 +118,7 @@ function Portfolio() {
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) {t.expertise}</p>
             <div className="mt-8 divide-y divide-border border-y border-border">
               {expertiseOrder.map((id, index) => { const item = t.expertiseItems[id]; return (
-                <a key={id} href={expertiseHref(id)} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
+                <Link key={id} to="/expertise" search={{ focus: id }} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
                   <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
                   <h3 className="font-display text-2xl font-semibold md:col-span-4 md:text-3xl">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">{item.description}</p>
