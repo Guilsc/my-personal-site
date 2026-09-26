@@ -5,8 +5,10 @@ export type PortfolioProject = {
   summary: string;
   description: string;
   repository: string;
+  launchUrl?: string;
   status: "ACTIVE" | "BUILDING" | "EXPERIMENT";
   tags: string[];
+  takeaways: string[];
 };
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -19,8 +21,14 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "BA Content Engine connects trend discovery, idea development, editorial research, drafting, publishing, and post-publication learning into one governed workflow. The project keeps editorial intelligence separate from persistent application data and treats approval as an explicit human decision.",
     repository: "https://github.com/Guilsc/ba-content-engine",
+    launchUrl: "https://ba-content-engine.guilhermecosta.tech/",
     status: "ACTIVE",
     tags: ["BUSINESS ANALYSIS", "AI", "EDITORIAL SYSTEMS", "SUPABASE"],
+    takeaways: [
+      "Separates editorial intelligence from persistent application data.",
+      "Uses explicit human approval as a hard publishing boundary.",
+      "Connects discovery, creation, publishing, and learning into one lifecycle.",
+    ],
   },
   {
     slug: "bot-ecosystem",
@@ -31,8 +39,14 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus OS or other projects without belonging to any one of them.",
     repository: "https://github.com/Guilsc/bot-ecosystem",
+    launchUrl: "/ecosystem/",
     status: "BUILDING",
     tags: ["AI AGENTS", "REPOSITORIES", "VISUALIZATION", "EXPERIMENT"],
+    takeaways: [
+      "Turns repository activity into a visual, explorable interface.",
+      "Remains reusable instead of being coupled to a single agent system.",
+      "Shares the personal-site deployment while keeping its own application boundary.",
+    ],
   },
   {
     slug: "olympus-os",
@@ -45,6 +59,11 @@ export const portfolioProjects: PortfolioProject[] = [
     repository: "https://github.com/Guilsc/olympus_OS",
     status: "BUILDING",
     tags: ["MULTI-AGENT", "AGENT ARCHITECTURE", "MEMORY", "GOVERNANCE"],
+    takeaways: [
+      "Makes agent ownership and responsibility explicit.",
+      "Separates working context, agent memory, and curated shared knowledge.",
+      "Treats skills, lifecycle policies, and governance as first-class architecture.",
+    ],
   },
 ];
 
