@@ -25,9 +25,10 @@ export const expertiseEvidence = {
     projectSlugs: ["olympus-os", "bot-ecosystem", "ba-content-engine"],
     career: ["EPAM Systems"],
     careerMonths: 0,
-    signals: ["AI Agents", "Multi-Agent Systems", "Context", "Memory", "Automation"],
+    signals: ["AI Factory", "AI Agents", "Multi-Agent Systems", "Multi-Model Orchestration", "Google AI Studio", "Salesforce Agentforce", "Claude", "OpenAI", "Context & Memory", "Automation"],
+    aiContexts: ["Equifax client delivery", "EPAM internal initiatives"],
   },
-} satisfies Record<ExpertiseId, { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[] }>;
+} satisfies Record<ExpertiseId, { projectSlugs: string[]; career: string[]; careerMonths: number; signals: string[]; aiContexts?: string[] }>;
 
 export function expertiseHref(id: ExpertiseId) {
   return `/expertise?focus=${id}`;
