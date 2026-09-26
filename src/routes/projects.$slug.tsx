@@ -22,6 +22,11 @@ export const Route = createFileRoute("/projects/$slug")({
       launchUrl: curated?.launchUrl,
       status: curated?.status ?? "ACTIVE",
       tags: curated?.tags ?? [repository?.language ?? "GITHUB", repository?.fork ? "FORK" : "ORIGINAL"],
+      role: curated?.role,
+      problem: curated?.problem,
+      approach: curated?.approach,
+      outcomes: curated?.outcomes,
+      next: curated?.next,
       takeaways: curated?.takeaways ?? [
         repository?.description ?? "A public project in Guilherme's active portfolio.",
         repository?.language ? `Built primarily with ${repository.language}.` : "Implementation details are available in the source repository.",
@@ -88,7 +93,17 @@ function ProjectDetail() {
           </aside>
         </div>
 
-        <div className="mt-16 grid gap-4 border-t border-border pt-8 md:grid-cols-12">
+        {project.role && <div className="mt-16 grid gap-4 border-y border-border py-8 md:grid-cols-12">
+          <div className="md:col-span-3"><p className="font-mono text-[9px] uppercase tracking-widest text-primary">{t.myRole}</p><p className="mt-3 font-display text-xl font-semibold">{project.role}</p></div>
+          {project.problem && <div className="md:col-span-9"><p className="font-mono text-[9px] uppercase tracking-widest text-primary">{t.problem}</p><p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{project.problem}</p></div>}
+        </div>}
+
+        {(project.approach || project.outcomes) && <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {project.approach && <section className="border border-border bg-card p-6"><p className="font-mono text-[10px] tracking-widest text-primary">{t.approach}</p><ul className="mt-5 space-y-3">{project.approach.map(item => <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"/>{item}</li>)}</ul></section>}
+          {project.outcomes && <section className="border border-primary/50 bg-card p-6"><p className="font-mono text-[10px] tracking-widest text-primary">{t.outcomes}</p><ul className="mt-5 space-y-3">{project.outcomes.map(item => <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"/>{item}</li>)}</ul>{project.next && <><p className="mt-7 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{t.next}</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.next}</p></>}</section>}
+        </div>}
+
+        <div className="mt-8 grid gap-4 border-t border-border pt-8 md:grid-cols-12">
           <section className="border border-border bg-card p-6 md:col-span-7">
             <div className="flex items-center gap-2 text-primary"><Lightbulb className="size-4" /><p className="font-mono text-[10px] tracking-widest">{t.takeaways}</p></div>
             <ul className="mt-6 space-y-4">
