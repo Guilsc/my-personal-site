@@ -33,7 +33,7 @@ const PublicPublicationsResponseSchema = z.object({
 
 export const getLinkedInPosts = createServerFn({ method: "GET" }).handler(
   async (): Promise<LinkedInPost[]> => {
-    const endpoint = process.env.BA_CONTENT_PUBLICATIONS_URL?.trim();
+    const endpoint = process.env["BA_CONTENT_PUBLICATIONS_URL"]?.trim();
 
     if (!endpoint) {
       return [];
