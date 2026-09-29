@@ -55,7 +55,7 @@ function Portfolio() {
           </a>
           <div className="flex items-center gap-3 md:gap-5"><nav className="hidden items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground sm:flex" aria-label="Primary">
             <a href="#about" className="transition-colors hover:text-foreground">{t.nav.about}</a>
-            <Link to="/expertise" search={{}} className="transition-colors hover:text-foreground">{t.nav.expertise}</Link>
+            <Link to="/expertise" search={{ focus: "business-analysis" }} className="transition-colors hover:text-foreground">{t.nav.expertise}</Link>
             <a href="#articles" className="transition-colors hover:text-foreground">{t.nav.articles}</a>
             <Link to="/projects" className="transition-colors hover:text-foreground">{t.nav.projects}</Link>
           </nav><LanguageSwitcher language={language} onChange={setLanguage} /></div>
