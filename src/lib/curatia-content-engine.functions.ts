@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";radar_status:"detected"|"radar"|"dismissed";radar_entered_at:string|null;radar_entry_reason:string|null;detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;why_now:string|null;ba_impact:string|null;role_impact:string|null;second_order_implication:string|null;strongest_editorial_angle:string|null;editorial_potential:string|null;evidence_strength:string|null;saturation:string|null;source_count:number;previous_source_count:number|null;previous_evidence_strength:string|null;previous_saturation:string|null;last_change_at:string|null};
-export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;core_idea:string|null;status:"Idea"|"Candidate"|"Research"|"Draft"|"Visual Ready"|"Approved"|"Scheduled"|"Published"|"Learning";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;updated_at:string};
+export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;core_idea:string|null;status:"Idea"|"In Progress"|"Ready"|"Approved"|"Scheduled"|"Published";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;source_origin:string|null;why_now:string|null;second_order_implication:string|null;strongest_angle:string|null;metadata:Record<string,any>;updated_at:string};
 export type CuratiaSignalRelationship={from:string;to:string;type:string;strength:number;reason:string|null};
 export type CuratiaSignalGraph={signals:CuratiaSignal[];relationships:CuratiaSignalRelationship[]};
 export type CuratiaDashboard={signals:CuratiaSignal[];signalGraph:CuratiaSignalGraph;contentItems:CuratiaContentItem[];sourceCount:number};
@@ -14,7 +14,7 @@ async function rest(path:string,init?:RequestInit){const{url,key}=config();const
 export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():Promise<CuratiaDashboard>=>{
  const [rawSignals,contentItems,sources,links,snapshots,relationships]=await Promise.all([
   rest("signals?select=id,title,summary,state,radar_status,radar_entered_at,radar_entry_reason,detected_at,first_published_at,why_it_may_matter,why_now,ba_impact,role_impact,second_order_implication,strongest_editorial_angle,editorial_potential,evidence_strength,saturation&state=not.eq.Archived&order=detected_at.desc"),
-  rest("content_items?select=id,title,series,topic,publishing_channel,core_idea,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,updated_at&order=updated_at.desc"),
+  rest("content_items?select=id,title,series,topic,publishing_channel,core_idea,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,source_origin,why_now,second_order_implication,strongest_angle,metadata,updated_at&order=updated_at.desc"),
   rest("sources?select=id"),
   rest("signal_sources?select=signal_id,source_id"),
   rest("signal_review_snapshots?select=signal_id,source_count,evidence_strength,saturation,created_at&order=created_at.desc"),
@@ -77,13 +77,37 @@ export const updateSignalState=createServerFn({method:"POST"}).validator(signalI
  return rest(`signals?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify(body)});
 });
 
-const contentInput=z.object({id:z.string().min(1),status:z.enum(["Candidate","Research","Draft","Visual Ready"])});
+const contentInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),status:z.enum(["Idea","In Progress","Ready","Approved","Scheduled","Published"])});
 export const updateContentStatus=createServerFn({method:"POST"}).validator(contentInput).handler(async({data})=>{
- const current=await rest(`content_items?select=status&id=eq.${encodeURIComponent(data.id)}`);
+ const ctx=await curatiaContext(data.accessToken);
+ const current=await rest(`content_items?select=status,publication_date,publication_time,approved_by_user&workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}&limit=1`);
  if(!Array.isArray(current)||!current[0])throw new Error("Content item not found.");
- const allowed:Record<string,string[]>={Idea:["Candidate"],Candidate:["Research"],Research:["Draft"],Draft:["Visual Ready"]};
- if(!allowed[current[0].status]?.includes(data.status))throw new Error("Invalid lifecycle transition.");
- return rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({status:data.status})});
+ const from=current[0].status;
+ const allowed:Record<string,string[]>={"Idea":["In Progress"],"In Progress":["Idea","Ready"],"Ready":["In Progress","Approved"],"Approved":["Ready","Scheduled"],"Scheduled":["Approved","Published"],"Published":[]};
+ if(!allowed[from]?.includes(data.status))throw new Error("Invalid lifecycle transition.");
+ if(data.status==="Scheduled"&&(!current[0].publication_date||!current[0].publication_time))throw new Error("Add publication date and time before scheduling.");
+ const patch:any={status:data.status,updated_at:new Date().toISOString()};
+ if(data.status==="Approved"){patch.approved_by_user=true;patch.approval_timestamp=new Date().toISOString()}
+ if(from==="Approved"&&data.status==="Ready"){patch.approved_by_user=false;patch.approval_timestamp=null}
+ return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify(patch)});
+});
+const contentDetailsInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),title:z.string().min(1).max(240),coreIdea:z.string().max(3000),channel:z.string().min(1).max(80),targetDate:z.string().nullable(),publicationDate:z.string().nullable(),publicationTime:z.string().nullable()});
+export const updateContentDetails=createServerFn({method:"POST"}).validator(contentDetailsInput).handler(async({data})=>{
+ const ctx=await curatiaContext(data.accessToken);
+ return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({title:data.title,core_idea:data.coreIdea||null,publishing_channel:data.channel,target_date:data.targetDate||null,publication_date:data.publicationDate||null,publication_time:data.publicationTime||null,updated_at:new Date().toISOString()})});
+});
+const backlogFromSignalInput=z.object({accessToken:z.string().min(20),signalId:z.string().uuid()});
+export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator(backlogFromSignalInput).handler(async({data})=>{
+ const ctx=await curatiaContext(data.accessToken);
+ const rows=await rest(`signals?select=id,title,summary,state,why_now,role_impact,ba_impact,second_order_implication,strongest_editorial_angle,evidence_strength,saturation&workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.signalId)}&limit=1`);
+ const s=rows?.[0];if(!s)throw new Error("Signal not found in this workspace.");
+ const existing=await rest(`content_items?select=id&workspace_id=eq.${encodeURIComponent(ctx.wid)}&metadata->>source_signal_id=eq.${encodeURIComponent(data.signalId)}&status=neq.Published&limit=1`);
+ if(existing?.[0])return{ok:true,id:existing[0].id,alreadyExists:true};
+ const id="CUR-"+crypto.randomUUID().slice(0,8).toUpperCase();
+ const title=s.strongest_editorial_angle||s.title;
+ const core=s.second_order_implication||s.role_impact||s.ba_impact||s.summary||s.title;
+ await rest("content_items",{method:"POST",body:JSON.stringify({id,workspace_id:ctx.wid,title,topic:s.title,publishing_channel:"linkedin",core_idea:core,why_now:s.why_now||null,ba_implication:s.role_impact||s.ba_impact||null,second_order_implication:s.second_order_implication||null,strongest_angle:s.strongest_editorial_angle||null,saturation:s.saturation||null,evidence_strength:s.evidence_strength||null,source_origin:"Trend Radar",status:"Idea",metadata:{source_signal_id:s.id,generated_by:"curatia",generation_basis:"trend_radar_signal"},updated_at:new Date().toISOString()})});
+ return{ok:true,id,alreadyExists:false};
 });
 const visualInput=z.object({id:z.string().min(1),visualConcept:z.string().max(1200),visualBrief:z.string().max(3000)});
 export const updateContentVisual=createServerFn({method:"POST"}).validator(visualInput).handler(async({data})=>rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_concept:data.visualConcept||null,visual_brief:data.visualBrief||null,updated_at:new Date().toISOString()})}));
