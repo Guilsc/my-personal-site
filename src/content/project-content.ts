@@ -23,15 +23,15 @@ export const projectContent: Record<string, ProjectContentManifest> = {
     translations: {
       en: {
         eyebrow: "EDITORIAL INTELLIGENCE SYSTEM",
-        summary: "A structured system for turning signals into researched, approved, published, and learned-from Business Analysis content.",
-        description: "BA Content Engine connects trend discovery, idea development, editorial research, drafting, publishing, and post-publication learning into one governed workflow. The project keeps editorial intelligence separate from persistent application data and treats approval as an explicit human decision.",
+        summary: "An editorial intelligence and content operations platform for turning signals into context, decisions, creation, publishing, and learning.",
+        description: "Curatia connects signal discovery, idea development, editorial research, creation, publishing, and post-publication learning in one governed workspace. It combines editorial intelligence with multi-channel execution while keeping approval and publishing as explicit human decisions.",
         takeaways: ["Separates editorial intelligence from persistent application data.", "Uses explicit human approval as a hard publishing boundary.", "Connects discovery, creation, publishing, and learning into one lifecycle."],
         role: "Product owner, workflow designer, and builder"
       },
       pt: {
         eyebrow: "SISTEMA DE INTELIGÊNCIA EDITORIAL",
-        summary: "Um sistema estruturado para transformar sinais em conteúdo de Business Analysis pesquisado, aprovado, publicado e continuamente aprimorado.",
-        description: "O BA Content Engine conecta descoberta de tendências, desenvolvimento de ideias, pesquisa editorial, redação, publicação e aprendizado pós-publicação em um único fluxo governado. O projeto separa a inteligência editorial dos dados persistentes da aplicação e trata a aprovação como uma decisão humana explícita.",
+        summary: "Uma plataforma de inteligência editorial e operações de conteúdo para transformar sinais em contexto, decisões, criação, publicação e aprendizado.",
+        description: "Curatia conecta descoberta de sinais, desenvolvimento de ideias, pesquisa editorial, criação, publicação e aprendizado pós-publicação em um workspace governado. A plataforma combina inteligência editorial com execução multicanal, mantendo aprovação e publicação como decisões humanas explícitas.",
         takeaways: ["Separa a inteligência editorial dos dados persistentes da aplicação.", "Usa aprovação humana explícita como limite obrigatório para publicação.", "Conecta descoberta, criação, publicação e aprendizado em um único ciclo."],
         role: "Product owner, designer do workflow e builder"
       }
