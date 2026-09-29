@@ -7,7 +7,8 @@ export const Route = createFileRoute("/curatia-content-engine")({ loader: () => 
 type View = "Home"|"Trend Radar"|"Idea Tank"|"Content Pipeline"|"Editorial Studio"|"Calendar"|"Profile"|"Settings"|"Integrations";
 const lifecycle = ["Idea","Candidate","Research","Draft","Visual Ready","Approved","Scheduled","Published","Learning"] as const;
 const CURATIA_VERSION = "v0.1.0";
-const CURATIA_BUILD = "6d4c172";
+declare const __CURATIA_BUILD__: string;
+const CURATIA_BUILD = typeof __CURATIA_BUILD__ === "string" ? __CURATIA_BUILD__.slice(0,7) : "local";
 
 function Curatia() {
  const data=Route.useLoaderData(); const router=useRouter(); const [view,setView]=useState<View>("Home"); const [busy,setBusy]=useState<string|null>(null);
