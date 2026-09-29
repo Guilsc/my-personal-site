@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode, type ButtonHTMLAttributes } from "react";
-import type { Session } from "@supabase/supabase-js";
-import { curatiaSupabase } from "../lib/curatia-supabase.client";
+import { curatiaAuth, type CuratiaSession } from "../lib/curatia-supabase.client";
 import { getCuratiaDashboard, updateSignalState, updateContentStatus, bootstrapCuratiaUser, type CuratiaContentItem, type CuratiaSignal, type CuratiaDashboard } from "../lib/curatia-content-engine.functions";
 
 export const Route = createFileRoute("/curatia-content-engine")({ loader: () => getCuratiaDashboard(), component: Curatia });
@@ -10,11 +9,11 @@ const lifecycle = ["Idea","Candidate","Research","Draft","Visual Ready","Approve
 
 function Curatia() {
  const data=Route.useLoaderData(); const router=useRouter(); const [view,setView]=useState<View>("Home"); const [busy,setBusy]=useState<string|null>(null);
- const [session,setSession]=useState<Session|null>(null); const [authReady,setAuthReady]=useState(false); const [authError,setAuthError]=useState<string|null>(null);
- useEffect(()=>{let alive=true;curatiaSupabase.auth.getSession().then(({data})=>{if(alive){setSession(data.session);setAuthReady(true)}});const{data:listener}=curatiaSupabase.auth.onAuthStateChange((_event,next)=>{setSession(next);setAuthReady(true)});return()=>{alive=false;listener.subscription.unsubscribe()}},[]);
+ const [session,setSession]=useState<CuratiaSession|null>(null); const [authReady,setAuthReady]=useState(false); const [authError,setAuthError]=useState<string|null>(null);
+ useEffect(()=>{let alive=true;curatiaAuth.consumeUrl().then(next=>{if(alive){setSession(next);setAuthReady(true)}}).catch(e=>{if(alive){setAuthError(e instanceof Error?e.message:"Authentication failed.");setAuthReady(true)}});const off=curatiaAuth.onChange(next=>setSession(next));return()=>{alive=false;off()}},[]);
  useEffect(()=>{if(!session?.access_token)return;bootstrapCuratiaUser({data:{accessToken:session.access_token}}).then(()=>setAuthError(null)).catch(e=>setAuthError(e instanceof Error?e.message:"Curatia access failed."))},[session?.access_token]);
- async function sendMagicLink(email:string){setBusy("auth");setAuthError(null);const{error}=await curatiaSupabase.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.origin+"/curatia-content-engine",shouldCreateUser:true}});if(error)setAuthError(error.message);else setAuthError("Check your email for the Curatia sign-in link.");setBusy(null)}
- async function signOut(){await curatiaSupabase.auth.signOut();setSession(null)}
+ async function sendMagicLink(email:string){setBusy("auth");setAuthError(null);try{await curatiaAuth.signInWithOtp(email,window.location.origin+"/curatia-content-engine");setAuthError("Check your email for the Curatia sign-in link.")}catch(e){setAuthError(e instanceof Error?e.message:"Could not send sign-in link.")}finally{setBusy(null)}}
+ async function signOut(){curatiaAuth.signOut();setSession(null)}
  if(!authReady)return <main className="min-h-screen bg-[#f4f0e6] text-[#171717] grid place-items-center"><div className="font-mono text-xs uppercase">Opening Curatia…</div></main>;
  if(!session)return <Login busy={busy==="auth"} message={authError} send={sendMagicLink}/>;
  if(authError && !authError.startsWith("Check"))return <Login busy={false} message={authError} send={sendMagicLink}/>;
