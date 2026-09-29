@@ -296,11 +296,12 @@ type Repository = Awaited<ReturnType<typeof getGitHubProjects>>[number];
 
 function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
   const [page, setPage] = useState(0);
-  const pageCount = Math.max(1, Math.ceil(projects.length / ITEMS_PER_PAGE));
+  const ownedProjects = projects.filter((project) => !project.fork);
+  const pageCount = Math.max(1, Math.ceil(ownedProjects.length / ITEMS_PER_PAGE));
   const safePage = Math.min(page, pageCount - 1);
-  const visibleProjects = projects.slice(safePage * ITEMS_PER_PAGE, (safePage + 1) * ITEMS_PER_PAGE);
+  const visibleProjects = ownedProjects.slice(safePage * ITEMS_PER_PAGE, (safePage + 1) * ITEMS_PER_PAGE);
 
-  if (projects.length === 0) {
+  if (ownedProjects.length === 0) {
     return <p className="border border-border bg-card p-6 text-muted-foreground">No public repositories are available right now.</p>;
   }
 
