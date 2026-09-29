@@ -18,15 +18,15 @@ export type PortfolioProject = {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    slug: "ba-content-engine",
+    slug: "curatia-content-engine",
     name: "Curatia",
     eyebrow: "EDITORIAL INTELLIGENCE SYSTEM",
     summary:
       "An editorial intelligence and content operations platform for turning signals into context, decisions, creation, publishing, and learning.",
     description:
       "Curatia connects signal discovery, idea development, editorial research, creation, publishing, and post-publication learning in one governed workspace. It combines editorial intelligence with multi-channel execution while keeping approval and publishing as explicit human decisions.",
-    repository: "https://github.com/Guilsc/ba-content-engine",
-    launchUrl: "https://ba-content-engine.guilhermecosta.tech/",
+    repository: "https://github.com/Guilsc/curatia-content-engine",
+    launchUrl: "https://curatia-content-engine.guilhermecosta.tech/",
     status: "ACTIVE",
     tags: ["AI", "EDITORIAL INTELLIGENCE", "CONTENT OPERATIONS", "SUPABASE"],
     role: "Product owner, workflow designer, and builder",

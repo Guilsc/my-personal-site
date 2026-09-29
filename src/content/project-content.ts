@@ -17,7 +17,7 @@ export type ProjectContentManifest = {
 // Generated/curated manifests live here. The sourceHash is refreshed by Project Content Sync.
 // Curated portfolio metadata remains authoritative for launch URL, status and tags.
 export const projectContent: Record<string, ProjectContentManifest> = {
-  "ba-content-engine": {
+  "curatia-content-engine": {
     sourceLanguage: "en",
     sourceHash: "curated-v1",
     translations: {
