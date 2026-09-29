@@ -148,7 +148,7 @@ function Portfolio() {
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{t.enterpriseSummary}</p>
               <div className="mt-6 space-y-2">{t.enterpriseEvidence.map(item => <p key={item} className="text-xs leading-relaxed text-muted-foreground">+ {item}</p>)}</div>
             </article>
-            {["ba-content-engine","olympus-os"].map(slug => {
+            {["curatia-content-engine","olympus-os"].map(slug => {
               const project = portfolioProjects.find(item => item.slug === slug)!;
               const localizedProject = getLocalizedProjectContent(slug, language);
               return <Link key={slug} to="/projects/$slug" params={{slug}} className="group flex flex-col border border-border bg-card p-6 transition-colors hover:border-primary/60">
