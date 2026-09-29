@@ -79,3 +79,8 @@ export const completeCuratiaOnboarding=createServerFn({method:"POST"}).validator
  for(const key of data.channels){await rest("workspace_channels",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify({workspace_id:wid,channel_key:key,enabled:true,is_primary:key===data.primaryChannel,updated_at:now})})}
  return{ok:true};
 });
+
+export type CuratiaIntegration={key:string;label:string;provider:string;status:"connected"|"not_connected"|"error";accountLabel:string|null;connectedAt:string|null};
+export const getCuratiaIntegrations=createServerFn({method:"POST"}).validator(onboardingToken).handler(async({data}):Promise<CuratiaIntegration[]>=>{
+ const user=await verifiedUser(data.accessToken);const members=await rest(`workspace_members?select=workspace_id&user_id=eq.${encodeURIComponent(user.id)}&limit=1`);if(!Array.isArray(members)||!members[0])throw new Error("Curatia workspace membership was not found.");const rows=await rest(`workspace_integrations?select=integration_key,provider,status,account_label,connected_at&workspace_id=eq.${encodeURIComponent(members[0].workspace_id)}&order=integration_key`);const names:Record<string,string>={gmail:"Gmail",googledrive:"Google Drive",github:"GitHub",linkedin:"LinkedIn",metricool:"Metricool"};return(rows||[]).map((x:any)=>({key:x.integration_key,label:names[x.integration_key]||x.integration_key,provider:x.provider,status:x.status,accountLabel:x.account_label,connectedAt:x.connected_at}));
+});
