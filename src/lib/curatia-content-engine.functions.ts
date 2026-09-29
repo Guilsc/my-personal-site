@@ -1,26 +1,30 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;why_now:string|null;ba_impact:string|null;second_order_implication:string|null;strongest_editorial_angle:string|null;editorial_potential:string|null;evidence_strength:string|null;saturation:string|null;source_count:number;previous_source_count:number|null;previous_evidence_strength:string|null;previous_saturation:string|null;last_change_at:string|null};
+export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";radar_status:"detected"|"radar"|"dismissed";radar_entered_at:string|null;radar_entry_reason:string|null;detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;why_now:string|null;ba_impact:string|null;second_order_implication:string|null;strongest_editorial_angle:string|null;editorial_potential:string|null;evidence_strength:string|null;saturation:string|null;source_count:number;previous_source_count:number|null;previous_evidence_strength:string|null;previous_saturation:string|null;last_change_at:string|null};
 export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;core_idea:string|null;status:"Idea"|"Candidate"|"Research"|"Draft"|"Visual Ready"|"Approved"|"Scheduled"|"Published"|"Learning";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;updated_at:string};
-export type CuratiaDashboard={signals:CuratiaSignal[];contentItems:CuratiaContentItem[];sourceCount:number};
+export type CuratiaSignalRelationship={from:string;to:string;type:string;strength:number;reason:string|null};
+export type CuratiaSignalGraph={signals:CuratiaSignal[];relationships:CuratiaSignalRelationship[]};
+export type CuratiaDashboard={signals:CuratiaSignal[];signalGraph:CuratiaSignalGraph;contentItems:CuratiaContentItem[];sourceCount:number};
 export type CuratiaBootstrap={workspaceId:string;userId:string;email:string|null;displayName:string|null};
 
 function config(){const url=process.env["SUPABASE_URL"]?.replace(/\/$/,"");const key=process.env["SUPABASE_SECRET_KEY"];if(!url||!key)throw new Error("Curatia is not configured.");return{url,key}}
 async function rest(path:string,init?:RequestInit){const{url,key}=config();const response=await fetch(url+"/rest/v1/"+path,{...init,headers:{apikey:key,Authorization:`Bearer ${key}`,"Content-Type":"application/json",Prefer:"return=representation",...(init?.headers||{})}});if(!response.ok)throw new Error(`Curatia data request failed (${response.status}).`);if(response.status===204)return null;const text=await response.text();return text?JSON.parse(text):null}
 
 export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():Promise<CuratiaDashboard>=>{
- const [rawSignals,contentItems,sources,links,snapshots]=await Promise.all([
-  rest("signals?select=id,title,summary,state,detected_at,first_published_at,why_it_may_matter,why_now,ba_impact,second_order_implication,strongest_editorial_angle,editorial_potential,evidence_strength,saturation&state=in.(New,Watch,Explore)&order=detected_at.desc"),
+ const [rawSignals,contentItems,sources,links,snapshots,relationships]=await Promise.all([
+  rest("signals?select=id,title,summary,state,radar_status,radar_entered_at,radar_entry_reason,detected_at,first_published_at,why_it_may_matter,why_now,ba_impact,second_order_implication,strongest_editorial_angle,editorial_potential,evidence_strength,saturation&state=not.eq.Archived&order=detected_at.desc"),
   rest("content_items?select=id,title,series,topic,publishing_channel,core_idea,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,updated_at&order=updated_at.desc"),
   rest("sources?select=id"),
   rest("signal_sources?select=signal_id,source_id"),
-  rest("signal_review_snapshots?select=signal_id,source_count,evidence_strength,saturation,created_at&order=created_at.desc")
+  rest("signal_review_snapshots?select=signal_id,source_count,evidence_strength,saturation,created_at&order=created_at.desc"),
+  rest("signal_relationships?select=from_signal_id,to_signal_id,relationship_type,strength,reason")
  ]);
  const counts=new Map<string,number>();for(const x of links||[])counts.set(x.signal_id,(counts.get(x.signal_id)||0)+1);
  const previous=new Map<string,any>();for(const x of snapshots||[])if(!previous.has(x.signal_id))previous.set(x.signal_id,x);
- const signals=(rawSignals||[]).map((s:any)=>{const p=previous.get(s.id);return{...s,source_count:counts.get(s.id)||0,previous_source_count:p?.source_count??null,previous_evidence_strength:p?.evidence_strength??null,previous_saturation:p?.saturation??null,last_change_at:p?.created_at??null}});
- return{signals,contentItems,sourceCount:Array.isArray(sources)?sources.length:0};
+ const allSignals=(rawSignals||[]).map((s:any)=>{const p=previous.get(s.id);return{...s,source_count:counts.get(s.id)||0,previous_source_count:p?.source_count??null,previous_evidence_strength:p?.evidence_strength??null,previous_saturation:p?.saturation??null,last_change_at:p?.created_at??null}});
+ const signals=allSignals.filter((s:any)=>s.radar_status==="radar"&&["New","Watch","Explore"].includes(s.state));
+ return{signals,signalGraph:{signals:allSignals,relationships:(relationships||[]).map((r:any)=>({from:r.from_signal_id,to:r.to_signal_id,type:r.relationship_type,strength:Number(r.strength),reason:r.reason}))},contentItems,sourceCount:Array.isArray(sources)?sources.length:0};
 });
 
 export type CuratiaWatchTarget={id:string;title:string;summary:string|null;whyNow:string|null;baImpact:string|null;secondOrderImplication:string|null;evidenceStrength:string|null;saturation:string|null;sourceUrls:string[];sourceCount:number;discoveryTags:string[]};
@@ -41,6 +45,15 @@ export const applyCuratiaWatchEvidence=createServerFn({method:"POST"}).validator
 });
 const completeWatchInput=z.object({accessToken:z.string().min(20),runId:z.string().uuid()});
 export const completeCuratiaWatchRun=createServerFn({method:"POST"}).validator(completeWatchInput).handler(async({data})=>{await curatiaContext(data.accessToken);const{url,key}=config();const r=await fetch(url+"/rest/v1/rpc/complete_curatia_watch_run",{method:"POST",headers:{apikey:key,Authorization:`Bearer ${key}`,"Content-Type":"application/json"},body:JSON.stringify({p_run_id:data.runId})});if(!r.ok)throw new Error("Could not complete the Watch review run.");return{ok:true}});
+const radarPromoteInput=z.object({accessToken:z.string().min(20),signalId:z.string().uuid()});
+export const moveSignalToTrendRadar=createServerFn({method:"POST"}).validator(radarPromoteInput).handler(async({data})=>{
+ const ctx=await curatiaContext(data.accessToken);
+ const rows=await rest(`signals?select=id,state,radar_status&workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.signalId)}&limit=1`);
+ if(!rows?.[0])throw new Error("Signal not found in this workspace.");
+ if(rows[0].radar_status==="radar")return{ok:true,alreadyInRadar:true};
+ await rest(`signals?id=eq.${encodeURIComponent(data.signalId)}`,{method:"PATCH",body:JSON.stringify({radar_status:"radar",state:"New",radar_entered_at:new Date().toISOString(),radar_entry_reason:"Manually moved from Signals by workspace user",updated_at:new Date().toISOString()})});
+ return{ok:true,alreadyInRadar:false}
+});
 const signalInput=z.object({id:z.string().uuid(),state:z.enum(["Watch","Explore","Ignored"])});
 export const updateSignalState=createServerFn({method:"POST"}).validator(signalInput).handler(async({data})=>{
  const current=await rest(`signals?select=id,evidence_strength,saturation,why_now,ba_impact,second_order_implication,editorial_potential&id=eq.${encodeURIComponent(data.id)}&limit=1`);
