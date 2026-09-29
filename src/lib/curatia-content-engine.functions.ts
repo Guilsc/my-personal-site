@@ -109,6 +109,11 @@ export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator
  await rest("content_items",{method:"POST",body:JSON.stringify({id,workspace_id:ctx.wid,title,topic:s.title,publishing_channel:"linkedin",core_idea:core,why_now:s.why_now||null,ba_implication:s.role_impact||s.ba_impact||null,second_order_implication:s.second_order_implication||null,strongest_angle:s.strongest_editorial_angle||null,saturation:s.saturation||null,evidence_strength:s.evidence_strength||null,source_origin:"Trend Radar",status:"Idea",metadata:{source_signal_id:s.id,generated_by:"curatia",generation_basis:"trend_radar_signal"},updated_at:new Date().toISOString()})});
  return{ok:true,id,alreadyExists:false};
 });
+const editorialInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),content:z.string().max(20000),visualDirection:z.string().max(3000)});
+export const updateEditorialStudio=createServerFn({method:"POST"}).validator(editorialInput).handler(async({data})=>{
+ const ctx=await curatiaContext(data.accessToken);
+ return rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({draft_copy:data.content||null,visual_concept:data.visualDirection||null,updated_at:new Date().toISOString()})});
+});
 const visualInput=z.object({id:z.string().min(1),visualConcept:z.string().max(1200),visualBrief:z.string().max(3000)});
 export const updateContentVisual=createServerFn({method:"POST"}).validator(visualInput).handler(async({data})=>rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_concept:data.visualConcept||null,visual_brief:data.visualBrief||null,updated_at:new Date().toISOString()})}));
 
