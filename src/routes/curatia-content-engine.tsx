@@ -3,7 +3,7 @@ import { useEffect, useState, type ReactNode, type ButtonHTMLAttributes } from "
 import { curatiaAuth, type CuratiaSession } from "../lib/curatia-auth";
 import { getCuratiaDashboard, updateSignalState, updateContentStatus, bootstrapCuratiaUser, getCuratiaOnboarding, completeCuratiaOnboarding, getCuratiaIntegrations, connectCuratiaIntegration, disconnectCuratiaIntegration, type CuratiaIntegration, type CuratiaOnboarding, type CuratiaContentItem, type CuratiaSignal, type CuratiaDashboard } from "../lib/curatia-content-engine.functions";
 
-export const Route = createFileRoute("/curatia-content-engine")({ loader: () => getCuratiaDashboard(), component: Curatia });
+export const Route = createFileRoute("/curatia-content-engine")({ loader: () => getCuratiaDashboard(), head: () => ({ meta: [{ title: "Curatia · Editorial Intelligence" }], links: [{ rel: "icon", href: "/curatia-icon.svg", type: "image/svg+xml" }] }), component: Curatia });
 type View = "Home"|"Trend Radar"|"Idea Tank"|"Content Pipeline"|"Editorial Studio"|"Calendar"|"Profile"|"Settings"|"Integrations";
 const lifecycle = ["Idea","Candidate","Research","Draft","Visual Ready","Approved","Scheduled","Published","Learning"] as const;
 const CURATIA_VERSION = "v0.1.0";
