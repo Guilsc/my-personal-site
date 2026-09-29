@@ -17,10 +17,10 @@ Production domain: `guilhermecosta.tech`
 ## Integrations
 
 - [x] Load public repositories dynamically from GitHub
-- [x] Prepare the Articles & Posts section to consume the BA Content Engine v1 public publications API
-- [x] Deploy the BA Content Engine v1 public publications endpoint
-- [ ] Configure `BA_CONTENT_PUBLICATIONS_URL` in Hostinger
-- [ ] Validate latest-3 published-post rendering against the live BA public API
+- [x] Prepare the Articles & Posts section to consume the Curatia v1 public publications API
+- [x] Deploy the Curatia v1 public publications endpoint
+- [ ] Configure `CURATIA_PUBLICATIONS_URL` in Hostinger
+- [ ] Validate latest-3 published-post rendering against the live Curatia public API
 - [x] Add graceful fallbacks for external content integrations
 - [x] Add timeout and runtime validation to the publications API client
 - [x] Keep Articles & Posts filled up to 3 items using curated fallback content
