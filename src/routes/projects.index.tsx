@@ -18,7 +18,7 @@ export const Route = createFileRoute("/projects/")({
   component: ProjectsPage,
 });
 
-type ProjectFilter = "all" | "repositories" | "launch" | "starred";
+type ProjectFilter = "all" | "repositories" | "launch" | "forks" | "starred";
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[_\s]+/g, "-");
@@ -38,13 +38,16 @@ function ProjectsPage() {
 
   const counts = {
     all: enriched.length,
-    repositories: enriched.length,
+    repositories: enriched.filter(({ repository }) => !repository.fork).length,
     launch: enriched.filter(({ curated }) => Boolean(curated?.launchUrl)).length,
+    forks: enriched.filter(({ repository }) => repository.fork).length,
     starred: enriched.filter(({ repository }) => repository.starred).length,
   };
 
   const visible = enriched.filter(({ repository, curated }) => {
+    if (filter === "repositories") return !repository.fork;
     if (filter === "launch") return Boolean(curated?.launchUrl);
+    if (filter === "forks") return repository.fork;
     if (filter === "starred") return repository.starred;
     return true;
   });
@@ -53,6 +56,7 @@ function ProjectsPage() {
     { key: "all", label: `/ ${t.filters.all}` },
     { key: "repositories", label: `/ ${t.filters.repositories}` },
     { key: "launch", label: `/ ${t.filters.launch}` },
+    { key: "forks", label: "/ FORKS" },
     { key: "starred", label: t.filters.starred, icon: true },
   ];
 
@@ -85,7 +89,7 @@ function ProjectsPage() {
             <article key={repository.id} className="group grid gap-5 py-8 md:grid-cols-12 md:items-center md:py-10">
               <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
               <div className="md:col-span-3">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{localized?.eyebrow ?? curated?.eyebrow ?? (repository.fork ? "FORKED REPOSITORY" : "PUBLIC REPOSITORY")}</p>
+                <p className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{localized?.eyebrow ?? curated?.eyebrow ?? (repository.fork ? "EXPLORING / ADAPTING" : "BUILDING / USING")}</p>
                 <div className="mt-2 flex items-center gap-2 font-mono text-[9px] tracking-wider text-primary">
                   <span>{curated?.status ?? "ACTIVE"}</span>
                   {repository.starred && <Star className="size-3" fill="currentColor" aria-label="Starred on GitHub" />}
@@ -93,7 +97,7 @@ function ProjectsPage() {
               </div>
               <Link to="/projects/$slug" params={{ slug }} className="md:col-span-6">
                 <h2 className="font-display text-3xl font-semibold transition-colors group-hover:text-primary md:text-4xl">{curated?.name ?? repository.name}</h2>
-                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{localized?.summary ?? curated?.summary ?? repository.description ?? "A public repository for experiments, learning, and building solutions."}</p>
+                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{localized?.summary ?? curated?.summary ?? repository.description ?? (repository.fork ? "A project I am exploring, adapting, or using as a reference in my own experiments." : "A system I am building, using, or evolving through hands-on experimentation.")}</p>
               </Link>
               <div className="flex items-center gap-2 md:col-span-2 md:justify-end">
                 {curated?.launchUrl && <a href={curated.launchUrl} target={curated.launchUrl.startsWith("http") ? "_blank" : undefined} rel={curated.launchUrl.startsWith("http") ? "noreferrer" : undefined} className="inline-flex items-center gap-1 bg-primary px-3 py-2 font-mono text-[9px] font-semibold tracking-wider text-primary-foreground transition-opacity hover:opacity-90"><Rocket className="size-3" /> LAUNCH</a>}
