@@ -85,8 +85,8 @@ export const completeCuratiaOnboarding=createServerFn({method:"POST"}).validator
 
 const generateVisualInput=z.object({id:z.string().min(1),prompt:z.string().min(1).max(10000),aspectRatio:z.enum(["1:1","4:5","16:9","9:16"]).default("4:5")});
 export const generateContentVisual=createServerFn({method:"POST"}).validator(generateVisualInput).handler(async({data})=>{
- const keyId=process.env.HF_API_KEY_ID,keySecret=process.env.HF_API_KEY_SECRET;if(!keyId||!keySecret)throw new Error("Higgsfield API credentials are not configured.");
- const auth=`Key ${keyId}:${keySecret}`;const submit=await fetch("https://api.higgsfield.ai/recraft/v4.1/text-to-image",{method:"POST",headers:{Authorization:auth,"Content-Type":"application/json"},body:JSON.stringify({prompt:data.prompt,resolution:"1k",aspect_ratio:data.aspectRatio,output_format:"png"})});
+ const apiKey=process.env.HF_API_KEY;if(!apiKey)throw new Error("Higgsfield API key is not configured.");
+ const auth=`Key ${apiKey}`;const submit=await fetch("https://api.higgsfield.ai/recraft/v4.1/text-to-image",{method:"POST",headers:{Authorization:auth,"Content-Type":"application/json"},body:JSON.stringify({prompt:data.prompt,resolution:"1k",aspect_ratio:data.aspectRatio,output_format:"png"})});
  const raw=await submit.text();let job:any={};try{job=raw?JSON.parse(raw):{}}catch{}if(!submit.ok)throw new Error(job?.message||job?.error||`Image generation failed (${submit.status}).`);
  const statusUrl=job.status_url||`https://api.higgsfield.ai/requests/${job.request_id}/status`;let result:any=job;
  for(let n=0;n<45;n++){const images=result?.images;if(Array.isArray(images)&&images.length)break;const state=String(result?.status||"").toLowerCase();if(["failed","error","cancelled"].includes(state))throw new Error(result?.error?.message||result?.message||"Image generation failed.");await new Promise(x=>setTimeout(x,2000));const sr=await fetch(statusUrl,{headers:{Authorization:auth}});const st=await sr.text();try{result=st?JSON.parse(st):{}}catch{result={}}if(!sr.ok)throw new Error(`Image status failed (${sr.status}).`)}
