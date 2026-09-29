@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode, type ButtonHTMLAttributes } from "react";
-import { curatiaAuth, type CuratiaSession } from "../lib/curatia-supabase.client";
+import { curatiaAuth, type CuratiaSession } from "../lib/curatia-auth";
 import { getCuratiaDashboard, updateSignalState, updateContentStatus, bootstrapCuratiaUser, type CuratiaContentItem, type CuratiaSignal, type CuratiaDashboard } from "../lib/curatia-content-engine.functions";
 
 export const Route = createFileRoute("/curatia-content-engine")({ loader: () => getCuratiaDashboard(), component: Curatia });
