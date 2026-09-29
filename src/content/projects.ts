@@ -19,21 +19,21 @@ export type PortfolioProject = {
 export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "ba-content-engine",
-    name: "BA Content Engine",
+    name: "Curatia",
     eyebrow: "EDITORIAL INTELLIGENCE SYSTEM",
     summary:
-      "A structured system for turning signals into researched, approved, published, and learned-from Business Analysis content.",
+      "An editorial intelligence and content operations platform for turning signals into context, decisions, creation, publishing, and learning.",
     description:
-      "BA Content Engine connects trend discovery, idea development, editorial research, drafting, publishing, and post-publication learning into one governed workflow. The project keeps editorial intelligence separate from persistent application data and treats approval as an explicit human decision.",
+      "Curatia connects signal discovery, idea development, editorial research, creation, publishing, and post-publication learning in one governed workspace. It combines editorial intelligence with multi-channel execution while keeping approval and publishing as explicit human decisions.",
     repository: "https://github.com/Guilsc/ba-content-engine",
     launchUrl: "https://ba-content-engine.guilhermecosta.tech/",
     status: "ACTIVE",
-    tags: ["BUSINESS ANALYSIS", "AI", "EDITORIAL SYSTEMS", "SUPABASE"],
+    tags: ["AI", "EDITORIAL INTELLIGENCE", "CONTENT OPERATIONS", "SUPABASE"],
     role: "Product owner, workflow designer, and builder",
-    problem: "Turn fragmented trend discovery, research, drafting, approval, publishing, and learning into one governed editorial workflow.",
-    approach: ["Designed an explicit content lifecycle from signal to learning.", "Separated editorial intelligence from persistent application data.", "Made human approval a hard boundary before publishing."],
-    outcomes: ["A working, launchable system with a defined editorial operating model.", "A reusable lifecycle that connects discovery, creation, publishing, and learning without removing human approval."],
-    next: "Continue integrating persistent data, automation, and post-publication learning while preserving explicit approval boundaries.",
+    problem: "Turn fragmented signal discovery, research, creation, approval, multi-channel publishing, and learning into one governed editorial workflow.",
+    approach: ["Designed an explicit editorial lifecycle from signal to learning.", "Separated editorial intelligence from persistent application data.", "Made human approval a hard boundary before publishing."],
+    outcomes: ["A working editorial intelligence platform with a defined operating model.", "A reusable lifecycle that connects discovery, creation, publishing, and learning without removing human approval."],
+    next: "Expand multi-channel creation, distribution, analytics, and agent orchestration while preserving explicit approval boundaries.",
     takeaways: [
       "Separates editorial intelligence from persistent application data.",
       "Uses explicit human approval as a hard publishing boundary.",
