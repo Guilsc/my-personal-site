@@ -18,13 +18,13 @@ export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():
 });
 
 const signalInput=z.object({id:z.string().uuid(),state:z.enum(["Watch","Explore","Ignored"])});
-export const updateSignalState=createServerFn({method:"POST"}).inputValidator(signalInput).handler(async({data})=>{
+export const updateSignalState=createServerFn({method:"POST"}).validator(signalInput).handler(async({data})=>{
  const body:any={state:data.state};if(data.state==="Ignored")body.ignored_at=new Date().toISOString();
  return rest(`signals?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify(body)});
 });
 
 const contentInput=z.object({id:z.string().min(1),status:z.enum(["Candidate","Research","Draft","Visual Ready"])});
-export const updateContentStatus=createServerFn({method:"POST"}).inputValidator(contentInput).handler(async({data})=>{
+export const updateContentStatus=createServerFn({method:"POST"}).validator(contentInput).handler(async({data})=>{
  const current=await rest(`content_items?select=status&id=eq.${encodeURIComponent(data.id)}`);
  if(!Array.isArray(current)||!current[0])throw new Error("Content item not found.");
  const allowed:Record<string,string[]>={Idea:["Candidate"],Candidate:["Research"],Research:["Draft"],Draft:["Visual Ready"]};
