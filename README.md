@@ -38,14 +38,14 @@ Treat `main` as production.
 
 ## LinkedIn feed
 
-The Articles & Posts section is prepared to consume the BA Content Engine's versioned public publications API while keeping this site's native React/Tailwind presentation.
+The Articles & Posts section is prepared to consume the Curatia's versioned public publications API while keeping this site's native React/Tailwind presentation.
 
-The personal site does **not** connect directly to the BA Content Engine database. It only understands the public `v1` publications contract.
+The personal site does **not** connect directly to the Curatia database. It only understands the public `v1` publications contract.
 
-Configure the endpoint in Hostinger after the BA Content Engine public API is implemented:
+Configure the endpoint in Hostinger after the Curatia public API is implemented:
 
 ```text
-BA_CONTENT_PUBLICATIONS_URL=<public BA Content Engine publications endpoint>
+CURATIA_PUBLICATIONS_URL=<public Curatia publications endpoint>
 ```
 
 The site requests:
