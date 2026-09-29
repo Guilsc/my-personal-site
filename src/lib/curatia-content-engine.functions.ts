@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";radar_status:"detected"|"radar"|"dismissed";radar_entered_at:string|null;radar_entry_reason:string|null;detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;why_now:string|null;ba_impact:string|null;second_order_implication:string|null;strongest_editorial_angle:string|null;editorial_potential:string|null;evidence_strength:string|null;saturation:string|null;source_count:number;previous_source_count:number|null;previous_evidence_strength:string|null;previous_saturation:string|null;last_change_at:string|null};
+export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";radar_status:"detected"|"radar"|"dismissed";radar_entered_at:string|null;radar_entry_reason:string|null;detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;why_now:string|null;ba_impact:string|null;role_impact:string|null;second_order_implication:string|null;strongest_editorial_angle:string|null;editorial_potential:string|null;evidence_strength:string|null;saturation:string|null;source_count:number;previous_source_count:number|null;previous_evidence_strength:string|null;previous_saturation:string|null;last_change_at:string|null};
 export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;core_idea:string|null;status:"Idea"|"Candidate"|"Research"|"Draft"|"Visual Ready"|"Approved"|"Scheduled"|"Published"|"Learning";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;updated_at:string};
 export type CuratiaSignalRelationship={from:string;to:string;type:string;strength:number;reason:string|null};
 export type CuratiaSignalGraph={signals:CuratiaSignal[];relationships:CuratiaSignalRelationship[]};
@@ -13,7 +13,7 @@ async function rest(path:string,init?:RequestInit){const{url,key}=config();const
 
 export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():Promise<CuratiaDashboard>=>{
  const [rawSignals,contentItems,sources,links,snapshots,relationships]=await Promise.all([
-  rest("signals?select=id,title,summary,state,radar_status,radar_entered_at,radar_entry_reason,detected_at,first_published_at,why_it_may_matter,why_now,ba_impact,second_order_implication,strongest_editorial_angle,editorial_potential,evidence_strength,saturation&state=not.eq.Archived&order=detected_at.desc"),
+  rest("signals?select=id,title,summary,state,radar_status,radar_entered_at,radar_entry_reason,detected_at,first_published_at,why_it_may_matter,why_now,ba_impact,role_impact,second_order_implication,strongest_editorial_angle,editorial_potential,evidence_strength,saturation&state=not.eq.Archived&order=detected_at.desc"),
   rest("content_items?select=id,title,series,topic,publishing_channel,core_idea,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,updated_at&order=updated_at.desc"),
   rest("sources?select=id"),
   rest("signal_sources?select=signal_id,source_id"),
