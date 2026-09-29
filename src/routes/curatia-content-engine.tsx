@@ -1,56 +1,31 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { getBASignals } from "../lib/curatia-content-engine.functions";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { useState, type ReactNode, type ButtonHTMLAttributes } from "react";
+import { getCuratiaDashboard, updateSignalState, updateContentStatus, type CuratiaContentItem, type CuratiaSignal, type CuratiaDashboard } from "../lib/curatia-content-engine.functions";
 
-export const Route = createFileRoute("/curatia-content-engine")({
-  loader: () => getBASignals(),
-  component: BAContentEngine,
-});
+export const Route = createFileRoute("/curatia-content-engine")({ loader: () => getCuratiaDashboard(), component: Curatia });
+type View = "Home"|"Trend Radar"|"Idea Tank"|"Content Pipeline"|"Editorial Studio"|"Calendar";
+const lifecycle = ["Idea","Candidate","Research","Draft","Visual Ready","Approved","Scheduled","Published","Learning"] as const;
 
-function BAContentEngine() {
-  const signals = Route.useLoaderData();
-  const columns = ["New", "Watch", "Explore"] as const;
-  return (
-    <main className="min-h-screen bg-[#f3efe5] text-[#171717]">
-      <header className="border-b border-black/15 px-6 py-5 md:px-10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-[0.22em]">Curatia</div>
-            <h1 className="mt-1 font-bold text-2xl md:text-3xl">Editorial Intelligence</h1>
-            <p className="mt-1 text-sm opacity-65">Signals. Context. Decisions. Creation.</p>
-          </div>
-          <Link to="/" className="font-mono text-xs uppercase underline underline-offset-4">Guilherme Costa</Link>
-        </div>
-      </header>
-      <section className="mx-auto max-w-7xl px-6 py-8 md:px-10">
-        <div className="mb-7">
-          <span className="inline-block bg-[#f2d64b] px-3 py-1 font-mono text-xs font-bold uppercase">Trend Radar</span>
-          <p className="mt-3 max-w-2xl text-sm opacity-70">Live editorial signals from the Curatia workspace.</p>
-        </div>
-        <div className="grid gap-5 lg:grid-cols-3">
-          {columns.map((state) => (
-            <section key={state}>
-              <div className="mb-3 flex items-center justify-between border-b border-black/25 pb-2">
-                <h2 className="font-mono text-sm font-bold uppercase tracking-wider">{state}</h2>
-                <span className="font-mono text-xs">{signals.filter(s => s.state === state).length}</span>
-              </div>
-              <div className="space-y-3">
-                {signals.filter(s => s.state === state).map((signal) => (
-                  <article key={signal.id} className="border border-black/15 bg-[#faf7ef] p-4 shadow-[3px_3px_0_rgba(0,0,0,.08)]">
-                    <h3 className="font-semibold leading-snug">{signal.title}</h3>
-                    {signal.summary && <p className="mt-2 text-sm leading-relaxed opacity-75">{signal.summary}</p>}
-                    {signal.why_it_may_matter && <div className="mt-4 border-l-2 border-[#f2d64b] pl-3"><div className="font-mono text-[10px] uppercase opacity-55">Why it may matter</div><p className="mt-1 text-xs leading-relaxed">{signal.why_it_may_matter}</p></div>}
-                    <div className="mt-4 flex flex-wrap gap-2 font-mono text-[10px] uppercase opacity-60">
-                      {signal.evidence_strength && <span>Evidence: {signal.evidence_strength}</span>}
-                      {signal.saturation && <span>· Saturation: {signal.saturation}</span>}
-                    </div>
-                  </article>
-                ))}
-                {!signals.some(s => s.state === state) && <div className="border border-dashed border-black/20 p-4 text-sm opacity-45">No signals.</div>}
-              </div>
-            </section>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+function Curatia() {
+ const data=Route.useLoaderData(); const router=useRouter(); const [view,setView]=useState<View>("Home"); const [busy,setBusy]=useState<string|null>(null);
+ async function signal(id:string,state:"Watch"|"Explore"|"Ignored"){setBusy(id);try{await updateSignalState({data:{id,state}});await router.invalidate();}finally{setBusy(null)}}
+ async function content(id:string,status:"Candidate"|"Research"|"Draft"|"Visual Ready"){setBusy(id);try{await updateContentStatus({data:{id,status}});await router.invalidate();}finally{setBusy(null)}}
+ const nav:View[]=["Home","Trend Radar","Idea Tank","Content Pipeline","Editorial Studio","Calendar"];
+ return <main className="min-h-screen bg-[#f4f0e6] text-[#171717]"><header className="border-b-2 border-black px-5 py-4 md:px-8"><div className="mx-auto flex max-w-[1500px] flex-wrap items-center gap-5"><button onClick={()=>setView("Home")} className="mr-2 text-left"><div className="font-mono text-[11px] font-bold uppercase tracking-[.24em]">Curatia</div><div className="font-bold">Editorial Intelligence</div></button><nav className="flex flex-1 flex-wrap gap-1">{nav.map(n=><button key={n} onClick={()=>setView(n)} className={`px-3 py-2 font-mono text-xs uppercase ${view===n?"bg-black text-[#f4f0e6]":"hover:bg-black/5"}`}>{n}</button>)}</nav><Link to="/" className="font-mono text-xs uppercase underline underline-offset-4">Guilherme Costa</Link></div></header>
+ <section className="mx-auto max-w-[1500px] px-5 py-7 md:px-8">{view==="Home"&&<Home data={data} go={setView}/>} {view==="Trend Radar"&&<Radar signals={data.signals} busy={busy} move={signal}/>} {view==="Idea Tank"&&<Ideas items={data.contentItems} busy={busy} move={content}/>} {view==="Content Pipeline"&&<Pipeline items={data.contentItems}/>} {view==="Editorial Studio"&&<Studio items={data.contentItems} busy={busy} move={content}/>} {view==="Calendar"&&<Calendar items={data.contentItems}/>}</section>
+ <footer className="mx-auto flex max-w-[1500px] justify-between px-5 pb-8 font-mono text-[10px] uppercase opacity-50 md:px-8"><span>Signals. Context. Decisions. Creation.</span><span>Curatia</span></footer></main>;
 }
+function Home({data,go}:{data:CuratiaDashboard,go:(v:View)=>void}){const active=data.signals.filter(s=>["New","Watch","Explore"].includes(s.state));const approvals=data.contentItems.filter(i=>i.status==="Visual Ready").length;return <div><div className="mb-8 border-b-2 border-black pb-7"><div className="mb-3 inline-block bg-[#f2d64b] px-3 py-1 font-mono text-[11px] font-bold uppercase">Editorial workspace</div><h1 className="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">What deserves your point of view?</h1><p className="mt-3 max-w-3xl opacity-65">Turn weak signals into evidence-backed ideas, then move only the strongest through production.</p></div><div className="grid gap-3 md:grid-cols-4"><Metric l="Radar health" v={String(active.length)} n="active signals" f={()=>go("Trend Radar")}/><Metric l="Canonical backlog" v={String(data.contentItems.length)} n="content items" f={()=>go("Idea Tank")}/><Metric l="Approval queue" v={String(approvals)} n="explicit approval required" f={()=>go("Editorial Studio")}/><Metric l="Evidence registry" v={String(data.sourceCount)} n="canonical sources" f={()=>go("Trend Radar")}/></div><div className="mt-8 grid gap-6 lg:grid-cols-2"><Panel t="Next up"><ContentList items={data.contentItems.slice(0,4)}/></Panel><Panel t="Radar"><div className="space-y-2">{active.slice(0,5).map(s=><SignalMini key={s.id} s={s}/>)}</div></Panel></div></div>}
+function Radar({signals,busy,move}:{signals:CuratiaSignal[],busy:string|null,move:(id:string,s:"Watch"|"Explore"|"Ignored")=>void}){const cols=["New","Watch","Explore"] as const;return <Page t="Trend Radar" s="Evidence-backed signals. Discovery does not equal promotion."><div className="grid gap-5 lg:grid-cols-3">{cols.map(state=><section key={state}><div className="mb-3 flex items-center justify-between border-b-2 border-black pb-2"><h2 className="font-mono text-sm font-bold uppercase">{state}</h2><span className="font-mono text-xs">{signals.filter(s=>s.state===state).length}</span></div><div className="space-y-3">{signals.filter(s=>s.state===state).map(x=><article key={x.id} className="border border-black/20 bg-[#fbf8f0] p-4 shadow-[3px_3px_0_#171717]"><h3 className="font-bold">{x.title}</h3>{x.summary&&<p className="mt-2 text-sm opacity-70">{x.summary}</p>}{x.why_it_may_matter&&<p className="mt-3 border-l-2 border-[#f2d64b] pl-3 text-xs">{x.why_it_may_matter}</p>}<div className="mt-3 font-mono text-[10px] uppercase opacity-60">{x.evidence_strength||"Evidence n/a"} · {x.saturation||"Saturation n/a"}</div><div className="mt-4 flex flex-wrap gap-2">{state!=="Watch"&&<Action disabled={busy===x.id} onClick={()=>move(x.id,"Watch")}>Keep watching</Action>}{state!=="Explore"&&<Action disabled={busy===x.id} onClick={()=>move(x.id,"Explore")}>Explore</Action>}<Action disabled={busy===x.id} onClick={()=>move(x.id,"Ignored")}>Ignore</Action></div></article>)}</div></section>)}</div></Page>}
+function Ideas({items,busy,move}:{items:CuratiaContentItem[],busy:string|null,move:(id:string,s:"Candidate")=>void}){const ideas=items.filter(i=>i.status==="Idea");return <Page t="Idea Tank" s="Canonical backlog. Promotion to Candidate is always explicit.">{ideas.length?<div className="grid gap-4 md:grid-cols-2">{ideas.map(i=><Card key={i.id} i={i}><Action disabled={busy===i.id} onClick={()=>move(i.id,"Candidate")}>Promote to Candidate</Action></Card>)}</div>:<Empty text="No items currently in Idea. Restored items are already further in the lifecycle."/>}</Page>}
+function Pipeline({items}:{items:CuratiaContentItem[]}){return <Page t="Content Pipeline" s="One canonical record across the editorial lifecycle."><div className="overflow-x-auto pb-3"><div className="grid min-w-[1350px] grid-cols-9 gap-3">{lifecycle.map(st=><section key={st}><div className="mb-2 border-b-2 border-black pb-2 font-mono text-[11px] font-bold uppercase">{st} · {items.filter(i=>i.status===st).length}</div><div className="space-y-2">{items.filter(i=>i.status===st).map(i=><Card key={i.id} i={i}/>)}</div></section>)}</div></div></Page>}
+function Studio({items,busy,move}:{items:CuratiaContentItem[],busy:string|null,move:(id:string,s:"Research"|"Draft"|"Visual Ready")=>void}){const a=items.filter(i=>["Candidate","Research","Draft","Visual Ready"].includes(i.status));return <Page t="Editorial Studio" s="Research, thesis, draft and visual preparation. Visual Ready is not approval."><div className="grid gap-4 lg:grid-cols-2">{a.map(i=><Card key={i.id} i={i}>{i.status==="Candidate"&&<Action disabled={busy===i.id} onClick={()=>move(i.id,"Research")}>Start research</Action>}{i.status==="Research"&&<Action disabled={busy===i.id} onClick={()=>move(i.id,"Draft")}>Move to draft</Action>}{i.status==="Draft"&&<Action disabled={busy===i.id} onClick={()=>move(i.id,"Visual Ready")}>Mark Visual Ready</Action>}{i.status==="Visual Ready"&&<span className="font-mono text-[10px] font-bold uppercase">Awaiting explicit approval</span>}</Card>)}</div></Page>}
+function Calendar({items}:{items:CuratiaContentItem[]}){const d=items.filter(i=>i.target_date||i.publication_date);return <Page t="Calendar" s="No publishing date or time is inferred.">{d.length?<ContentList items={d}/>:<Empty text="No date or time has been explicitly set for the current restored items."/>}</Page>}
+function Page({t,s,children}:{t:string,s:string,children:ReactNode}){return <div><div className="mb-7 border-b-2 border-black pb-5"><h1 className="text-4xl font-bold">{t}</h1><p className="mt-2 text-sm opacity-65">{s}</p></div>{children}</div>}
+function Panel({t,children}:{t:string,children:ReactNode}){return <section><h2 className="mb-3 border-b-2 border-black pb-2 font-mono text-xs font-bold uppercase">{t}</h2>{children}</section>}
+function Metric({l,v,n,f}:{l:string,v:string,n:string,f:()=>void}){return <button onClick={f} className="border border-black/20 bg-[#fbf8f0] p-5 text-left shadow-[3px_3px_0_#171717]"><div className="font-mono text-[10px] uppercase opacity-60">{l}</div><div className="mt-1 text-4xl font-bold">{v}</div><div className="text-xs opacity-60">{n}</div></button>}
+function Action({children,...p}:ButtonHTMLAttributes<HTMLButtonElement>){return <button {...p} className="border border-black px-2 py-1 font-mono text-[10px] font-bold uppercase hover:bg-black hover:text-[#f4f0e6] disabled:opacity-40">{children}</button>}
+function Empty({text}:{text:string}){return <div className="border border-dashed border-black/30 p-8 text-sm opacity-60">{text}</div>}
+function SignalMini({s}:{s:CuratiaSignal}){return <div className="border-b border-black/15 pb-2"><div className="font-semibold">{s.title}</div><div className="font-mono text-[10px] uppercase opacity-55">{s.state} · {s.evidence_strength||"Evidence n/a"}</div></div>}
+function ContentList({items}:{items:CuratiaContentItem[]}){return <div className="space-y-2">{items.map(i=><Card key={i.id} i={i}/>)}</div>}
+function Card({i,children}:{i:CuratiaContentItem,children?:ReactNode}){return <article className="border border-black/20 bg-[#fbf8f0] p-4 shadow-[2px_2px_0_#171717]"><div className="font-mono text-[10px] uppercase opacity-55">{i.id} · {i.topic||"Editorial"}</div><h3 className="mt-1 font-bold">{i.title}</h3><div className="mt-2 inline-block bg-[#f2d64b] px-2 py-1 font-mono text-[10px] font-bold uppercase">{i.status}</div>{children&&<div className="mt-4">{children}</div>}</article>}
