@@ -28,6 +28,19 @@ export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():
 });
 
 export type CuratiaWatchTarget={id:string;title:string;summary:string|null;whyNow:string|null;baImpact:string|null;secondOrderImplication:string|null;evidenceStrength:string|null;saturation:string|null;sourceUrls:string[];sourceCount:number;discoveryTags:string[]};
+export type CuratiaScoutSource={key:string;displayName:string;sourceType:string;discoveryRole:string;baseUrl:string|null;priority:number};
+export type CuratiaScoutBrief={workspaceId:string;baselines:string[];watchlists:string[];sources:CuratiaScoutSource[];watchTargets:CuratiaWatchTarget[]};
+export const getCuratiaScoutBrief=createServerFn({method:"POST"}).validator(watchRunInput).handler(async({data}):Promise<CuratiaScoutBrief>=>{
+ const ctx=await curatiaContext(data.accessToken);
+ const [prefs,registry,signals,links]=await Promise.all([
+  rest(`workspace_preferences?select=discovery_baselines,discovery_watchlists&workspace_id=eq.${encodeURIComponent(ctx.wid)}&limit=1`),
+  rest("scout_source_registry?select=key,display_name,source_type,discovery_role,base_url,priority&active=eq.true&order=priority.desc,display_name"),
+  rest(`signals?select=id,title,summary,why_now,ba_impact,second_order_implication,evidence_strength,saturation,discovery_tags&workspace_id=eq.${encodeURIComponent(ctx.wid)}&state=eq.Watch&order=detected_at.desc`),
+  rest("signal_sources?select=signal_id,source_id,sources(canonical_url)")
+ ]);
+ const watchTargets=(signals||[]).map((s:any)=>{const own=(links||[]).filter((x:any)=>x.signal_id===s.id);return{id:s.id,title:s.title,summary:s.summary,whyNow:s.why_now,baImpact:s.ba_impact,secondOrderImplication:s.second_order_implication,evidenceStrength:s.evidence_strength,saturation:s.saturation,sourceUrls:own.map((x:any)=>x.sources?.canonical_url).filter(Boolean),sourceCount:own.length,discoveryTags:s.discovery_tags||[]}}) as CuratiaWatchTarget[];
+ return{workspaceId:ctx.wid,baselines:prefs?.[0]?.discovery_baselines||[],watchlists:prefs?.[0]?.discovery_watchlists||[],sources:(registry||[]).map((x:any)=>({key:x.key,displayName:x.display_name,sourceType:x.source_type,discoveryRole:x.discovery_role,baseUrl:x.base_url,priority:x.priority})),watchTargets};
+});
 const watchRunInput=z.object({accessToken:z.string().min(20)});
 export const beginCuratiaWatchRun=createServerFn({method:"POST"}).validator(watchRunInput).handler(async({data})=>{
  const ctx=await curatiaContext(data.accessToken);
