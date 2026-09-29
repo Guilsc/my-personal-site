@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;evidence_strength:string|null;saturation:string|null};
-export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;status:"Idea"|"Candidate"|"Research"|"Draft"|"Visual Ready"|"Approved"|"Scheduled"|"Published"|"Learning";target_date:string|null;publication_date:string|null;publication_time:string|null;updated_at:string};
+export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;core_idea:string|null;status:"Idea"|"Candidate"|"Research"|"Draft"|"Visual Ready"|"Approved"|"Scheduled"|"Published"|"Learning";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;updated_at:string};
 export type CuratiaDashboard={signals:CuratiaSignal[];contentItems:CuratiaContentItem[];sourceCount:number};
 export type CuratiaBootstrap={workspaceId:string;userId:string;email:string|null;displayName:string|null};
 
@@ -12,7 +12,7 @@ async function rest(path:string,init?:RequestInit){const{url,key}=config();const
 export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():Promise<CuratiaDashboard>=>{
  const [signals,contentItems,sources]=await Promise.all([
   rest("signals?select=id,title,summary,state,detected_at,first_published_at,why_it_may_matter,evidence_strength,saturation&state=in.(New,Watch,Explore)&order=detected_at.desc"),
-  rest("content_items?select=id,title,series,topic,status,target_date,publication_date,publication_time,updated_at&order=updated_at.desc"),
+  rest("content_items?select=id,title,series,topic,publishing_channel,core_idea,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,updated_at&order=updated_at.desc"),
   rest("sources?select=id")
  ]);
  return{signals,contentItems,sourceCount:Array.isArray(sources)?sources.length:0};
@@ -32,6 +32,9 @@ export const updateContentStatus=createServerFn({method:"POST"}).validator(conte
  if(!allowed[current[0].status]?.includes(data.status))throw new Error("Invalid lifecycle transition.");
  return rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({status:data.status})});
 });
+const visualInput=z.object({id:z.string().min(1),visualConcept:z.string().max(1200),visualBrief:z.string().max(3000)});
+export const updateContentVisual=createServerFn({method:"POST"}).validator(visualInput).handler(async({data})=>rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_concept:data.visualConcept||null,visual_brief:data.visualBrief||null,updated_at:new Date().toISOString()})}));
+
 
 
 const bootstrapInput=z.object({accessToken:z.string().min(20)});
@@ -65,16 +68,16 @@ export const getCuratiaOnboarding=createServerFn({method:"POST"}).validator(onbo
   rest(`workspace_channels?select=channel_key,enabled,is_primary&workspace_id=eq.${encodeURIComponent(wid)}&enabled=eq.true`)
  ]);
  const p=profiles?.[0]||{},w=workspaces?.[0]||{},x=prefs?.[0]||{},voice=x.voice_preferences||{},pub=x.publishing_preferences||{};
- return{completed:Boolean(p.onboarding_completed_at&&w.onboarding_completed_at),email:user.email||"",workspaceId:wid,workspaceName:w.name||"Curatia",displayName:p.display_name||user.user_metadata?.full_name||"",roleTitle:p.role_title||"",bio:p.bio||"",avatarUrl:p.avatar_url||user.user_metadata?.avatar_url||"",contentTerritories:voice.content_territories||[],primaryAudience:x.primary_audience||"",secondaryAudiences:x.secondary_audiences||[],audienceOutcomes:x.audience_outcomes||[],languages:x.languages||["English"],interests:(interests||[]).map((i:any)=>i.label),channels:(channels||[]).map((c:any)=>c.channel_key),primaryChannel:(channels||[]).find((c:any)=>c.is_primary)?.channel_key||"linkedin",voiceTone:voice.tone||"",voiceNotes:voice.notes||"",approvalRequired:pub.approval_required!==false,schedulingAllowed:Boolean(pub.scheduling_allowed)};
+ return{completed:Boolean(p.onboarding_completed_at&&w.onboarding_completed_at),email:user.email||"",workspaceId:wid,workspaceName:w.name||"Curatia",displayName:p.display_name||user.user_metadata?.full_name||"",roleTitle:p.role_title||"",bio:p.bio||"",avatarUrl:p.avatar_url||user.user_metadata?.avatar_url||"",contentTerritories:voice.content_territories||[],primaryAudience:x.primary_audience||"",secondaryAudiences:x.secondary_audiences||[],audienceOutcomes:x.audience_outcomes||[],languages:x.languages||["English"],interests:(interests||[]).map((i:any)=>i.label),channels:(channels||[]).map((c:any)=>c.channel_key),primaryChannel:(channels||[]).find((c:any)=>c.is_primary)?.channel_key||"linkedin",voiceTone:voice.tone||"Professional, Conversational, Clear, Practical",voiceNotes:voice.notes||"",approvalRequired:pub.approval_required!==false,schedulingAllowed:Boolean(pub.scheduling_allowed)};
 });
 const onboardingSave=z.object({accessToken:z.string().min(20),displayName:z.string().min(1).max(120),roleTitle:z.string().max(160),bio:z.string().max(1200),workspaceName:z.string().min(1).max(120),contentTerritories:z.array(z.string().min(1).max(120)).max(12),primaryAudience:z.string().max(240),secondaryAudiences:z.array(z.string().min(1).max(160)).max(10),audienceOutcomes:z.array(z.string().min(1).max(120)).max(10),languages:z.array(z.string().min(1).max(80)).min(1).max(8),interests:z.array(z.string().min(1).max(120)).max(20),channels:z.array(z.enum(["linkedin","instagram","x","tiktok","youtube","podcast","newsletter","blog"])).min(1),primaryChannel:z.enum(["linkedin","instagram","x","tiktok","youtube","podcast","newsletter","blog"]),voiceTone:z.string().max(160),voiceNotes:z.string().max(1200),approvalRequired:z.literal(true),schedulingAllowed:z.boolean()});
 export const completeCuratiaOnboarding=createServerFn({method:"POST"}).validator(onboardingSave).handler(async({data})=>{
  const user=await verifiedUser(data.accessToken);const members=await rest(`workspace_members?select=workspace_id&user_id=eq.${encodeURIComponent(user.id)}&limit=1`);if(!Array.isArray(members)||!members[0])throw new Error("Curatia workspace membership was not found.");const wid=members[0].workspace_id;const now=new Date().toISOString();
  await rest(`profiles?user_id=eq.${encodeURIComponent(user.id)}`,{method:"PATCH",body:JSON.stringify({display_name:data.displayName,role_title:data.roleTitle||null,bio:data.bio||null,avatar_url:user.user_metadata?.avatar_url||null,onboarding_completed_at:now,updated_at:now})});
  await rest(`workspaces?id=eq.${encodeURIComponent(wid)}`,{method:"PATCH",body:JSON.stringify({name:data.workspaceName,onboarding_completed_at:now,updated_at:now})});
- await rest(`workspace_preferences`,{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify({workspace_id:wid,primary_audience:data.primaryAudience,secondary_audiences:data.secondaryAudiences,audience_outcomes:data.audienceOutcomes,languages:data.languages,voice_preferences:{tone:data.voiceTone,notes:data.voiceNotes,content_territories:data.contentTerritories},publishing_preferences:{approval_required:true,scheduling_allowed:data.schedulingAllowed},updated_at:now})});
+ await rest(`workspace_preferences`,{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify({workspace_id:wid,primary_audience:data.primaryAudience,secondary_audiences:data.secondaryAudiences,audience_outcomes:data.audienceOutcomes,languages:data.languages,voice_preferences:{tone:data.voiceTone,notes:data.voiceNotes,content_territories:data.contentTerritories},publishing_preferences:{approval_required:true,scheduling_allowed:data.schedulingAllowed},preference_provenance:{content_focus:data.contentTerritories.length?"user_confirmed":"system_default",audience:(data.primaryAudience||data.secondaryAudiences.length)?"user_confirmed":"system_default",discovery_interests:data.interests.length?"user_confirmed":"system_default",channels:"user_confirmed",voice:data.voiceTone?"user_confirmed":"system_default",languages:"user_confirmed",publishing:"system_default"},updated_at:now})});
  await rest(`discovery_interests?workspace_id=eq.${encodeURIComponent(wid)}`,{method:"DELETE"});
- for(const label of data.interests){await rest("discovery_interests",{method:"POST",body:JSON.stringify({workspace_id:wid,label,normalized_label:label.trim().toLowerCase(),source:"onboarding",active:true,created_by:user.id})})}
+ for(const label of data.interests){await rest("discovery_interests",{method:"POST",body:JSON.stringify({workspace_id:wid,label,normalized_label:label.trim().toLowerCase(),source:"user_confirmed",active:true,created_by:user.id})})}
  await rest(`workspace_channels?workspace_id=eq.${encodeURIComponent(wid)}`,{method:"PATCH",body:JSON.stringify({enabled:false,is_primary:false,updated_at:now})});
  for(const key of data.channels){await rest("workspace_channels",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify({workspace_id:wid,channel_key:key,enabled:true,is_primary:key===data.primaryChannel,updated_at:now})})}
  return{ok:true};
