@@ -83,6 +83,18 @@ export const completeCuratiaOnboarding=createServerFn({method:"POST"}).validator
  return{ok:true};
 });
 
+const generateVisualInput=z.object({id:z.string().min(1),prompt:z.string().min(1).max(10000),aspectRatio:z.enum(["1:1","4:5","16:9","9:16"]).default("4:5")});
+export const generateContentVisual=createServerFn({method:"POST"}).validator(generateVisualInput).handler(async({data})=>{
+ const keyId=process.env.HF_API_KEY_ID,keySecret=process.env.HF_API_KEY_SECRET;if(!keyId||!keySecret)throw new Error("Higgsfield API credentials are not configured.");
+ const auth=`Key ${keyId}:${keySecret}`;const submit=await fetch("https://api.higgsfield.ai/recraft/v4.1/text-to-image",{method:"POST",headers:{Authorization:auth,"Content-Type":"application/json"},body:JSON.stringify({prompt:data.prompt,resolution:"1k",aspect_ratio:data.aspectRatio,output_format:"png"})});
+ const raw=await submit.text();let job:any={};try{job=raw?JSON.parse(raw):{}}catch{}if(!submit.ok)throw new Error(job?.message||job?.error||`Image generation failed (${submit.status}).`);
+ const statusUrl=job.status_url||`https://api.higgsfield.ai/requests/${job.request_id}/status`;let result:any=job;
+ for(let n=0;n<45;n++){const images=result?.images;if(Array.isArray(images)&&images.length)break;const state=String(result?.status||"").toLowerCase();if(["failed","error","cancelled"].includes(state))throw new Error(result?.error?.message||result?.message||"Image generation failed.");await new Promise(x=>setTimeout(x,2000));const sr=await fetch(statusUrl,{headers:{Authorization:auth}});const st=await sr.text();try{result=st?JSON.parse(st):{}}catch{result={}}if(!sr.ok)throw new Error(`Image status failed (${sr.status}).`)}
+ const first=result?.images?.[0];const assetUrl=typeof first==="string"?first:first?.url||first?.image_url;if(!assetUrl)throw new Error("Image generation is still processing. Try again shortly.");
+ const existing=await rest(`content_visual_assets?select=version&content_item_id=eq.${encodeURIComponent(data.id)}&order=version.desc&limit=1`);const version=(Array.isArray(existing)&&existing[0]?.version?Number(existing[0].version):0)+1;const item=await rest(`content_items?select=workspace_id&content_item_id=eq.${encodeURIComponent(data.id)}`).catch(()=>null);const rows=await rest(`content_items?select=workspace_id&id=eq.${encodeURIComponent(data.id)}&limit=1`);const workspaceId=Array.isArray(rows)&&rows[0]?.workspace_id||null;
+ await rest(`content_visual_assets?content_item_id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({selected:false})});await rest("content_visual_assets",{method:"POST",body:JSON.stringify({content_item_id:data.id,workspace_id:workspaceId,version,source:"generated",prompt:data.prompt,asset_url:assetUrl,selected:true,provider:"higgsfield",provider_asset_ref:job.request_id||null})});await rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_brief:data.prompt,final_visual_reference:assetUrl,updated_at:new Date().toISOString()})});return{assetUrl,version};
+});
+
 export type CuratiaIntegration={key:string;label:string;provider:string;status:"connected"|"not_connected"|"error";accountLabel:string|null;connectedAt:string|null;connectionId?:string|null;capabilities:string[]};
 const integrationInput=z.object({accessToken:z.string().min(20),integrationKey:z.enum(["gmail","googledrive","github","linkedin"])});
 const integrationNames:Record<string,string>={gmail:"Gmail",googledrive:"Google Drive",github:"GitHub",linkedin:"LinkedIn",metricool:"Metricool"};
