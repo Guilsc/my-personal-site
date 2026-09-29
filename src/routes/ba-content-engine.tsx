@@ -14,9 +14,9 @@ function BAContentEngine() {
       <header className="border-b border-black/15 px-6 py-5 md:px-10">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div>
-            <div className="font-mono text-xs uppercase tracking-[0.22em]">BA Content Engine</div>
-            <h1 className="mt-1 font-bold text-2xl md:text-3xl">The Analysis Layer</h1>
-            <p className="mt-1 text-sm opacity-65">Signals. Context. Decisions. Thought leadership.</p>
+            <div className="font-mono text-xs uppercase tracking-[0.22em]">Curatia</div>
+            <h1 className="mt-1 font-bold text-2xl md:text-3xl">Editorial Intelligence</h1>
+            <p className="mt-1 text-sm opacity-65">Signals. Context. Decisions. Creation.</p>
           </div>
           <Link to="/" className="font-mono text-xs uppercase underline underline-offset-4">Guilherme Costa</Link>
         </div>
@@ -24,7 +24,7 @@ function BAContentEngine() {
       <section className="mx-auto max-w-7xl px-6 py-8 md:px-10">
         <div className="mb-7">
           <span className="inline-block bg-[#f2d64b] px-3 py-1 font-mono text-xs font-bold uppercase">Trend Radar</span>
-          <p className="mt-3 max-w-2xl text-sm opacity-70">Live editorial signals from the canonical Supabase workspace.</p>
+          <p className="mt-3 max-w-2xl text-sm opacity-70">Live editorial signals from the Curatia workspace.</p>
         </div>
         <div className="grid gap-5 lg:grid-cols-3">
           {columns.map((state) => (

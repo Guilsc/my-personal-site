@@ -34,7 +34,7 @@ const PORTFOLIO_EXCLUDED_REPOSITORIES = new Set(["my-personal-site"]);
 let repositoryCache: { value: GitHubRepository[]; expiresAt: number } | null = null;
 
 function githubHeaders() {
-  const token = process.env.GITHUB_TOKEN?.trim();
+  const token = process.env['GITHUB_TOKEN']?.trim();
   return {
     Accept: "application/vnd.github+json",
     "User-Agent": "guilherme-costa-portfolio",
