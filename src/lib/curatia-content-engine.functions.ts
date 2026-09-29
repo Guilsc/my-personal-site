@@ -114,8 +114,8 @@ export const updateEditorialStudio=createServerFn({method:"POST"}).validator(edi
  const ctx=await curatiaContext(data.accessToken);
  return rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({draft_copy:data.content||null,visual_concept:data.visualDirection||null,updated_at:new Date().toISOString()})});
 });
-const visualInput=z.object({id:z.string().min(1),visualConcept:z.string().max(1200),visualBrief:z.string().max(3000)});
-export const updateContentVisual=createServerFn({method:"POST"}).validator(visualInput).handler(async({data})=>rest(`content_items?id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_concept:data.visualConcept||null,visual_brief:data.visualBrief||null,updated_at:new Date().toISOString()})}));
+const visualInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),visualConcept:z.string().max(3000),visualBrief:z.string().max(10000)});
+export const updateContentVisual=createServerFn({method:"POST"}).validator(visualInput).handler(async({data})=>{const ctx=await curatiaContext(data.accessToken);return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_concept:data.visualConcept||null,visual_brief:data.visualBrief||null,updated_at:new Date().toISOString()})})});
 
 
 
@@ -165,7 +165,7 @@ export const completeCuratiaOnboarding=createServerFn({method:"POST"}).validator
  return{ok:true};
 });
 
-const generateVisualInput=z.object({id:z.string().min(1),prompt:z.string().min(1).max(10000),aspectRatio:z.enum(["1:1","4:5","16:9","9:16"]).default("4:5")});
+const generateVisualInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),prompt:z.string().min(1).max(10000),aspectRatio:z.enum(["1:1","4:5","16:9","9:16"]).default("4:5")});
 export const generateContentVisual=createServerFn({method:"POST"}).validator(generateVisualInput).handler(async({data})=>{
  const apiKey=process.env.HF_API_KEY;if(!apiKey)throw new Error("Higgsfield API key is not configured.");
  const auth=`Key ${apiKey}`;const submit=await fetch("https://api.higgsfield.ai/recraft/v4.1/text-to-image",{method:"POST",headers:{Authorization:auth,"Content-Type":"application/json"},body:JSON.stringify({prompt:data.prompt,resolution:"1k",aspect_ratio:data.aspectRatio,output_format:"png"})});
