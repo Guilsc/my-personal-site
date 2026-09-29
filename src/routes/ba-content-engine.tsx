@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { getBASignals } from "../lib/ba-content-engine.functions";
+import { getBASignals } from "../lib/curatia-content-engine.functions";
 
-export const Route = createFileRoute("/ba-content-engine")({
+export const Route = createFileRoute("/curatia-content-engine")({
   loader: () => getBASignals(),
   component: BAContentEngine,
 });
