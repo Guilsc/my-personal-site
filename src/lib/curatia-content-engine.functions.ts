@@ -115,7 +115,17 @@ export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator
  await rest("content_items",{method:"POST",body:JSON.stringify({id,workspace_id:ctx.wid,title,topic:s.title,publishing_channel:"linkedin",core_idea:core,why_now:s.why_now||null,ba_implication:s.role_impact||s.ba_impact||null,second_order_implication:s.second_order_implication||null,strongest_angle:s.strongest_editorial_angle||null,saturation:s.saturation||null,evidence_strength:s.evidence_strength||null,source_origin:"Trend Radar",status:"Idea",metadata:{source_signal_id:s.id,generated_by:"curatia",generation_basis:"trend_radar_signal"},updated_at:new Date().toISOString()})});
  return{ok:true,id,alreadyExists:false};
 });
-async function cloudflareText(messages:{role:"system"|"user";content:string}[]){
+async function curatiaText(messages:{role:"system"|"user";content:string}[]){
+ const omniBase=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");
+ if(omniBase){
+  const model=process.env.OMNIROUTE_MODEL||"auto";const key=process.env.OMNIROUTE_API_KEY;
+  const headers:Record<string,string>={"Content-Type":"application/json"};if(key)headers.Authorization="Bearer "+key;
+  const response=await fetch(omniBase+"/chat/completions",{method:"POST",headers,body:JSON.stringify({model,messages,max_tokens:1800,temperature:0.35})});
+  const body=await response.json().catch(()=>null) as any;
+  const text=body?.choices?.[0]?.message?.content;
+  if(response.ok&&typeof text==="string"&&text.trim())return{text:text.trim(),provider:"omniroute",model:body?.model||model};
+  throw new Error(body?.error?.message||"Curatia OmniRoute generation failed.");
+ }
  const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;
  if(!accountId||!token)throw new Error("Curatia text generation provider is not configured.");
  const model="@cf/meta/llama-3.3-70b-instruct-fp8-fast";
@@ -144,7 +154,7 @@ export const generateCuratiaContent=createServerFn({method:"POST"}).validator(dr
  const base=[x.title,"",x.core_idea||"",x.why_now?"Why this matters now: "+x.why_now:"",x.ba_implication?"For the role: "+x.ba_implication:"",x.second_order_implication||"",x.strongest_angle?"The angle worth exploring: "+x.strongest_angle:""].filter(Boolean).join("\n\n");
  const context=["TITLE: "+x.title,x.core_idea?"CORE IDEA: "+x.core_idea:"",x.why_now?"WHY NOW: "+x.why_now:"",x.ba_implication?"ROLE IMPACT: "+x.ba_implication:"",x.second_order_implication?"SECOND ORDER: "+x.second_order_implication:"",x.strongest_angle?"STRONGEST ANGLE: "+x.strongest_angle:"","CHANNEL: "+x.publishing_channel,"FORMAT: "+x.content_format,existing?"EXISTING ARTIFACT:\n"+existing:""].filter(Boolean).join("\n\n");
  const system=["You are Curatia's editorial artifact engine.","Use the supplied editorial intelligence as context, not as headings that must be copied into the output.","Be natural, specific, grounded and concise. Do not invent facts, sources, outcomes, quotes, or personal experience.","Avoid generic AI-writing patterns and engagement bait.",operationInstruction[data.operation],"Selected skill packs: "+route.skills.join(", ")+". Apply only capabilities relevant to this operation."].join("\n");
- const ai=await cloudflareText([{role:"system",content:system},{role:"user",content:context}]);
+ const ai=await curatiaText([{role:"system",content:system},{role:"user",content:context}]);
  const draft=ai.text;
  const previous=await rest("content_artifacts?select=version&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&content_item_id=eq."+encodeURIComponent(data.id)+"&artifact_type=eq.text&order=version.desc&limit=1");
  const version=(previous?.[0]?.version?Number(previous[0].version):0)+1;
