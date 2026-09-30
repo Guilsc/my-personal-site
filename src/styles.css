@@ -65,16 +65,16 @@
 }
 
 :root {
-  --radius: 0.125rem;
-  --background: oklch(0.13 0.004 45);
+  --radius: 0.65rem;
+  --background: oklch(0.12 0.006 48);
   --foreground: oklch(0.93 0.018 78);
-  --card: oklch(0.17 0.006 45);
+  --card: oklch(0.155 0.008 48);
   --card-foreground: oklch(0.93 0.018 78);
   --popover: oklch(0.17 0.006 45);
   --popover-foreground: oklch(0.93 0.018 78);
   --primary: oklch(0.69 0.19 39);
   --primary-foreground: oklch(0.13 0.004 45);
-  --secondary: oklch(0.2 0.008 45);
+  --secondary: oklch(0.18 0.009 48);
   --secondary-foreground: oklch(0.93 0.018 78);
   --muted: oklch(0.22 0.008 45);
   --muted-foreground: oklch(0.61 0.018 70);
@@ -82,10 +82,10 @@
   --accent-foreground: oklch(0.82 0.095 55);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.28 0.012 50);
+  --border: oklch(0.25 0.012 50);
   --input: oklch(0.28 0.012 50);
   --ring: oklch(0.69 0.19 39);
-  --glow: oklch(0.69 0.19 39 / 18%);
+  --glow: oklch(0.69 0.19 39 / 16%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -187,4 +187,176 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .draw { animation: none; }
+}
+
+
+/* Editorial portfolio experiment: Bestfolios structure + Freelancefolio personality + Linear precision */
+.glass-nav {
+  border: 1px solid color-mix(in oklab, var(--border) 78%, transparent);
+  background: color-mix(in oklab, var(--background) 78%, transparent);
+  box-shadow: 0 10px 36px -24px rgb(0 0 0 / 0.8);
+  backdrop-filter: blur(22px) saturate(125%);
+}
+
+.hero-shell {
+  isolation: isolate;
+}
+
+.hero-grid {
+  opacity: 0.22;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 45%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 82%);
+}
+
+.hero-orb {
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(16px);
+}
+
+.hero-orb-one {
+  left: -10rem;
+  top: 7rem;
+  width: 34rem;
+  height: 34rem;
+  background: radial-gradient(circle, color-mix(in oklab, var(--primary) 30%, transparent) 0%, transparent 68%);
+  opacity: 0.6;
+}
+
+.hero-orb-two {
+  right: -8rem;
+  bottom: 2rem;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 20%, transparent) 0%, transparent 70%);
+  opacity: 0.28;
+}
+
+.hero-title {
+  max-width: 11ch;
+  font-size: clamp(4.25rem, 9.8vw, 9.5rem);
+  line-height: 0.84;
+  letter-spacing: -0.065em;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--card) 76%, transparent);
+  padding: 0.5rem 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: var(--muted-foreground);
+}
+
+.status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 18px var(--primary);
+}
+
+.portrait-editorial {
+  transform: rotate(1deg);
+}
+
+.portrait-backdrop {
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--primary) 24%, transparent), transparent 42%),
+    color-mix(in oklab, var(--secondary) 78%, transparent);
+  transform: rotate(-3deg);
+}
+
+.portrait-note {
+  box-shadow: 0 22px 60px -35px rgb(0 0 0 / 0.9);
+}
+
+.expertise-row {
+  position: relative;
+  transition: padding 220ms ease, background-color 220ms ease;
+}
+
+.expertise-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 -1rem;
+  z-index: -1;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--primary) 7%, transparent), transparent 72%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.expertise-row:hover::before {
+  opacity: 1;
+}
+
+.work-card {
+  min-height: 26rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 22px 70px -54px rgb(0 0 0 / 0.95);
+}
+
+.work-grid > :nth-child(2) {
+  grid-column: span 7 / span 7;
+}
+
+.work-grid > :nth-child(3) {
+  grid-column: 6 / span 7;
+  min-height: 22rem;
+}
+
+.work-card-enterprise {
+  background:
+    radial-gradient(circle at 12% 12%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 30%),
+    color-mix(in oklab, var(--card) 90%, transparent);
+}
+
+.editorial-card {
+  border-radius: 1.1rem;
+  box-shadow: 0 22px 70px -58px rgb(0 0 0 / 0.9);
+}
+
+.contact-shell {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 34%),
+    linear-gradient(to bottom, color-mix(in oklab, var(--secondary) 35%, transparent), transparent);
+}
+
+@media (max-width: 1023px) {
+  .work-grid > :nth-child(2),
+  .work-grid > :nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .work-card {
+    min-height: 22rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-grid {
+    background-size: 44px 44px;
+  }
+
+  .hero-title {
+    font-size: clamp(3.55rem, 17vw, 5.9rem);
+    letter-spacing: -0.07em;
+  }
+
+  .portrait-editorial {
+    transform: none;
+  }
+
+  .work-card {
+    min-height: 0;
+  }
 }

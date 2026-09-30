@@ -1,0 +1,106 @@
+name: PR live preview
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: pr-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      - name: Start preview server
+        run: |
+          PORT=4173 HOST=127.0.0.1 node .output/server/index.mjs > /tmp/portfolio-preview-server.log 2>&1 &
+          echo $! > /tmp/portfolio-preview-server.pid
+
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+
+          cat /tmp/portfolio-preview-server.log
+          exit 1
+
+      - name: Install Cloudflare tunnel
+        run: |
+          curl -L --fail --silent --show-error             https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64             -o /usr/local/bin/cloudflared
+          chmod +x /usr/local/bin/cloudflared
+          cloudflared --version
+
+      - name: Open public preview tunnel
+        id: tunnel
+        shell: bash
+        run: |
+          cloudflared tunnel --url http://127.0.0.1:4173 --no-autoupdate             > /tmp/cloudflared.log 2>&1 &
+          echo $! > /tmp/cloudflared.pid
+
+          PREVIEW_URL=""
+          for attempt in {1..30}; do
+            PREVIEW_URL=$(grep -Eo 'https://[-a-z0-9]+\.trycloudflare\.com' /tmp/cloudflared.log | head -n 1 || true)
+            if [ -n "$PREVIEW_URL" ]; then
+              break
+            fi
+            sleep 2
+          done
+
+          if [ -z "$PREVIEW_URL" ]; then
+            cat /tmp/cloudflared.log
+            exit 1
+          fi
+
+          echo "url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
+          echo "Preview: $PREVIEW_URL"
+
+      - name: Comment preview URL on PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PREVIEW_URL: ${{ steps.tunnel.outputs.url }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr comment "$PR_NUMBER" --body "### Live PR preview
+
+          $PREVIEW_URL
+
+          This temporary preview is served directly from this PR build and remains available while this workflow is running, for up to about 1 hour.
+
+          Commit: \`${GITHUB_SHA:0:7}\`"
+
+      - name: Keep preview alive
+        env:
+          PREVIEW_URL: ${{ steps.tunnel.outputs.url }}
+        run: |
+          echo "Live preview: $PREVIEW_URL"
+          echo "Keeping the tunnel alive for review..."
+          sleep 3300
