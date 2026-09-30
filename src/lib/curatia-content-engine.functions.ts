@@ -1,8 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { routeCuratiaSkills, CURATIA_SKILL_ROUTER_VERSION } from "./curatia-skill-router";
 
 export type CuratiaSignal={id:string;title:string;summary:string|null;state:"New"|"Watch"|"Explore"|"Promoted"|"Ignored"|"Archived";radar_status:"detected"|"radar"|"dismissed";radar_entered_at:string|null;radar_entry_reason:string|null;detected_at:string;first_published_at:string|null;why_it_may_matter:string|null;why_now:string|null;ba_impact:string|null;role_impact:string|null;second_order_implication:string|null;strongest_editorial_angle:string|null;editorial_potential:string|null;evidence_strength:string|null;saturation:string|null;source_count:number;previous_source_count:number|null;previous_evidence_strength:string|null;previous_saturation:string|null;last_change_at:string|null};
-export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;core_idea:string|null;ba_implication:string|null;evidence_strength:string|null;saturation:string|null;status:"Idea"|"In Progress"|"Ready"|"Approved"|"Scheduled"|"Published";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;source_origin:string|null;why_now:string|null;second_order_implication:string|null;strongest_angle:string|null;metadata:Record<string,any>;updated_at:string};
+export type CuratiaContentItem={id:string;title:string;series:string|null;topic:string|null;publishing_channel:string;content_format:"text_post"|"text_visual"|"image_post"|"carousel"|"video"|"newsletter"|"article";core_idea:string|null;ba_implication:string|null;evidence_strength:string|null;saturation:string|null;status:"Idea"|"In Progress"|"Ready"|"Approved"|"Scheduled"|"Published";target_date:string|null;publication_date:string|null;publication_time:string|null;draft_copy:string|null;final_copy:string|null;visual_concept:string|null;visual_brief:string|null;final_visual_reference:string|null;source_origin:string|null;why_now:string|null;second_order_implication:string|null;strongest_angle:string|null;metadata:Record<string,any>;updated_at:string};
 export type CuratiaSignalRelationship={from:string;to:string;type:string;strength:number;reason:string|null};
 export type CuratiaSignalGraph={signals:CuratiaSignal[];relationships:CuratiaSignalRelationship[]};
 export type CuratiaDashboard={signals:CuratiaSignal[];signalGraph:CuratiaSignalGraph;contentItems:CuratiaContentItem[];sourceCount:number};
@@ -14,7 +15,7 @@ async function rest(path:string,init?:RequestInit){const{url,key}=config();const
 export const getCuratiaDashboard=createServerFn({method:"GET"}).handler(async():Promise<CuratiaDashboard>=>{
  const [rawSignals,contentItems,sources,links,snapshots,relationships]=await Promise.all([
   rest("signals?select=id,title,summary,state,radar_status,radar_entered_at,radar_entry_reason,detected_at,first_published_at,why_it_may_matter,why_now,ba_impact,role_impact,second_order_implication,strongest_editorial_angle,editorial_potential,evidence_strength,saturation&state=not.eq.Archived&order=detected_at.desc"),
-  rest("content_items?select=id,title,series,topic,publishing_channel,core_idea,ba_implication,evidence_strength,saturation,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,source_origin,why_now,second_order_implication,strongest_angle,metadata,updated_at&order=updated_at.desc"),
+  rest("content_items?select=id,title,series,topic,publishing_channel,content_format,core_idea,ba_implication,evidence_strength,saturation,status,target_date,publication_date,publication_time,draft_copy,final_copy,visual_concept,visual_brief,final_visual_reference,source_origin,why_now,second_order_implication,strongest_angle,metadata,updated_at&order=updated_at.desc"),
   rest("sources?select=id"),
   rest("signal_sources?select=signal_id,source_id"),
   rest("signal_review_snapshots?select=signal_id,source_count,evidence_strength,saturation,created_at&order=created_at.desc"),
@@ -91,10 +92,10 @@ export const updateContentStatus=createServerFn({method:"POST"}).validator(conte
  if(from==="Approved"&&data.status==="Ready"){patch.approved_by_user=false;patch.approval_timestamp=null}
  return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify(patch)});
 });
-const contentDetailsInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),title:z.string().min(1).max(240),coreIdea:z.string().max(3000),channel:z.string().min(1).max(80),targetDate:z.string().nullable(),publicationDate:z.string().nullable(),publicationTime:z.string().nullable()});
+const contentDetailsInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),title:z.string().min(1).max(240),coreIdea:z.string().max(3000),channel:z.string().min(1).max(80),format:z.enum(["text_post","text_visual","image_post","carousel","video","newsletter","article"]),publicationDate:z.string().nullable(),publicationTime:z.string().nullable()});
 export const updateContentDetails=createServerFn({method:"POST"}).validator(contentDetailsInput).handler(async({data})=>{
  const ctx=await curatiaContext(data.accessToken);
- return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({title:data.title,core_idea:data.coreIdea||null,publishing_channel:data.channel,target_date:data.targetDate||null,publication_date:data.publicationDate||null,publication_time:data.publicationTime||null,updated_at:new Date().toISOString()})});
+ return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({title:data.title,core_idea:data.coreIdea||null,publishing_channel:data.channel,content_format:data.format,publication_date:data.publicationDate||null,publication_time:data.publicationTime||null,updated_at:new Date().toISOString()})});
 });
 const backlogFromSignalInput=z.object({accessToken:z.string().min(20),signalId:z.string().uuid()});
 export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator(backlogFromSignalInput).handler(async({data})=>{
@@ -109,11 +110,21 @@ export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator
  await rest("content_items",{method:"POST",body:JSON.stringify({id,workspace_id:ctx.wid,title,topic:s.title,publishing_channel:"linkedin",core_idea:core,why_now:s.why_now||null,ba_implication:s.role_impact||s.ba_impact||null,second_order_implication:s.second_order_implication||null,strongest_angle:s.strongest_editorial_angle||null,saturation:s.saturation||null,evidence_strength:s.evidence_strength||null,source_origin:"Trend Radar",status:"Idea",metadata:{source_signal_id:s.id,generated_by:"curatia",generation_basis:"trend_radar_signal"},updated_at:new Date().toISOString()})});
  return{ok:true,id,alreadyExists:false};
 });
-const draftInput=z.object({accessToken:z.string().min(20),id:z.string().min(1)});
+const draftInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),existingArtifact:z.string().max(20000).optional(),operation:z.enum(["generate","refine","tighten","structure","adapt_channel","strengthen_opening"]).default("generate")});
 export const generateCuratiaContent=createServerFn({method:"POST"}).validator(draftInput).handler(async({data})=>{
- const ctx=await curatiaContext(data.accessToken);const rows=await rest("content_items?select=title,core_idea,why_now,ba_implication,second_order_implication,strongest_angle,publishing_channel,target_date,publication_date,publication_time&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id)+"&limit=1");const x=rows?.[0];if(!x)throw new Error("Content item not found.");
- const draft=[x.title,"",x.core_idea||"",x.why_now?"Why this matters now: "+x.why_now:"",x.ba_implication?"For the role: "+x.ba_implication:"",x.second_order_implication||"",x.strongest_angle?"The angle worth exploring: "+x.strongest_angle:"","",x.publishing_channel==="linkedin"?"The artifact is not the decision. The value is in making the context, trade-offs and decision rights explicit.":"Turn the accumulated signal context into a clear, evidence-led narrative.","","What changes when we design the analysis around the decision rather than the document?"].filter(Boolean).join("\n\n");
- await rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({draft_copy:draft,updated_at:new Date().toISOString()})});return{draft};
+ const ctx=await curatiaContext(data.accessToken);
+ const rows=await rest("content_items?select=title,core_idea,why_now,ba_implication,second_order_implication,strongest_angle,publishing_channel,content_format,publication_date,publication_time&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id)+"&limit=1");
+ const x=rows?.[0];if(!x)throw new Error("Content item not found.");
+ const existing=(data.existingArtifact||"").trim();
+ const route=routeCuratiaSkills({agent:"editorial-studio",task:data.operation,channel:x.publishing_channel,format:x.content_format,operation:data.operation,artifactState:existing?"existing":"missing"});
+ const base=[x.title,"",x.core_idea||"",x.why_now?"Why this matters now: "+x.why_now:"",x.ba_implication?"For the role: "+x.ba_implication:"",x.second_order_implication||"",x.strongest_angle?"The angle worth exploring: "+x.strongest_angle:""].filter(Boolean).join("\n\n");
+ let draft=existing||base;
+ if(!existing) draft=[base,"",x.publishing_channel==="linkedin"?"The artifact is not the decision. The value is in making the context, trade-offs and decision rights explicit.":"Turn the accumulated signal context into a clear, evidence-led narrative.","","What changes when we design the analysis around the decision rather than the document?"].filter(Boolean).join("\n\n");
+ const previous=await rest("content_artifacts?select=version&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&content_item_id=eq."+encodeURIComponent(data.id)+"&artifact_type=eq.text&order=version.desc&limit=1");
+ const version=(previous?.[0]?.version?Number(previous[0].version):0)+1;
+ await rest("content_artifacts",{method:"POST",body:JSON.stringify({workspace_id:ctx.wid,content_item_id:data.id,artifact_type:"text",version,content:{text:draft},status:"selected",source:"curatia",operation:data.operation,skill_ids:route.skills,skill_router_version:CURATIA_SKILL_ROUTER_VERSION,created_by:ctx.user.id,provenance:{channel:x.publishing_channel,format:x.content_format,router_reasons:route.reasons,preserve_existing_artifact_intent:route.preserveExistingArtifactIntent}})});
+ await rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({draft_copy:draft,metadata:{skill_router:{version:CURATIA_SKILL_ROUTER_VERSION,last_skills:route.skills,last_operation:data.operation}},updated_at:new Date().toISOString()})});
+ return{draft,skills:route.skills,version,operation:data.operation};
 });
 const editorialInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),content:z.string().max(20000),visualDirection:z.string().max(3000)});
 export const updateEditorialStudio=createServerFn({method:"POST"}).validator(editorialInput).handler(async({data})=>{
