@@ -35,34 +35,7 @@ jobs:
         run: |
           mapfile -t FILES < <(
             git diff --name-only --diff-filter=ACMR "origin/${{ github.base_ref }}...HEAD" |
-              grep -E '\.(js|jsx|mjs|cjs|ts|tsx)
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Build
-        run: npm run build
-
-      - name: Verify Hostinger Nitro artifact
-        run: |
-          test -f .output/server/index.mjs
-          test -d .output/public
-          test -f .output/public/ecosystem/index.html
-
-      - name: Smoke test production server
-        run: |
-          PORT=4173 HOST=127.0.0.1 node .output/server/index.mjs > /tmp/portfolio-server.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          for attempt in {1..20}; do
-            if curl --fail --silent --show-error --output /tmp/portfolio-home.html http://127.0.0.1:4173/; then
-              break
-            fi
-            sleep 1
-          done
-          curl --fail --silent --show-error http://127.0.0.1:4173/ | grep -q "Guilherme"
-          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/ | grep -q "<div id=\"app\">"
-          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/api/threads | grep -q "\"threads\""
- || true
+              grep -E '\.(js|jsx|mjs|cjs|ts|tsx)$' || true
           )
 
           if [ "${#FILES[@]}" -eq 0 ]; then
@@ -97,5 +70,5 @@ jobs:
             sleep 1
           done
           curl --fail --silent --show-error http://127.0.0.1:4173/ | grep -q "Guilherme"
-          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/ | grep -q "<div id=\"app\">"
-          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/api/threads | grep -q "\"threads\""
+          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/ | grep -q '<div id="app">'
+          curl --fail --silent --show-error http://127.0.0.1:4173/ecosystem/api/threads | grep -q '"threads"'
