@@ -97,6 +97,11 @@ export const updateContentDetails=createServerFn({method:"POST"}).validator(cont
  const ctx=await curatiaContext(data.accessToken);
  return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({title:data.title,core_idea:data.coreIdea||null,publishing_channel:data.channel,content_format:data.format,publication_date:data.publicationDate||null,publication_time:data.publicationTime||null,updated_at:new Date().toISOString()})});
 });
+const publishingContextInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),channel:z.string().min(1).max(80),format:z.enum(["text_post","text_visual","image_post","carousel","video","newsletter","article"])});
+export const updateContentPublishingContext=createServerFn({method:"POST"}).validator(publishingContextInput).handler(async({data})=>{
+ const ctx=await curatiaContext(data.accessToken);
+ return rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({publishing_channel:data.channel,content_format:data.format,updated_at:new Date().toISOString()})});
+});
 const backlogFromSignalInput=z.object({accessToken:z.string().min(20),signalId:z.string().uuid()});
 export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator(backlogFromSignalInput).handler(async({data})=>{
  const ctx=await curatiaContext(data.accessToken);
@@ -110,6 +115,25 @@ export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator
  await rest("content_items",{method:"POST",body:JSON.stringify({id,workspace_id:ctx.wid,title,topic:s.title,publishing_channel:"linkedin",core_idea:core,why_now:s.why_now||null,ba_implication:s.role_impact||s.ba_impact||null,second_order_implication:s.second_order_implication||null,strongest_angle:s.strongest_editorial_angle||null,saturation:s.saturation||null,evidence_strength:s.evidence_strength||null,source_origin:"Trend Radar",status:"Idea",metadata:{source_signal_id:s.id,generated_by:"curatia",generation_basis:"trend_radar_signal"},updated_at:new Date().toISOString()})});
  return{ok:true,id,alreadyExists:false};
 });
+async function cloudflareText(messages:{role:"system"|"user";content:string}[]){
+ const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;
+ if(!accountId||!token)throw new Error("Curatia text generation provider is not configured.");
+ const model="@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+ const response=await fetch("https://api.cloudflare.com/client/v4/accounts/"+accountId+"/ai/run/"+model,{method:"POST",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({messages,max_tokens:1800,temperature:0.35})});
+ const body=await response.json().catch(()=>null) as any;
+ if(!response.ok||!body?.success)throw new Error(body?.errors?.[0]?.message||"Curatia text generation failed.");
+ const text=body?.result?.response;
+ if(typeof text!=="string"||!text.trim())throw new Error("Curatia text generation returned no content.");
+ return{text:text.trim(),provider:"cloudflare-workers-ai",model};
+}
+const operationInstruction:Record<string,string>={
+ generate:"Create the publishable artifact from the editorial intelligence. Do not describe the process.",
+ refine:"Improve the existing artifact while preserving its thesis, intent, factual claims, and author voice. Return only the revised artifact.",
+ tighten:"Make the existing artifact tighter and more concise. Remove repetition and weak filler without changing its thesis, facts, or voice. Return only the revised artifact.",
+ structure:"Improve the structure, sequencing, paragraphing, and flow of the existing artifact. Preserve its thesis, facts, and voice. Return only the revised artifact.",
+ adapt_channel:"Adapt the existing artifact to the specified channel and format while preserving its thesis and factual content. Return only the adapted artifact.",
+ strengthen_opening:"Rewrite only as much as necessary to create a stronger opening, then make the transition into the existing artifact feel natural. Avoid clickbait and preserve the thesis, facts, and voice. Return the complete revised artifact."
+};
 const draftInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),existingArtifact:z.string().max(20000).optional(),operation:z.enum(["generate","refine","tighten","structure","adapt_channel","strengthen_opening"]).default("generate")});
 export const generateCuratiaContent=createServerFn({method:"POST"}).validator(draftInput).handler(async({data})=>{
  const ctx=await curatiaContext(data.accessToken);
@@ -118,13 +142,15 @@ export const generateCuratiaContent=createServerFn({method:"POST"}).validator(dr
  const existing=(data.existingArtifact||"").trim();
  const route=routeCuratiaSkills({agent:"editorial-studio",task:data.operation,channel:x.publishing_channel,format:x.content_format,operation:data.operation,artifactState:existing?"existing":"missing"});
  const base=[x.title,"",x.core_idea||"",x.why_now?"Why this matters now: "+x.why_now:"",x.ba_implication?"For the role: "+x.ba_implication:"",x.second_order_implication||"",x.strongest_angle?"The angle worth exploring: "+x.strongest_angle:""].filter(Boolean).join("\n\n");
- let draft=existing||base;
- if(!existing) draft=[base,"",x.publishing_channel==="linkedin"?"The artifact is not the decision. The value is in making the context, trade-offs and decision rights explicit.":"Turn the accumulated signal context into a clear, evidence-led narrative.","","What changes when we design the analysis around the decision rather than the document?"].filter(Boolean).join("\n\n");
+ const context=["TITLE: "+x.title,x.core_idea?"CORE IDEA: "+x.core_idea:"",x.why_now?"WHY NOW: "+x.why_now:"",x.ba_implication?"ROLE IMPACT: "+x.ba_implication:"",x.second_order_implication?"SECOND ORDER: "+x.second_order_implication:"",x.strongest_angle?"STRONGEST ANGLE: "+x.strongest_angle:"","CHANNEL: "+x.publishing_channel,"FORMAT: "+x.content_format,existing?"EXISTING ARTIFACT:\n"+existing:""].filter(Boolean).join("\n\n");
+ const system=["You are Curatia's editorial artifact engine.","Use the supplied editorial intelligence as context, not as headings that must be copied into the output.","Be natural, specific, grounded and concise. Do not invent facts, sources, outcomes, quotes, or personal experience.","Avoid generic AI-writing patterns and engagement bait.",operationInstruction[data.operation],"Selected skill packs: "+route.skills.join(", ")+". Apply only capabilities relevant to this operation."].join("\n");
+ const ai=await cloudflareText([{role:"system",content:system},{role:"user",content:context}]);
+ const draft=ai.text;
  const previous=await rest("content_artifacts?select=version&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&content_item_id=eq."+encodeURIComponent(data.id)+"&artifact_type=eq.text&order=version.desc&limit=1");
  const version=(previous?.[0]?.version?Number(previous[0].version):0)+1;
- await rest("content_artifacts",{method:"POST",body:JSON.stringify({workspace_id:ctx.wid,content_item_id:data.id,artifact_type:"text",version,content:{text:draft},status:"selected",source:"curatia",operation:data.operation,skill_ids:route.skills,skill_router_version:CURATIA_SKILL_ROUTER_VERSION,created_by:ctx.user.id,provenance:{channel:x.publishing_channel,format:x.content_format,router_reasons:route.reasons,preserve_existing_artifact_intent:route.preserveExistingArtifactIntent}})});
+ await rest("content_artifacts",{method:"POST",body:JSON.stringify({workspace_id:ctx.wid,content_item_id:data.id,artifact_type:"text",version,content:{text:draft},status:"selected",source:"curatia",operation:data.operation,skill_ids:route.skills,skill_router_version:CURATIA_SKILL_ROUTER_VERSION,provider:ai.provider,model:ai.model,created_by:ctx.user.id,provenance:{channel:x.publishing_channel,format:x.content_format,router_reasons:route.reasons,preserve_existing_artifact_intent:route.preserveExistingArtifactIntent}})});
  await rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({draft_copy:draft,metadata:{skill_router:{version:CURATIA_SKILL_ROUTER_VERSION,last_skills:route.skills,last_operation:data.operation}},updated_at:new Date().toISOString()})});
- return{draft,skills:route.skills,version,operation:data.operation};
+ return{draft,skills:route.skills,version,operation:data.operation,provider:ai.provider,model:ai.model};
 });
 const editorialInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),content:z.string().max(20000),visualDirection:z.string().max(3000)});
 export const updateEditorialStudio=createServerFn({method:"POST"}).validator(editorialInput).handler(async({data})=>{
