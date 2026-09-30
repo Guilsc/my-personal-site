@@ -132,20 +132,10 @@ async function cheaperInferenceText(messages:{role:"system"|"user";content:strin
  const error=new Error(body?.error?.message||"Curatia model request failed.");(error as any).status=response.status;throw error;
 }
 async function curatiaText(messages:{role:"system"|"user";content:string}[],capability:CuratiaAiCapability="writing",workspaceId?:string){
- const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");
- if(base&&process.env.OMNIROUTE_API_KEY){
-  const route=await effectiveAiRoute(capability,workspaceId);const preferred=route.preferred_model||"auto";
-  try{return await cheaperInferenceText(messages,preferred,preferred==="auto")}
-  catch(first){if(route.fallback_mode==="auto"&&preferred!=="auto"){try{return await cheaperInferenceText(messages,preferred,true)}catch{}}throw first}
- }
- const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;
- if(!accountId||!token)throw new Error("Curatia text generation provider is not configured.");
- const model="@cf/meta/llama-3.3-70b-instruct-fp8-fast";
- const response=await fetch("https://api.cloudflare.com/client/v4/accounts/"+accountId+"/ai/run/"+model,{method:"POST",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({messages,max_tokens:1800,temperature:0.35})});
- const body=await response.json().catch(()=>null) as any;
- if(!response.ok||!body?.success)throw new Error(body?.errors?.[0]?.message||"Curatia text generation failed.");
- const text=body?.result?.response;if(typeof text!=="string"||!text.trim())throw new Error("Curatia text generation returned no content.");
- return{text:text.trim(),provider:"cloudflare-workers-ai",model,routing:"fallback"};
+ const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");if(!base||!process.env.OMNIROUTE_API_KEY)throw new Error("Curatia inference gateway is not configured.");
+ const route=await effectiveAiRoute(capability,workspaceId);const preferred=route.preferred_model||"auto";
+ try{return await cheaperInferenceText(messages,preferred,preferred==="auto")}
+ catch(first){if(route.fallback_mode==="auto"&&preferred!=="auto"){try{return await cheaperInferenceText(messages,preferred,true)}catch{}}throw first}
 }
 const operationInstruction:Record<string,string>={
  generate:"Create the publishable artifact from the editorial intelligence. Do not describe the process.",
@@ -190,12 +180,13 @@ export const uploadCuratiaVisualReference=createServerFn({method:"POST"}).valida
  if(!up.ok)throw new Error("Could not store visual reference.");
  let interpretation:string|null=null;let provider:string|null=null;let model:string|null=null;
  try{
-  const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;
-  if(accountId&&token){
-   model="@cf/llava-hf/llava-1.5-7b-hf";
-   const vr=await fetch("https://api.cloudflare.com/client/v4/accounts/"+accountId+"/ai/run/"+model,{method:"POST",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({image:Array.from(raw),prompt:"Analyze this image as a visual reference for an editorial content workflow. Describe composition, hierarchy, typography if visible, palette, illustration/photo style, reusable visual patterns, and what should be preserved if generating a new image inspired by it. Do not identify people. Be concise."})});
-   const vb=await vr.json().catch(()=>null) as any;
-   if(vr.ok&&vb?.success&&typeof vb?.result?.description==="string"){interpretation=vb.result.description.trim();provider="cloudflare-workers-ai"}
+  const dataUrl="data:"+data.mimeType+";base64,"+data.base64;
+  const route=await effectiveAiRoute("multimodal_understanding",ctx.wid);const preferred=route.preferred_model||"auto";
+  const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;
+  if(base&&key){
+   const catalog=await cheaperInferenceModels();const vision=catalog.filter(x=>x.vision);const chosen=preferred==="auto"?(vision[0]?.id||"gpt-5.6-sol"):preferred;
+   const response=await fetch(base+"/chat/completions",{method:"POST",headers:{Authorization:"Bearer "+key,"Content-Type":"application/json",...(preferred==="auto"?{"X-CI-Route":"auto"}:{})},body:JSON.stringify({model:chosen,messages:[{role:"user",content:[{type:"text",text:"Analyze this image as a visual reference for an editorial content workflow. Describe composition, hierarchy, typography if visible, palette, illustration/photo style, reusable visual patterns, and what should be preserved if generating a new image inspired by it. Do not identify people. Be concise."},{type:"image_url",image_url:{url:dataUrl}}]}],max_tokens:800})});
+   const body=await response.json().catch(()=>null) as any;const out=body?.choices?.[0]?.message?.content;if(response.ok&&typeof out==="string"){interpretation=out.trim();provider="cheaper-inference";model=body?.model||chosen}
   }
  }catch{}
  const rows=await rest("content_reference_assets",{method:"POST",body:JSON.stringify({workspace_id:ctx.wid,content_item_id:data.id,storage_path:path,file_name:data.fileName,mime_type:data.mimeType,file_size:raw.length,interpretation,interpretation_provider:provider,interpretation_model:model,created_by:ctx.user.id,metadata:{purpose:"visual_reference"}})});
@@ -258,17 +249,20 @@ export const completeCuratiaOnboarding=createServerFn({method:"POST"}).validator
 
 const generateVisualInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),prompt:z.string().min(1).max(10000),aspectRatio:z.enum(["1:1","4:5","16:9","9:16"]).default("4:5")});
 type VisualProviderResult={assetUrl:string;provider:string;providerRef:string|null};
-async function cloudflareVisual(prompt:string):Promise<VisualProviderResult>{
- const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;if(!accountId||!token)throw new Error("Cloudflare Workers AI is not configured.");
- const model="@cf/black-forest-labs/flux-1-schnell";const r=await fetch(`https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/ai/run/${model}`,{method:"POST",headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:JSON.stringify({prompt:prompt.slice(0,2048),steps:4})});
- const raw=await r.text();let body:any={};try{body=raw?JSON.parse(raw):{}}catch{}if(!r.ok||body?.success===false)throw new Error(body?.errors?.[0]?.message||`Cloudflare image generation failed (${r.status}).`);
- const image=body?.result?.image||body?.image||body?.result;if(typeof image!=="string"||!image)throw new Error("Cloudflare returned no image.");
- const assetUrl=image.startsWith("data:")?image:`data:image/jpeg;base64,${image}`;return{assetUrl,provider:"cloudflare-workers-ai",providerRef:model};
+async function routedVisual(prompt:string,workspaceId:string,aspectRatio:string):Promise<VisualProviderResult>{
+ const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;if(!base||!key)throw new Error("Curatia inference gateway is not configured.");
+ const route=await effectiveAiRoute("image_generation",workspaceId);const catalog=await cheaperInferenceModels();const imageModels=catalog.filter(x=>x.type==="image"||x.type==="image_generation"||/banana|image/i.test(x.id));
+ const preferred=route.preferred_model||"auto";const chosen=preferred==="auto"?(imageModels.find(x=>x.id==="nano-banana-2")?.id||imageModels[0]?.id):preferred;if(!chosen)throw new Error("No image generation model is available in the inference gateway.");
+ const headers:Record<string,string>={Authorization:"Bearer "+key,"Content-Type":"application/json"};if(preferred==="auto")headers["X-CI-Route"]="auto";
+ const r=await fetch(base+"/images/generations",{method:"POST",headers,body:JSON.stringify({model:chosen,prompt,n:1,aspect_ratio:aspectRatio})});const body=await r.json().catch(()=>null) as any;
+ if(!r.ok)throw new Error(body?.error?.message||"Curatia image generation failed.");
+ const first=body?.data?.[0];const assetUrl=first?.url||(first?.b64_json?"data:image/png;base64,"+first.b64_json:null);if(!assetUrl)throw new Error("Image generation returned no asset.");
+ return{assetUrl,provider:"cheaper-inference",providerRef:body?.model||chosen};
 }
 export type CuratiaVisualVersion={id:string;version:number;channel:string|null;format:string|null;assetUrl:string;prompt:string|null;provider:string|null;createdAt:string};
 export const listContentVisualVersions=createServerFn({method:"POST"}).validator(z.object({accessToken:z.string().min(20),id:z.string().min(1)})).handler(async({data}):Promise<CuratiaVisualVersion[]>=>{const ctx=await curatiaContext(data.accessToken);const rows=await rest(`content_visual_assets?select=id,version,publishing_channel,content_format,asset_url,prompt,provider,created_at&workspace_id=eq.${encodeURIComponent(ctx.wid)}&content_item_id=eq.${encodeURIComponent(data.id)}&asset_kind=eq.final&order=version.desc`);return(rows||[]).map((r:any)=>({id:r.id,version:Number(r.version),channel:r.publishing_channel,format:r.content_format,assetUrl:r.asset_url,prompt:r.prompt,provider:r.provider,createdAt:r.created_at}))});
 export const generateContentVisual=createServerFn({method:"POST"}).validator(generateVisualInput).handler(async({data})=>{
- const ctx=await curatiaContext(data.accessToken);const itemRows=await rest(`content_items?select=publishing_channel,content_format&workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}&limit=1`);const item=itemRows?.[0];const result=await cloudflareVisual(data.prompt);
+ const ctx=await curatiaContext(data.accessToken);const itemRows=await rest(`content_items?select=publishing_channel,content_format&workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}&limit=1`);const item=itemRows?.[0];const result=await routedVisual(data.prompt,ctx.wid,data.aspectRatio);
  const existing=await rest(`content_visual_assets?select=version&workspace_id=eq.${encodeURIComponent(ctx.wid)}&content_item_id=eq.${encodeURIComponent(data.id)}&order=version.desc&limit=1`);const version=(Array.isArray(existing)&&existing[0]?.version?Number(existing[0].version):0)+1;
  await rest(`content_visual_assets?workspace_id=eq.${encodeURIComponent(ctx.wid)}&content_item_id=eq.${encodeURIComponent(data.id)}&asset_kind=eq.final`,{method:"PATCH",body:JSON.stringify({selected:false})});
  await rest("content_visual_assets",{method:"POST",body:JSON.stringify({content_item_id:data.id,workspace_id:ctx.wid,version,source:"generated",asset_kind:"final",prompt:data.prompt,asset_url:result.assetUrl,selected:true,provider:result.provider,provider_asset_ref:result.providerRef,publishing_channel:item?.publishing_channel||null,content_format:item?.content_format||null,file_name:`${data.id}-v${version}.jpg`,mime_type:"image/jpeg"})});
@@ -317,7 +311,7 @@ export const saveCuratiaIntegrationCatalogItem=createServerFn({method:"POST"}).v
  await requirePlatformOwner(data.accessToken);await rest("integration_catalog",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify({key:data.key,display_name:data.displayName,category:data.category,provider:data.provider,active:data.active,setup_status:data.setupStatus,capabilities:data.capabilities,description:data.description||null,toolkit_slug:data.toolkitSlug||data.key,updated_at:new Date().toISOString()})});return{ok:true}
 });
 export const verifyCuratiaIntegrationProvider=createServerFn({method:"POST"}).validator(integrationInput).handler(async({data})=>{
- await requirePlatformOwner(data.accessToken);const rows=await rest(`integration_catalog?select=key,display_name,provider,toolkit_slug&key=eq.${encodeURIComponent(data.integrationKey)}&limit=1`);const item=rows?.[0];if(!item)throw new Error("Integration was not found in the catalog.");if(item.provider==="cloudflare"){const ready=Boolean(process.env.CLOUDFLARE_ACCOUNT_ID&&process.env.CLOUDFLARE_API_TOKEN);await rest(`integration_catalog?key=eq.${encodeURIComponent(item.key)}`,{method:"PATCH",body:JSON.stringify({setup_status:ready?"ready":"setup_required",auth_config_ref:ready?"server-env":null,updated_at:new Date().toISOString()})});return{ready,message:ready?`${item.display_name} server credentials are configured.`:`Add CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN to the server environment.`}}if(item.provider!=="composio")throw new Error("Provider verification is not supported for this integration.");const slug=item.toolkit_slug||item.key;const configs=listData(await composio(`/auth_configs?toolkit_slug=${encodeURIComponent(slug)}&limit=100`));const cfg=configs.find((x:any)=>(x.toolkit?.slug||x.toolkit_slug||x.toolkit)===slug&&(x.status===undefined||String(x.status).toUpperCase()!=="DISABLED"));if(!cfg){await rest(`integration_catalog?key=eq.${encodeURIComponent(item.key)}`,{method:"PATCH",body:JSON.stringify({setup_status:"setup_required",auth_config_ref:null,updated_at:new Date().toISOString()})});return{ready:false,message:`No enabled provider configuration was found for ${item.display_name}.`}}const ref=cfg.id||cfg.nanoid||cfg.auth_config?.id||null;await rest(`integration_catalog?key=eq.${encodeURIComponent(item.key)}`,{method:"PATCH",body:JSON.stringify({setup_status:"ready",auth_config_ref:ref,updated_at:new Date().toISOString()})});return{ready:true,message:`${item.display_name} provider configuration is ready.`}
+ await requirePlatformOwner(data.accessToken);const rows=await rest(`integration_catalog?select=key,display_name,provider,toolkit_slug&key=eq.${encodeURIComponent(data.integrationKey)}&limit=1`);const item=rows?.[0];if(!item)throw new Error("Integration was not found in the catalog.");if(item.provider!=="composio")throw new Error("Provider verification is not supported for this integration.");const slug=item.toolkit_slug||item.key;const configs=listData(await composio(`/auth_configs?toolkit_slug=${encodeURIComponent(slug)}&limit=100`));const cfg=configs.find((x:any)=>(x.toolkit?.slug||x.toolkit_slug||x.toolkit)===slug&&(x.status===undefined||String(x.status).toUpperCase()!=="DISABLED"));if(!cfg){await rest(`integration_catalog?key=eq.${encodeURIComponent(item.key)}`,{method:"PATCH",body:JSON.stringify({setup_status:"setup_required",auth_config_ref:null,updated_at:new Date().toISOString()})});return{ready:false,message:`No enabled provider configuration was found for ${item.display_name}.`}}const ref=cfg.id||cfg.nanoid||cfg.auth_config?.id||null;await rest(`integration_catalog?key=eq.${encodeURIComponent(item.key)}`,{method:"PATCH",body:JSON.stringify({setup_status:"ready",auth_config_ref:ref,updated_at:new Date().toISOString()})});return{ready:true,message:`${item.display_name} provider configuration is ready.`}
 });
 export const connectCuratiaIntegration=createServerFn({method:"POST"}).validator(integrationInput).handler(async({data})=>{
  const{user,wid}=await curatiaContext(data.accessToken);const catalog=await integrationCatalog();const item=catalog.find((x:any)=>x.key===data.integrationKey);if(!item)throw new Error("This integration is not available in Curatia.");if(item.setup_status!=="ready")throw new Error(`${item.display_name} requires provider setup before it can be connected.`);if(item.provider!=="composio")throw new Error("This integration provider is not supported yet.");const slug=item.toolkit_slug||item.key;const configsRaw=await composio(`/auth_configs?toolkit_slug=${encodeURIComponent(slug)}&limit=100`);const configs=listData(configsRaw);const cfg=configs.find((x:any)=>(x.toolkit?.slug||x.toolkit_slug||x.toolkit)===slug&&(x.status===undefined||String(x.status).toUpperCase()!=="DISABLED"));if(!cfg)throw new Error(`${item.display_name} requires provider setup before it can be connected.`);
