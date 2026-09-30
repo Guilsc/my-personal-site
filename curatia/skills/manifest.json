@@ -1,0 +1,53 @@
+{
+  "version": "0.1.0",
+  "upstream": {
+    "repository": "Guilsc/skills",
+    "branch": "main",
+    "url": "https://github.com/Guilsc/skills"
+  },
+  "routing_dimensions": [
+    "agent",
+    "task",
+    "channel",
+    "format",
+    "operation",
+    "artifact_state"
+  ],
+  "packs": [
+    {
+      "id": "discovery-research",
+      "file": "packs/discovery-research.md"
+    },
+    {
+      "id": "editorial-writing",
+      "file": "packs/editorial-writing.md"
+    },
+    {
+      "id": "channel-format",
+      "file": "packs/channel-format.md"
+    },
+    {
+      "id": "visual-storytelling",
+      "file": "packs/visual-storytelling.md"
+    },
+    {
+      "id": "governance-quality",
+      "file": "packs/governance-quality.md"
+    },
+    {
+      "id": "product-engineering",
+      "file": "packs/product-engineering.md"
+    },
+    {
+      "id": "skill-evolution",
+      "file": "packs/skill-evolution.md"
+    }
+  ],
+  "policies": {
+    "load_all_at_runtime": false,
+    "upstream_auto_update": false,
+    "preserve_existing_artifact_intent": true,
+    "record_skill_gaps": true,
+    "explicit_skill_promotion": true
+  }
+}
