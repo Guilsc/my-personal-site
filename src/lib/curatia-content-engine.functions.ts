@@ -157,6 +157,33 @@ export const updateEditorialStudio=createServerFn({method:"POST"}).validator(edi
  const ctx=await curatiaContext(data.accessToken);
  return rest("content_items?workspace_id=eq."+encodeURIComponent(ctx.wid)+"&id=eq."+encodeURIComponent(data.id),{method:"PATCH",body:JSON.stringify({draft_copy:data.content||null,visual_concept:data.visualDirection||null,updated_at:new Date().toISOString()})});
 });
+export type CuratiaReferenceAsset={id:string;fileName:string;mimeType:string;fileSize:number;interpretation:string|null;createdAt:string};
+const referenceUploadInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),fileName:z.string().min(1).max(240),mimeType:z.enum(["image/png","image/jpeg","image/webp","image/gif"]),base64:z.string().min(1).max(15000000)});
+export const uploadCuratiaVisualReference=createServerFn({method:"POST"}).validator(referenceUploadInput).handler(async({data})=>{
+ const ctx=await curatiaContext(data.accessToken);const{url,key}=config();
+ const raw=Buffer.from(data.base64,"base64");if(!raw.length||raw.length>10485760)throw new Error("Reference image must be 10 MB or smaller.");
+ const ext=data.mimeType==="image/png"?"png":data.mimeType==="image/webp"?"webp":data.mimeType==="image/gif"?"gif":"jpg";
+ const safe=data.fileName.replace(/[^a-zA-Z0-9._-]+/g,"-").replace(/^-+|-+$/g,"").slice(0,100)||("reference."+ext);
+ const path=ctx.wid+"/"+data.id+"/"+crypto.randomUUID()+"-"+safe;
+ const up=await fetch(url+"/storage/v1/object/curatia-visual-references/"+path,{method:"POST",headers:{apikey:key,Authorization:"Bearer "+key,"Content-Type":data.mimeType,"x-upsert":"false"},body:raw});
+ if(!up.ok)throw new Error("Could not store visual reference.");
+ let interpretation:string|null=null;let provider:string|null=null;let model:string|null=null;
+ try{
+  const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;
+  if(accountId&&token){
+   model="@cf/llava-hf/llava-1.5-7b-hf";
+   const vr=await fetch("https://api.cloudflare.com/client/v4/accounts/"+accountId+"/ai/run/"+model,{method:"POST",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({image:Array.from(raw),prompt:"Analyze this image as a visual reference for an editorial content workflow. Describe composition, hierarchy, typography if visible, palette, illustration/photo style, reusable visual patterns, and what should be preserved if generating a new image inspired by it. Do not identify people. Be concise."})});
+   const vb=await vr.json().catch(()=>null) as any;
+   if(vr.ok&&vb?.success&&typeof vb?.result?.description==="string"){interpretation=vb.result.description.trim();provider="cloudflare-workers-ai"}
+  }
+ }catch{}
+ const rows=await rest("content_reference_assets",{method:"POST",body:JSON.stringify({workspace_id:ctx.wid,content_item_id:data.id,storage_path:path,file_name:data.fileName,mime_type:data.mimeType,file_size:raw.length,interpretation,interpretation_provider:provider,interpretation_model:model,created_by:ctx.user.id,metadata:{purpose:"visual_reference"}})});
+ const r=rows?.[0];return{id:r.id,fileName:r.file_name,mimeType:r.mime_type,fileSize:r.file_size,interpretation:r.interpretation,createdAt:r.created_at} as CuratiaReferenceAsset;
+});
+export const listCuratiaVisualReferences=createServerFn({method:"POST"}).validator(z.object({accessToken:z.string().min(20),id:z.string().min(1)})).handler(async({data}):Promise<CuratiaReferenceAsset[]>=>{
+ const ctx=await curatiaContext(data.accessToken);const rows=await rest("content_reference_assets?select=id,file_name,mime_type,file_size,interpretation,created_at&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&content_item_id=eq."+encodeURIComponent(data.id)+"&purpose=eq.visual_reference&order=created_at.desc");
+ return(rows||[]).map((r:any)=>({id:r.id,fileName:r.file_name,mimeType:r.mime_type,fileSize:Number(r.file_size),interpretation:r.interpretation,createdAt:r.created_at}));
+});
 const visualInput=z.object({accessToken:z.string().min(20),id:z.string().min(1),visualConcept:z.string().max(3000),visualBrief:z.string().max(10000)});
 export const updateContentVisual=createServerFn({method:"POST"}).validator(visualInput).handler(async({data})=>{const ctx=await curatiaContext(data.accessToken);return rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_concept:data.visualConcept||null,visual_brief:data.visualBrief||null,updated_at:new Date().toISOString()})})});
 
