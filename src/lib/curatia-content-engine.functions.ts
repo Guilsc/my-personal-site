@@ -122,14 +122,16 @@ async function effectiveAiRoute(capability:CuratiaAiCapability,workspaceId?:stri
  return workspace?.[0]||platform?.[0]||{preferred_model:"auto",fallback_mode:"auto"};
 }
 async function cheaperInferenceText(messages:{role:"system"|"user";content:string}[],model:string,autoRoute:boolean){
- const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;
- if(!base||!key)throw new Error("Cheaper Inference is not configured.");
+ const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;if(!base||!key)throw new Error("Cheaper Inference is not configured.");
+ const catalog=await cheaperInferenceModels();const textModels=catalog.filter(x=>x.type==="text"||x.type==="text_generation"||x.type==="chat");
+ const configured=(process.env.OMNIROUTE_MODEL||"").trim();let requested=model;
+ if(requested==="auto")requested=(configured&&configured!=="auto"&&textModels.some(x=>x.id===configured)?configured:"gpt-5.6-sol");
+ if(textModels.length&&!textModels.some(x=>x.id===requested))requested=textModels.find(x=>x.id==="gpt-5.6-sol")?.id||textModels[0].id;
  const headers:Record<string,string>={"Content-Type":"application/json",Authorization:"Bearer "+key};if(autoRoute)headers["X-CI-Route"]="auto";
- const requested=model==="auto"?(process.env.OMNIROUTE_MODEL&&process.env.OMNIROUTE_MODEL!=="auto"?process.env.OMNIROUTE_MODEL:"gpt-5.6-sol"):model;
- const response=await fetch(base+"/chat/completions",{method:"POST",headers,body:JSON.stringify({model:requested,messages,max_tokens:1800,temperature:0.35})});
- const body=await response.json().catch(()=>null) as any;const text=body?.choices?.[0]?.message?.content;
- if(response.ok&&typeof text==="string"&&text.trim())return{text:text.trim(),provider:"cheaper-inference",model:body?.model||requested,routing:autoRoute?"auto":"preferred"};
- const error=new Error(body?.error?.message||"Curatia model request failed.");(error as any).status=response.status;throw error;
+ const response=await fetch(base+"/chat/completions",{method:"POST",headers,body:JSON.stringify({model:requested,messages,max_tokens:1800})});
+ const body=await response.json().catch(()=>null) as any;const content=body?.choices?.[0]?.message?.content;const output=typeof content==="string"?content:Array.isArray(content)?content.map((x:any)=>typeof x==="string"?x:x?.text||"").join(""):"";
+ if(response.ok&&output.trim())return{text:output.trim(),provider:"cheaper-inference",model:body?.model||requested,routing:autoRoute?"auto":"preferred"};
+ const detail=body?.error?.message||body?.detail||body?.message||("Cheaper Inference request failed ("+response.status+").");const error=new Error(detail);(error as any).status=response.status;throw error;
 }
 async function curatiaText(messages:{role:"system"|"user";content:string}[],capability:CuratiaAiCapability="writing",workspaceId?:string){
  const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");if(!base||!process.env.OMNIROUTE_API_KEY)throw new Error("Curatia inference gateway is not configured.");
@@ -252,12 +254,14 @@ type VisualProviderResult={assetUrl:string;provider:string;providerRef:string|nu
 async function routedVisual(prompt:string,workspaceId:string,aspectRatio:string):Promise<VisualProviderResult>{
  const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;if(!base||!key)throw new Error("Curatia inference gateway is not configured.");
  const route=await effectiveAiRoute("image_generation",workspaceId);const catalog=await cheaperInferenceModels();const imageModels=catalog.filter(x=>x.type==="image"||x.type==="image_generation"||/banana|image/i.test(x.id));
- const preferred=route.preferred_model||"auto";const chosen=preferred==="auto"?(imageModels.find(x=>x.id==="nano-banana-2")?.id||imageModels[0]?.id):preferred;if(!chosen)throw new Error("No image generation model is available in the inference gateway.");
+ const preferred=route.preferred_model||"auto";let chosen=preferred==="auto"?(imageModels.find(x=>x.id==="nano-banana-2")?.id||imageModels[0]?.id):preferred;
+ if(imageModels.length&&!imageModels.some(x=>x.id===chosen))chosen=imageModels.find(x=>x.id==="nano-banana-2")?.id||imageModels[0].id;if(!chosen)throw new Error("No image generation model is available in the inference gateway.");
  const headers:Record<string,string>={Authorization:"Bearer "+key,"Content-Type":"application/json"};if(preferred==="auto")headers["X-CI-Route"]="auto";
- const r=await fetch(base+"/images/generations",{method:"POST",headers,body:JSON.stringify({model:chosen,prompt,n:1,aspect_ratio:aspectRatio})});const body=await r.json().catch(()=>null) as any;
- if(!r.ok)throw new Error(body?.error?.message||"Curatia image generation failed.");
+ const size=aspectRatio==="1:1"?"1024x1024":aspectRatio==="16:9"?"1536x1024":aspectRatio==="9:16"?"1024x1536":"1024x1536";
+ const r=await fetch(base+"/images/generations",{method:"POST",headers,body:JSON.stringify({model:chosen,prompt,n:1,size})});const body=await r.json().catch(()=>null) as any;
+ if(!r.ok)throw new Error(body?.error?.message||body?.detail||body?.message||("Curatia image generation failed ("+r.status+")."));
  const first=body?.data?.[0];const assetUrl=first?.url||(first?.b64_json?"data:image/png;base64,"+first.b64_json:null);if(!assetUrl)throw new Error("Image generation returned no asset.");
- return{assetUrl,provider:"cheaper-inference",providerRef:body?.model||chosen};
+ return{assetUrl,provider:"cheaper-inference",providerRef:chosen};
 }
 export type CuratiaVisualVersion={id:string;version:number;channel:string|null;format:string|null;assetUrl:string;prompt:string|null;provider:string|null;createdAt:string};
 export const listContentVisualVersions=createServerFn({method:"POST"}).validator(z.object({accessToken:z.string().min(20),id:z.string().min(1)})).handler(async({data}):Promise<CuratiaVisualVersion[]>=>{const ctx=await curatiaContext(data.accessToken);const rows=await rest(`content_visual_assets?select=id,version,publishing_channel,content_format,asset_url,prompt,provider,created_at&workspace_id=eq.${encodeURIComponent(ctx.wid)}&content_item_id=eq.${encodeURIComponent(data.id)}&asset_kind=eq.final&order=version.desc`);return(rows||[]).map((r:any)=>({id:r.id,version:Number(r.version),channel:r.publishing_channel,format:r.content_format,assetUrl:r.asset_url,prompt:r.prompt,provider:r.provider,createdAt:r.created_at}))});
