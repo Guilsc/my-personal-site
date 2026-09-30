@@ -115,16 +115,28 @@ export const addSignalToContentBacklog=createServerFn({method:"POST"}).validator
  await rest("content_items",{method:"POST",body:JSON.stringify({id,workspace_id:ctx.wid,title,topic:s.title,publishing_channel:"linkedin",core_idea:core,why_now:s.why_now||null,ba_implication:s.role_impact||s.ba_impact||null,second_order_implication:s.second_order_implication||null,strongest_angle:s.strongest_editorial_angle||null,saturation:s.saturation||null,evidence_strength:s.evidence_strength||null,source_origin:"Trend Radar",status:"Idea",metadata:{source_signal_id:s.id,generated_by:"curatia",generation_basis:"trend_radar_signal"},updated_at:new Date().toISOString()})});
  return{ok:true,id,alreadyExists:false};
 });
-async function curatiaText(messages:{role:"system"|"user";content:string}[]){
- const omniBase=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");
- if(omniBase){
-  const model=process.env.OMNIROUTE_MODEL||"auto";const key=process.env.OMNIROUTE_API_KEY;
-  const headers:Record<string,string>={"Content-Type":"application/json"};if(key)headers.Authorization="Bearer "+key;
-  const response=await fetch(omniBase+"/chat/completions",{method:"POST",headers,body:JSON.stringify({model,messages,max_tokens:1800,temperature:0.35})});
-  const body=await response.json().catch(()=>null) as any;
-  const text=body?.choices?.[0]?.message?.content;
-  if(response.ok&&typeof text==="string"&&text.trim())return{text:text.trim(),provider:"omniroute",model:body?.model||model};
-  throw new Error(body?.error?.message||"Curatia OmniRoute generation failed.");
+type CuratiaAiCapability="analysis_research"|"writing"|"image_generation"|"video_generation"|"multimodal_understanding";
+async function effectiveAiRoute(capability:CuratiaAiCapability,workspaceId?:string){
+ const workspace=workspaceId?await rest("ai_capability_routing?select=preferred_model,fallback_mode&scope=eq.workspace&workspace_id=eq."+encodeURIComponent(workspaceId)+"&capability=eq."+capability+"&active=eq.true&limit=1"):null;
+ const platform=await rest("ai_capability_routing?select=preferred_model,fallback_mode&scope=eq.platform&workspace_id=is.null&capability=eq."+capability+"&active=eq.true&limit=1");
+ return workspace?.[0]||platform?.[0]||{preferred_model:"auto",fallback_mode:"auto"};
+}
+async function cheaperInferenceText(messages:{role:"system"|"user";content:string}[],model:string,autoRoute:boolean){
+ const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;
+ if(!base||!key)throw new Error("Cheaper Inference is not configured.");
+ const headers:Record<string,string>={"Content-Type":"application/json",Authorization:"Bearer "+key};if(autoRoute)headers["X-CI-Route"]="auto";
+ const requested=model==="auto"?(process.env.OMNIROUTE_MODEL&&process.env.OMNIROUTE_MODEL!=="auto"?process.env.OMNIROUTE_MODEL:"gpt-5.6-sol"):model;
+ const response=await fetch(base+"/chat/completions",{method:"POST",headers,body:JSON.stringify({model:requested,messages,max_tokens:1800,temperature:0.35})});
+ const body=await response.json().catch(()=>null) as any;const text=body?.choices?.[0]?.message?.content;
+ if(response.ok&&typeof text==="string"&&text.trim())return{text:text.trim(),provider:"cheaper-inference",model:body?.model||requested,routing:autoRoute?"auto":"preferred"};
+ const error=new Error(body?.error?.message||"Curatia model request failed.");(error as any).status=response.status;throw error;
+}
+async function curatiaText(messages:{role:"system"|"user";content:string}[],capability:CuratiaAiCapability="writing",workspaceId?:string){
+ const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");
+ if(base&&process.env.OMNIROUTE_API_KEY){
+  const route=await effectiveAiRoute(capability,workspaceId);const preferred=route.preferred_model||"auto";
+  try{return await cheaperInferenceText(messages,preferred,preferred==="auto")}
+  catch(first){if(route.fallback_mode==="auto"&&preferred!=="auto"){try{return await cheaperInferenceText(messages,preferred,true)}catch{}}throw first}
  }
  const accountId=process.env.CLOUDFLARE_ACCOUNT_ID;const token=process.env.CLOUDFLARE_API_TOKEN;
  if(!accountId||!token)throw new Error("Curatia text generation provider is not configured.");
@@ -132,9 +144,8 @@ async function curatiaText(messages:{role:"system"|"user";content:string}[]){
  const response=await fetch("https://api.cloudflare.com/client/v4/accounts/"+accountId+"/ai/run/"+model,{method:"POST",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({messages,max_tokens:1800,temperature:0.35})});
  const body=await response.json().catch(()=>null) as any;
  if(!response.ok||!body?.success)throw new Error(body?.errors?.[0]?.message||"Curatia text generation failed.");
- const text=body?.result?.response;
- if(typeof text!=="string"||!text.trim())throw new Error("Curatia text generation returned no content.");
- return{text:text.trim(),provider:"cloudflare-workers-ai",model};
+ const text=body?.result?.response;if(typeof text!=="string"||!text.trim())throw new Error("Curatia text generation returned no content.");
+ return{text:text.trim(),provider:"cloudflare-workers-ai",model,routing:"fallback"};
 }
 const operationInstruction:Record<string,string>={
  generate:"Create the publishable artifact from the editorial intelligence. Do not describe the process.",
@@ -154,7 +165,7 @@ export const generateCuratiaContent=createServerFn({method:"POST"}).validator(dr
  const base=[x.title,"",x.core_idea||"",x.why_now?"Why this matters now: "+x.why_now:"",x.ba_implication?"For the role: "+x.ba_implication:"",x.second_order_implication||"",x.strongest_angle?"The angle worth exploring: "+x.strongest_angle:""].filter(Boolean).join("\n\n");
  const context=["TITLE: "+x.title,x.core_idea?"CORE IDEA: "+x.core_idea:"",x.why_now?"WHY NOW: "+x.why_now:"",x.ba_implication?"ROLE IMPACT: "+x.ba_implication:"",x.second_order_implication?"SECOND ORDER: "+x.second_order_implication:"",x.strongest_angle?"STRONGEST ANGLE: "+x.strongest_angle:"","CHANNEL: "+x.publishing_channel,"FORMAT: "+x.content_format,existing?"EXISTING ARTIFACT:\n"+existing:""].filter(Boolean).join("\n\n");
  const system=["You are Curatia's editorial artifact engine.","Use the supplied editorial intelligence as context, not as headings that must be copied into the output.","Be natural, specific, grounded and concise. Do not invent facts, sources, outcomes, quotes, or personal experience.","Avoid generic AI-writing patterns and engagement bait.",operationInstruction[data.operation],"Selected skill packs: "+route.skills.join(", ")+". Apply only capabilities relevant to this operation."].join("\n");
- const ai=await curatiaText([{role:"system",content:system},{role:"user",content:context}]);
+ const ai=await curatiaText([{role:"system",content:system},{role:"user",content:context}],"writing",ctx.wid);
  const draft=ai.text;
  const previous=await rest("content_artifacts?select=version&workspace_id=eq."+encodeURIComponent(ctx.wid)+"&content_item_id=eq."+encodeURIComponent(data.id)+"&artifact_type=eq.text&order=version.desc&limit=1");
  const version=(previous?.[0]?.version?Number(previous[0].version):0)+1;
@@ -264,6 +275,23 @@ export const generateContentVisual=createServerFn({method:"POST"}).validator(gen
  await rest(`content_items?workspace_id=eq.${encodeURIComponent(ctx.wid)}&id=eq.${encodeURIComponent(data.id)}`,{method:"PATCH",body:JSON.stringify({visual_brief:data.prompt,final_visual_reference:result.assetUrl,updated_at:new Date().toISOString()})});return{assetUrl:result.assetUrl,version,provider:result.provider};
 });
 
+export type CuratiaAiRoute={capability:CuratiaAiCapability;preferredModel:string;fallbackMode:"auto"|"none"};
+export type CuratiaAiModel={id:string;type:string|null;vision:boolean;video:boolean;reasoning:boolean;provider:string|null};
+export type CuratiaAiAdmin={routes:CuratiaAiRoute[];models:CuratiaAiModel[];providerReady:boolean};
+const aiAdminInput=z.object({accessToken:z.string().min(20)});
+const aiRouteInput=z.object({accessToken:z.string().min(20),capability:z.enum(["analysis_research","writing","image_generation","video_generation","multimodal_understanding"]),preferredModel:z.string().min(1).max(200),fallbackMode:z.enum(["auto","none"]).default("auto")});
+async function cheaperInferenceModels():Promise<CuratiaAiModel[]>{
+ const base=(process.env.OMNIROUTE_BASE_URL||"").replace(/\/$/,"");const key=process.env.OMNIROUTE_API_KEY;if(!base||!key)return[];
+ const r=await fetch(base+"/models",{headers:{Authorization:"Bearer "+key}});if(!r.ok)return[];const body=await r.json().catch(()=>null) as any;const items=body?.data||body?.models||[];
+ return(Array.isArray(items)?items:[]).map((x:any)=>({id:String(x.id||x.model||""),type:x.type||null,vision:Boolean(x.vision||x.capabilities?.vision),video:Boolean(x.video||x.capabilities?.video),reasoning:Boolean(x.reasoning||x.capabilities?.reasoning),provider:x.provider||null})).filter((x:CuratiaAiModel)=>x.id);
+}
+export const getCuratiaAiAdmin=createServerFn({method:"POST"}).validator(aiAdminInput).handler(async({data}):Promise<CuratiaAiAdmin>=>{
+ await requirePlatformOwner(data.accessToken);const [rows,models]=await Promise.all([rest("ai_capability_routing?select=capability,preferred_model,fallback_mode&scope=eq.platform&workspace_id=is.null&active=eq.true&order=capability"),cheaperInferenceModels()]);
+ return{routes:(rows||[]).map((x:any)=>({capability:x.capability,preferredModel:x.preferred_model,fallbackMode:x.fallback_mode})),models,providerReady:Boolean(process.env.OMNIROUTE_BASE_URL&&process.env.OMNIROUTE_API_KEY)};
+});
+export const saveCuratiaAiRoute=createServerFn({method:"POST"}).validator(aiRouteInput).handler(async({data})=>{
+ const ctx=await requirePlatformOwner(data.accessToken);await rest("ai_capability_routing",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify({scope:"platform",workspace_id:null,capability:data.capability,preferred_model:data.preferredModel,fallback_mode:data.fallbackMode,active:true,updated_by:ctx.user.id,updated_at:new Date().toISOString()})});return{ok:true};
+});
 export type CuratiaIntegration={key:string;label:string;provider:string;category:string;status:"connected"|"not_connected"|"error";setupStatus:"ready"|"setup_required"|"disabled";accountLabel:string|null;connectedAt:string|null;connectionId?:string|null;capabilities:string[]};
 export type CuratiaIntegrationCatalogItem=CuratiaIntegration&{description:string|null;toolkitSlug:string|null;authConfigRef:string|null;active:boolean}; export type CuratiaIntegrationAdmin={isPlatformOwner:boolean;catalog:CuratiaIntegrationCatalogItem[]};
 const integrationInput=z.object({accessToken:z.string().min(20),integrationKey:z.string().min(1).max(80)});
