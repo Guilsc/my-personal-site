@@ -48,8 +48,8 @@ function Portfolio() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+      <header className="sticky top-0 z-50 px-3 pt-3 md:px-5 md:pt-4">
+        <div className="glass-nav mx-auto flex max-w-7xl items-center justify-between rounded-full px-5 py-3.5 md:px-6">
           <a href="#inicio" className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">
             GSC<span className="text-primary">/</span>PORTFOLIO
           </a>
@@ -63,34 +63,52 @@ function Portfolio() {
       </header>
 
       <main id="inicio">
-        <section className="relative mx-auto grid min-h-[calc(100svh-53px)] max-w-7xl content-center gap-10 px-5 py-14 md:grid-cols-12 md:px-8 md:py-20">
-          <div className="pointer-events-none absolute -left-32 -top-32 size-[32rem] bg-[radial-gradient(circle,var(--glow)_0%,transparent_68%)] opacity-60" />
-          <div className="relative z-10 md:col-span-7 md:self-center">
-            <p className="reveal font-mono text-[11px] tracking-[0.2em] text-primary">(00) SENIOR BUSINESS ANALYST</p>
-            <h1 className="mt-7 font-display text-[clamp(3.6rem,11vw,9rem)] font-bold leading-[0.82]">
-              <span className="reveal block">Guilherme</span>
-              <span className="reveal stroked-text block">da Silva Costa</span>
-            </h1>
-            <div className="draw mt-10 h-px w-full bg-border" />
-            <p className="reveal mt-8 max-w-2xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-3xl">
-              {t.hero}
-            </p>
-            <a href="#about" aria-label="Continue to profile" className="mt-10 inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
-              <ArrowDown className="size-4" />
-            </a>
-          </div>
-          <div className="reveal relative md:col-span-5 md:self-end">
-            <div className="portrait-frame relative aspect-[4/5] overflow-hidden border border-border bg-card">
-              <img src="https://avatars.githubusercontent.com/u/12737257?v=4" alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-[linear-gradient(transparent,var(--background))] px-4 pb-4 pt-20 font-mono text-[9px] tracking-widest text-muted-foreground">
-                <span>SENIOR BUSINESS ANALYST / EPAM</span><span>CURITIBA, BR</span>
+        <section className="hero-shell relative mx-auto min-h-[calc(100svh-68px)] max-w-[1500px] px-5 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14">
+          <div className="hero-grid pointer-events-none absolute inset-0" />
+          <div className="hero-orb hero-orb-one pointer-events-none absolute" />
+          <div className="hero-orb hero-orb-two pointer-events-none absolute" />
+          <div className="relative z-10 grid min-h-[calc(100svh-140px)] items-center gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <div className="reveal mb-8 flex flex-wrap items-center gap-3">
+                <span className="status-pill"><span className="status-dot" /> AVAILABLE FOR IDEAS, SYSTEMS & HARD PROBLEMS</span>
+                <span className="font-mono text-[9px] tracking-[0.18em] text-muted-foreground">CURITIBA / BR</span>
+              </div>
+              <p className="reveal font-mono text-[10px] tracking-[0.28em] text-primary">SENIOR BUSINESS ANALYST · PRODUCT · APPLIED AI</p>
+              <h1 className="hero-title mt-7 font-display font-semibold">
+                <span className="reveal block">Guilherme</span>
+                <span className="reveal block text-muted-foreground">da Silva Costa</span>
+              </h1>
+              <div className="mt-10 grid gap-8 border-t border-border/70 pt-7 md:grid-cols-[1fr_auto] md:items-end">
+                <p className="reveal max-w-3xl font-display text-[clamp(1.35rem,2.5vw,2.35rem)] font-medium leading-[1.08] text-accent-foreground">
+                  {t.hero}
+                </p>
+                <a href="#work" className="reveal group inline-flex items-center gap-3 font-mono text-[9px] tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary">
+                  SELECTED WORK <span className="grid size-10 place-items-center rounded-full border border-border transition-transform group-hover:translate-y-1 group-hover:border-primary"><ArrowDown className="size-4" /></span>
+                </a>
+              </div>
+            </div>
+            <div className="reveal relative lg:col-span-4 lg:pl-4">
+              <div className="portrait-editorial relative mx-auto max-w-md">
+                <div className="portrait-backdrop absolute -inset-4 rounded-[2rem]" />
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.6rem] border border-border/80 bg-card">
+                  <img src="https://avatars.githubusercontent.com/u/12737257?v=4" alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale-[20%] transition duration-700 hover:grayscale-0" />
+                  <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(transparent,var(--background))] px-5 pb-5 pt-24">
+                    <div className="flex items-end justify-between gap-4 font-mono text-[9px] tracking-widest text-muted-foreground">
+                      <span>SENIOR BA / EPAM</span><span>14+ YEARS</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="portrait-note absolute -bottom-5 -left-5 hidden rounded-2xl border border-border/80 bg-card/90 px-4 py-3 backdrop-blur-xl md:block">
+                  <p className="font-mono text-[8px] tracking-[0.2em] text-muted-foreground">FOCUS</p>
+                  <p className="mt-1 font-display text-sm font-semibold">Decisions over artifacts.</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="border-y border-border/60 bg-secondary/25">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-5 py-12 md:grid-cols-4 md:px-8">
+        <section className="border-y border-border/50 bg-secondary/15">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-8 gap-y-10 px-5 py-10 md:grid-cols-4 md:px-8">
             {[["Experience", "14", "Y"], ["Location", "CURITIBA", ""], ["Specialty", "AI & QA", ""], ["Role", "SENIOR BA", ""]].map(([label, value, suffix]) => (
               <div key={label}>
                 <p className="mb-2 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{label}</p>
@@ -100,7 +118,7 @@ function Portfolio() {
           </div>
         </section>
 
-        <section id="about" className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
+        <section id="about" className="mx-auto grid max-w-7xl gap-12 px-5 py-24 md:grid-cols-12 md:px-8 md:py-32">
           <div className="md:col-span-4">
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(01) ABOUT</p>
             <h2 className="mt-5 font-display text-4xl font-semibold leading-none md:text-5xl">{t.aboutTitle}</h2>
@@ -115,12 +133,12 @@ function Portfolio() {
           </div>
         </section>
 
-        <section className="border-y border-border/60 bg-secondary/20">
+        <section className="border-y border-border/50 bg-secondary/10">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) {t.expertise}</p>
             <div className="mt-8 divide-y divide-border border-y border-border">
               {expertiseOrder.map((id, index) => { const item = t.expertiseItems[id]; return (
-                <Link key={id} to="/expertise" search={{ focus: id }} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
+                <Link key={id} to="/expertise" search={{ focus: id }} className="expertise-row group grid gap-3 py-7 md:grid-cols-12 md:items-center">
                   <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
                   <h3 className="font-display text-2xl font-semibold md:col-span-4 md:text-3xl">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">{item.description}</p>
@@ -131,7 +149,7 @@ function Portfolio() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <section id="work" className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.selectedImpact}</p>
@@ -140,8 +158,8 @@ function Portfolio() {
             </div>
             <Link to="/projects" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link>
           </div>
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            <article className="flex flex-col border border-primary/50 bg-card p-6">
+          <div className="work-grid mt-12 grid gap-5 lg:grid-cols-12">
+            <article className="work-card work-card-enterprise flex flex-col border border-primary/35 bg-card/70 p-7 backdrop-blur-sm lg:col-span-5">
               <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{t.enterpriseEyebrow}</p>
               <h3 className="mt-5 font-display text-3xl font-semibold">{t.enterpriseTitle}</h3>
               <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{t.enterpriseRole}</p>
@@ -151,7 +169,7 @@ function Portfolio() {
             {["curatia-content-engine","olympus-os"].map(slug => {
               const project = portfolioProjects.find(item => item.slug === slug)!;
               const localizedProject = getLocalizedProjectContent(slug, language);
-              return <Link key={slug} to="/projects/$slug" params={{slug}} className="group flex flex-col border border-border bg-card p-6 transition-colors hover:border-primary/60">
+              return <Link key={slug} to="/projects/$slug" params={{slug}} className="work-card group flex flex-col border border-border/80 bg-card/70 p-7 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/55">
                 <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{localizedProject?.eyebrow ?? project.eyebrow}</p>
                 <h3 className="mt-5 font-display text-3xl font-semibold group-hover:text-primary">{project.name}</h3>
                 <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{localizedProject?.role ?? project.role}</p>
@@ -162,7 +180,7 @@ function Portfolio() {
           </div>
         </section>
 
-        <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <section id="articles" className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
           <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
             <div className="min-w-0">
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) {t.articles}</p>
@@ -187,7 +205,7 @@ function Portfolio() {
           </div>
         </section>
 
-        <section className="border-t border-border bg-secondary/30">
+        <section className="contact-shell border-t border-border/50">
           <div className="mx-auto max-w-4xl px-5 py-20 text-center md:px-8 md:py-28">
             <a href="mailto:guilherme.silva.costa@hotmail.com" className="inline-block font-mono text-[10px] tracking-[0.4em] text-primary transition-opacity hover:opacity-70">CONTACT</a>
             <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">{t.contactTitle}</h2>
@@ -239,7 +257,7 @@ function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex min-h-72 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60"
+            className="editorial-card group flex min-h-80 flex-col justify-between border border-border/70 bg-card/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50"
           >
             <div>
               <div className="flex items-start justify-between gap-4">
