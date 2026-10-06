@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T07:50:12.116263+00:00",
+  "title": "Design System: Guilherme Costa — Galeria de trabalho",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Primary",
+        "tonalRamp": [
+          "oklch(0.15 0.19 267.0)",
+          "oklch(0.25 0.19 267.0)",
+          "oklch(0.35 0.19 267.0)",
+          "oklch(0.45 0.19 267.0)",
+          "oklch(0.55 0.19 267.0)",
+          "oklch(0.65 0.19 267.0)",
+          "oklch(0.8 0.19 267.0)",
+          "oklch(0.95 0.19 267.0)"
+        ]
+      },
+      "primary-foreground": {
+        "role": "primary",
+        "displayName": "Primary Foreground",
+        "tonalRamp": [
+          "oklch(0.15 0.004 90.0)",
+          "oklch(0.25 0.004 90.0)",
+          "oklch(0.35 0.004 90.0)",
+          "oklch(0.45 0.004 90.0)",
+          "oklch(0.55 0.004 90.0)",
+          "oklch(0.65 0.004 90.0)",
+          "oklch(0.8 0.004 90.0)",
+          "oklch(0.95 0.004 90.0)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Background",
+        "tonalRamp": [
+          "oklch(0.15 0.008 90.0)",
+          "oklch(0.25 0.008 90.0)",
+          "oklch(0.35 0.008 90.0)",
+          "oklch(0.45 0.008 90.0)",
+          "oklch(0.55 0.008 90.0)",
+          "oklch(0.65 0.008 90.0)",
+          "oklch(0.8 0.008 90.0)",
+          "oklch(0.95 0.008 90.0)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Foreground",
+        "tonalRamp": [
+          "oklch(0.15 0.025 260.0)",
+          "oklch(0.25 0.025 260.0)",
+          "oklch(0.35 0.025 260.0)",
+          "oklch(0.45 0.025 260.0)",
+          "oklch(0.55 0.025 260.0)",
+          "oklch(0.65 0.025 260.0)",
+          "oklch(0.8 0.025 260.0)",
+          "oklch(0.95 0.025 260.0)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card",
+        "tonalRamp": [
+          "oklch(0.15 0.01 90.0)",
+          "oklch(0.25 0.01 90.0)",
+          "oklch(0.35 0.01 90.0)",
+          "oklch(0.45 0.01 90.0)",
+          "oklch(0.55 0.01 90.0)",
+          "oklch(0.65 0.01 90.0)",
+          "oklch(0.8 0.01 90.0)",
+          "oklch(0.95 0.01 90.0)"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Secondary",
+        "tonalRamp": [
+          "oklch(0.15 0.012 90.0)",
+          "oklch(0.25 0.012 90.0)",
+          "oklch(0.35 0.012 90.0)",
+          "oklch(0.45 0.012 90.0)",
+          "oklch(0.55 0.012 90.0)",
+          "oklch(0.65 0.012 90.0)",
+          "oklch(0.8 0.012 90.0)",
+          "oklch(0.95 0.012 90.0)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Muted Foreground",
+        "tonalRamp": [
+          "oklch(0.15 0.025 260.0)",
+          "oklch(0.25 0.025 260.0)",
+          "oklch(0.35 0.025 260.0)",
+          "oklch(0.45 0.025 260.0)",
+          "oklch(0.55 0.025 260.0)",
+          "oklch(0.65 0.025 260.0)",
+          "oklch(0.8 0.025 260.0)",
+          "oklch(0.95 0.025 260.0)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Accent",
+        "tonalRamp": [
+          "oklch(0.15 0.17 267.0)",
+          "oklch(0.25 0.17 267.0)",
+          "oklch(0.35 0.17 267.0)",
+          "oklch(0.45 0.17 267.0)",
+          "oklch(0.55 0.17 267.0)",
+          "oklch(0.65 0.17 267.0)",
+          "oklch(0.8 0.17 267.0)",
+          "oklch(0.95 0.17 267.0)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Border",
+        "tonalRamp": [
+          "oklch(0.15 0.02 90.0)",
+          "oklch(0.25 0.02 90.0)",
+          "oklch(0.35 0.02 90.0)",
+          "oklch(0.45 0.02 90.0)",
+          "oklch(0.55 0.02 90.0)",
+          "oklch(0.65 0.02 90.0)",
+          "oklch(0.8 0.02 90.0)",
+          "oklch(0.95 0.02 90.0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Featured exhibit title."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Gallery section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Evidence-row headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Regular reading copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation and functional labels."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "evidence-arrow",
+        "value": "transform 180ms ease-out",
+        "purpose": "Three-pixel diagonal hover movement, disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "gallery-mobile",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Feature link",
+      "kind": "button",
+      "refersTo": "button-feature",
+      "description": "Inverse action inside a cobalt exhibit.",
+      "html": "<a class=\"ds-feature\" href=\"#\">Explore project</a>",
+      "css": ".ds-feature{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1rem;background:oklch(.985 .004 90);color:oklch(.43 .19 267);font-weight:600;text-decoration:none}.ds-feature:hover{background:oklch(.91 .02 90)}.ds-feature:focus-visible{outline:3px solid oklch(0.43 0.19 267);outline-offset:5px;}"
+    },
+    {
+      "name": "Selected filter",
+      "kind": "button",
+      "refersTo": "button-filter-selected",
+      "description": "Pressed catalog or writing filter.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All projects</button>",
+      "css": ".ds-filter{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;min-height:44px;padding:.5rem .75rem;border:0;border-radius:0;background:oklch(.43 .19 267);color:oklch(.985 .004 90);font-size:.75rem;letter-spacing:.05em;cursor:pointer}.ds-filter:hover{opacity:.9}.ds-filter:focus-visible{outline:3px solid oklch(0.43 0.19 267);outline-offset:5px;}"
+    },
+    {
+      "name": "Capability chip",
+      "kind": "chip",
+      "refersTo": "chip-capability",
+      "description": "Noninteractive project capability metadata.",
+      "html": "<span class=\"ds-chip\">CONTENT OPERATIONS</span>",
+      "css": ".ds-chip{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;display:inline-block;padding:.5rem .625rem;background:oklch(.92 .012 90);color:oklch(.24 .025 260);font-size:.75rem;letter-spacing:.05em}"
+    },
+    {
+      "name": "Evidence card",
+      "kind": "card",
+      "refersTo": "card-evidence",
+      "description": "Plain container for authentic case or publication evidence.",
+      "html": "<article class=\"ds-card\"><h2>Project evidence</h2><p>A grounded account of the work.</p></article>",
+      "css": ".ds-card{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;background:oklch(.945 .01 90);color:oklch(.24 .025 260);border:1px solid oklch(.81 .02 90);padding:1.5rem}.ds-card h2{font-size:1.5rem;font-weight:600;letter-spacing:-.035em}.ds-card p{font-size:.875rem;line-height:1.625;color:oklch(.46 .025 260)}"
+    },
+    {
+      "name": "Comparison select",
+      "kind": "input",
+      "refersTo": "select-comparison",
+      "description": "Native select within the stage comparison.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-stage\">First stage</label><select id=\"ds-stage\"><option>Discovery</option><option>Human approval</option></select></div>",
+      "css": ".ds-field{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;background:oklch(.43 .19 267);color:oklch(.985 .004 90);padding:1.25rem}.ds-field label{display:block;font-size:.75rem;margin-bottom:.5rem}.ds-field select{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;width:100%;min-height:44px;padding:.5rem;border-radius:0;background:oklch(.985 .004 90);color:oklch(.43 .19 267)}.ds-field select:focus-visible{outline:3px solid oklch(.985 .004 90);outline-offset:4px}"
+    },
+    {
+      "name": "Navigation link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Visible wrapped navigation with an active underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Projects</a><a href=\"#\">Writing</a></nav>",
+      "css": ".ds-nav{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;display:flex;flex-wrap:wrap;gap:.25rem 2rem;border-block:1px solid oklch(.81 .02 90)}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:oklch(.24 .025 260);font-size:.75rem;font-weight:600;letter-spacing:.04em;text-decoration:none}.ds-nav a[aria-current]{color:oklch(.43 .19 267);box-shadow:inset 0 -2px oklch(.43 .19 267)}.ds-nav a:hover{color:oklch(.43 .19 267)}.ds-nav a:focus-visible{outline:3px solid oklch(0.43 0.19 267);outline-offset:5px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Galeria de trabalho",
+    "overview": "The gallery presents actual work through clear hierarchy, broad evidence rows, and plain surfaces. Mineral white supports reading; cobalt fields give selected work a distinct exhibit presence. Hanken Grotesk carries navigation and prose, while Bodoni Moda gives the featured project its own display voice.\n\nThis system applies only to public portfolio surfaces inside the gallery scope. The internal Curatia application retains its existing theme. Bilingual content, an authentic portrait, and real project evidence remain integral to the public experience.",
+    "keyCharacteristics": [
+      "Mineral reading surfaces and cobalt exhibit fields.",
+      "Broad, divided evidence rows with square containers.",
+      "Clear contact, visible navigation, and native controls.",
+      "Restrained motion with reduced-motion behavior."
+    ],
+    "rules": [
+      {
+        "name": "The Scope Rule",
+        "body": "Apply the gallery palette and typography inside public portfolio surfaces; do not redefine the internal application theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Exhibit Voice Rule",
+        "body": "Reserve Bodoni Moda for the featured exhibit title; use Hanken Grotesk for navigation, evidence, and reading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Use tonal separation and thin borders for depth; do not introduce decorative card shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the public gallery scope when adding screens.",
+      "Do use cobalt for selected states and feature fields, with the matching light foreground.",
+      "Do retain native labeled selectors and meaningful disclosure controls.",
+      "Do keep functional metadata, readable text, and visible keyboard focus.",
+      "Do use authentic imagery and evidence with documented provenance."
+    ],
+    "donts": [
+      "Don't import the old internal dark theme into public gallery surfaces.",
+      "Don't add decorative numbering or section kickers.",
+      "Don't invent project outcomes or use fabricated product imagery.",
+      "Don't hide essential navigation on narrow screens."
+    ]
+  }
+}

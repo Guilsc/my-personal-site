@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-let runtimeLanguage: Language = "en";
-
 export type Language = "en" | "pt";
 
 export const copy = {
@@ -18,32 +16,77 @@ export const copy = {
     expertiseTitle: "Evidence behind the expertise.",
     expertiseIntro: "Projects, writing, and career experience connected to each area of practice.",
     expertiseItems: {
-      "business-analysis": { title: "Business Analysis", description: "Complex needs translated into clear, actionable decisions." },
-      "product-strategy": { title: "Product & Strategy", description: "Prioritization, alignment, and value-driven delivery." },
-      "systems-qa": { title: "Systems & QA", description: "Dependencies, risks, and edge cases beyond the happy path." },
-      "applied-ai": { title: "Applied AI", description: "Technology supporting sharper analysis, documentation, and decisions." },
+      "business-analysis": {
+        title: "Business Analysis",
+        description: "Complex needs translated into clear, actionable decisions.",
+      },
+      "product-strategy": {
+        title: "Product & Strategy",
+        description: "Prioritization, alignment, and value-driven delivery.",
+      },
+      "systems-qa": {
+        title: "Systems & QA",
+        description: "Dependencies, risks, and edge cases beyond the happy path.",
+      },
+      "applied-ai": {
+        title: "Applied AI",
+        description: "Technology supporting sharper analysis, documentation, and decisions.",
+      },
     },
-    evidence: "CAPABILITIES", projectsEvidence: "PROJECTS", writingEvidence: "WRITING", careerEvidence: "CAREER", contextsEvidence: "CONTEXTS",
+    evidence: "CAPABILITIES",
+    projectsEvidence: "PROJECTS",
+    writingEvidence: "WRITING",
+    careerEvidence: "CAREER",
+    contextsEvidence: "CONTEXTS",
     articles: "ARTICLES & POSTS",
     ideas: "Ideas in practice.",
     moreLinkedIn: "MORE ON LINKEDIN",
-    viewAll: "VIEW ALL", viewMore: "VIEW MORE", articlesTitle: "Writing & ideas.", articlesIntro: "Original articles and posts across Business Analysis, product, systems, QA, and applied AI.",
+    viewAll: "VIEW ALL",
+    viewMore: "VIEW MORE",
+    articlesTitle: "Writing & ideas.",
+    articlesIntro:
+      "Original articles and posts across Business Analysis, product, systems, QA, and applied AI.",
     articleFilters: { all: "ALL", coffee: "COFFEE WITH A BA", articles: "ARTICLES" },
     repositories: "PUBLIC REPOSITORIES",
     githubLive: "Live from GitHub.",
     contactTitle: "Let’s turn complexity into clarity.",
     contactText: "Explore my work and connect with me on LinkedIn or GitHub.",
     projectsTitle: "Systems I'm building.",
-    projectsIntro: "Public repositories become project pages automatically. Launchable and starred work can be isolated without splitting the catalog.",
+    projectsIntro:
+      "Explore the projects, their purpose, and the work behind them. Filter by original repositories, live applications, or starred work.",
     filters: { all: "ALL", repositories: "REPOSITORIES", launch: "LAUNCH", starred: "STARRED" },
     noProjects: "NO PROJECTS IN THIS VIEW.",
     allRepos: "ALL PUBLIC REPOSITORIES",
-    backHome: "HOME", backProjects: "PROJECTS", source: "SOURCE", status: "STATUS",
-    takeaways: "KEY TAKEAWAYS", lens: "PROJECT LENS", capabilities: "CAPABILITIES",
-    myRole: "MY ROLE", problem: "PROBLEM", approach: "APPROACH", outcomes: "OUTCOMES", next: "NEXT",
-    selectedImpact: "SELECTED IMPACT", impactTitle: "Work that connects analysis to outcomes.", impactIntro: "Selected evidence across enterprise delivery, product building, and agent-system design.",
-    enterpriseTitle: "Enterprise Transformation", enterpriseEyebrow: "PROFESSIONAL WORK", enterpriseSummary: "Senior Business Analysis across enterprise onboarding, integrations, process design, UAT, and AI-assisted delivery.", enterpriseRole: "Senior Business Analyst · EPAM", enterpriseEvidence: ["Salesforce and MuleSoft integration analysis", "Onboarding and field-mapping design across multiple channels", "UAT coordination, test-data collaboration, and edge-case analysis", "AI-assisted workflows and internal AI initiatives"],
-    professionalAI: "PROFESSIONAL AI", aiPlatforms: "PLATFORMS", aiArchitecture: "ARCHITECTURE",
+    backHome: "HOME",
+    backProjects: "PROJECTS",
+    source: "SOURCE",
+    status: "STATUS",
+    takeaways: "KEY TAKEAWAYS",
+    lens: "PROJECT LENS",
+    capabilities: "CAPABILITIES",
+    myRole: "MY ROLE",
+    problem: "PROBLEM",
+    approach: "APPROACH",
+    outcomes: "OUTCOMES",
+    next: "NEXT",
+    selectedImpact: "SELECTED IMPACT",
+    impactTitle: "Work that connects analysis to outcomes.",
+    impactIntro:
+      "Selected evidence across enterprise delivery, product building, and agent-system design.",
+    enterpriseTitle: "Enterprise Transformation",
+    enterpriseEyebrow: "PROFESSIONAL WORK",
+    enterpriseSummary:
+      "Senior Business Analysis across enterprise onboarding, integrations, process design, UAT, and AI-assisted delivery.",
+    enterpriseRole: "Senior Business Analyst · EPAM",
+    enterpriseEvidence: [
+      "Salesforce and MuleSoft integration analysis",
+      "Onboarding and field-mapping design across multiple channels",
+      "UAT coordination, test-data collaboration, and edge-case analysis",
+      "AI-assisted workflows and internal AI initiatives",
+    ],
+    professionalAI: "PROFESSIONAL AI",
+    aiPlatforms: "PLATFORMS",
+    aiArchitecture: "ARCHITECTURE",
   },
   pt: {
     nav: { about: "SOBRE", articles: "ARTIGOS", projects: "PROJETOS", expertise: "ESPECIALIDADES" },
@@ -56,52 +99,115 @@ export const copy = {
     ],
     expertise: "ESPECIALIDADES",
     expertiseTitle: "Evidências por trás da experiência.",
-    expertiseIntro: "Projetos, publicações e trajetória profissional conectados a cada área de atuação.",
+    expertiseIntro:
+      "Projetos, publicações e trajetória profissional conectados a cada área de atuação.",
     expertiseItems: {
-      "business-analysis": { title: "Business Analysis", description: "Necessidades complexas transformadas em decisões claras e acionáveis." },
-      "product-strategy": { title: "Produto & Estratégia", description: "Priorização, alinhamento e entrega orientada a valor." },
-      "systems-qa": { title: "Sistemas & QA", description: "Dependências, riscos e casos de borda além do caminho feliz." },
-      "applied-ai": { title: "IA Aplicada", description: "Tecnologia apoiando análises, documentação e decisões mais precisas." },
+      "business-analysis": {
+        title: "Business Analysis",
+        description: "Necessidades complexas transformadas em decisões claras e acionáveis.",
+      },
+      "product-strategy": {
+        title: "Produto & Estratégia",
+        description: "Priorização, alinhamento e entrega orientada a valor.",
+      },
+      "systems-qa": {
+        title: "Sistemas & QA",
+        description: "Dependências, riscos e casos de borda além do caminho feliz.",
+      },
+      "applied-ai": {
+        title: "IA Aplicada",
+        description: "Tecnologia apoiando análises, documentação e decisões mais precisas.",
+      },
     },
-    evidence: "CAPACIDADES", projectsEvidence: "PROJETOS", writingEvidence: "PUBLICAÇÕES", careerEvidence: "CARREIRA", contextsEvidence: "CONTEXTOS",
+    evidence: "CAPACIDADES",
+    projectsEvidence: "PROJETOS",
+    writingEvidence: "PUBLICAÇÕES",
+    careerEvidence: "CARREIRA",
+    contextsEvidence: "CONTEXTOS",
     articles: "ARTIGOS & POSTS",
     ideas: "Ideias na prática.",
     moreLinkedIn: "MAIS NO LINKEDIN",
-    viewAll: "VER TODOS", viewMore: "VER MAIS", articlesTitle: "Textos & ideias.", articlesIntro: "Artigos e posts autorais sobre Business Analysis, produto, sistemas, QA e IA aplicada.",
+    viewAll: "VER TODOS",
+    viewMore: "VER MAIS",
+    articlesTitle: "Textos & ideias.",
+    articlesIntro:
+      "Artigos e posts autorais sobre Business Analysis, produto, sistemas, QA e IA aplicada.",
     articleFilters: { all: "TODOS", coffee: "COFFEE WITH A BA", articles: "ARTIGOS" },
     repositories: "REPOSITÓRIOS PÚBLICOS",
     githubLive: "Direto do GitHub.",
     contactTitle: "Vamos transformar complexidade em clareza.",
     contactText: "Explore meu trabalho e conecte-se comigo no LinkedIn ou GitHub.",
     projectsTitle: "Sistemas que estou construindo.",
-    projectsIntro: "Repositórios públicos ganham páginas de projeto automaticamente. Projetos executáveis e favoritos podem ser filtrados sem dividir o catálogo.",
-    filters: { all: "TODOS", repositories: "REPOSITÓRIOS", launch: "LAUNCH", starred: "FAVORITOS" },
+    projectsIntro:
+      "Explore os projetos, seus objetivos e o trabalho por trás deles. Filtre por repositórios originais, aplicações ou favoritos.",
+    filters: {
+      all: "TODOS",
+      repositories: "REPOSITÓRIOS",
+      launch: "ABRIR APP",
+      starred: "FAVORITOS",
+    },
     noProjects: "NENHUM PROJETO NESTA VISÃO.",
     allRepos: "TODOS OS REPOSITÓRIOS PÚBLICOS",
-    backHome: "INÍCIO", backProjects: "PROJETOS", source: "CÓDIGO", status: "STATUS",
-    takeaways: "PRINCIPAIS APRENDIZADOS", lens: "VISÃO DO PROJETO", capabilities: "CAPACIDADES",
-    myRole: "MEU PAPEL", problem: "PROBLEMA", approach: "ABORDAGEM", outcomes: "RESULTADOS", next: "PRÓXIMOS PASSOS",
-    selectedImpact: "IMPACTO SELECIONADO", impactTitle: "Trabalho que conecta análise a resultados.", impactIntro: "Evidências selecionadas entre entrega enterprise, construção de produtos e design de sistemas de agentes.",
-    enterpriseTitle: "Transformação Enterprise", enterpriseEyebrow: "ATUAÇÃO PROFISSIONAL", enterpriseSummary: "Business Analysis sênior em onboarding enterprise, integrações, desenho de processos, UAT e entrega assistida por IA.", enterpriseRole: "Senior Business Analyst · EPAM", enterpriseEvidence: ["Análise de integrações Salesforce e MuleSoft", "Desenho de onboarding e mapeamento de campos em múltiplos canais", "Coordenação de UAT, colaboração em dados de teste e análise de casos de borda", "Workflows assistidos por IA e iniciativas internas de IA"],
-    professionalAI: "IA PROFISSIONAL", aiPlatforms: "PLATAFORMAS", aiArchitecture: "ARQUITETURA",
+    backHome: "INÍCIO",
+    backProjects: "PROJETOS",
+    source: "CÓDIGO",
+    status: "STATUS",
+    takeaways: "PRINCIPAIS APRENDIZADOS",
+    lens: "VISÃO DO PROJETO",
+    capabilities: "CAPACIDADES",
+    myRole: "MEU PAPEL",
+    problem: "PROBLEMA",
+    approach: "ABORDAGEM",
+    outcomes: "RESULTADOS",
+    next: "PRÓXIMOS PASSOS",
+    selectedImpact: "IMPACTO SELECIONADO",
+    impactTitle: "Trabalho que conecta análise a resultados.",
+    impactIntro:
+      "Evidências selecionadas entre entrega enterprise, construção de produtos e design de sistemas de agentes.",
+    enterpriseTitle: "Transformação Enterprise",
+    enterpriseEyebrow: "ATUAÇÃO PROFISSIONAL",
+    enterpriseSummary:
+      "Business Analysis sênior em onboarding enterprise, integrações, desenho de processos, UAT e entrega assistida por IA.",
+    enterpriseRole: "Senior Business Analyst · EPAM",
+    enterpriseEvidence: [
+      "Análise de integrações Salesforce e MuleSoft",
+      "Desenho de onboarding e mapeamento de campos em múltiplos canais",
+      "Coordenação de UAT, colaboração em dados de teste e análise de casos de borda",
+      "Workflows assistidos por IA e iniciativas internas de IA",
+    ],
+    professionalAI: "IA PROFISSIONAL",
+    aiPlatforms: "PLATAFORMAS",
+    aiArchitecture: "ARQUITETURA",
   },
 } as const;
 
 export function useLanguage() {
-  const [language, setLanguageState] = useState<Language>(() => runtimeLanguage);
+  const [language, setLanguageState] = useState<Language>("en");
 
   const setLanguage = (next: Language) => {
-    runtimeLanguage = next;
+    try {
+      localStorage.setItem("gsc-language", next);
+    } catch {
+      /* Storage is optional. */
+    }
     setLanguageState(next);
     document.documentElement.lang = next === "pt" ? "pt-BR" : "en";
     window.dispatchEvent(new CustomEvent("gsc-language-change", { detail: next }));
   };
 
   useEffect(() => {
-    document.documentElement.lang = runtimeLanguage === "pt" ? "pt-BR" : "en";
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem("gsc-language");
+    } catch {
+      /* Storage is optional. */
+    }
+    const initial: Language = stored === "pt" ? "pt" : "en";
+    setLanguageState(initial);
+    document.documentElement.lang = initial === "pt" ? "pt-BR" : "en";
     const sync = (event: Event) => {
       const next = (event as CustomEvent<Language>).detail;
-      runtimeLanguage = next;
+      if (next !== "en" && next !== "pt") return;
       setLanguageState(next);
     };
     window.addEventListener("gsc-language-change", sync);
@@ -111,11 +217,28 @@ export function useLanguage() {
   return { language, setLanguage, t: copy[language] };
 }
 
-export function LanguageSwitcher({ language, onChange }: { language: Language; onChange: (language: Language) => void }) {
+export function LanguageSwitcher({
+  language,
+  onChange,
+}: {
+  language: Language;
+  onChange: (language: Language) => void;
+}) {
   return (
-    <div className="flex border border-border" aria-label="Language">
+    <div
+      className="flex border border-border"
+      role="group"
+      aria-label={language === "pt" ? "Idioma" : "Language"}
+    >
       {(["en", "pt"] as const).map((item) => (
-        <button key={item} type="button" onClick={() => onChange(item)} aria-pressed={language === item} className={`px-2.5 py-2 font-mono text-[9px] tracking-widest transition-colors ${language === item ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-primary"}`}>
+        <button
+          key={item}
+          type="button"
+          onClick={() => onChange(item)}
+          aria-label={item === "pt" ? "Português" : "English"}
+          aria-pressed={language === item}
+          className={`min-h-11 min-w-11 px-2.5 py-2 font-body text-xs tracking-widest transition-colors ${language === item ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-primary"}`}
+        >
           {item.toUpperCase()}
         </button>
       ))}

@@ -1,5 +1,6 @@
+import { ProcessExplorer } from "../components/process-explorer";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin } from "lucide-react";
 import { useState } from "react";
 
 import { getGitHubProjects } from "../lib/github.functions";
@@ -7,7 +8,9 @@ import { getLinkedInPosts, type LinkedInPost } from "../lib/linkedin.functions";
 import { portfolioProjects } from "../content/projects";
 import { getLocalizedProjectContent } from "../content/project-content";
 import { expertiseOrder } from "../content/expertise";
-import { LanguageSwitcher, useLanguage } from "../lib/i18n";
+import { useLanguage } from "../lib/i18n";
+
+import { PortfolioHeader } from "../components/portfolio-header";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,17 +24,15 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Guilherme da Silva Costa — Senior Business Analyst" },
       {
         property: "og:description",
-        content: "14+ years turning technical complexity into clear decisions and actionable delivery.",
+        content:
+          "14+ years turning technical complexity into clear decisions and actionable delivery.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   loader: async () => {
-    const [projects, linkedInPosts] = await Promise.all([
-      getGitHubProjects(),
-      getLinkedInPosts(),
-    ]);
+    const [projects, linkedInPosts] = await Promise.all([getGitHubProjects(), getLinkedInPosts()]);
 
     return { projects, linkedInPosts };
   },
@@ -40,170 +41,201 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-
-
 function Portfolio() {
   const { projects, linkedInPosts } = Route.useLoaderData();
-  const { language, setLanguage, t } = useLanguage();
-
+  const { language, t } = useLanguage();
+  const featured = portfolioProjects.find((project) => project.slug === "curatia-content-engine")!;
+  const featuredCopy = getLocalizedProjectContent(featured.slug, language) ?? featured;
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-          <a href="#inicio" className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">
-            GSC<span className="text-primary">/</span>PORTFOLIO
-          </a>
-          <div className="flex items-center gap-3 md:gap-5"><nav className="hidden items-center gap-5 font-mono text-[9px] tracking-widest text-muted-foreground sm:flex" aria-label="Primary">
-            <a href="#about" className="transition-colors hover:text-foreground">{t.nav.about}</a>
-            <Link to="/expertise" search={{ focus: "business-analysis" }} className="transition-colors hover:text-foreground">{t.nav.expertise}</Link>
-            <a href="#articles" className="transition-colors hover:text-foreground">{t.nav.articles}</a>
-            <Link to="/projects" className="transition-colors hover:text-foreground">{t.nav.projects}</Link>
-          </nav><LanguageSwitcher language={language} onChange={setLanguage} /></div>
-        </div>
-      </header>
-
-      <main id="inicio">
-        <section className="relative mx-auto grid min-h-[calc(100svh-53px)] max-w-7xl content-center gap-10 px-5 py-14 md:grid-cols-12 md:px-8 md:py-20">
-          <div className="pointer-events-none absolute -left-32 -top-32 size-[32rem] bg-[radial-gradient(circle,var(--glow)_0%,transparent_68%)] opacity-60" />
-          <div className="relative z-10 md:col-span-7 md:self-center">
-            <p className="reveal font-mono text-[11px] tracking-[0.2em] text-primary">(00) SENIOR BUSINESS ANALYST</p>
-            <h1 className="mt-7 font-display text-[clamp(3.6rem,11vw,9rem)] font-bold leading-[0.82]">
-              <span className="reveal block">Guilherme</span>
-              <span className="reveal stroked-text block">da Silva Costa</span>
+    <div className="portfolio-gallery min-h-screen bg-background text-foreground">
+      <PortfolioHeader />
+      <main id="main-content" tabIndex={-1}>
+        <section className="gallery-opening" aria-labelledby="gallery-title">
+          <div className="gallery-introduction">
+            <h1 id="gallery-title">
+              {language === "pt" ? "O trabalho fala." : "The work speaks."}
             </h1>
-            <div className="draw mt-10 h-px w-full bg-border" />
-            <p className="reveal mt-8 max-w-2xl font-display text-xl font-medium leading-tight text-accent-foreground md:text-3xl">
-              {t.hero}
+            <div>
+              <p>{t.hero}</p>
+              <a
+                className="gallery-text-link"
+                href="https://www.linkedin.com/in/guilherme-da-silva-costa/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {language === "pt" ? "Vamos conversar" : "Let’s connect"}
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <article className="gallery-feature">
+            <div className="gallery-feature-heading">
+              <h2>{featured.name}</h2>
+              <p>{featuredCopy.role}</p>
+            </div>
+            <p className="gallery-feature-description">{featuredCopy.summary}</p>
+            <ProcessExplorer />
+            <div className="gallery-feature-bottom">
+              <p>{featuredCopy.takeaways[1]}</p>
+              <Link
+                to="/projects/$slug"
+                params={{ slug: featured.slug }}
+                className="gallery-feature-link"
+              >
+                {language === "pt" ? "Explorar o projeto" : "Explore the project"}
+                <ArrowUpRight className="size-5" aria-hidden="true" />
+              </Link>
+            </div>
+          </article>
+        </section>
+
+        <section className="gallery-section" aria-labelledby="work-title">
+          <div className="gallery-section-heading">
+            <h2 id="work-title">{language === "pt" ? "Outros trabalhos." : "More work."}</h2>
+            <Link to="/projects" className="gallery-text-link">
+              {t.viewAll}
+              <ArrowUpRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="gallery-work-list">
+            {portfolioProjects
+              .filter((project) => project.slug !== featured.slug)
+              .map((project) => {
+                const localized = getLocalizedProjectContent(project.slug, language) ?? project;
+                return (
+                  <Link
+                    key={project.slug}
+                    to="/projects/$slug"
+                    params={{ slug: project.slug }}
+                    className="gallery-work-row"
+                  >
+                    <div>
+                      <h3>{project.name}</h3>
+                      <p>{localized.role}</p>
+                    </div>
+                    <p>{localized.summary}</p>
+                    <ArrowUpRight className="size-6" aria-hidden="true" />
+                  </Link>
+                );
+              })}
+          </div>
+        </section>
+
+        <section
+          id="about"
+          className="gallery-profile gallery-section"
+          aria-labelledby="profile-title"
+        >
+          <div>
+            <img
+              src="/images/guilherme-costa-profile.webp"
+              alt="Guilherme da Silva Costa"
+              width={640}
+              height={800}
+              loading="lazy"
+              className="gallery-portrait"
+            />
+            <p className="mt-4 text-sm text-muted-foreground">
+              Senior Business Analyst · EPAM
+              <br />
+              Curitiba, Brasil
             </p>
-            <a href="#about" aria-label="Continue to profile" className="mt-10 inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary">
-              <ArrowDown className="size-4" />
+          </div>
+          <div>
+            <h2 id="profile-title">{t.aboutTitle}</h2>
+            <div className="gallery-profile-copy">
+              {t.about.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <h3 className="mt-10 text-xl font-semibold">{t.enterpriseTitle}</h3>
+            <p className="mt-3 text-muted-foreground">{t.enterpriseSummary}</p>
+            <ul className="gallery-evidence">
+              {t.enterpriseEvidence.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <a
+              className="gallery-text-link mt-6"
+              href="https://www.linkedin.com/in/guilherme-da-silva-costa/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {language === "pt" ? "Conheça minha trajetória" : "Explore my background"}
+              <ArrowUpRight className="size-4" aria-hidden="true" />
             </a>
           </div>
-          <div className="reveal relative md:col-span-5 md:self-end">
-            <div className="portrait-frame relative aspect-[4/5] overflow-hidden border border-border bg-card">
-              <img src="https://avatars.githubusercontent.com/u/12737257?v=4" alt="Guilherme da Silva Costa" width={800} height={800} className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-[linear-gradient(transparent,var(--background))] px-4 pb-4 pt-20 font-mono text-[9px] tracking-widest text-muted-foreground">
-                <span>SENIOR BUSINESS ANALYST / EPAM</span><span>CURITIBA, BR</span>
-              </div>
-            </div>
-          </div>
         </section>
 
-        <section className="border-y border-border/60 bg-secondary/25">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-5 py-12 md:grid-cols-4 md:px-8">
-            {[["Experience", "14", "Y"], ["Location", "CURITIBA", ""], ["Specialty", "AI & QA", ""], ["Role", "SENIOR BA", ""]].map(([label, value, suffix]) => (
-              <div key={label}>
-                <p className="mb-2 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{label}</p>
-                <p className="font-display text-2xl font-semibold md:text-3xl">{value}<span className="text-lg text-primary">{suffix}</span></p>
-              </div>
-            ))}
+        <section className="gallery-section" aria-labelledby="expertise-title">
+          <div className="gallery-section-heading">
+            <h2 id="expertise-title">{t.expertiseTitle}</h2>
           </div>
-        </section>
-
-        <section id="about" className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-12 md:px-8 md:py-28">
-          <div className="md:col-span-4">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(01) ABOUT</p>
-            <h2 className="mt-5 font-display text-4xl font-semibold leading-none md:text-5xl">{t.aboutTitle}</h2>
-          </div>
-          <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:col-span-8 md:text-lg">
-            {t.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            <div className="flex flex-wrap gap-3 pt-2 font-mono text-[10px] tracking-wider text-foreground">
-              <span className="border border-border bg-card px-3 py-2">EPAM SYSTEMS</span>
-              <span className="border border-border bg-card px-3 py-2">UTFPR</span>
-              <span className="inline-flex items-center gap-2 border border-border bg-card px-3 py-2"><MapPin className="size-3 text-primary" /> CURITIBA</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-y border-border/60 bg-secondary/20">
-          <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(02) {t.expertise}</p>
-            <div className="mt-8 divide-y divide-border border-y border-border">
-              {expertiseOrder.map((id, index) => { const item = t.expertiseItems[id]; return (
-                <Link key={id} to="/expertise" search={{ focus: id }} className="group grid gap-3 py-6 md:grid-cols-12 md:items-center">
-                  <span className="font-mono text-[10px] text-primary md:col-span-1">{String(index + 1).padStart(2, "0")}</span>
-                  <h3 className="font-display text-2xl font-semibold md:col-span-4 md:text-3xl">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground md:col-span-6">{item.description}</p>
-                  <ArrowUpRight className="hidden size-5 text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary md:block" />
+          <div className="gallery-work-list">
+            {expertiseOrder.map((id) => {
+              const item = t.expertiseItems[id];
+              return (
+                <Link key={id} to="/expertise" search={{ focus: id }} className="gallery-work-row">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <ArrowUpRight className="size-5" aria-hidden="true" />
                 </Link>
-              ); })}
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
-            <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(03) {t.selectedImpact}</p>
-              <h2 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-none md:text-5xl">{t.impactTitle}</h2>
-              <p className="mt-5 max-w-2xl text-muted-foreground">{t.impactIntro}</p>
-            </div>
-            <Link to="/projects" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link>
-          </div>
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            <article className="flex flex-col border border-primary/50 bg-card p-6">
-              <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{t.enterpriseEyebrow}</p>
-              <h3 className="mt-5 font-display text-3xl font-semibold">{t.enterpriseTitle}</h3>
-              <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{t.enterpriseRole}</p>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{t.enterpriseSummary}</p>
-              <div className="mt-6 space-y-2">{t.enterpriseEvidence.map(item => <p key={item} className="text-xs leading-relaxed text-muted-foreground">+ {item}</p>)}</div>
-            </article>
-            {["curatia-content-engine","olympus-os"].map(slug => {
-              const project = portfolioProjects.find(item => item.slug === slug)!;
-              const localizedProject = getLocalizedProjectContent(slug, language);
-              return <Link key={slug} to="/projects/$slug" params={{slug}} className="group flex flex-col border border-border bg-card p-6 transition-colors hover:border-primary/60">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-primary">{localizedProject?.eyebrow ?? project.eyebrow}</p>
-                <h3 className="mt-5 font-display text-3xl font-semibold group-hover:text-primary">{project.name}</h3>
-                <p className="mt-2 font-mono text-[9px] tracking-wider text-muted-foreground">{localizedProject?.role ?? project.role}</p>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{localizedProject?.summary ?? project.summary}</p>
-                <span className="mt-auto pt-8 inline-flex items-center gap-2 font-mono text-[9px] text-primary">{t.viewMore} <ArrowUpRight className="size-3"/></span>
-              </Link>;
+              );
             })}
           </div>
         </section>
 
-        <section id="articles" className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
-            <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(04) {t.articles}</p>
-              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.ideas}</h2>
-            </div>
-            <div className="flex flex-wrap gap-2"><Link to="/articles" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link><a href="https://www.linkedin.com/in/guilherme-da-silva-costa/recent-activity/all/" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Linkedin className="size-4" /> <span>{t.moreLinkedIn}</span></a></div>
+        <section id="articles" className="gallery-section" aria-labelledby="writing-title">
+          <div className="gallery-section-heading">
+            <h2 id="writing-title">{t.ideas}</h2>
+            <Link to="/articles" className="gallery-text-link">
+              {t.viewAll}
+              <ArrowUpRight className="size-4" aria-hidden="true" />
+            </Link>
           </div>
-
           <ArticlesFeed livePosts={linkedInPosts} />
         </section>
 
-        <section id="projects" className="border-t border-border/60 bg-secondary/20">
-          <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-          <div className="mb-8 flex flex-col items-start gap-6 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-5 sm:pb-4">
-            <div className="min-w-0">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">(05) {t.repositories}</p>
-              <h2 className="mt-4 max-w-full font-display text-[clamp(2.75rem,12vw,4rem)] font-semibold leading-[0.95] sm:text-4xl sm:leading-none">{t.githubLive}</h2>
-            </div>
-            <div className="flex flex-wrap gap-2"><Link to="/projects" className="inline-flex shrink-0 items-center gap-2 bg-primary px-4 py-3 font-mono text-[10px] text-primary-foreground transition-opacity hover:opacity-90">{t.viewAll} <ArrowUpRight className="size-3" /></Link><a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-2 border border-border px-4 py-3 font-mono text-[10px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> @GUILSC</a></div>
+        <section id="projects" className="gallery-section" aria-labelledby="repositories-title">
+          <div className="gallery-section-heading">
+            <h2 id="repositories-title">{t.githubLive}</h2>
+            <a
+              className="gallery-text-link"
+              href="https://github.com/Guilsc"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+              <ArrowUpRight className="size-4" aria-hidden="true" />
+            </a>
           </div>
           <RepositoriesCarousel projects={projects} />
-          </div>
         </section>
 
-        <section className="border-t border-border bg-secondary/30">
-          <div className="mx-auto max-w-4xl px-5 py-20 text-center md:px-8 md:py-28">
-            <a href="mailto:guilherme.silva.costa@hotmail.com" className="inline-block font-mono text-[10px] tracking-[0.4em] text-primary transition-opacity hover:opacity-70">CONTACT</a>
-            <h2 className="mt-6 font-display text-4xl font-bold leading-none md:text-6xl">{t.contactTitle}</h2>
-            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground">{t.contactText}</p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3"><a href="mailto:guilherme.silva.costa@hotmail.com" className="inline-flex items-center gap-2 bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent">CONTACT</a>
-              <a href="https://www.linkedin.com/in/guilherme-da-silva-costa/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-colors hover:bg-accent"><Linkedin className="size-4" /> LINKEDIN</a>
-              <a href="https://github.com/Guilsc" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border bg-card px-6 py-4 font-display text-sm font-bold transition-colors hover:border-primary hover:text-primary"><Github className="size-4" /> GITHUB</a>
-            </div>
+        <section className="gallery-closing" aria-labelledby="contact-title">
+          <div>
+            <h2 id="contact-title">{t.contactTitle}</h2>
+            <p>{t.contactText}</p>
+          </div>
+          <div className="gallery-closing-links">
+            <a href="mailto:guilherme.silva.costa@hotmail.com">
+              {language === "pt" ? "Enviar e-mail" : "Email me"}
+              <ArrowUpRight aria-hidden="true" className="size-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/guilherme-da-silva-costa/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+              <ArrowUpRight aria-hidden="true" className="size-5" />
+            </a>
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-border/40 px-5 py-8 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 font-mono text-[9px] tracking-widest text-muted-foreground sm:flex-row sm:justify-between">
-          <span>© 2026 GUILHERME DA SILVA COSTA</span><span>CURITIBA, BR</span>
-        </div>
+      <footer className="gallery-footer">
+        <span>© 2026 Guilherme da Silva Costa</span>
+        <span>Curitiba, Brasil</span>
       </footer>
     </div>
   );
@@ -212,6 +244,7 @@ function Portfolio() {
 const ITEMS_PER_PAGE = 3;
 
 function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
+  const { language } = useLanguage();
   const [page, setPage] = useState(0);
   const posts = [...livePosts].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
@@ -220,7 +253,9 @@ function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
   if (posts.length === 0) {
     return (
       <p className="border-y border-border py-8 text-sm text-muted-foreground">
-        No LinkedIn posts are available right now.
+        {language === "pt"
+          ? "Nenhuma publicação disponível no momento. Explore meus projetos ou visite o LinkedIn."
+          : "No posts are available right now. Explore my projects or visit LinkedIn."}
       </p>
     );
   }
@@ -233,7 +268,7 @@ function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
   return (
     <div>
       <div className="grid gap-4 md:grid-cols-3">
-        {visiblePosts.map((post, index) => (
+        {visiblePosts.map((post) => (
           <a
             key={post.url}
             href={post.url}
@@ -243,25 +278,21 @@ function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
           >
             <div>
               <div className="flex items-start justify-between gap-4">
-                <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">
-                  {String(startIndex + index + 1).padStart(2, "0")}
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                <span className="font-body text-xs uppercase tracking-widest text-muted-foreground">
                   {post.category || "LINKEDIN"}
                 </span>
               </div>
-              <p className="mt-8 font-mono text-[9px] uppercase tracking-wider text-primary">
-                {formatPublicationDate(post.publishedAt)}
+              <p className="mt-8 font-body text-xs uppercase tracking-wider text-primary">
+                {formatPublicationDate(post.publishedAt, language)}
               </p>
               <h3 className="mt-3 font-display text-2xl font-semibold leading-tight transition-colors group-hover:text-primary">
                 {post.title}
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {post.summary}
-              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{post.summary}</p>
             </div>
-            <span className="mt-8 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-primary">
-              OPEN ON LINKEDIN <ArrowUpRight className="size-3" />
+            <span className="mt-8 inline-flex items-center gap-2 font-body text-xs uppercase tracking-wider text-primary">
+              {language === "pt" ? "LER NO LINKEDIN" : "READ ON LINKEDIN"}{" "}
+              <ArrowUpRight className="size-3" />
             </span>
           </a>
         ))}
@@ -278,11 +309,11 @@ function ArticlesFeed({ livePosts }: { livePosts: LinkedInPost[] }) {
   );
 }
 
-function formatPublicationDate(value: string): string {
+function formatPublicationDate(value: string, language: "en" | "pt"): string {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "RECENT";
 
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat(language === "pt" ? "pt-BR" : "en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -295,35 +326,70 @@ function formatPublicationDate(value: string): string {
 type Repository = Awaited<ReturnType<typeof getGitHubProjects>>[number];
 
 function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
+  const { language } = useLanguage();
   const [page, setPage] = useState(0);
   const ownedProjects = projects.filter((project) => !project.fork);
   const pageCount = Math.max(1, Math.ceil(ownedProjects.length / ITEMS_PER_PAGE));
   const safePage = Math.min(page, pageCount - 1);
-  const visibleProjects = ownedProjects.slice(safePage * ITEMS_PER_PAGE, (safePage + 1) * ITEMS_PER_PAGE);
+  const visibleProjects = ownedProjects.slice(
+    safePage * ITEMS_PER_PAGE,
+    (safePage + 1) * ITEMS_PER_PAGE,
+  );
 
   if (ownedProjects.length === 0) {
-    return <p className="border border-border bg-card p-6 text-muted-foreground">No public repositories are available right now.</p>;
+    return (
+      <p className="border border-border bg-card p-6 text-muted-foreground">
+        {language === "pt"
+          ? "Nenhum repositório disponível no momento. Veja os trabalhos selecionados acima."
+          : "No repositories are available right now. Explore the selected work above."}
+      </p>
+    );
   }
 
   return (
     <div>
       <div className="grid gap-4 md:grid-cols-3">
-        {visibleProjects.map((project, index) => {
+        {visibleProjects.map((project) => {
           const internalSlug = getInternalProjectSlug(project.name);
           const localAppUrl = getLocalAppUrl(project.name);
-          const cardClassName = "group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60";
+          const cardClassName =
+            "group flex min-h-64 flex-col justify-between border border-border bg-card p-6 transition-colors hover:border-primary/60";
           const cardContent = (
             <>
               <div>
                 <div className="flex items-start justify-between gap-4">
-                  <span className="grid size-8 place-items-center rounded-full border border-border font-mono text-[10px] transition-colors group-hover:border-primary group-hover:text-primary">{String(safePage * ITEMS_PER_PAGE + index + 1).padStart(2, "0")}</span>
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">{project.fork ? "FORK" : "ORIGINAL"}</span>
+                  <span className="font-body text-xs uppercase tracking-widest text-muted-foreground">
+                    {project.fork ? (language === "pt" ? "ADAPTAÇÃO" : "FORK") : "ORIGINAL"}
+                  </span>
                 </div>
-                <h3 className="mt-8 break-words font-display text-2xl font-semibold">{project.name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description || "A public repository for experiments, learning, and building solutions."}</p>
+                <h3 className="mt-8 break-words font-display text-2xl font-semibold">
+                  {project.name}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {project.description ||
+                    (language === "pt"
+                      ? "Um repositório público para experimentos, aprendizado e construção de soluções."
+                      : "A public repository for experiments, learning, and building solutions.")}
+                </p>
               </div>
-              <div className="mt-8 flex items-center gap-3 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-                <span>{project.language || "GITHUB"}</span><span className="size-1 rounded-full bg-border" /><span>★ {project.stars}</span><span className="ml-auto inline-flex items-center gap-1 text-primary">{localAppUrl ? "OPEN APP" : internalSlug ? "VIEW PROJECT" : "VIEW REPO"} <ArrowUpRight className="size-3" /></span>
+              <div className="mt-8 flex items-center gap-3 font-body text-xs uppercase tracking-wider text-muted-foreground">
+                <span>{project.language || "GITHUB"}</span>
+                <span className="size-1 rounded-full bg-border" />
+                <span>★ {project.stars}</span>
+                <span className="ml-auto inline-flex items-center gap-1 text-primary">
+                  {localAppUrl
+                    ? language === "pt"
+                      ? "ABRIR APP"
+                      : "OPEN APP"
+                    : internalSlug
+                      ? language === "pt"
+                        ? "VER PROJETO"
+                        : "VIEW PROJECT"
+                      : language === "pt"
+                        ? "VER REPOSITÓRIO"
+                        : "VIEW REPO"}{" "}
+                  <ArrowUpRight className="size-3" />
+                </span>
               </div>
             </>
           );
@@ -333,41 +399,104 @@ function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
               {cardContent}
             </a>
           ) : internalSlug ? (
-            <Link key={project.id} to="/projects/$slug" params={{ slug: internalSlug }} className={cardClassName}>
+            <Link
+              key={project.id}
+              to="/projects/$slug"
+              params={{ slug: internalSlug }}
+              className={cardClassName}
+            >
               {cardContent}
             </Link>
           ) : (
-            <a key={project.id} href={project.htmlUrl} target="_blank" rel="noreferrer" className={cardClassName}>
+            <a
+              key={project.id}
+              href={project.htmlUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={cardClassName}
+            >
               {cardContent}
             </a>
           );
         })}
       </div>
-      {pageCount > 1 && <CarouselControls page={safePage} pageCount={pageCount} onChange={setPage} label="repositories" />}
+      {pageCount > 1 && (
+        <CarouselControls
+          page={safePage}
+          pageCount={pageCount}
+          onChange={setPage}
+          label="repositories"
+        />
+      )}
     </div>
   );
 }
 
-function CarouselControls({ page, pageCount, onChange, label }: { page: number; pageCount: number; onChange: (page: number) => void; label: string }) {
+function CarouselControls({
+  page,
+  pageCount,
+  onChange,
+  label,
+}: {
+  page: number;
+  pageCount: number;
+  onChange: (page: number) => void;
+  label: string;
+}) {
+  const { language } = useLanguage();
   return (
     <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-      <span className="font-mono text-[9px] tracking-widest text-muted-foreground">{String(page + 1).padStart(2, "0")} / {String(pageCount).padStart(2, "0")}</span>
+      <span className="font-body text-xs tracking-widest text-muted-foreground">
+        {String(page + 1).padStart(2, "0")} / {String(pageCount).padStart(2, "0")}
+      </span>
       <div className="flex gap-2">
-        <button type="button" onClick={() => onChange(Math.max(0, page - 1))} disabled={page === 0} aria-label={`Previous ${label}`} className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"><ArrowLeft className="size-4" /></button>
-        <button type="button" onClick={() => onChange(Math.min(pageCount - 1, page + 1))} disabled={page === pageCount - 1} aria-label={`Next ${label}`} className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"><ArrowRight className="size-4" /></button>
+        <button
+          type="button"
+          onClick={() => onChange(Math.max(0, page - 1))}
+          disabled={page === 0}
+          aria-label={language === "pt" ? "Página anterior" : `Previous ${label}`}
+          className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
+        >
+          <ArrowLeft className="size-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => onChange(Math.min(pageCount - 1, page + 1))}
+          disabled={page === pageCount - 1}
+          aria-label={language === "pt" ? "Próxima página" : `Next ${label}`}
+          className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
+        >
+          <ArrowRight className="size-4" />
+        </button>
       </div>
     </div>
   );
 }
 
 function PortfolioLoading() {
-  return <div className="grid min-h-screen place-items-center bg-background font-mono text-xs tracking-widest text-primary">LOADING PORTFOLIO…</div>;
+  return (
+    <div
+      className="portfolio-gallery grid min-h-screen place-items-center bg-background text-primary"
+      role="status"
+    >
+      Loading portfolio / Carregando portfólio…
+    </div>
+  );
 }
 
 function PortfolioError() {
-  return <div className="grid min-h-screen place-items-center bg-background px-6 text-center text-muted-foreground">The portfolio could not load right now. Please try again shortly.</div>;
+  return (
+    <div className="portfolio-gallery grid min-h-screen place-items-center bg-background px-6 text-center">
+      <div>
+        <h1 className="text-3xl">The portfolio could not load.</h1>
+        <p className="mt-4">Não foi possível carregar o portfólio.</p>
+        <a href="/" className="gallery-text-link mt-6">
+          Try again / Tentar novamente
+        </a>
+      </div>
+    </div>
+  );
 }
-
 
 function getLocalAppUrl(repositoryName: string) {
   const normalized = repositoryName.toLowerCase().replace(/[_\s]+/g, "-");

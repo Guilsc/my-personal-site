@@ -10,8 +10,14 @@ const output = resolve(root, "public", "ecosystem");
 rmSync(ecosystemRoot, { recursive: true, force: true });
 mkdirSync(tempRoot, { recursive: true });
 
-const run = (command, args, cwd = root, env = process.env) =>
-  execFileSync(command, args, { cwd, env, stdio: "inherit" });
+const run = (command, args, cwd = root, env = process.env) => {
+  // Windows cannot spawn npm's .cmd shim through execFileSync.
+  // npm run supplies the CLI path, so use Node directly without a shell.
+  const npmCli = process.env.npm_execpath;
+  return command === "npm" && npmCli
+    ? execFileSync(process.execPath, [npmCli, ...args], { cwd, env, stdio: "inherit" })
+    : execFileSync(command, args, { cwd, env, stdio: "inherit" });
+};
 
 run("git", ["clone", "--depth", "1", "https://github.com/Guilsc/bot-ecosystem.git", ecosystemRoot]);
 run("npm", ["ci", "--no-audit", "--no-fund"], ecosystemRoot);

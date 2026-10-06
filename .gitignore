@@ -30,3 +30,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated integration build and Impeccable scratch inputs
+.tmp/
+public/ecosystem/
+.impeccable/direction-*.txt
+.impeccable/gallery-brief.md

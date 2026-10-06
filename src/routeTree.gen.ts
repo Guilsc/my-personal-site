@@ -9,89 +9,116 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
-import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BaContentEngineRouteImport } from './routes/ba-content-engine'
-import { Route as ExpertiseRouteImport } from './routes/expertise'
 import { Route as ArticlesRouteImport } from './routes/articles'
-
-const ArticlesRoute = ArticlesRouteImport.update({
-  id: '/articles',
-  path: '/articles',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-const ExpertiseRoute = ExpertiseRouteImport.update({
-  id: '/expertise',
-  path: '/expertise',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-const BaContentEngineRoute = BaContentEngineRouteImport.update({
-  id: '/ba-content-engine',
-  path: '/ba-content-engine',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
-  id: '/projects/$slug',
-  path: '/projects/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-
-const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+import { Route as BaContentEngineRouteImport } from './routes/ba-content-engine'
+import { Route as CuratiaContentEngineRouteImport } from './routes/curatia-content-engine'
+import { Route as ExpertiseRouteImport } from './routes/expertise'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArticlesRoute = ArticlesRouteImport.update({
+  id: '/articles',
+  path: '/articles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaContentEngineRoute = BaContentEngineRouteImport.update({
+  id: '/ba-content-engine',
+  path: '/ba-content-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CuratiaContentEngineRoute = CuratiaContentEngineRouteImport.update({
+  id: '/curatia-content-engine',
+  path: '/curatia-content-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpertiseRoute = ExpertiseRouteImport.update({
+  id: '/expertise',
+  path: '/expertise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/projects/$slug',
+  path: '/projects/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
-  '/expertise': typeof ExpertiseRoute
   '/ba-content-engine': typeof BaContentEngineRoute
-  '/projects/': typeof ProjectsIndexRoute
+  '/curatia-content-engine': typeof CuratiaContentEngineRoute
+  '/expertise': typeof ExpertiseRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
-  '/expertise': typeof ExpertiseRoute
   '/ba-content-engine': typeof BaContentEngineRoute
-  '/projects': typeof ProjectsIndexRoute
+  '/curatia-content-engine': typeof CuratiaContentEngineRoute
+  '/expertise': typeof ExpertiseRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
-  '/expertise': typeof ExpertiseRoute
   '/ba-content-engine': typeof BaContentEngineRoute
-  '/projects/': typeof ProjectsIndexRoute
+  '/curatia-content-engine': typeof CuratiaContentEngineRoute
+  '/expertise': typeof ExpertiseRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/articles' | '/expertise' | '/ba-content-engine' | '/projects/' | '/projects/$slug'
+  fullPaths:
+    | '/'
+    | '/articles'
+    | '/ba-content-engine'
+    | '/curatia-content-engine'
+    | '/expertise'
+    | '/projects/$slug'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/articles' | '/expertise' | '/ba-content-engine' | '/projects' | '/projects/$slug'
-  id: '__root__' | '/' | '/articles' | '/expertise' | '/ba-content-engine' | '/projects/' | '/projects/$slug'
+  to:
+    | '/'
+    | '/articles'
+    | '/ba-content-engine'
+    | '/curatia-content-engine'
+    | '/expertise'
+    | '/projects/$slug'
+    | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/articles'
+    | '/ba-content-engine'
+    | '/curatia-content-engine'
+    | '/expertise'
+    | '/projects/$slug'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticlesRoute: typeof ArticlesRoute
-  ExpertiseRoute: typeof ExpertiseRoute
   BaContentEngineRoute: typeof BaContentEngineRoute
-  ProjectsIndexRoute: typeof ProjectsIndexRoute
+  CuratiaContentEngineRoute: typeof CuratiaContentEngineRoute
+  ExpertiseRoute: typeof ExpertiseRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -110,18 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArticlesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/expertise': {
-      id: '/expertise'
-      path: '/expertise'
-      fullPath: '/expertise'
-      preLoaderRoute: typeof ExpertiseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/ba-content-engine': {
       id: '/ba-content-engine'
       path: '/ba-content-engine'
       fullPath: '/ba-content-engine'
       preLoaderRoute: typeof BaContentEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/curatia-content-engine': {
+      id: '/curatia-content-engine'
+      path: '/curatia-content-engine'
+      fullPath: '/curatia-content-engine'
+      preLoaderRoute: typeof CuratiaContentEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expertise': {
+      id: '/expertise'
+      path: '/expertise'
+      fullPath: '/expertise'
+      preLoaderRoute: typeof ExpertiseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -144,10 +178,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticlesRoute: ArticlesRoute,
-  ExpertiseRoute: ExpertiseRoute,
   BaContentEngineRoute: BaContentEngineRoute,
-  ProjectsIndexRoute: ProjectsIndexRoute,
+  CuratiaContentEngineRoute: CuratiaContentEngineRoute,
+  ExpertiseRoute: ExpertiseRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
