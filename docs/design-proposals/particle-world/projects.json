@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Curatia",
+    "status": "Ativo",
+    "repo": "curatia-content-engine",
+    "summary": "Inteligência editorial, do sinal ao aprendizado.",
+    "problem": "Conectar descoberta, pesquisa, criação, aprovação e publicação em um fluxo editorial governado.",
+    "approach": "Ciclo explícito, dados persistentes separados da inteligência editorial e aprovação humana antes de publicar.",
+    "outcome": "Uma plataforma funcional com um modelo operacional definido.",
+    "next": "Expandir a criação multicanal e a orquestração de agentes preservando os limites de aprovação."
+  },
+  {
+    "name": "Bot Ecosystem",
+    "status": "Em construção",
+    "repo": "bot-ecosystem",
+    "summary": "Repositórios e agentes em um mundo explorável.",
+    "problem": "Tornar a atividade de repositórios e agentes mais compreensível que uma lista de arquivos, commits e logs.",
+    "approach": "Uma camada visual reutilizável, independente do Olympus OS, derivada do conceito Bot Crossing.",
+    "outcome": "Uma interface executável para explorar a atividade dos repositórios.",
+    "next": "Expandir os sinais dos repositórios e as visualizações da atividade dos agentes."
+  },
+  {
+    "name": "Olympus OS",
+    "status": "Em construção",
+    "repo": "olympus_OS",
+    "summary": "Equipes de agentes com responsabilidade e memória definidas.",
+    "problem": "Coordenar agentes persistentes sem concentrar responsabilidade, memória e execução em um único assistente.",
+    "approach": "Limites de autoridade, memória individual, conhecimento compartilhado e skills reutilizáveis.",
+    "outcome": "Um modelo operacional documentado para equipes de agentes.",
+    "next": "Validar orquestração, permissões e observabilidade conforme a implementação evolui."
+  }
+]

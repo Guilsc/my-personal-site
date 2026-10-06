@@ -1,0 +1,12 @@
+{
+  "type": "review screenshot",
+  "origin": "Local browser capture of original portfolio mockup at http://127.0.0.1:5180/",
+  "capturedAt": "2026-10-06T09:52:21.198247+00:00",
+  "imageWidth": 305,
+  "imageHeight": 844,
+  "anchor": "inicio",
+  "purpose": "Review evidence; not a production image asset",
+  "viewportNote": "Image clipped to viewport width minus scrollbar; requested widths 1440,390,320,581 are named in the review packet",
+  "format": "PNG",
+  "encodingNote": "Lossless PNG encoding of browser screenshot pixels; no visual alterations"
+}
