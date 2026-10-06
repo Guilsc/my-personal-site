@@ -1,20 +1,22 @@
----
-version: 1
-slug: "src-routes-index-tsx"
-primary_target: "src/routes/index.tsx"
-related_targets: ["src/routes/projects.index.tsx","src/routes/projects.$slug.tsx","src/routes/expertise.tsx","src/routes/articles.tsx"]
----
+# Surface brief — public portfolio version 2
 
-# Public portfolio gallery
-Mode: Persuade for home; Experience for projects; Read for writing and expertise.
-Scope: public portfolio routes only. Preserve existing real content, integrations, and bilingual behavior.
+MODE: Experience; professional opportunities remain the primary goal.
 
-## Direction contract
-THESIS: Real work leads. A gallery opening makes Curatia and its governed publishing lifecycle visible instead of oversized biographical claims or rows of generic cards.
-OWN-WORLD: Mineral white ground, cobalt fields, ink-tinted text; Hanken Grotesk for navigation and prose, Bodoni Moda for the exhibit title; full-width evidence rows, plain surfaces, native disclosures.
-STORY: Identify Guilherme, explore a specific project and evidence, then connect professionally.
-FIRST VIEWPORT: Small identity/navigation band, brief positioning and contact, then a cobalt Curatia exhibit spanning the container with large title, authentic lifecycle, real role, and project link. No fabricated screenshot. Signature interaction: explore five real Curatia stages and compare any two through native labeled selectors, without invented before/after or outcomes; evidence rows connect to case pages and native expandable expertise; restrained arrow movement with reduced-motion equivalent.
-FORM: Gallery of work, grounded candidate 4; seed 12d4fb5c, round 1; user selected it; code-first confirmed.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+## THESIS
+Make the connection between business, product, systems/QA and applied AI visible through an authored circuit/orbital composition, followed by authentic project evidence.
 
-User confirmed the interactive two-stage comparison for the overdrive step. It explains actual lifecycle boundaries and never simulates the internal tool.
+## OWN-WORLD
+User pinned four Impeccable references: 42d9852f2e6eb2d2 circuit drawing; 1fa79279fe619e6e cream/red type and trace; f14035dfc93a2832 circular event display; 3c980d70d359bada dark/mint topology. Use one coherent dark navy, mint and cream/copper system. Hanken Grotesk body, Chakra Petch display. No fake telemetry or operational status.
+
+## STORY
+Identity/contact, relationship between expertise areas, real Curatia lifecycle, other projects, professional biography, expertise, publications, repositories, contact.
+
+## FIRST VIEWPORT
+Readable professional identity and contact, decisive complexity-to-clarity headline, animated concentric nucleus connecting four actual expertise areas. At 1440 the projects introduction starts within the first view. Mobile stacks reading and diagram, retaining all navigation and controls.
+
+## FORM
+Direction seed: 1a34bf2b; assigned 3. User-pinned circuit/orbital reference composition takes precedence; code-first.
+Exact canvas geometry: concentric tracks, four circuit paths, slow segmented orbit, breathing central ring and gentle phase-shifted light points. Decorative only, as explicitly chosen by user. Pause/resume, reduced motion, visibility/intersection pause, no voice/chat/assistant API. Authentic process comparison retained below.
+
+## BUILD
+Code-first. Direction seed 1a34bf2b assigned 3; user-pinned references override the roll. Previous mineral/cobalt gallery preserved in commit 729ec05 on impeccable/portfolio-refinement. Version 2 on impeccable/jarvis-system. Never push/merge into main without explicit user approval. Internal Curatia excluded.

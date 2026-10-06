@@ -28,3 +28,6 @@ src/content/projects.ts, src/content/project-content.ts, src/content/expertise.t
 - Use real work and writing as evidence.
 - Make professional contact easy to find.
 - Preserve bilingual access and graceful content fallbacks.
+
+## Versioning and visual direction update
+User explicitly requires approval before any merge or push to main. Preserve versions in separate branches/commits. Current direction combines supplied circuit/orbital references and a decorative pulsing Jarvis-like nucleus. User chose visual animation only, no conversation with AI.

@@ -1,140 +1,252 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-06T07:50:12.116263+00:00",
-  "title": "Design System: Guilherme Costa — Galeria de trabalho",
+  "generatedAt": "2026-10-06T08:01:46.120959+00:00",
+  "title": "Design System: Guilherme Costa — Circuit / Orbital Portfolio",
   "extensions": {
     "colorMeta": {
       "primary": {
         "role": "primary",
         "displayName": "Primary",
         "tonalRamp": [
-          "oklch(0.15 0.19 267.0)",
-          "oklch(0.25 0.19 267.0)",
-          "oklch(0.35 0.19 267.0)",
-          "oklch(0.45 0.19 267.0)",
-          "oklch(0.55 0.19 267.0)",
-          "oklch(0.65 0.19 267.0)",
-          "oklch(0.8 0.19 267.0)",
-          "oklch(0.95 0.19 267.0)"
+          "oklch(0.15 0.07739 162.25)",
+          "oklch(0.25 0.07739 162.25)",
+          "oklch(0.35 0.07739 162.25)",
+          "oklch(0.45 0.07739 162.25)",
+          "oklch(0.55 0.07739 162.25)",
+          "oklch(0.65 0.07739 162.25)",
+          "oklch(0.8 0.07739 162.25)",
+          "oklch(0.95 0.07739 162.25)"
         ]
       },
       "primary-foreground": {
         "role": "primary",
         "displayName": "Primary Foreground",
         "tonalRamp": [
-          "oklch(0.15 0.004 90.0)",
-          "oklch(0.25 0.004 90.0)",
-          "oklch(0.35 0.004 90.0)",
-          "oklch(0.45 0.004 90.0)",
-          "oklch(0.55 0.004 90.0)",
-          "oklch(0.65 0.004 90.0)",
-          "oklch(0.8 0.004 90.0)",
-          "oklch(0.95 0.004 90.0)"
+          "oklch(0.15 0.02968 173.22)",
+          "oklch(0.25 0.02968 173.22)",
+          "oklch(0.35 0.02968 173.22)",
+          "oklch(0.45 0.02968 173.22)",
+          "oklch(0.55 0.02968 173.22)",
+          "oklch(0.65 0.02968 173.22)",
+          "oklch(0.8 0.02968 173.22)",
+          "oklch(0.95 0.02968 173.22)"
         ]
       },
       "background": {
         "role": "neutral",
         "displayName": "Background",
         "tonalRamp": [
-          "oklch(0.15 0.008 90.0)",
-          "oklch(0.25 0.008 90.0)",
-          "oklch(0.35 0.008 90.0)",
-          "oklch(0.45 0.008 90.0)",
-          "oklch(0.55 0.008 90.0)",
-          "oklch(0.65 0.008 90.0)",
-          "oklch(0.8 0.008 90.0)",
-          "oklch(0.95 0.008 90.0)"
+          "oklch(0.15 0.02636 244.69)",
+          "oklch(0.25 0.02636 244.69)",
+          "oklch(0.35 0.02636 244.69)",
+          "oklch(0.45 0.02636 244.69)",
+          "oklch(0.55 0.02636 244.69)",
+          "oklch(0.65 0.02636 244.69)",
+          "oklch(0.8 0.02636 244.69)",
+          "oklch(0.95 0.02636 244.69)"
         ]
       },
       "foreground": {
         "role": "neutral",
         "displayName": "Foreground",
         "tonalRamp": [
-          "oklch(0.15 0.025 260.0)",
-          "oklch(0.25 0.025 260.0)",
-          "oklch(0.35 0.025 260.0)",
-          "oklch(0.45 0.025 260.0)",
-          "oklch(0.55 0.025 260.0)",
-          "oklch(0.65 0.025 260.0)",
-          "oklch(0.8 0.025 260.0)",
-          "oklch(0.95 0.025 260.0)"
+          "oklch(0.15 0.00663 160.07)",
+          "oklch(0.25 0.00663 160.07)",
+          "oklch(0.35 0.00663 160.07)",
+          "oklch(0.45 0.00663 160.07)",
+          "oklch(0.55 0.00663 160.07)",
+          "oklch(0.65 0.00663 160.07)",
+          "oklch(0.8 0.00663 160.07)",
+          "oklch(0.95 0.00663 160.07)"
         ]
       },
       "card": {
         "role": "neutral",
         "displayName": "Card",
         "tonalRamp": [
-          "oklch(0.15 0.01 90.0)",
-          "oklch(0.25 0.01 90.0)",
-          "oklch(0.35 0.01 90.0)",
-          "oklch(0.45 0.01 90.0)",
-          "oklch(0.55 0.01 90.0)",
-          "oklch(0.65 0.01 90.0)",
-          "oklch(0.8 0.01 90.0)",
-          "oklch(0.95 0.01 90.0)"
+          "oklch(0.15 0.03233 240.58)",
+          "oklch(0.25 0.03233 240.58)",
+          "oklch(0.35 0.03233 240.58)",
+          "oklch(0.45 0.03233 240.58)",
+          "oklch(0.55 0.03233 240.58)",
+          "oklch(0.65 0.03233 240.58)",
+          "oklch(0.8 0.03233 240.58)",
+          "oklch(0.95 0.03233 240.58)"
         ]
       },
       "secondary": {
         "role": "neutral",
         "displayName": "Secondary",
         "tonalRamp": [
-          "oklch(0.15 0.012 90.0)",
-          "oklch(0.25 0.012 90.0)",
-          "oklch(0.35 0.012 90.0)",
-          "oklch(0.45 0.012 90.0)",
-          "oklch(0.55 0.012 90.0)",
-          "oklch(0.65 0.012 90.0)",
-          "oklch(0.8 0.012 90.0)",
-          "oklch(0.95 0.012 90.0)"
+          "oklch(0.15 0.03553 236.63)",
+          "oklch(0.25 0.03553 236.63)",
+          "oklch(0.35 0.03553 236.63)",
+          "oklch(0.45 0.03553 236.63)",
+          "oklch(0.55 0.03553 236.63)",
+          "oklch(0.65 0.03553 236.63)",
+          "oklch(0.8 0.03553 236.63)",
+          "oklch(0.95 0.03553 236.63)"
+        ]
+      },
+      "secondary-foreground": {
+        "role": "neutral",
+        "displayName": "Secondary Foreground",
+        "tonalRamp": [
+          "oklch(0.15 0.01191 170.25)",
+          "oklch(0.25 0.01191 170.25)",
+          "oklch(0.35 0.01191 170.25)",
+          "oklch(0.45 0.01191 170.25)",
+          "oklch(0.55 0.01191 170.25)",
+          "oklch(0.65 0.01191 170.25)",
+          "oklch(0.8 0.01191 170.25)",
+          "oklch(0.95 0.01191 170.25)"
         ]
       },
       "muted-foreground": {
         "role": "neutral",
         "displayName": "Muted Foreground",
         "tonalRamp": [
-          "oklch(0.15 0.025 260.0)",
-          "oklch(0.25 0.025 260.0)",
-          "oklch(0.35 0.025 260.0)",
-          "oklch(0.45 0.025 260.0)",
-          "oklch(0.55 0.025 260.0)",
-          "oklch(0.65 0.025 260.0)",
-          "oklch(0.8 0.025 260.0)",
-          "oklch(0.95 0.025 260.0)"
+          "oklch(0.15 0.02007 235.80)",
+          "oklch(0.25 0.02007 235.80)",
+          "oklch(0.35 0.02007 235.80)",
+          "oklch(0.45 0.02007 235.80)",
+          "oklch(0.55 0.02007 235.80)",
+          "oklch(0.65 0.02007 235.80)",
+          "oklch(0.8 0.02007 235.80)",
+          "oklch(0.95 0.02007 235.80)"
         ]
       },
       "accent": {
-        "role": "primary",
+        "role": "secondary",
         "displayName": "Accent",
         "tonalRamp": [
-          "oklch(0.15 0.17 267.0)",
-          "oklch(0.25 0.17 267.0)",
-          "oklch(0.35 0.17 267.0)",
-          "oklch(0.45 0.17 267.0)",
-          "oklch(0.55 0.17 267.0)",
-          "oklch(0.65 0.17 267.0)",
-          "oklch(0.8 0.17 267.0)",
-          "oklch(0.95 0.17 267.0)"
+          "oklch(0.15 0.08321 82.62)",
+          "oklch(0.25 0.08321 82.62)",
+          "oklch(0.35 0.08321 82.62)",
+          "oklch(0.45 0.08321 82.62)",
+          "oklch(0.55 0.08321 82.62)",
+          "oklch(0.65 0.08321 82.62)",
+          "oklch(0.8 0.08321 82.62)",
+          "oklch(0.95 0.08321 82.62)"
         ]
       },
       "border": {
         "role": "neutral",
         "displayName": "Border",
         "tonalRamp": [
-          "oklch(0.15 0.02 90.0)",
-          "oklch(0.25 0.02 90.0)",
-          "oklch(0.35 0.02 90.0)",
-          "oklch(0.45 0.02 90.0)",
-          "oklch(0.55 0.02 90.0)",
-          "oklch(0.65 0.02 90.0)",
-          "oklch(0.8 0.02 90.0)",
-          "oklch(0.95 0.02 90.0)"
+          "oklch(0.15 0.02756 234.25)",
+          "oklch(0.25 0.02756 234.25)",
+          "oklch(0.35 0.02756 234.25)",
+          "oklch(0.45 0.02756 234.25)",
+          "oklch(0.55 0.02756 234.25)",
+          "oklch(0.65 0.02756 234.25)",
+          "oklch(0.8 0.02756 234.25)",
+          "oklch(0.95 0.02756 234.25)"
+        ]
+      },
+      "exhibit-bg": {
+        "role": "neutral",
+        "displayName": "Exhibit Bg",
+        "tonalRamp": [
+          "oklch(0.15 0.01934 90.54)",
+          "oklch(0.25 0.01934 90.54)",
+          "oklch(0.35 0.01934 90.54)",
+          "oklch(0.45 0.01934 90.54)",
+          "oklch(0.55 0.01934 90.54)",
+          "oklch(0.65 0.01934 90.54)",
+          "oklch(0.8 0.01934 90.54)",
+          "oklch(0.95 0.01934 90.54)"
+        ]
+      },
+      "exhibit-text": {
+        "role": "neutral",
+        "displayName": "Exhibit Text",
+        "tonalRamp": [
+          "oklch(0.15 0.01395 188.93)",
+          "oklch(0.25 0.01395 188.93)",
+          "oklch(0.35 0.01395 188.93)",
+          "oklch(0.45 0.01395 188.93)",
+          "oklch(0.55 0.01395 188.93)",
+          "oklch(0.65 0.01395 188.93)",
+          "oklch(0.8 0.01395 188.93)",
+          "oklch(0.95 0.01395 188.93)"
+        ]
+      },
+      "copper": {
+        "role": "secondary",
+        "displayName": "Copper",
+        "tonalRamp": [
+          "oklch(0.15 0.13728 31.34)",
+          "oklch(0.25 0.13728 31.34)",
+          "oklch(0.35 0.13728 31.34)",
+          "oklch(0.45 0.13728 31.34)",
+          "oklch(0.55 0.13728 31.34)",
+          "oklch(0.65 0.13728 31.34)",
+          "oklch(0.8 0.13728 31.34)",
+          "oklch(0.95 0.13728 31.34)"
+        ]
+      },
+      "copper-foreground": {
+        "role": "secondary",
+        "displayName": "Copper Foreground",
+        "tonalRamp": [
+          "oklch(0.15 0.02084 79.10)",
+          "oklch(0.25 0.02084 79.10)",
+          "oklch(0.35 0.02084 79.10)",
+          "oklch(0.45 0.02084 79.10)",
+          "oklch(0.55 0.02084 79.10)",
+          "oklch(0.65 0.02084 79.10)",
+          "oklch(0.8 0.02084 79.10)",
+          "oklch(0.95 0.02084 79.10)"
+        ]
+      },
+      "field-bg": {
+        "role": "neutral",
+        "displayName": "Field Bg",
+        "tonalRamp": [
+          "oklch(0.15 0.01422 84.58)",
+          "oklch(0.25 0.01422 84.58)",
+          "oklch(0.35 0.01422 84.58)",
+          "oklch(0.45 0.01422 84.58)",
+          "oklch(0.55 0.01422 84.58)",
+          "oklch(0.65 0.01422 84.58)",
+          "oklch(0.8 0.01422 84.58)",
+          "oklch(0.95 0.01422 84.58)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Border",
+        "tonalRamp": [
+          "oklch(0.15 0.02158 140.47)",
+          "oklch(0.25 0.02158 140.47)",
+          "oklch(0.35 0.02158 140.47)",
+          "oklch(0.45 0.02158 140.47)",
+          "oklch(0.55 0.02158 140.47)",
+          "oklch(0.65 0.02158 140.47)",
+          "oklch(0.8 0.02158 140.47)",
+          "oklch(0.95 0.02158 140.47)"
+        ]
+      },
+      "exhibit-border": {
+        "role": "neutral",
+        "displayName": "Exhibit Border",
+        "tonalRamp": [
+          "oklch(0.15 0.01930 103.50)",
+          "oklch(0.25 0.01930 103.50)",
+          "oklch(0.35 0.01930 103.50)",
+          "oklch(0.45 0.01930 103.50)",
+          "oklch(0.55 0.01930 103.50)",
+          "oklch(0.65 0.01930 103.50)",
+          "oklch(0.8 0.01930 103.50)",
+          "oklch(0.95 0.01930 103.50)"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Featured exhibit title."
+        "purpose": "Professional introduction headline."
       },
       "headline": {
         "displayName": "Headline",
@@ -159,9 +271,18 @@
         "name": "evidence-arrow",
         "value": "transform 180ms ease-out",
         "purpose": "Three-pixel diagonal hover movement, disabled for reduced motion."
+      },
+      {
+        "name": "decorative-nucleus",
+        "value": "requestAnimationFrame; phase in seconds; orbit phase × 0.06; central radius modulation sin(phase × 0.8) × 3",
+        "purpose": "Decorative drawing only; static under reduced motion, stopped while paused, offscreen, or document hidden."
       }
     ],
     "breakpoints": [
+      {
+        "name": "introduction-compact",
+        "value": "900px"
+      },
       {
         "name": "gallery-mobile",
         "value": "640px"
@@ -181,9 +302,9 @@
       "name": "Feature link",
       "kind": "button",
       "refersTo": "button-feature",
-      "description": "Inverse action inside a cobalt exhibit.",
+      "description": "Copper action inside the cream Curatia exhibit.",
       "html": "<a class=\"ds-feature\" href=\"#\">Explore project</a>",
-      "css": ".ds-feature{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1rem;background:oklch(.985 .004 90);color:oklch(.43 .19 267);font-weight:600;text-decoration:none}.ds-feature:hover{background:oklch(.91 .02 90)}.ds-feature:focus-visible{outline:3px solid oklch(0.43 0.19 267);outline-offset:5px;}"
+      "css": ".ds-feature{font-family:\"Hanken Grotesk\",sans-serif;display:inline-flex;align-items:center;min-height:48px;padding:.75rem 1rem;background:#a33e2e;color:#fff6e8;font-weight:600;text-decoration:none}.ds-feature:hover{background:#843326}.ds-feature:focus-visible{outline:3px solid #a33e2e;outline-offset:5px;}"
     },
     {
       "name": "Selected filter",
@@ -191,7 +312,7 @@
       "refersTo": "button-filter-selected",
       "description": "Pressed catalog or writing filter.",
       "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All projects</button>",
-      "css": ".ds-filter{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;min-height:44px;padding:.5rem .75rem;border:0;border-radius:0;background:oklch(.43 .19 267);color:oklch(.985 .004 90);font-size:.75rem;letter-spacing:.05em;cursor:pointer}.ds-filter:hover{opacity:.9}.ds-filter:focus-visible{outline:3px solid oklch(0.43 0.19 267);outline-offset:5px;}"
+      "css": ".ds-filter{font-family:\"Hanken Grotesk\",sans-serif;min-height:44px;padding:.5rem .75rem;border:0;border-radius:0;background:#b0efcf;color:#10251f;font-size:.75rem;letter-spacing:.05em;cursor:pointer}.ds-filter:focus-visible{outline:3px solid #b0efcf;outline-offset:5px;}"
     },
     {
       "name": "Capability chip",
@@ -199,7 +320,7 @@
       "refersTo": "chip-capability",
       "description": "Noninteractive project capability metadata.",
       "html": "<span class=\"ds-chip\">CONTENT OPERATIONS</span>",
-      "css": ".ds-chip{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;display:inline-block;padding:.5rem .625rem;background:oklch(.92 .012 90);color:oklch(.24 .025 260);font-size:.75rem;letter-spacing:.05em}"
+      "css": ".ds-chip{font-family:\"Hanken Grotesk\",sans-serif;display:inline-block;padding:.5rem .625rem;background:#203542;color:#e1ebe7;font-size:.75rem;letter-spacing:.05em}"
     },
     {
       "name": "Evidence card",
@@ -207,7 +328,7 @@
       "refersTo": "card-evidence",
       "description": "Plain container for authentic case or publication evidence.",
       "html": "<article class=\"ds-card\"><h2>Project evidence</h2><p>A grounded account of the work.</p></article>",
-      "css": ".ds-card{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;background:oklch(.945 .01 90);color:oklch(.24 .025 260);border:1px solid oklch(.81 .02 90);padding:1.5rem}.ds-card h2{font-size:1.5rem;font-weight:600;letter-spacing:-.035em}.ds-card p{font-size:.875rem;line-height:1.625;color:oklch(.46 .025 260)}"
+      "css": ".ds-card{font-family:\"Hanken Grotesk\",sans-serif;background:#12232f;color:#edf2ef;border:1px solid #354650;padding:1.5rem}.ds-card h2{font-family:\"Chakra Petch\",sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.035em}.ds-card p{font-size:.875rem;line-height:1.625;color:#b0bec7}"
     },
     {
       "name": "Comparison select",
@@ -215,7 +336,7 @@
       "refersTo": "select-comparison",
       "description": "Native select within the stage comparison.",
       "html": "<div class=\"ds-field\"><label for=\"ds-stage\">First stage</label><select id=\"ds-stage\"><option>Discovery</option><option>Human approval</option></select></div>",
-      "css": ".ds-field{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;background:oklch(.43 .19 267);color:oklch(.985 .004 90);padding:1.25rem}.ds-field label{display:block;font-size:.75rem;margin-bottom:.5rem}.ds-field select{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;width:100%;min-height:44px;padding:.5rem;border-radius:0;background:oklch(.985 .004 90);color:oklch(.43 .19 267)}.ds-field select:focus-visible{outline:3px solid oklch(.985 .004 90);outline-offset:4px}"
+      "css": ".ds-field{font-family:\"Hanken Grotesk\",sans-serif;background:#f2eddf;color:#222c2b;padding:1.25rem}.ds-field label{display:block;font-size:.75rem;margin-bottom:.5rem}.ds-field select{font-family:\"Hanken Grotesk\",sans-serif;width:100%;min-height:44px;padding:.5rem;border-radius:0;background:#fffaf0;color:#222c2b;border:1px solid #747e72}.ds-field select:focus-visible{outline:3px solid #a33e2e;outline-offset:4px}"
     },
     {
       "name": "Navigation link",
@@ -223,46 +344,55 @@
       "refersTo": "nav-link",
       "description": "Visible wrapped navigation with an active underline.",
       "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Projects</a><a href=\"#\">Writing</a></nav>",
-      "css": ".ds-nav{font-family:\"Hanken Grotesk\",ui-sans-serif,sans-serif;display:flex;flex-wrap:wrap;gap:.25rem 2rem;border-block:1px solid oklch(.81 .02 90)}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:oklch(.24 .025 260);font-size:.75rem;font-weight:600;letter-spacing:.04em;text-decoration:none}.ds-nav a[aria-current]{color:oklch(.43 .19 267);box-shadow:inset 0 -2px oklch(.43 .19 267)}.ds-nav a:hover{color:oklch(.43 .19 267)}.ds-nav a:focus-visible{outline:3px solid oklch(0.43 0.19 267);outline-offset:5px;}"
+      "css": ".ds-nav{font-family:\"Hanken Grotesk\",sans-serif;display:flex;flex-wrap:wrap;gap:.25rem 2rem;border-block:1px solid #354650}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:#edf2ef;font-size:.75rem;font-weight:600;letter-spacing:.04em;text-decoration:none}.ds-nav a[aria-current]{color:#b0efcf;box-shadow:inset 0 -2px #b0efcf}.ds-nav a:hover{color:#b0efcf}.ds-nav a:focus-visible{outline:3px solid #b0efcf;outline-offset:5px;}"
+    },
+    {
+      "name": "System primary action",
+      "kind": "button",
+      "refersTo": "button-system-primary",
+      "description": "Mint action on the navy reading environment.",
+      "html": "<a class=\"ds-system-action\" href=\"#\">View projects</a>",
+      "css": ".ds-system-action{display:inline-flex;align-items:center;justify-content:space-between;min-height:48px;padding:.8rem 1rem;background:#b0efcf;color:#10251f;font-family:\"Hanken Grotesk\",sans-serif;font-weight:600;text-decoration:none}.ds-system-action:hover{background:#d2f8e4}.ds-system-action:focus-visible{outline:3px solid #b0efcf;outline-offset:5px}"
     }
   ],
   "narrative": {
-    "northStar": "Galeria de trabalho",
-    "overview": "The gallery presents actual work through clear hierarchy, broad evidence rows, and plain surfaces. Mineral white supports reading; cobalt fields give selected work a distinct exhibit presence. Hanken Grotesk carries navigation and prose, while Bodoni Moda gives the featured project its own display voice.\n\nThis system applies only to public portfolio surfaces inside the gallery scope. The internal Curatia application retains its existing theme. Bilingual content, an authentic portrait, and real project evidence remain integral to the public experience.",
+    "northStar": "Circuit / Orbital Portfolio",
+    "overview": "The circuit/orbital portfolio connects business, product, systems/QA, and applied AI through an authored dark navy environment. Mint identifies actions and selected states; warm cream and copper distinguish the Curatia evidence panel. Chakra Petch gives headings a technical character, while Hanken Grotesk supports sustained reading.\n\nThe decorative nucleus uses fixed expertise labels and animated concentric tracks. It is visual animation only, with no telemetry or assistant connection. The system applies to public portfolio surfaces; the internal Curatia application retains its existing theme. Authentic content, bilingual access, and the existing portrait remain integral.",
     "keyCharacteristics": [
-      "Mineral reading surfaces and cobalt exhibit fields.",
-      "Broad, divided evidence rows with square containers.",
-      "Clear contact, visible navigation, and native controls.",
-      "Restrained motion with reduced-motion behavior."
+      "Dark navy reading environment with mint actions.",
+      "Cream and copper evidence panel for Curatia.",
+      "Fixed expertise structure with restrained orbital motion.",
+      "Native controls, visible navigation, and readable evidence."
     ],
     "rules": [
       {
         "name": "The Scope Rule",
-        "body": "Apply the gallery palette and typography inside public portfolio surfaces; do not redefine the internal application theme.",
+        "body": "Apply this system to public portfolio surfaces; preserve the internal application theme.",
         "section": "colors"
       },
       {
-        "name": "The Exhibit Voice Rule",
-        "body": "Reserve Bodoni Moda for the featured exhibit title; use Hanken Grotesk for navigation, evidence, and reading.",
+        "name": "The Technical Voice Rule",
+        "body": "Use Chakra Petch for headings and Hanken Grotesk for navigation and reading.",
         "section": "typography"
       },
       {
         "name": "The Flat Surface Rule",
-        "body": "Use tonal separation and thin borders for depth; do not introduce decorative card shadows.",
+        "body": "Use tonal separation, drawn tracks, and thin borders for depth rather than decorative card shadows.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do preserve the public gallery scope when adding screens.",
-      "Do use cobalt for selected states and feature fields, with the matching light foreground.",
-      "Do retain native labeled selectors and meaningful disclosure controls.",
-      "Do keep functional metadata, readable text, and visible keyboard focus.",
-      "Do use authentic imagery and evidence with documented provenance."
+      "Do keep mint actions paired with their dark foreground.",
+      "Do preserve the cream/copper local palette within Curatia evidence.",
+      "Do keep decorative motion pausable and static under reduced motion.",
+      "Do retain native labeled selectors, meaningful metadata, and visible keyboard focus.",
+      "Do use authentic professional evidence and provenance-bearing imagery."
     ],
     "donts": [
-      "Don't import the old internal dark theme into public gallery surfaces.",
-      "Don't add decorative numbering or section kickers.",
-      "Don't invent project outcomes or use fabricated product imagery.",
+      "Don't connect the decorative nucleus to fake telemetry or assistant behavior.",
+      "Don't turn expertise labels into moving targets.",
+      "Don't apply public theme overrides to the internal Curatia tool.",
+      "Don't add decorative numbering, section kickers, or fabricated outcomes.",
       "Don't hide essential navigation on narrow screens."
     ]
   }

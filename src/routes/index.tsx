@@ -1,6 +1,7 @@
+import { SystemCore } from "../components/system-core";
 import { ProcessExplorer } from "../components/process-explorer";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, Star } from "lucide-react";
 import { useState } from "react";
 
 import { getGitHubProjects } from "../lib/github.functions";
@@ -51,22 +52,28 @@ function Portfolio() {
       <PortfolioHeader />
       <main id="main-content" tabIndex={-1}>
         <section className="gallery-opening" aria-labelledby="gallery-title">
-          <div className="gallery-introduction">
-            <h1 id="gallery-title">
-              {language === "pt" ? "O trabalho fala." : "The work speaks."}
-            </h1>
-            <div>
+          <div className="system-introduction">
+            <div className="system-introduction-copy">
+              <h1 id="gallery-title">
+                {language === "pt" ? <>Da complexidade<br /><span>à clareza.</span></> : <>From complexity<br /><span>to clarity.</span></>}
+              </h1>
               <p>{t.hero}</p>
-              <a
-                className="gallery-text-link"
-                href="https://www.linkedin.com/in/guilherme-da-silva-costa/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {language === "pt" ? "Vamos conversar" : "Let’s connect"}
-                <ArrowUpRight className="size-4" aria-hidden="true" />
-              </a>
+              <div className="system-actions">
+                <a className="system-primary-action" href="#selected-work">
+                  {language === "pt" ? "Explore meu trabalho" : "Explore my work"}
+                  <ArrowRight size={18} aria-hidden="true" />
+                </a>
+                <a className="gallery-text-link" href="mailto:guilherme.silva.costa@hotmail.com">
+                  {language === "pt" ? "Vamos conversar" : "Let’s connect"}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              </div>
             </div>
+            <SystemCore />
+          </div>
+          <div className="system-work-heading" id="selected-work">
+            <h2>{language === "pt" ? "Sistemas que construo." : "Systems I build."}</h2>
+            <Link to="/projects" className="gallery-text-link">{t.viewAll}<ArrowUpRight size={16} aria-hidden="true" /></Link>
           </div>
           <article className="gallery-feature">
             <div className="gallery-feature-heading">
@@ -375,7 +382,7 @@ function RepositoriesCarousel({ projects }: { projects: Repository[] }) {
               <div className="mt-8 flex items-center gap-3 font-body text-xs uppercase tracking-wider text-muted-foreground">
                 <span>{project.language || "GITHUB"}</span>
                 <span className="size-1 rounded-full bg-border" />
-                <span>★ {project.stars}</span>
+                <span className="inline-flex items-center gap-1"><Star className="size-3" aria-hidden="true" />{project.stars}</span>
                 <span className="ml-auto inline-flex items-center gap-1 text-primary">
                   {localAppUrl
                     ? language === "pt"
