@@ -3,6 +3,7 @@ import {
   Outlet,
   Link,
   createRootRouteWithContext,
+  useRouterState,
   useRouter,
   HeadContent,
   Scripts,
@@ -111,11 +112,28 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  // The polished portfolio bundle owns the public portfolio routes. Keep the
+  // two standalone applications on their existing route implementations.
+  const usesPortfolioV2 =
+    !pathname.startsWith("/ecosystem") &&
+    !pathname.startsWith("/curatia-content-engine") &&
+    !pathname.startsWith("/api");
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      {usesPortfolioV2 ? (
+        <main className="min-h-screen bg-[#180b24]">
+          <iframe
+            title="Guilherme Costa portfolio"
+            src={`/olympus-v2/index.html?route=${encodeURIComponent(pathname)}`}
+            className="h-screen w-full border-0"
+          />
+        </main>
+      ) : (
+        <Outlet />
+      )}
     </QueryClientProvider>
   );
 }
