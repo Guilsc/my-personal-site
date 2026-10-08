@@ -1,0 +1,8 @@
+{
+  "status": "awaiting-user-adjustments",
+  "userAdjustmentsComplete": false,
+  "documentationStatus": "provisional-draft",
+  "commitAllowed": false,
+  "mainChangeAllowed": false,
+  "instruction": "Documentation closeout and commit only after all user adjustments. Technical review is not user acceptance."
+}

@@ -1,0 +1,12 @@
+{
+  "commit": "88d854820032e962251264dd79180c9156a41b4a",
+  "files": [
+    "src/lib/i18n.tsx",
+    "src/content/projects.ts",
+    "src/content/expertise.ts",
+    "src/content/project-content.ts",
+    "src/lib/portfolio-content.ts"
+  ],
+  "publications": "public publications API snapshot, 2026-10-06",
+  "fullPublicationText": false
+}

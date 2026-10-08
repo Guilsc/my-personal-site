@@ -1,0 +1,4863 @@
+{
+  "source": "https://zoeyos.com/",
+  "retrieved": "2026-10-06",
+  "pages": [
+    {
+      "url": "https://zoeyos.com/",
+      "title": [
+        "Zoey OS — A whole world, working for you."
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "A whole world,working for you."
+        },
+        {
+          "level": "h2",
+          "text": "One Zoey.Every ability."
+        },
+        {
+          "level": "h4",
+          "text": "Your schedule"
+        },
+        {
+          "level": "h4",
+          "text": "Your inbox"
+        },
+        {
+          "level": "h4",
+          "text": "Your research"
+        },
+        {
+          "level": "h4",
+          "text": "Your home"
+        },
+        {
+          "level": "h4",
+          "text": "Your browser"
+        },
+        {
+          "level": "h4",
+          "text": "Your work"
+        },
+        {
+          "level": "h2",
+          "text": "Say it once."
+        },
+        {
+          "level": "h4",
+          "text": "You say it"
+        },
+        {
+          "level": "h4",
+          "text": "She handles it"
+        },
+        {
+          "level": "h4",
+          "text": "You live your life"
+        },
+        {
+          "level": "h2",
+          "text": "She acts across every tool."
+        },
+        {
+          "level": "h4",
+          "text": "Context that carries"
+        },
+        {
+          "level": "h4",
+          "text": "Real actions"
+        },
+        {
+          "level": "h4",
+          "text": "Her brain syncs with yours"
+        },
+        {
+          "level": "h2",
+          "text": "Connect your world."
+        },
+        {
+          "level": "h2",
+          "text": "See Zoey OS in motion."
+        },
+        {
+          "level": "h2",
+          "text": "Make her yours."
+        },
+        {
+          "level": "h4",
+          "text": "Her color"
+        },
+        {
+          "level": "h4",
+          "text": "Her voice"
+        },
+        {
+          "level": "h4",
+          "text": "Her personality"
+        },
+        {
+          "level": "h3",
+          "text": "The Next AI Divide Will Be Defined by Who Knows How to Lead It"
+        },
+        {
+          "level": "h2",
+          "text": "Ready to meet her?"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "active",
+        "align-center",
+        "align-start",
+        "btn-solid",
+        "coming-soon-badge",
+        "coming-soon-frame",
+        "coming-soon-text",
+        "comp-card",
+        "comp-card-custom",
+        "comp-card-inner",
+        "companion-grid",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "corner-glow",
+        "corner-glow-tl",
+        "corner-glow-tr",
+        "cta-final",
+        "cta-final-actions",
+        "cta-final-container",
+        "cta-final-note",
+        "cta-final-sub",
+        "demo-container",
+        "demo-frame",
+        "dispatch-cards",
+        "dl-btn-cta",
+        "dl-desktop-only",
+        "dl-geo",
+        "dl-geo-btn",
+        "dl-geo-eyebrow",
+        "dl-geo-form",
+        "dl-geo-input",
+        "dl-geo-lead",
+        "dl-geo-sronly",
+        "dl-geo-status",
+        "dl-geo-sub",
+        "dl-row",
+        "dock-caption",
+        "dock-icon",
+        "dock-wrap",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "hc-bubble",
+        "hc-hud",
+        "hc-orb-anchor",
+        "hc-say-hi",
+        "hc-status",
+        "hc-voice",
+        "hc-wave",
+        "hero",
+        "hero-actions",
+        "hero-bottom",
+        "hero-copy",
+        "hero-dl-check",
+        "hero-dl-email",
+        "hero-dl-email-row",
+        "hero-dl-mobile",
+        "hero-dl-prompt",
+        "hero-dl-send",
+        "hero-dl-status",
+        "hero-grid",
+        "hero-headline",
+        "hero-inner",
+        "hero-lead",
+        "hero-orb-space",
+        "hl-accent",
+        "hl-char",
+        "hl-line",
+        "integrations-dock",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-disclaimer",
+        "logo-glow",
+        "logo-tm",
+        "media-body",
+        "media-caption",
+        "media-chrome",
+        "media-dot",
+        "media-figure",
+        "media-frame",
+        "media-frame-glow",
+        "media-ph-icon",
+        "media-ph-label",
+        "media-placeholder",
+        "mi",
+        "mi-browser",
+        "mi-check",
+        "mi-check-path",
+        "mi-clock",
+        "mi-dot",
+        "mi-fan",
+        "mi-fan-d1",
+        "mi-fan-d2",
+        "mi-fan-d3",
+        "mi-fill",
+        "mi-fillbar",
+        "mi-hand",
+        "mi-house2",
+        "mi-mask",
+        "mi-search",
+        "mi-sheet-in",
+        "mi-stack",
+        "mi-svg",
+        "mi-sync",
+        "mi-sync-dot",
+        "mi-track",
+        "mi-typing",
+        "mi-wave3",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "press-body",
+        "press-byline",
+        "press-card",
+        "press-cta",
+        "press-eyebrow",
+        "press-logo",
+        "press-meta",
+        "press-quote",
+        "press-quote-mark",
+        "press-rail",
+        "press-section",
+        "press-title",
+        "r3f-unzoom",
+        "reveal",
+        "reveal-delay-1",
+        "reveal-delay-2",
+        "reveal-delay-3",
+        "scroll-content",
+        "scroll-hint",
+        "scroll-hint-line",
+        "section",
+        "section-demo",
+        "section-portals",
+        "section-statement",
+        "section-sub",
+        "section-tall",
+        "section-yours",
+        "size-lg",
+        "split",
+        "split-reverse",
+        "split-sub",
+        "split-text",
+        "split-title",
+        "split-top",
+        "split-visual",
+        "statement",
+        "statement-container",
+        "statement-scrub",
+        "text-accent",
+        "ticker-track",
+        "ticker-wrap",
+        "viz-card",
+        "viz-grid",
+        "xtra",
+        "yours-card",
+        "yours-container",
+        "yours-dot",
+        "yours-grid",
+        "yours-swatches",
+        "yours-wave"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/guide",
+      "title": [
+        "Guide — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Your world, explained."
+        },
+        {
+          "level": "h2",
+          "text": "World View"
+        },
+        {
+          "level": "h3",
+          "text": "Getting around"
+        },
+        {
+          "level": "h4",
+          "text": "One conversation, forever"
+        },
+        {
+          "level": "h4",
+          "text": "Watch her work"
+        },
+        {
+          "level": "h4",
+          "text": "See what’s happening"
+        },
+        {
+          "level": "h4",
+          "text": "Keyboard navigation"
+        },
+        {
+          "level": "h2",
+          "text": "The Brain"
+        },
+        {
+          "level": "h3",
+          "text": "How it works"
+        },
+        {
+          "level": "h4",
+          "text": "It fills itself"
+        },
+        {
+          "level": "h4",
+          "text": "Feed it directly"
+        },
+        {
+          "level": "h4",
+          "text": "Stay in control of it"
+        },
+        {
+          "level": "h2",
+          "text": "Abilities & the Marketplace"
+        },
+        {
+          "level": "h4",
+          "text": "Added, not installed"
+        },
+        {
+          "level": "h4",
+          "text": "Nothing is locked"
+        },
+        {
+          "level": "h4",
+          "text": "Your context makes them land"
+        },
+        {
+          "level": "h4",
+          "text": "More than abilities"
+        },
+        {
+          "level": "h2",
+          "text": "Integrations"
+        },
+        {
+          "level": "h3",
+          "text": "How to connect one"
+        },
+        {
+          "level": "h4",
+          "text": "Pick a platform"
+        },
+        {
+          "level": "h4",
+          "text": "Authorize the connection"
+        },
+        {
+          "level": "h4",
+          "text": "Zoey can use it"
+        },
+        {
+          "level": "h2",
+          "text": "Automations"
+        },
+        {
+          "level": "h4",
+          "text": "Automate a routine"
+        },
+        {
+          "level": "h4",
+          "text": "Runs across your tools"
+        },
+        {
+          "level": "h4",
+          "text": "You stay in control"
+        },
+        {
+          "level": "h2",
+          "text": "Ready to build your world?"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "active",
+        "align-center",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "dl-btn-cta",
+        "dl-geo",
+        "dl-geo-eyebrow",
+        "dl-geo-lead",
+        "dl-row",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "guide-body-section",
+        "guide-callout",
+        "guide-content",
+        "guide-cta",
+        "guide-cta-actions",
+        "guide-cta-sub",
+        "guide-feature",
+        "guide-features",
+        "guide-h3",
+        "guide-hero",
+        "guide-hero-section",
+        "guide-layout",
+        "guide-lead",
+        "guide-nav",
+        "guide-nav-link",
+        "guide-nav-list",
+        "guide-p",
+        "guide-section",
+        "guide-section-head",
+        "guide-step",
+        "guide-step-num",
+        "guide-steps",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "reveal",
+        "section",
+        "size-lg",
+        "text-accent"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/business",
+      "title": [
+        "Zoey OS for Business — AI-Powered Business Process Management"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Your team's AI.One platform."
+        },
+        {
+          "level": "h3",
+          "text": "Multi-seat tenancy"
+        },
+        {
+          "level": "h3",
+          "text": "Workflow automation"
+        },
+        {
+          "level": "h3",
+          "text": "Integration-first"
+        },
+        {
+          "level": "h3",
+          "text": "Security & compliance"
+        },
+        {
+          "level": "h3",
+          "text": "The Next AI Divide Will Be Defined by Who Knows How to Lead It"
+        },
+        {
+          "level": "h2",
+          "text": "Send us a note"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "active",
+        "biz-grid",
+        "biz-hero",
+        "biz-hero-cta",
+        "biz-lead",
+        "btn-primary",
+        "contact-form",
+        "contact-sub",
+        "contact-wrap",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "form-group",
+        "form-row",
+        "form-status",
+        "form-submit",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "opt",
+        "press-body",
+        "press-byline",
+        "press-card",
+        "press-cta",
+        "press-eyebrow",
+        "press-logo",
+        "press-meta",
+        "press-quote",
+        "press-quote-mark",
+        "press-rail",
+        "press-section",
+        "press-title",
+        "reveal",
+        "reveal-delay-1",
+        "reveal-delay-2",
+        "reveal-delay-3",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog",
+      "title": [
+        "Blog: Personal AI, Agents &amp; Automation | Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Blog"
+        },
+        {
+          "level": "h2",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "How to Talk to an AI Without Learning Prompt Engineering"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h3",
+          "text": "What Is a Personal AI? A Practical Definition"
+        },
+        {
+          "level": "h3",
+          "text": "AI on Your Computer vs. AI in a Cloud Sandbox"
+        },
+        {
+          "level": "h3",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h3",
+          "text": "Why Automations Fail Silently, and How to Fix It"
+        },
+        {
+          "level": "h3",
+          "text": "The Case for an AI That Remembers Every Conversation"
+        },
+        {
+          "level": "h3",
+          "text": "How to Delegate Your First Task to an AI"
+        },
+        {
+          "level": "h3",
+          "text": "What an AI Should Never Do Without You"
+        },
+        {
+          "level": "h3",
+          "text": "AI Agent vs. AI Assistant: The Difference That Actually Matters"
+        },
+        {
+          "level": "h3",
+          "text": "The Interface for AI Is a Place, Not a Text Box"
+        },
+        {
+          "level": "h3",
+          "text": "Voice Is Becoming the Default Way to Work With AI"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "blog-featured-section",
+        "blog-grid",
+        "blog-grid-section",
+        "blog-hero",
+        "blog-hero-sub",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "fa-date",
+        "fa-excerpt",
+        "fa-meta",
+        "fa-title",
+        "featured-article",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "reveal",
+        "reveal-delay-1",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-agent-vs-ai-assistant",
+        "https://zoeyos.com/blog/ai-on-your-computer-vs-cloud-sandbox",
+        "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/how-to-delegate-your-first-task-to-an-ai",
+        "https://zoeyos.com/blog/how-to-talk-to-ai",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/the-interface-for-ai-is-a-place",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/blog/voice-is-becoming-the-default-way-to-work-with-ai",
+        "https://zoeyos.com/blog/what-an-ai-should-never-do-without-you",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/blog/why-automations-fail-silently",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/contact",
+      "title": [
+        "Contact — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "We'd love to hear from you."
+        },
+        {
+          "level": "h3",
+          "text": "General"
+        },
+        {
+          "level": "h3",
+          "text": "Business"
+        },
+        {
+          "level": "h3",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "active",
+        "contact-card",
+        "contact-email",
+        "contact-grid",
+        "contact-lead",
+        "contact-link",
+        "contact-page",
+        "contact-social",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "reveal",
+        "reveal-delay-1",
+        "reveal-delay-2",
+        "reveal-delay-3",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/create-account",
+      "title": [
+        "Create your free account — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Start building your world."
+        },
+        {
+          "level": "h1",
+          "text": "Enter your code."
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "account-form",
+        "btn-primary",
+        "ca-container",
+        "ca-heading",
+        "ca-hint",
+        "ca-optional",
+        "ca-page",
+        "ca-sronly",
+        "ca-sub",
+        "check-group",
+        "check-label",
+        "check-label-marketing",
+        "checkout-submit",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "eye-off",
+        "eye-open",
+        "eye-toggle",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "form-group",
+        "form-status",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "password-wrapper",
+        "pw-checklist",
+        "req-icon",
+        "req-warning",
+        "section-label",
+        "text-accent",
+        "verify-card",
+        "verify-input",
+        "verify-resend",
+        "verify-submit"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/legal/terms",
+      "title": [
+        "Terms of Service — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Terms of Service"
+        },
+        {
+          "level": "h2",
+          "text": "Important Notice"
+        },
+        {
+          "level": "h2",
+          "text": "1. Who We Are"
+        },
+        {
+          "level": "h2",
+          "text": "2. Eligibility and Account Creation"
+        },
+        {
+          "level": "h3",
+          "text": "2.1 Minimum Age (18+)"
+        },
+        {
+          "level": "h3",
+          "text": "2.1a Geographic Availability"
+        },
+        {
+          "level": "h3",
+          "text": "2.2 Account Registration"
+        },
+        {
+          "level": "h3",
+          "text": "2.3 Account Security"
+        },
+        {
+          "level": "h2",
+          "text": "3. The Services"
+        },
+        {
+          "level": "h3",
+          "text": "3.1 Service Description"
+        },
+        {
+          "level": "h3",
+          "text": "3.2 AI-Generated Content Disclaimer"
+        },
+        {
+          "level": "h3",
+          "text": "3.3 AI Disclosure"
+        },
+        {
+          "level": "h3",
+          "text": "3.4 No-Training Commitment"
+        },
+        {
+          "level": "h3",
+          "text": "3.5 Service Availability"
+        },
+        {
+          "level": "h3",
+          "text": "3.6 Service Modifications"
+        },
+        {
+          "level": "h2",
+          "text": "4. Desktop Software License"
+        },
+        {
+          "level": "h3",
+          "text": "4.1 License Grant"
+        },
+        {
+          "level": "h3",
+          "text": "4.2 License Restrictions"
+        },
+        {
+          "level": "h3",
+          "text": "4.3 Device Limitations and Hardware Identification"
+        },
+        {
+          "level": "h3",
+          "text": "4.4 Software Updates"
+        },
+        {
+          "level": "h3",
+          "text": "4.5 Watermarking"
+        },
+        {
+          "level": "h3",
+          "text": "4.6 Subscription Validation"
+        },
+        {
+          "level": "h3",
+          "text": "4.7 Open-Source Components"
+        },
+        {
+          "level": "h2",
+          "text": "5. Your Content and Data"
+        },
+        {
+          "level": "h3",
+          "text": "5.1 Ownership"
+        },
+        {
+          "level": "h3",
+          "text": "5.2 License to Us"
+        },
+        {
+          "level": "h3",
+          "text": "5.3 Your Responsibilities"
+        },
+        {
+          "level": "h3",
+          "text": "5.4 Output Ownership"
+        },
+        {
+          "level": "h3",
+          "text": "5.5 Personalization Data"
+        },
+        {
+          "level": "h2",
+          "text": "6. Subscriptions and Payment"
+        },
+        {
+          "level": "h3",
+          "text": "6.1 How Paying Works"
+        },
+        {
+          "level": "h3",
+          "text": "6.2 Automatic Renewal"
+        },
+        {
+          "level": "h3",
+          "text": "6.3 Payment"
+        },
+        {
+          "level": "h3",
+          "text": "6.4 Cancellation"
+        },
+        {
+          "level": "h3",
+          "text": "6.5 Refund Policy"
+        },
+        {
+          "level": "h3",
+          "text": "6.6 Price Changes"
+        },
+        {
+          "level": "h3",
+          "text": "6.7 Taxes"
+        },
+        {
+          "level": "h3",
+          "text": "6.8 Failed Payments"
+        },
+        {
+          "level": "h3",
+          "text": "6.9 Credits"
+        },
+        {
+          "level": "h3",
+          "text": "6.10 Credit Purchases and Automatic Top-Up"
+        },
+        {
+          "level": "h3",
+          "text": "6.11 Companions and Enablements"
+        },
+        {
+          "level": "h2",
+          "text": "7. Third-Party Services and Integrations"
+        },
+        {
+          "level": "h3",
+          "text": "7.1 Third-Party Integrations"
+        },
+        {
+          "level": "h3",
+          "text": "7.2 Disclaimer"
+        },
+        {
+          "level": "h3",
+          "text": "7.3 Subprocessors"
+        },
+        {
+          "level": "h2",
+          "text": "8. Intellectual Property"
+        },
+        {
+          "level": "h3",
+          "text": "8.1 Our Ownership"
+        },
+        {
+          "level": "h3",
+          "text": "8.2 Feedback"
+        },
+        {
+          "level": "h3",
+          "text": "8.3 Copyright Complaints (DMCA and International)"
+        },
+        {
+          "level": "h2",
+          "text": "9. Termination"
+        },
+        {
+          "level": "h3",
+          "text": "9.1 Termination by You"
+        },
+        {
+          "level": "h3",
+          "text": "9.2 Termination by Us"
+        },
+        {
+          "level": "h3",
+          "text": "9.3 Effect of Termination"
+        },
+        {
+          "level": "h3",
+          "text": "9.4 Survival"
+        },
+        {
+          "level": "h2",
+          "text": "10. Disclaimers"
+        },
+        {
+          "level": "h2",
+          "text": "11. Limitation of Liability"
+        },
+        {
+          "level": "h3",
+          "text": "11.1 Exclusion of Consequential Damages"
+        },
+        {
+          "level": "h3",
+          "text": "11.2 Liability Cap"
+        },
+        {
+          "level": "h3",
+          "text": "11.3 Basis of the Bargain"
+        },
+        {
+          "level": "h3",
+          "text": "11.4 Exceptions"
+        },
+        {
+          "level": "h2",
+          "text": "12. Indemnification"
+        },
+        {
+          "level": "h2",
+          "text": "13. Dispute Resolution"
+        },
+        {
+          "level": "h3",
+          "text": "13.1 Informal Resolution"
+        },
+        {
+          "level": "h3",
+          "text": "13.2 Binding Arbitration (Where Permitted)"
+        },
+        {
+          "level": "h3",
+          "text": "13.3 Class Action Waiver (Where Permitted)"
+        },
+        {
+          "level": "h3",
+          "text": "13.4 Exceptions"
+        },
+        {
+          "level": "h3",
+          "text": "13.5 Opt-Out"
+        },
+        {
+          "level": "h3",
+          "text": "13.6 Governing Law and Venue"
+        },
+        {
+          "level": "h2",
+          "text": "14. Voice Services"
+        },
+        {
+          "level": "h3",
+          "text": "14.1 Voice Is Off by Default"
+        },
+        {
+          "level": "h3",
+          "text": "14.2 Voice Data Handling"
+        },
+        {
+          "level": "h2",
+          "text": "15. General Provisions"
+        },
+        {
+          "level": "h3",
+          "text": "15.1 Entire Agreement"
+        },
+        {
+          "level": "h3",
+          "text": "15.2 Modifications"
+        },
+        {
+          "level": "h3",
+          "text": "15.3 Severability"
+        },
+        {
+          "level": "h3",
+          "text": "15.4 Waiver"
+        },
+        {
+          "level": "h3",
+          "text": "15.5 Assignment"
+        },
+        {
+          "level": "h3",
+          "text": "15.6 Force Majeure"
+        },
+        {
+          "level": "h3",
+          "text": "15.7 Notices"
+        },
+        {
+          "level": "h3",
+          "text": "15.8 Relationship of the Parties"
+        },
+        {
+          "level": "h3",
+          "text": "15.9 No Third-Party Beneficiaries"
+        },
+        {
+          "level": "h3",
+          "text": "15.10 Export Compliance and Sanctions"
+        },
+        {
+          "level": "h2",
+          "text": "16. Contact"
+        },
+        {
+          "level": "h2",
+          "text": "17. Consumer-Specific & International Terms (Addenda)"
+        },
+        {
+          "level": "h3",
+          "text": "17.1 European Union, EEA & United Kingdom (Consumers)"
+        },
+        {
+          "level": "h3",
+          "text": "17.2 United Kingdom (Consumers)"
+        },
+        {
+          "level": "h3",
+          "text": "17.3 Australia (Consumers)"
+        },
+        {
+          "level": "h3",
+          "text": "17.4 Canada (Consumers)"
+        },
+        {
+          "level": "h3",
+          "text": "17.5 Other Jurisdictions"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "email",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "legal-container",
+        "legal-page",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/open-source",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/subprocessors",
+        "https://zoeyos.com/legal/terms",
+        "https://zoeyos.com/pricing"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/legal/privacy",
+      "title": [
+        "Privacy Policy — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Privacy Policy"
+        },
+        {
+          "level": "h2",
+          "text": "Plain-Language Summary"
+        },
+        {
+          "level": "h2",
+          "text": "1. Introduction"
+        },
+        {
+          "level": "h2",
+          "text": "2. Our Data Collection Tiers"
+        },
+        {
+          "level": "h3",
+          "text": "Tier 1: Operational Telemetry (Always-On, Service-Required)"
+        },
+        {
+          "level": "h3",
+          "text": "Tier 2: Aggregate Analytics — Not Currently Collected"
+        },
+        {
+          "level": "h3",
+          "text": "Tier 3: Account-Scoped Personalization (Default-On, Settings Toggle)"
+        },
+        {
+          "level": "h3",
+          "text": "Tier 4: Account-Scoped Adaptive Learning (Default-On, Settings Toggle)"
+        },
+        {
+          "level": "h3",
+          "text": "Tier 5: Training Data — We Do Not Train On Your Data"
+        },
+        {
+          "level": "h3",
+          "text": "Special Categories of Personal Data (Article 9 GDPR)"
+        },
+        {
+          "level": "h2",
+          "text": "3. Categories of Personal Data We Collect"
+        },
+        {
+          "level": "h3",
+          "text": "3.1 Account Information"
+        },
+        {
+          "level": "h3",
+          "text": "3.2 Conversation and Content Data"
+        },
+        {
+          "level": "h3",
+          "text": "3.3 Usage and Billing Metering"
+        },
+        {
+          "level": "h3",
+          "text": "3.4 Device and Technical Data"
+        },
+        {
+          "level": "h3",
+          "text": "3.5 Personalization Data"
+        },
+        {
+          "level": "h3",
+          "text": "3.6 Consent and Compliance Records"
+        },
+        {
+          "level": "h2",
+          "text": "4. How We Use Your Information"
+        },
+        {
+          "level": "h2",
+          "text": "5. What We Do Not Do"
+        },
+        {
+          "level": "h2",
+          "text": "6. How We Share Your Information"
+        },
+        {
+          "level": "h3",
+          "text": "6.1 Subprocessors (Required for Service Delivery)"
+        },
+        {
+          "level": "h3",
+          "text": "6.2 Legal Requirements"
+        },
+        {
+          "level": "h3",
+          "text": "6.3 Business Transfers"
+        },
+        {
+          "level": "h3",
+          "text": "6.4 With Your Consent"
+        },
+        {
+          "level": "h2",
+          "text": "7. Data Retention and Deletion"
+        },
+        {
+          "level": "h3",
+          "text": "7.1 Active Accounts"
+        },
+        {
+          "level": "h3",
+          "text": "7.2 Account Deletion"
+        },
+        {
+          "level": "h3",
+          "text": "7.3 Subscription Cancellation (Without Account Deletion)"
+        },
+        {
+          "level": "h2",
+          "text": "8. Your Rights"
+        },
+        {
+          "level": "h3",
+          "text": "8.1 Right to Access"
+        },
+        {
+          "level": "h3",
+          "text": "8.2 Right to Correction"
+        },
+        {
+          "level": "h3",
+          "text": "8.3 Right to Deletion"
+        },
+        {
+          "level": "h3",
+          "text": "8.4 Right to Portability"
+        },
+        {
+          "level": "h3",
+          "text": "8.5 Right to Restrict Processing"
+        },
+        {
+          "level": "h3",
+          "text": "8.6 Right to Withdraw Consent"
+        },
+        {
+          "level": "h3",
+          "text": "8.7 Right to Object"
+        },
+        {
+          "level": "h2",
+          "text": "9. Children’s Privacy"
+        },
+        {
+          "level": "h3",
+          "text": "9.1 Age Requirement (18+)"
+        },
+        {
+          "level": "h3",
+          "text": "9.2 Voice Data and Minors"
+        },
+        {
+          "level": "h3",
+          "text": "9.3 Discovery of Underage Users"
+        },
+        {
+          "level": "h2",
+          "text": "10. United States — State Privacy Rights (CCPA/CPRA and Similar)"
+        },
+        {
+          "level": "h3",
+          "text": "10.1 Right to Know / Access"
+        },
+        {
+          "level": "h3",
+          "text": "10.2 Right to Delete"
+        },
+        {
+          "level": "h3",
+          "text": "10.3 Right to Opt Out of Sale / Sharing"
+        },
+        {
+          "level": "h3",
+          "text": "10.4 Right to Correct"
+        },
+        {
+          "level": "h3",
+          "text": "10.5 Right to Non-Discrimination"
+        },
+        {
+          "level": "h3",
+          "text": "10.6 Sensitive Personal Information"
+        },
+        {
+          "level": "h3",
+          "text": "10.7 Authorized Agents"
+        },
+        {
+          "level": "h2",
+          "text": "11. European Union, EEA, United Kingdom & Switzerland (GDPR / UK GDPR / revFADP)"
+        },
+        {
+          "level": "h3",
+          "text": "11.1 Roles"
+        },
+        {
+          "level": "h3",
+          "text": "11.2 Legal Bases for Processing"
+        },
+        {
+          "level": "h3",
+          "text": "11.3 Your Rights Under GDPR / UK GDPR"
+        },
+        {
+          "level": "h3",
+          "text": "11.4 International Data Transfers"
+        },
+        {
+          "level": "h3",
+          "text": "11.5 Data Subject Requests"
+        },
+        {
+          "level": "h2",
+          "text": "12. Cookies and Tracking"
+        },
+        {
+          "level": "h3",
+          "text": "12.1 What We Use"
+        },
+        {
+          "level": "h3",
+          "text": "12.2 Essential Cookies (Web)"
+        },
+        {
+          "level": "h3",
+          "text": "12.3 Cookie Consent and Privacy Signals (Web)"
+        },
+        {
+          "level": "h3",
+          "text": "12.4 Analytics"
+        },
+        {
+          "level": "h2",
+          "text": "13. Data Security"
+        },
+        {
+          "level": "h3",
+          "text": "13.1 Technical Measures"
+        },
+        {
+          "level": "h3",
+          "text": "13.2 Organizational Measures"
+        },
+        {
+          "level": "h3",
+          "text": "13.3 Breach Notification"
+        },
+        {
+          "level": "h2",
+          "text": "14. Changes to This Privacy Policy"
+        },
+        {
+          "level": "h2",
+          "text": "15. Contact Us"
+        },
+        {
+          "level": "h2",
+          "text": "16. Additional Regional Privacy Rights (Addenda)"
+        },
+        {
+          "level": "h3",
+          "text": "16.1 Canada (PIPEDA & Quebec Law 25)"
+        },
+        {
+          "level": "h3",
+          "text": "16.2 Brazil (LGPD)"
+        },
+        {
+          "level": "h3",
+          "text": "16.3 Australia (Privacy Act & Australian Privacy Principles)"
+        },
+        {
+          "level": "h3",
+          "text": "16.4 United Kingdom"
+        },
+        {
+          "level": "h3",
+          "text": "16.5 Switzerland"
+        },
+        {
+          "level": "h3",
+          "text": "16.6 Other Jurisdictions"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "email",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "legal-container",
+        "legal-page",
+        "legal-table",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/dpa",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/subprocessors",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/legal/aup",
+      "title": [
+        "Acceptable Use Policy — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Acceptable Use Policy"
+        },
+        {
+          "level": "h2",
+          "text": "0. Eligibility and Lawful Use"
+        },
+        {
+          "level": "h2",
+          "text": "1. Prohibited Content"
+        },
+        {
+          "level": "h3",
+          "text": "1.1 Illegal Content"
+        },
+        {
+          "level": "h3",
+          "text": "1.2 Harmful Content"
+        },
+        {
+          "level": "h3",
+          "text": "1.3 Deceptive Content"
+        },
+        {
+          "level": "h3",
+          "text": "1.4 Infringing Content"
+        },
+        {
+          "level": "h2",
+          "text": "2. Prohibited Uses of the AI Services"
+        },
+        {
+          "level": "h3",
+          "text": "2.1 Harmful AI Applications"
+        },
+        {
+          "level": "h3",
+          "text": "2.2 AI Output Misuse"
+        },
+        {
+          "level": "h3",
+          "text": "2.3 System Abuse"
+        },
+        {
+          "level": "h2",
+          "text": "3. Prohibited Platform Uses"
+        },
+        {
+          "level": "h3",
+          "text": "3.1 Technical Abuse"
+        },
+        {
+          "level": "h3",
+          "text": "3.2 Commercial Abuse"
+        },
+        {
+          "level": "h3",
+          "text": "3.3 Data Abuse"
+        },
+        {
+          "level": "h3",
+          "text": "3.4 Export Controls, Sanctions & Geographic Restrictions"
+        },
+        {
+          "level": "h3",
+          "text": "3.5 Telecommunications & Messaging Abuse"
+        },
+        {
+          "level": "h2",
+          "text": "4. Reporting Violations"
+        },
+        {
+          "level": "h2",
+          "text": "5. Enforcement"
+        },
+        {
+          "level": "h3",
+          "text": "5.1 Investigation"
+        },
+        {
+          "level": "h3",
+          "text": "5.2 Actions We May Take"
+        },
+        {
+          "level": "h3",
+          "text": "5.3 Appeal Process"
+        },
+        {
+          "level": "h3",
+          "text": "5.4 Refund on Enforcement Action"
+        },
+        {
+          "level": "h2",
+          "text": "6. International / Local-Law Compliance"
+        },
+        {
+          "level": "h2",
+          "text": "7. Changes to This Policy"
+        },
+        {
+          "level": "h2",
+          "text": "8. Contact"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "email",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "legal-container",
+        "legal-page",
+        "legal-table",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/chat-with-your-documents",
+      "title": [
+        "Chat With Your Documents Is the Wrong Goal | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h2",
+          "text": "What is a “document transaction”?"
+        },
+        {
+          "level": "h2",
+          "text": "Why does re-uploading feel normal?"
+        },
+        {
+          "level": "h2",
+          "text": "What does a document relationship look like instead?"
+        },
+        {
+          "level": "h2",
+          "text": "What changes when your documents live with your AI?"
+        },
+        {
+          "level": "h2",
+          "text": "What should you demand from any product holding your files?"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h3",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h3",
+          "text": "The Case for an AI That Remembers Every Conversation"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-on-your-computer-vs-cloud-sandbox",
+        "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/how-to-talk-to-ai",
+      "title": [
+        "How to Talk to an AI Without Learning Prompt Engineering | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "How to Talk to an AI Without Learning Prompt Engineering"
+        },
+        {
+          "level": "h2",
+          "text": "Why does talking to an AI feel like a skill you never learned?"
+        },
+        {
+          "level": "h2",
+          "text": "What are these rituals actually working around?"
+        },
+        {
+          "level": "h2",
+          "text": "What actually matters when you talk to an AI?"
+        },
+        {
+          "level": "h2",
+          "text": "What stops mattering once an AI holds context?"
+        },
+        {
+          "level": "h2",
+          "text": "How do you tell if your prompt effort is doing real work?"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "How to Delegate Your First Task to an AI"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/how-to-delegate-your-first-task-to-an-ai",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/too-many-ai-tools",
+      "title": [
+        "You Shouldn&#39;t Need Twelve AI Tools to Get Through Your Day | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h2",
+          "text": "Why did everyone end up with an AI drawer?"
+        },
+        {
+          "level": "h2",
+          "text": "What does switching between AIs actually cost you?"
+        },
+        {
+          "level": "h2",
+          "text": "What happens when one AI holds all of it?"
+        },
+        {
+          "level": "h2",
+          "text": "Does one AI replace the specialized tools?"
+        },
+        {
+          "level": "h2",
+          "text": "How many AIs does one person actually need?"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h3",
+          "text": "The Case for an AI That Remembers Every Conversation"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/what-is-a-personal-ai",
+      "title": [
+        "What Is a Personal AI? A Practical Definition | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "What Is a Personal AI? A Practical Definition"
+        },
+        {
+          "level": "h2",
+          "text": "The definition"
+        },
+        {
+          "level": "h2",
+          "text": "Test one: does the conversation reset?"
+        },
+        {
+          "level": "h2",
+          "text": "Test two: can you see what it knows about you?"
+        },
+        {
+          "level": "h2",
+          "text": "Test three: does it execute, or only advise?"
+        },
+        {
+          "level": "h2",
+          "text": "Test four: do you manage one relationship or many?"
+        },
+        {
+          "level": "h2",
+          "text": "Why the definition matters now"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "AI on Your Computer vs. AI in a Cloud Sandbox"
+        },
+        {
+          "level": "h3",
+          "text": "AI Agent vs. AI Assistant: The Difference That Actually Matters"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-agent-vs-ai-assistant",
+        "https://zoeyos.com/blog/ai-on-your-computer-vs-cloud-sandbox",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/ai-on-your-computer-vs-cloud-sandbox",
+      "title": [
+        "AI on Your Computer vs. AI in a Cloud Sandbox | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "AI on Your Computer vs. AI in a Cloud Sandbox"
+        },
+        {
+          "level": "h2",
+          "text": "The three ways agents reach the web"
+        },
+        {
+          "level": "h2",
+          "text": "Why location decides capability"
+        },
+        {
+          "level": "h2",
+          "text": "Real access requires real controls"
+        },
+        {
+          "level": "h2",
+          "text": "The question to ask any vendor"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "What Is a Personal AI? A Practical Definition"
+        },
+        {
+          "level": "h3",
+          "text": "AI Agent vs. AI Assistant: The Difference That Actually Matters"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-agent-vs-ai-assistant",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/one-ai-many-workers",
+      "title": [
+        "You Should Not Have to Manage a Fleet of AI Agents | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h2",
+          "text": "Coordination is the hidden cost"
+        },
+        {
+          "level": "h2",
+          "text": "Delegation is the point, so delegate"
+        },
+        {
+          "level": "h2",
+          "text": "What workers are, and what they are not"
+        },
+        {
+          "level": "h2",
+          "text": "One relationship compounds; a roster fragments"
+        },
+        {
+          "level": "h2",
+          "text": "The evaluation question"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h3",
+          "text": "The Case for an AI That Remembers Every Conversation"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/why-automations-fail-silently",
+      "title": [
+        "Why Automations Fail Silently, and How to Fix It | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Why Automations Fail Silently, and How to Fix It"
+        },
+        {
+          "level": "h2",
+          "text": "Silence is the design flaw"
+        },
+        {
+          "level": "h2",
+          "text": "Why dashboards do not solve it"
+        },
+        {
+          "level": "h2",
+          "text": "Three properties of visible automation"
+        },
+        {
+          "level": "h2",
+          "text": "The ownership rule still applies"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "What an AI Should Never Do Without You"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "How to Talk to an AI Without Learning Prompt Engineering"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-on-your-computer-vs-cloud-sandbox",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/how-to-talk-to-ai",
+        "https://zoeyos.com/blog/what-an-ai-should-never-do-without-you",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+      "title": [
+        "The Case for an AI That Remembers Every Conversation | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "The Case for an AI That Remembers Every Conversation"
+        },
+        {
+          "level": "h2",
+          "text": "The button that resets the relationship"
+        },
+        {
+          "level": "h2",
+          "text": "Memory changes the economics"
+        },
+        {
+          "level": "h2",
+          "text": "Voice belongs to the same timeline"
+        },
+        {
+          "level": "h2",
+          "text": "Memory requires governance"
+        },
+        {
+          "level": "h2",
+          "text": "The tell to watch for"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h3",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/how-to-talk-to-ai",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/how-to-delegate-your-first-task-to-an-ai",
+      "title": [
+        "How to Delegate Your First Task to an AI | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "How to Delegate Your First Task to an AI"
+        },
+        {
+          "level": "h2",
+          "text": "Start with outcomes, not features"
+        },
+        {
+          "level": "h2",
+          "text": "Choose a task with three properties"
+        },
+        {
+          "level": "h2",
+          "text": "Brief it like a colleague"
+        },
+        {
+          "level": "h2",
+          "text": "Verify through receipts, not vibes"
+        },
+        {
+          "level": "h2",
+          "text": "Expand scope on evidence"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "How to Talk to an AI Without Learning Prompt Engineering"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/how-to-talk-to-ai",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/what-an-ai-should-never-do-without-you",
+      "title": [
+        "What an AI Should Never Do Without You | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "What an AI Should Never Do Without You"
+        },
+        {
+          "level": "h2",
+          "text": "Never touch credentials"
+        },
+        {
+          "level": "h2",
+          "text": "Never act irreversibly without a deliberate yes"
+        },
+        {
+          "level": "h2",
+          "text": "Never work invisibly"
+        },
+        {
+          "level": "h2",
+          "text": "Never resist being stopped"
+        },
+        {
+          "level": "h2",
+          "text": "Never hide what it knows about you"
+        },
+        {
+          "level": "h2",
+          "text": "Boundaries are what make delegation rational"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "Why Automations Fail Silently, and How to Fix It"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "How to Talk to an AI Without Learning Prompt Engineering"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/how-to-talk-to-ai",
+        "https://zoeyos.com/blog/why-automations-fail-silently",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/ai-agent-vs-ai-assistant",
+      "title": [
+        "AI Agent vs. AI Assistant: The Difference That Actually Matters | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "AI Agent vs. AI Assistant: The Difference That Actually Matters"
+        },
+        {
+          "level": "h2",
+          "text": "The clean definitions"
+        },
+        {
+          "level": "h2",
+          "text": "Why assistants hit a ceiling"
+        },
+        {
+          "level": "h2",
+          "text": "Why agents hit a trust wall"
+        },
+        {
+          "level": "h2",
+          "text": "The dichotomy dissolves with memory"
+        },
+        {
+          "level": "h2",
+          "text": "What to evaluate instead"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "What Is a Personal AI? A Practical Definition"
+        },
+        {
+          "level": "h3",
+          "text": "AI on Your Computer vs. AI in a Cloud Sandbox"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-on-your-computer-vs-cloud-sandbox",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/what-an-ai-should-never-do-without-you",
+        "https://zoeyos.com/blog/what-is-a-personal-ai",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/the-interface-for-ai-is-a-place",
+      "title": [
+        "The Interface for AI Is a Place, Not a Text Box | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "The Interface for AI Is a Place, Not a Text Box"
+        },
+        {
+          "level": "h2",
+          "text": "Text can report; it cannot show"
+        },
+        {
+          "level": "h2",
+          "text": "Work you can watch is work you can trust"
+        },
+        {
+          "level": "h2",
+          "text": "Memory deserves a place too"
+        },
+        {
+          "level": "h2",
+          "text": "Conversation stays at the center"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h3",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/ai-that-remembers-every-conversation",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/blog/voice-is-becoming-the-default-way-to-work-with-ai",
+      "title": [
+        "Voice Is Becoming the Default Way to Work With AI | Zoey OS Blog"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Voice Is Becoming the Default Way to Work With AI"
+        },
+        {
+          "level": "h2",
+          "text": "The economics of speaking"
+        },
+        {
+          "level": "h2",
+          "text": "What voice needed to become usable"
+        },
+        {
+          "level": "h2",
+          "text": "Voice plus visibility, not voice alone"
+        },
+        {
+          "level": "h2",
+          "text": "The professional shift"
+        },
+        {
+          "level": "h2",
+          "text": "FAQ"
+        },
+        {
+          "level": "h2",
+          "text": "Also see"
+        },
+        {
+          "level": "h3",
+          "text": "Chat With Your Documents Is the Wrong Goal"
+        },
+        {
+          "level": "h3",
+          "text": "You Shouldn't Need Twelve AI Tools to Get Through Your Day"
+        },
+        {
+          "level": "h3",
+          "text": "You Should Not Have to Manage a Fleet of AI Agents"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "ac-date",
+        "ac-excerpt",
+        "ac-meta",
+        "ac-title",
+        "active",
+        "article-card",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glass-card",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "na-also-see",
+        "na-also-see-grid",
+        "na-also-see-title",
+        "na-author",
+        "na-author-name",
+        "na-author-updated",
+        "na-body",
+        "na-body-container",
+        "na-date",
+        "na-dot",
+        "na-faq",
+        "na-faq-a",
+        "na-faq-item",
+        "na-faq-q",
+        "na-faq-title",
+        "na-hero",
+        "na-hero-inner",
+        "na-meta-row",
+        "na-read-time",
+        "na-title",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "news-article"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/blog/chat-with-your-documents",
+        "https://zoeyos.com/blog/one-ai-many-workers",
+        "https://zoeyos.com/blog/the-interface-for-ai-is-a-place",
+        "https://zoeyos.com/blog/too-many-ai-tools",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/download",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/legal/open-source",
+      "title": [
+        "Open-Source Notices — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Open-Source Notices"
+        },
+        {
+          "level": "h2",
+          "text": "Application Framework"
+        },
+        {
+          "level": "h2",
+          "text": "Rust Components (9)"
+        },
+        {
+          "level": "h2",
+          "text": "JavaScript and TypeScript Components (55)"
+        },
+        {
+          "level": "h2",
+          "text": "License Texts"
+        },
+        {
+          "level": "h3",
+          "text": "MIT License"
+        },
+        {
+          "level": "h3",
+          "text": "Apache License 2.0"
+        },
+        {
+          "level": "h3",
+          "text": "ISC License"
+        },
+        {
+          "level": "h3",
+          "text": "zlib License"
+        },
+        {
+          "level": "h3",
+          "text": "Mozilla Public License 2.0"
+        },
+        {
+          "level": "h2",
+          "text": "Requesting Full Notices"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "legal-container",
+        "legal-meta",
+        "legal-page",
+        "legal-table",
+        "legal-updated",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "oss-lic",
+        "oss-license-text",
+        "oss-pkg",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/pricing",
+      "title": [
+        "Redirecting to: /"
+      ],
+      "headings": [],
+      "components": [],
+      "internalLinks": [
+        "https://zoeyos.com/"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/legal/subprocessors",
+      "title": [
+        "Subprocessor List — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Subprocessor List"
+        },
+        {
+          "level": "h2",
+          "text": "Notification Policy"
+        },
+        {
+          "level": "h2",
+          "text": "Current Subprocessors"
+        },
+        {
+          "level": "h2",
+          "text": "Subprocessor Change History"
+        },
+        {
+          "level": "h2",
+          "text": "Questions"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "legal-container",
+        "legal-meta",
+        "legal-page",
+        "legal-table",
+        "legal-updated",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/dpa",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/legal/dpa",
+      "title": [
+        "Data Processing Addendum — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Data Processing Addendum"
+        },
+        {
+          "level": "h2",
+          "text": "1. Definitions"
+        },
+        {
+          "level": "h2",
+          "text": "2. Relationship of the Parties; Processing"
+        },
+        {
+          "level": "h3",
+          "text": "2.1 Roles"
+        },
+        {
+          "level": "h3",
+          "text": "2.2 Documented Instructions"
+        },
+        {
+          "level": "h3",
+          "text": "2.3 Purpose Limitation"
+        },
+        {
+          "level": "h3",
+          "text": "2.4 Completion of Services"
+        },
+        {
+          "level": "h2",
+          "text": "3. Sub-Processors"
+        },
+        {
+          "level": "h3",
+          "text": "3.1 Authorization"
+        },
+        {
+          "level": "h3",
+          "text": "3.2 Notice of New Sub-Processors"
+        },
+        {
+          "level": "h3",
+          "text": "3.3 Objection Right"
+        },
+        {
+          "level": "h3",
+          "text": "3.4 Sub-Processor Agreements"
+        },
+        {
+          "level": "h2",
+          "text": "4. Security"
+        },
+        {
+          "level": "h3",
+          "text": "4.1 Security Measures"
+        },
+        {
+          "level": "h3",
+          "text": "4.2 Personal Data Breach Notification"
+        },
+        {
+          "level": "h2",
+          "text": "5. Data Subject Rights"
+        },
+        {
+          "level": "h3",
+          "text": "5.1 Assistance"
+        },
+        {
+          "level": "h3",
+          "text": "5.2 Direct Requests"
+        },
+        {
+          "level": "h2",
+          "text": "6. Data Protection Impact Assessments"
+        },
+        {
+          "level": "h2",
+          "text": "7. Audits"
+        },
+        {
+          "level": "h3",
+          "text": "7.1 Compliance Demonstration"
+        },
+        {
+          "level": "h3",
+          "text": "7.2 Audit Rights"
+        },
+        {
+          "level": "h2",
+          "text": "8. Cross-Border Transfers"
+        },
+        {
+          "level": "h3",
+          "text": "8.1 Transfer Mechanisms"
+        },
+        {
+          "level": "h3",
+          "text": "8.2 Supplementary Measures"
+        },
+        {
+          "level": "h2",
+          "text": "9. CCPA Compliance"
+        },
+        {
+          "level": "h2",
+          "text": "10. Conflict and Precedence"
+        },
+        {
+          "level": "h2",
+          "text": "11. Term"
+        },
+        {
+          "level": "h2",
+          "text": "Exhibit A — Details of Processing"
+        },
+        {
+          "level": "h2",
+          "text": "Exhibit B — Authorized Sub-Processors"
+        },
+        {
+          "level": "h2",
+          "text": "Exhibit C — Technical and Organizational Security Measures"
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "legal-container",
+        "legal-meta",
+        "legal-page",
+        "legal-table",
+        "legal-updated",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "section"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/subprocessors",
+        "https://zoeyos.com/legal/terms"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/download",
+      "title": [
+        "Download — Zoey OS"
+      ],
+      "headings": [
+        {
+          "level": "h1",
+          "text": "Download Zoey OS."
+        },
+        {
+          "level": "h4",
+          "text": "Product"
+        },
+        {
+          "level": "h4",
+          "text": "Community"
+        },
+        {
+          "level": "h4",
+          "text": "Legal"
+        }
+      ],
+      "components": [
+        "align-center",
+        "container",
+        "cookie-actions",
+        "cookie-banner",
+        "cookie-btn",
+        "cookie-inner",
+        "cookie-text",
+        "dl-btn",
+        "dl-geo",
+        "dl-geo-btn",
+        "dl-geo-eyebrow",
+        "dl-geo-form",
+        "dl-geo-input",
+        "dl-geo-lead",
+        "dl-geo-sronly",
+        "dl-geo-status",
+        "dl-geo-sub",
+        "dl-ico-mac",
+        "dl-row",
+        "dl-white",
+        "download-buttons",
+        "download-container",
+        "download-heading",
+        "download-page",
+        "download-sub",
+        "footer",
+        "footer-bottom",
+        "footer-brand",
+        "footer-col",
+        "footer-col-product",
+        "footer-grid",
+        "footer-link-btn",
+        "footer-logo",
+        "footer-tagline",
+        "glyph-btn",
+        "glyph-btn-sm",
+        "glyph-edge",
+        "lb-close",
+        "lb-overlay",
+        "lb-stage",
+        "logo-glow",
+        "logo-tm",
+        "nav",
+        "nav-actions",
+        "nav-cta-arrow",
+        "nav-cta-btn",
+        "nav-cta-mobile",
+        "nav-hamburger",
+        "nav-inner",
+        "nav-logo",
+        "nav-mobile",
+        "nav-mobile-link",
+        "nav-pill",
+        "nav-tab",
+        "nav-tabs",
+        "nav-wordmark",
+        "size-lg",
+        "text-accent"
+      ],
+      "internalLinks": [
+        "https://zoeyos.com/",
+        "https://zoeyos.com/blog",
+        "https://zoeyos.com/business",
+        "https://zoeyos.com/contact",
+        "https://zoeyos.com/create-account",
+        "https://zoeyos.com/guide",
+        "https://zoeyos.com/legal/aup",
+        "https://zoeyos.com/legal/privacy",
+        "https://zoeyos.com/legal/terms"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://zoeyos.com/_astro/ArticleCard.DK7HDhrr.css",
+      "tokens": {},
+      "fonts": [
+        "var(--font-mono)"
+      ],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/BaseLayout.DZaP5FsQ.css",
+      "tokens": {},
+      "fonts": [
+        "Onest,sans-serif",
+        "inherit"
+      ],
+      "keyframes": [
+        "lb-fade",
+        "lb-pop"
+      ],
+      "breakpoints": [
+        "(width<=640px)",
+        "(width<=768px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/BaseLayout.astro_astro_type_script_index_0_lang.BsfYyB1w.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/BaseLayout.astro_astro_type_script_index_1_lang.B_Whu0sZ.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/CookieConsent.astro_astro_type_script_index_0_lang.Cyf1m8ra.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/CreateAccountForm.astro_astro_type_script_index_0_lang.CJ3jEyRi.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/DownloadButtons.Cy0hit5s.css",
+      "tokens": {},
+      "fonts": [
+        "Onest,sans-serif",
+        "var(--font-sans)"
+      ],
+      "keyframes": [],
+      "breakpoints": [
+        "(prefers-reduced-motion:reduce)",
+        "(width<=480px)",
+        "(width<=560px)",
+        "(width<=768px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/DownloadButtons.astro_astro_type_script_index_0_lang.UyZaJ8E0.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/HeroCompanions.astro_astro_type_script_index_0_lang.702l1J9t.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/Lightbox.astro_astro_type_script_index_0_lang.D9VizCye.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/Nav.astro_astro_type_script_index_0_lang.Df6JeKqw.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/PressFeature.BNe80KXx.css",
+      "tokens": {},
+      "fonts": [
+        "Onest,sans-serif"
+      ],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=640px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/_slug_.RnbQATlm.css",
+      "tokens": {},
+      "fonts": [
+        "var(--font-mono)"
+      ],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=640px)",
+        "(width<=900px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/aup.B8Y1W_d1.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/business.IGNdLyem.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=768px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/business.astro_astro_type_script_index_0_lang.Bw_vajhn.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/contact.astro_astro_type_script_index_0_lang.D5AIbmBe.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/contact.xKE6B4xD.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=768px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/create-account.68l3Us2r.css",
+      "tokens": {},
+      "fonts": [
+        "inherit",
+        "var(--font-mono,monospace)"
+      ],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=768px),(pointer:coarse)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/create-account.astro_astro_type_script_index_0_lang.Bj8UJuHa.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/create-account.astro_astro_type_script_index_1_lang.Bx2nRRui.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/download.KkYyQVjX.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/dpa.CxBj_nJF.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/global.BhaVjigI.css",
+      "tokens": {
+        "--bg": "#000",
+        "--logo-orange": "#ff6d00",
+        "--accent": "#ff8c42",
+        "--accent-pink": "#ff6b8a",
+        "--accent-gold": "#ffd166",
+        "--font-display": "\"Onest\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "--font-sans": "\"Onest\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+        "--font-mono": "\"JetBrains Mono\", \"Fira Code\", \"Cascadia Code\", \"Courier New\", monospace",
+        "--text-heading": "#ffffffeb",
+        "--text-body": "#ffffffb3",
+        "--text-secondary": "#ffffff73",
+        "--text-muted": "#ffffff40",
+        "--glass-bg": "linear-gradient(165deg, #ffffff1a 0%, #ffffff09 30%, #ffffff03 58%, #ffffff0d 100%), #10101661",
+        "--glass-bg-light": "#ffffff0a",
+        "--glass-border": "#ffffff1c",
+        "--glass-border-hover": "#ffffff2e",
+        "--glass-blur": "blur(22px) saturate(170%)",
+        "--glass-shadow": "inset 0 1px 0 #ffffff29, inset 0 -1px 0 #ffffff0a, 0 12px 34px #00000073",
+        "--selected-bg": "#ff8c421a",
+        "--selected-border": "#ff8c424d",
+        "--success": "#10b981",
+        "--error": "#ef4444",
+        "--tech-accent": "#00b4d8",
+        "--o": "#ff6d00",
+        "--o-bright": "#ff8c42",
+        "--o-deep": "#e85d00",
+        "--o-ember": "#ffb07a",
+        "--o-line": "#ff6d0047",
+        "--panel": "#0c0c0ff5",
+        "--panel-2": "#141419eb",
+        "--line": "#ffffff14",
+        "--line-2": "#ffffff26",
+        "--tx": "#fffffff0",
+        "--tx-2": "#ffffff9e",
+        "--tx-3": "#ffffff57",
+        "--fs-display": "clamp(3rem, 7vw, 4.75rem)",
+        "--fs-h1": "2.75rem",
+        "--fs-h2": "2rem",
+        "--fs-h3": "1.375rem",
+        "--fs-h4": "1.0625rem",
+        "--fs-body-lg": "1.0625rem",
+        "--fs-sm": ".8125rem",
+        "--fs-label": ".6875rem",
+        "--r-sm": "8px",
+        "--r-md": "12px",
+        "--r-lg": "16px",
+        "--r-pill": "999px",
+        "--ease-out": "cubic-bezier(.2, .9, .3, 1)",
+        "--ease-slide": "cubic-bezier(.65, 0, .35, 1)",
+        "--focus-ring": "0 0 0 3px #ff6d0059",
+        "--glow-sm": "0 0 14px #ff6d002e",
+        "--glyph-angle": "360deg"
+      },
+      "fonts": [
+        "Onest,sans-serif",
+        "inherit",
+        "var(--font-display)",
+        "var(--font-mono)",
+        "var(--font-sans)"
+      ],
+      "keyframes": [
+        "cta-energise",
+        "fade-in-up",
+        "float",
+        "glow-breathe",
+        "glyph-crackle",
+        "glyph-label",
+        "glyph-travel",
+        "grid-approach",
+        "warm-pulse"
+      ],
+      "breakpoints": [
+        "(prefers-reduced-motion:reduce)",
+        "(width<=768px)",
+        "(width>=769px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/guide.CWJRvSvP.css",
+      "tokens": {},
+      "fonts": [
+        "var(--font-display)",
+        "var(--font-mono)",
+        "var(--font-sans)"
+      ],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=430px)",
+        "(width<=768px)",
+        "(width<=900px)",
+        "(width>=901px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/guide.astro_astro_type_script_index_0_lang.DyjTHaz-.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/index.BjY4wBbE.css",
+      "tokens": {
+        "--hc-accent": "#ff8c42",
+        "--hc-go": "#12e86e",
+        "--orb-fill": "2.1",
+        "--amp": "0",
+        "--card-color": "var(--accent)"
+      },
+      "fonts": [
+        "Onest,sans-serif",
+        "inherit",
+        "var(--font-display)",
+        "var(--font-display,var(--font-sans))",
+        "var(--font-mono)",
+        "var(--font-sans)"
+      ],
+      "keyframes": [
+        "char-drop",
+        "corner-fade",
+        "dock-float",
+        "hc-bar-in",
+        "hc-in",
+        "hc-wave-breathe",
+        "mi-browse",
+        "mi-check-draw",
+        "mi-complete",
+        "mi-eye-scan",
+        "mi-fan-light",
+        "mi-mask-sway",
+        "mi-search-wander",
+        "mi-sheet-arrive",
+        "mi-soft-breathe",
+        "mi-sweep",
+        "mi-sync-travel",
+        "mi-think",
+        "particle-flow",
+        "portal-pulse",
+        "scroll-pulse",
+        "slide-from-left",
+        "slide-from-right",
+        "text-reveal",
+        "ticker-scroll",
+        "yours-wave"
+      ],
+      "breakpoints": [
+        "(prefers-reduced-motion:reduce)",
+        "(width<=640px)",
+        "(width<=768px)",
+        "(width<=860px)",
+        "(width<=900px)",
+        "(width>=769px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/index.Cyx45Mqn.css",
+      "tokens": {},
+      "fonts": [
+        "var(--font-mono)"
+      ],
+      "keyframes": [],
+      "breakpoints": [
+        "(width<=768px)",
+        "(width<=900px)"
+      ]
+    },
+    {
+      "url": "https://zoeyos.com/_astro/index.astro_astro_type_script_index_0_lang.Ca5y6M3g.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/index.astro_astro_type_script_index_0_lang.D5AIbmBe.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/index.astro_astro_type_script_index_1_lang.CY4K_1dJ.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/index.astro_astro_type_script_index_2_lang.DkT69TCP.js",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/open-source.Cw3iJP2h.css",
+      "tokens": {},
+      "fonts": [
+        "var(--font-mono)"
+      ],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/privacy.DSEpHZ-_.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/subprocessors.CA517Z4N.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    },
+    {
+      "url": "https://zoeyos.com/_astro/terms.BC7ychYj.css",
+      "tokens": {},
+      "fonts": [],
+      "keyframes": [],
+      "breakpoints": []
+    }
+  ],
+  "scope": "Public internal links discovered from the home page, maximum 80 pages; external destinations and downloads excluded."
+}

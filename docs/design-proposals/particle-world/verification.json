@@ -1,0 +1,17 @@
+{
+  "localAssetLinksMissing": [],
+  "publications": 6,
+  "browserChecks": [
+    "No horizontal overflow at 1440,390,320,581 px in primary mockup",
+    "No horizontal overflow at 320 px in editable content templates",
+    "Article filter returns 3 posts",
+    "Stage selection and equal-stage comparison warning update",
+    "Pause control updates aria-pressed",
+    "Challenge chooser changes text"
+  ],
+  "verificationLimits": [
+    "No physical-device or FPS benchmark",
+    "No full LinkedIn publication body in API",
+    "Mockup uses content snapshot and Portuguese navigation; production EN/PT is preserved for future implementation"
+  ]
+}

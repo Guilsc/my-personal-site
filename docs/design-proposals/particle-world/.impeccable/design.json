@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T09:56:39Z",
+  "title": "Design System: Guilherme Costa — Particle Brand Proposal",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Near Black",
+        "tonalRamp": [
+          "oklch(15.0% 0.0026 286.03)",
+          "oklch(26.4% 0.0026 286.03)",
+          "oklch(37.9% 0.0026 286.03)",
+          "oklch(49.3% 0.0026 286.03)",
+          "oklch(60.7% 0.0026 286.03)",
+          "oklch(72.1% 0.0026 286.03)",
+          "oklch(83.6% 0.0026 286.03)",
+          "oklch(95.0% 0.0026 286.03)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Charcoal Panel",
+        "tonalRamp": [
+          "oklch(15.0% 0.0040 286.02)",
+          "oklch(26.4% 0.0040 286.02)",
+          "oklch(37.9% 0.0040 286.02)",
+          "oklch(49.3% 0.0040 286.02)",
+          "oklch(60.7% 0.0040 286.02)",
+          "oklch(72.1% 0.0040 286.02)",
+          "oklch(83.6% 0.0040 286.02)",
+          "oklch(95.0% 0.0040 286.02)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "tonalRamp": [
+          "oklch(15.0% 0.0058 285.92)",
+          "oklch(26.4% 0.0058 285.92)",
+          "oklch(37.9% 0.0058 285.92)",
+          "oklch(49.3% 0.0058 285.92)",
+          "oklch(60.7% 0.0058 285.92)",
+          "oklch(72.1% 0.0058 285.92)",
+          "oklch(83.6% 0.0058 285.92)",
+          "oklch(95.0% 0.0058 285.92)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "tonalRamp": [
+          "oklch(15.0% 0.0074 80.72)",
+          "oklch(26.4% 0.0074 80.72)",
+          "oklch(37.9% 0.0074 80.72)",
+          "oklch(49.3% 0.0074 80.72)",
+          "oklch(60.7% 0.0074 80.72)",
+          "oklch(72.1% 0.0074 80.72)",
+          "oklch(83.6% 0.0074 80.72)",
+          "oklch(95.0% 0.0074 80.72)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Warm Ash",
+        "tonalRamp": [
+          "oklch(15.0% 0.0188 64.87)",
+          "oklch(26.4% 0.0188 64.87)",
+          "oklch(37.9% 0.0188 64.87)",
+          "oklch(49.3% 0.0188 64.87)",
+          "oklch(60.7% 0.0188 64.87)",
+          "oklch(72.1% 0.0188 64.87)",
+          "oklch(83.6% 0.0188 64.87)",
+          "oklch(95.0% 0.0188 64.87)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Construction Amber",
+        "tonalRamp": [
+          "oklch(15.0% 0.1603 56.82)",
+          "oklch(26.4% 0.1603 56.82)",
+          "oklch(37.9% 0.1603 56.82)",
+          "oklch(49.3% 0.1603 56.82)",
+          "oklch(60.7% 0.1603 56.82)",
+          "oklch(72.1% 0.1603 56.82)",
+          "oklch(83.6% 0.1603 56.82)",
+          "oklch(95.0% 0.1603 56.82)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "particle-rose": {
+        "role": "secondary",
+        "displayName": "Particle Rose",
+        "tonalRamp": [
+          "oklch(15.0% 0.2326 7.70)",
+          "oklch(26.4% 0.2326 7.70)",
+          "oklch(37.9% 0.2326 7.70)",
+          "oklch(49.3% 0.2326 7.70)",
+          "oklch(60.7% 0.2326 7.70)",
+          "oklch(72.1% 0.2326 7.70)",
+          "oklch(83.6% 0.2326 7.70)",
+          "oklch(95.0% 0.2326 7.70)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Warm Stroke",
+        "tonalRamp": [
+          "oklch(15.0% 0.0113 44.66)",
+          "oklch(26.4% 0.0113 44.66)",
+          "oklch(37.9% 0.0113 44.66)",
+          "oklch(49.3% 0.0113 44.66)",
+          "oklch(60.7% 0.0113 44.66)",
+          "oklch(72.1% 0.0113 44.66)",
+          "oklch(83.6% 0.0113 44.66)",
+          "oklch(95.0% 0.0113 44.66)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Pale Amber Focus",
+        "tonalRamp": [
+          "oklch(15.0% 0.0747 63.35)",
+          "oklch(26.4% 0.0747 63.35)",
+          "oklch(37.9% 0.0747 63.35)",
+          "oklch(49.3% 0.0747 63.35)",
+          "oklch(60.7% 0.0747 63.35)",
+          "oklch(72.1% 0.0747 63.35)",
+          "oklch(83.6% 0.0747 63.35)",
+          "oklch(95.0% 0.0747 63.35)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "button-ink": {
+        "role": "neutral",
+        "displayName": "Button Ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.0182 58.64)",
+          "oklch(26.4% 0.0182 58.64)",
+          "oklch(37.9% 0.0182 58.64)",
+          "oklch(49.3% 0.0182 58.64)",
+          "oklch(60.7% 0.0182 58.64)",
+          "oklch(72.1% 0.0182 58.64)",
+          "oklch(83.6% 0.0182 58.64)",
+          "oklch(95.0% 0.0182 58.64)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "action-hover": {
+        "role": "primary",
+        "displayName": "Warm Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.1244 60.82)",
+          "oklch(26.4% 0.1244 60.82)",
+          "oklch(37.9% 0.1244 60.82)",
+          "oklch(49.3% 0.1244 60.82)",
+          "oklch(60.7% 0.1244 60.82)",
+          "oklch(72.1% 0.1244 60.82)",
+          "oklch(83.6% 0.1244 60.82)",
+          "oklch(95.0% 0.1244 60.82)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "quiet-hover": {
+        "role": "neutral",
+        "displayName": "Quiet Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0219 57.69)",
+          "oklch(26.4% 0.0219 57.69)",
+          "oklch(37.9% 0.0219 57.69)",
+          "oklch(49.3% 0.0219 57.69)",
+          "oklch(60.7% 0.0219 57.69)",
+          "oklch(72.1% 0.0219 57.69)",
+          "oklch(83.6% 0.0219 57.69)",
+          "oklch(95.0% 0.0219 57.69)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "publication-hover": {
+        "role": "neutral",
+        "displayName": "Publication Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0089 43.07)",
+          "oklch(26.4% 0.0089 43.07)",
+          "oklch(37.9% 0.0089 43.07)",
+          "oklch(49.3% 0.0089 43.07)",
+          "oklch(60.7% 0.0089 43.07)",
+          "oklch(72.1% 0.0089 43.07)",
+          "oklch(83.6% 0.0089 43.07)",
+          "oklch(95.0% 0.0089 43.07)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "disabled-surface": {
+        "role": "neutral",
+        "displayName": "Disabled Surface",
+        "tonalRamp": [
+          "oklch(15.0% 0.0062 0.51)",
+          "oklch(26.4% 0.0062 0.51)",
+          "oklch(37.9% 0.0062 0.51)",
+          "oklch(49.3% 0.0062 0.51)",
+          "oklch(60.7% 0.0062 0.51)",
+          "oklch(72.1% 0.0062 0.51)",
+          "oklch(83.6% 0.0062 0.51)",
+          "oklch(95.0% 0.0062 0.51)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Three-line hero."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section introductions."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Panel and repository titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Evidence and reading copy, generally no wider than 68ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Category and supporting metadata."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "particle-orbit",
+        "value": "time * 0.11 radians; 1500 points",
+        "purpose": "Decorative original canvas; pauseable and static under reduced motion."
+      },
+      {
+        "name": "signal-pulse",
+        "value": "3.8s ease-in-out infinite",
+        "purpose": "Decorative capability dots; disabled under reduced motion."
+      },
+      {
+        "name": "publication-state",
+        "value": "180ms ease-out",
+        "purpose": "Publication border and background transitions; disabled under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "header-and-grid",
+        "value": "1100px"
+      },
+      {
+        "name": "mobile",
+        "value": "700px"
+      },
+      {
+        "name": "narrow",
+        "value": "360px"
+      }
+    ],
+    "focus": {
+      "interactive": "3px solid var(--focus); outline-offset:5px",
+      "editable": "3px solid var(--focus); outline-offset:8px",
+      "caret": "var(--accent)"
+    },
+    "scope": {
+      "status": "Standalone proposed world for review",
+      "authority": "User-pinned Zoey reference overrides assigned result 6; code-led seed f1aadb43.",
+      "production": "No production migration, no main changes, no replacement of repository DESIGN.md.",
+      "mobile": "Particle nucleus intentionally behind foreground copy.",
+      "verification": "Documentation extracts source; independent review found primary coherent with FIX closeout. Builder reports corrected template narrow capture and overflow check; this documenter did not operate a browser."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Amber action control; destination or behavior must be real.",
+      "html": "<button class=\"ds-primary\">Explorar meu trabalho</button>",
+      "css": ".ds-primary{font-family:'Hanken Grotesk',sans-serif;font-size:16px;font-weight:650;min-height:48px;padding:12px 20px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:var(--accent,#ff963d);color:#160e08;border:1px solid transparent}.ds-primary:hover{background:#ffb16d}.ds-primary:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet supporting action.",
+      "html": "<button class=\"ds-secondary\">Ver publicações</button>",
+      "css": ".ds-secondary{font-family:'Hanken Grotesk',sans-serif;font-size:16px;font-weight:650;min-height:48px;padding:12px 20px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:var(--surface,#141416);color:var(--text,#f5f2ed);border:1px solid var(--border,#3a3330)}.ds-secondary:hover{background:#30251d}.ds-secondary:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "name": "Disabled Control",
+      "kind": "button",
+      "refersTo": "button-disabled",
+      "description": "Explicitly unavailable sample.",
+      "html": "<button class=\"ds-disabled\" disabled>Indisponível</button>",
+      "css": ".ds-disabled{font-family:'Hanken Grotesk',sans-serif;font-size:16px;font-weight:650;min-height:48px;padding:12px 20px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:#292526;color:var(--muted,#c2b7ad);border:1px solid var(--border,#3a3330);cursor:not-allowed}"
+    },
+    {
+      "name": "Native Stage Select",
+      "kind": "input",
+      "refersTo": "select",
+      "description": "Native field used to compare process stages.",
+      "html": "<label class=\"ds-select-label\">Primeira etapa<select class=\"ds-select\"><option>Sinal</option><option>Pesquisa</option><option>Aprovação</option></select></label>",
+      "css": ".ds-select-label{font:15px/1.65 'Hanken Grotesk',sans-serif;color:var(--text,#f5f2ed)}.ds-select{display:block;width:100%;margin-top:8px;padding:12px;min-height:48px;font:inherit;color:var(--text,#f5f2ed);background:var(--background,#070708);border:1px solid var(--border,#3a3330);border-radius:10px}.ds-select:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "name": "Section Navigation",
+      "kind": "nav",
+      "description": "Persistent navigation's capsule and current location treatment; it wraps openly on mobile.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Seções\"><a href=\"#inicio\" aria-current=\"location\">Início</a><a href=\"#trabalho\">Trabalho</a><a href=\"#publicacoes\">Publicações</a></nav>",
+      "css": ".ds-nav{display:flex;gap:4px;padding:4px;border:1px solid var(--border,#3a3330);border-radius:30px;background:var(--surface,#141416);font:15px/1.65 'Hanken Grotesk',sans-serif}.ds-nav a{padding:8px 14px;min-height:44px;display:flex;align-items:center;color:var(--muted,#c2b7ad);border-radius:24px;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current]{color:var(--text,#f5f2ed);background:#30251d}.ds-nav a:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}@media(max-width:700px){.ds-nav{border:0;padding:0;background:transparent;gap:2px;flex-wrap:wrap;border-radius:0}.ds-nav a{font-size:13px;padding:6px 9px}}"
+    },
+    {
+      "name": "Pressed Filter",
+      "kind": "chip",
+      "description": "Selected filter, stage or challenge choice; interactive state is aria-pressed.",
+      "html": "<div class=\"ds-filters\"><button aria-pressed=\"true\">Todas</button><button aria-pressed=\"false\">LINKEDIN ARTICLE</button></div>",
+      "css": ".ds-filters{display:flex;flex-wrap:wrap;gap:10px}.ds-filters button{font-family:'Hanken Grotesk',sans-serif;font-size:16px;font-weight:650;min-height:48px;padding:12px 20px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:14px;cursor:pointer;font-size:13px;background:var(--surface,#141416);color:var(--text,#f5f2ed);border:1px solid var(--border,#3a3330)}.ds-filters button[aria-pressed=true]{background:var(--accent,#ff963d);color:#160e08;border-color:var(--accent,#ff963d)}.ds-filters button:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "name": "Publication Card",
+      "kind": "card",
+      "refersTo": "publication-card",
+      "description": "Source-backed category, title, summary, date and original reading destination.",
+      "html": "<a class=\"ds-post\" href=\"https://www.linkedin.com/feed/update/urn:li:share:7503383957867053057\" target=\"_blank\" rel=\"noopener\"><span class=\"ds-category\">COFFEE WITH A BA</span><h3>The requirements phase is over.</h3><p>Why Business Analysis works better as a continuous capability than as a phase completed before development.</p><footer><time datetime=\"2026-09-23\">2026-09-23</time><span>Ler no LinkedIn <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></span></footer></a>",
+      "css": ".ds-post{display:flex;flex-direction:column;gap:20px;min-height:330px;padding:32px;background:#141416f2;color:var(--text,#f5f2ed);border:1px solid var(--border,#3a3330);border-radius:16px;text-decoration:none;font-family:'Hanken Grotesk',sans-serif;transition:border-color 180ms ease-out,background 180ms ease-out}.ds-post:hover{border-color:var(--accent,#ff963d);background:#1d1816}.ds-post:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}.ds-category{font-size:13px;letter-spacing:.03em;color:var(--accent,#ff963d)}.ds-post h3{margin:0;font:700 clamp(1.5rem,2.5vw,2rem)/1.13 'Manrope',sans-serif;letter-spacing:-.03em}.ds-post p{font-size:17px;line-height:1.65;color:var(--muted,#c2b7ad);margin:0}.ds-post footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:auto;font-size:13px;color:var(--muted,#c2b7ad)}.ds-post footer span{display:flex;align-items:center;gap:8px}.ds-post svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}@media(max-width:700px){.ds-post{padding:28px;min-height:310px}}@media(prefers-reduced-motion:reduce){.ds-post{transition:none}}"
+    },
+    {
+      "name": "Project Evidence Panel",
+      "kind": "card",
+      "refersTo": "evidence-panel",
+      "description": "One of the right-hand problem, approach and result panels.",
+      "html": "<article class=\"ds-evidence\"><h4>A abordagem</h4><p>Ciclo editorial explícito, dados persistentes e aprovação antes da publicação.</p></article>",
+      "css": ".ds-evidence{padding:28px 32px;background:#141416ed;border-radius:16px;border:1px solid var(--border,#3a3330);color:var(--text,#f5f2ed)}.ds-evidence h4{margin:0;font:700 1.2rem/1.13 'Manrope',sans-serif;letter-spacing:-.03em}.ds-evidence p{margin:14px 0 0;color:var(--muted,#c2b7ad);font:17px/1.65 'Hanken Grotesk',sans-serif}"
+    },
+    {
+      "name": "Editable Editorial Title",
+      "kind": "input",
+      "description": "Native page-local editable text, with no storage or submission promise.",
+      "html": "<h2 class=\"ds-editable\" contenteditable=\"true\" aria-label=\"Título editável da capa de artigo\">Your project may have <span>Analysis Debt.</span></h2>",
+      "css": ".ds-editable{max-width:820px;margin:0;color:var(--text,#f5f2ed);font:750 clamp(2rem,5vw,4.5rem)/1.13 'Manrope',sans-serif;letter-spacing:-.03em;caret-color:var(--accent,#ff963d)}.ds-editable span{color:var(--accent,#ff963d)}.ds-editable:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:8px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Context, Decision, Construction",
+    "overview": "Context becomes decision, and decision becomes construction. This proposed world gives Guilherme's professional work a warm, deliberate voice: near-black space, clear light text, strong Manrope headings and a slowly moving amber-and-rose particle nucleus.\n\nThe nucleus supplies atmosphere while projects and writing supply evidence. Broad panels protect dense reading, and large editorial moments alternate with quieter repository rows. This is the original standalone portfolio and brand-toolkit draft for review; it records this package only and does not replace the production repository's DESIGN.md or authorize migration, publishing, push or merge to main.",
+    "keyCharacteristics": [
+      "Warm action color against near-black surfaces.",
+      "Locally served Manrope and Hanken Grotesk.",
+      "Broad responsive panels and editorial publication hierarchy.",
+      "An authored decorative nucleus with pause and reduced motion.",
+      "Real project evidence, publication summaries and explicit contact destinations."
+    ],
+    "rules": [
+      {
+        "name": "The Evidence Rule",
+        "body": "Atmosphere may attract attention; real work and source-backed writing carry the professional claim.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Rule",
+        "body": "Particle overlap is intentional on mobile; panels and text contrast must preserve readable foreground content.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Destination Rule",
+        "body": "A contact link identifies its real destination; the draft has no message-submission backend.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do keep actions amber and long reading text on protective dark surfaces.",
+      "Do preserve the real portrait, project facts, publication dates, summaries and original URLs.",
+      "Do retain pause, reduced motion, visible focus, themed caret and narrow-title rules.",
+      "Do keep project narrative before its evidence when columns stack.",
+      "Do treat this package as a review proposal and preserve EN/PT and live-content fallbacks in a separately authorized implementation."
+    ],
+    "donts": [
+      "Don't represent particles or pulsing dots as an assistant, voice interface or live status.",
+      "Don't fabricate results, metrics, testimonials, credentials, availability or full article text.",
+      "Don't import Zoey branding, imagery, policies or animation code.",
+      "Don't add a contact form, login or commercial action without implemented behavior.",
+      "Don't treat source review, supplied screenshots or this document as production readiness or user brand approval."
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "antipattern": "pulsing-dot",
+    "name": "Pulsing status dot",
+    "description": "Small pulsing status dots simulate liveness decoratively. Reserve pulse animation for indicators tied to genuinely live, changing data; a static indicator with clear labeling is honest and calmer.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\codex-gpt\\Projectless\\2026-10-06\\ins\\outputs\\particle-brand\\index.html",
+    "line": 0,
+    "snippet": ".signal — 10x10px dot with infinite \"pulse\" animation"
+  }
+]

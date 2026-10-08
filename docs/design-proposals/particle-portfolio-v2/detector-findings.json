@@ -1,0 +1,19 @@
+{
+  "runOnce": true,
+  "command": "impeccable detect --json --target index.html --target portfolio.css --target portfolio.js",
+  "exitCode": 1,
+  "warnings": [
+    {
+      "rule": "low-contrast",
+      "snippet": ":hover state 1.0:1 (need 4.5:1) — text #ff963d on #ff963d",
+      "assessment": "Likely static cascade false positive: .button:hover explicitly sets color #160e08; verify rendered source/cascade at review."
+    },
+    {
+      "rule": "pulsing-dot",
+      "snippet": ".signal — 7x7px dot with infinite signal-pulse animation",
+      "assessment": "User-pinned decorative pulse in About paragraphs; no live-state claim. Removed pulse class from static project status indicators after scan."
+    }
+  ],
+  "advisories": "Responsive font-size endpoints and 14–30px component sizes outside the inherited DESIGN.md typography declarations. Preserve visual world and report page-level sizing at documentation handoff.",
+  "secondScan": false
+}

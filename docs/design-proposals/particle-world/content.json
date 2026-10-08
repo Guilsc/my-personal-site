@@ -1,0 +1,49 @@
+{
+  "retrieved": "2026-10-06",
+  "source": "live public publications API",
+  "fullTextAvailable": false,
+  "posts": [
+    {
+      "category": "COFFEE WITH A BA",
+      "title": "The requirements phase is over.",
+      "summary": "Why Business Analysis works better as a continuous capability than as a phase completed before development.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7503383957867053057",
+      "publishedAt": "2026-09-23T14:45:21+00:00"
+    },
+    {
+      "category": "COFFEE WITH A BA",
+      "title": "Your project may have Analysis Debt.",
+      "summary": "How lost assumptions, decisions, and context make systems harder to understand and evolve.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7503381887449587712",
+      "publishedAt": "2026-09-16T14:45:05+00:00"
+    },
+    {
+      "category": "COFFEE WITH A BA",
+      "title": "AI can increasingly do the work. So who decides what it is allowed to do?",
+      "summary": "How AI autonomy, human approval, guardrails, and exception handling are becoming core Business Analysis concerns.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7503377080550797312",
+      "publishedAt": "2026-09-09T14:45:15+00:00"
+    },
+    {
+      "category": "LINKEDIN ARTICLE",
+      "title": "Prompt Engineering for Business Analysts: 10 Frameworks That Deliver Real Impact",
+      "summary": "A practical BA prompting playbook with 10 frameworks for clearer analysis, documentation, and stakeholder communication.",
+      "url": "https://www.linkedin.com/pulse/prompt-engineering-business-analysts-10-frameworks-da-silva-costa-6tgmf",
+      "publishedAt": "2025-09-04T12:00:00+00:00"
+    },
+    {
+      "category": "LINKEDIN ARTICLE",
+      "title": "Maximizing Agile Synergy: Leveraging the Tuckman Model in User Story Development",
+      "summary": "How the Tuckman stages can inform user-story development, collaboration, and team effectiveness in Agile delivery.",
+      "url": "https://www.linkedin.com/pulse/maximizing-agile-synergy-leveraging-tuckman-model-da-silva-costa-aesle",
+      "publishedAt": "2023-11-21T12:00:00+00:00"
+    },
+    {
+      "category": "LINKEDIN ARTICLE",
+      "title": "Hypothesis Driven Development the Science Among Us",
+      "summary": "An exploration of hypothesis-driven development and how scientific thinking can support Business Analysis and data modeling.",
+      "url": "https://www.linkedin.com/pulse/hypothesis-driven-development-science-among-us-da-silva-costa",
+      "publishedAt": "2020-05-10T12:00:00+00:00"
+    }
+  ]
+}
