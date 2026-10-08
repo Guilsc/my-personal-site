@@ -112,7 +112,9 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const location = useRouterState({ select: (state) => state.location });
+  const pathname = location.pathname;
+  const routeQuery = location.searchStr ? `&${location.searchStr.replace(/^\?/, "")}` : "";
 
   // The polished portfolio bundle owns the public portfolio routes. Keep the
   // two standalone applications on their existing route implementations.
@@ -127,7 +129,7 @@ function RootComponent() {
         <main className="min-h-screen bg-[#180b24]">
           <iframe
             title="Guilherme Costa portfolio"
-            src={`/olympus-v2/index.html?route=${encodeURIComponent(pathname)}`}
+            src={`/olympus-v2/index.html?route=${encodeURIComponent(pathname)}${routeQuery}`}
             className="h-screen w-full border-0"
           />
         </main>
