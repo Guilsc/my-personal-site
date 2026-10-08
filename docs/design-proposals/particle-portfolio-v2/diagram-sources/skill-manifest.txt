@@ -1,0 +1,292 @@
+manifest_version: 1
+title: Olympus Phase 1 Selected Skill Import
+phase: 1
+import_date: 2026-09-26
+source_repository: https://github.com/Guilsc/skills
+source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+selection_source: "Olympus_Skill_Import_Pack.zip :: Olympus_Skill_Import_Pack/02_SELECTED_SKILLS.md"
+scope:
+  imported_for:
+    - Hermes-core shared Skill inventory
+    - Zeus profile Skill inventory
+  destinations:
+    - "$HERMES_HOME/skills/<skill>/"
+    - "$HERMES_HOME/profiles/olympus-os/skills/<skill>/"
+  import_only: true
+  target_inventory_status: enabled_entries_in_hermes_core_and_zeus
+  target_inventory_status_meaning: "The CLI lists Skills as enabled/available in these two inventories; this is not a default auto-load setting or action authorization."
+  auto_load_or_assignment_changed: false
+  runtime_configuration_changed: false
+  external_services_or_dependencies_installed: false
+  untouched:
+    - Hermes-agent profile
+    - All Realm Owner profiles, including Prometheus-agent
+    - Temporary Worker profiles
+    - Hermes toolsets, permissions, approvals, plugins, integrations, and configuration
+summary:
+  selected_count: 20
+  imported_count: 7
+  existing_oob_deduplicated_count: 13
+  conflicts_blocked_or_skipped_count: 0
+  copied_skill_directories: 14
+  copied_files_verified: true
+runtime_environment_checks:
+  pygount_command: unavailable
+  python_docx_module: unavailable
+  openpyxl_module: unavailable
+  youtube_transcript_api_module: available
+  curl_command: available
+  gstack_command_or_hook: unavailable
+  image_generation_tool: not_exposed_in_this_session
+skills:
+  - skill: spike
+    source_repository: https://github.com/Guilsc/skills
+    source_path: spike/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/software-development/spike/
+      - profiles/olympus-os/skills/software-development/spike/
+    notes: Selected copy not installed; retained the existing Hermes OOB variant. Differences are Hermes metadata and command portability.
+  - skill: systematic-debugging
+    source_repository: https://github.com/Guilsc/skills
+    source_path: systematic-debugging/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/software-development/systematic-debugging/
+      - profiles/olympus-os/skills/software-development/systematic-debugging/
+    notes: Selected copy not installed; retained the existing Hermes OOB variant with Hermes metadata.
+  - skill: architecture-diagram
+    source_repository: https://github.com/Guilsc/skills
+    source_path: architecture-diagram/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/creative/architecture-diagram/
+      - profiles/olympus-os/skills/creative/architecture-diagram/
+    notes: Selected copy not installed; retained the Hermes OOB port. Supporting template content is equivalent after line-ending normalization.
+  - skill: codebase-inspection
+    source_repository: https://github.com/Guilsc/skills
+    source_path: codebase-inspection/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: dependency-missing
+    retained_oob_locations:
+      - skills/software-development/codebase-inspection/
+      - profiles/olympus-os/skills/software-development/codebase-inspection/
+    notes: Existing OOB variant retained. It requires pygount; the command is not installed. No dependency was installed.
+  - skill: test-driven-development
+    source_repository: https://github.com/Guilsc/skills
+    source_path: test-driven-development/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/software-development/test-driven-development/
+      - profiles/olympus-os/skills/software-development/test-driven-development/
+    notes: Selected copy not installed; retained the existing Hermes OOB variant with Hermes metadata.
+  - skill: requesting-code-review
+    source_repository: https://github.com/Guilsc/skills
+    source_path: requesting-code-review/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/software-development/requesting-code-review/
+      - profiles/olympus-os/skills/software-development/requesting-code-review/
+    notes: Selected source is version 2.0.0; retained Hermes OOB version 2.1.0, which includes Hermes-specific one-shot guidance.
+  - skill: document-to-action-items
+    source_repository: https://github.com/Guilsc/skills
+    source_path: document-to-action-items/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/productivity/document-to-action-items/
+      - profiles/olympus-os/skills/productivity/document-to-action-items/
+    notes: Selected copy not installed; retained the Hermes OOB variant, whose extraction references match the local Hermes Skill inventory.
+  - skill: docx
+    source_repository: https://github.com/Guilsc/skills
+    source_path: docx/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: dependency-missing
+    retained_oob_locations:
+      - skills/productivity/docx/
+      - profiles/olympus-os/skills/productivity/docx/
+    notes: Existing Hermes OOB copy retained; Python docx module is absent in the active interpreter. Source and retained support files were compared; no merge made.
+  - skill: xlsx
+    source_repository: https://github.com/Guilsc/skills
+    source_path: xlsx/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: dependency-missing
+    retained_oob_locations:
+      - skills/productivity/xlsx/
+      - profiles/olympus-os/skills/productivity/xlsx/
+    notes: Existing Hermes OOB copy retained; openpyxl is absent in the active interpreter. Source and retained support files were compared; no merge made.
+  - skill: arxiv
+    source_repository: https://github.com/Guilsc/skills
+    source_path: arxiv/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/research/arxiv/
+      - profiles/olympus-os/skills/research/arxiv/
+    notes: Selected copy not installed; retained the Hermes OOB variant with Windows-friendly Python commands.
+  - skill: youtube-content
+    source_repository: https://github.com/Guilsc/skills
+    source_path: youtube-content/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/media/youtube-content/
+      - profiles/olympus-os/skills/media/youtube-content/
+    notes: Selected copy not installed; retained the Hermes OOB variant. youtube_transcript_api is present.
+  - skill: think-visualizer
+    source_repository: https://github.com/Guilsc/skills
+    source_path: think-visualizer/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: Not stated in the selected Skill or repository files
+    origin: imported
+    import_status: imported
+    runtime_status: unverified
+    installed_locations:
+      - skills/think-visualizer/
+      - profiles/olympus-os/skills/think-visualizer/
+    notes: Imported verbatim. The scaffold uses Python standard library. Image generation is not exposed in this session; the Skill provides an image-prompt fallback. README attributes the catalog source to Codex.
+  - skill: weekly-review-planning
+    source_repository: https://github.com/Guilsc/skills
+    source_path: weekly-review-planning/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: available
+    retained_oob_locations:
+      - skills/productivity/weekly-review-planning/
+      - profiles/olympus-os/skills/productivity/weekly-review-planning/
+    notes: Selected copy not installed; retained the Hermes OOB variant with its existing Blueprint and integration references.
+  - skill: careful
+    source_repository: https://github.com/Guilsc/skills
+    source_path: careful/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: Not stated in the selected Skill or repository files
+    origin: imported
+    import_status: imported
+    runtime_status: dependency-missing
+    installed_locations:
+      - skills/careful/
+      - profiles/olympus-os/skills/careful/
+    notes: Imported verbatim; README identifies Samin12/conductor-playground as upstream. The Skill describes a gstack command hook that is absent here, so it is not technical enforcement. Its telemetry snippet was not run; no hook, gstack command, or telemetry was installed or activated.
+  - skill: stop-slop
+    source_repository: https://github.com/Guilsc/skills
+    source_path: stop-slop/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: imported
+    import_status: imported
+    runtime_status: available
+    installed_locations:
+      - skills/stop-slop/
+      - profiles/olympus-os/skills/stop-slop/
+    notes: Imported verbatim. Author identified in upstream files as Hardik Pandya; no external runtime dependency.
+  - skill: analytics-tracking
+    source_repository: https://github.com/Guilsc/skills
+    source_path: analytics-tracking/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: Not stated in the selected Skill or repository files
+    origin: imported
+    import_status: imported
+    runtime_status: unverified
+    installed_locations:
+      - skills/analytics-tracking/
+      - profiles/olympus-os/skills/analytics-tracking/
+    notes: Imported verbatim; README identifies coreyhaines31/marketingskills as upstream. GA4/GTM platform tools were not exposed or tested; no integration or analytics write was performed.
+  - skill: seo-audit
+    source_repository: https://github.com/Guilsc/skills
+    source_path: seo-audit/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: Not stated in the selected Skill or repository files
+    origin: imported
+    import_status: imported
+    runtime_status: unverified
+    installed_locations:
+      - skills/seo-audit/
+      - profiles/olympus-os/skills/seo-audit/
+    notes: Imported verbatim; README identifies coreyhaines31/marketingskills as upstream. Search Console and paid SEO tools were not exposed or tested; no external service was connected.
+  - skill: social-content
+    source_repository: https://github.com/Guilsc/skills
+    source_path: social-content/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: Not stated in the selected Skill or repository files
+    origin: imported
+    import_status: imported
+    runtime_status: unverified
+    installed_locations:
+      - skills/social-content/
+      - profiles/olympus-os/skills/social-content/
+    notes: Imported verbatim; README identifies coreyhaines31/marketingskills as upstream. The Skill claims scheduling-platform access, but no scheduler/account tool was exposed or used. Import did not authorize publishing, DMs, or other external writes.
+  - skill: copy-editing
+    source_repository: https://github.com/Guilsc/skills
+    source_path: copy-editing/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: Not stated in the selected Skill or repository files
+    origin: imported
+    import_status: imported
+    runtime_status: available
+    installed_locations:
+      - skills/copy-editing/
+      - profiles/olympus-os/skills/copy-editing/
+    notes: Imported verbatim; README identifies coreyhaines31/marketingskills as upstream. No external runtime dependency.
+  - skill: baoyu-infographic
+    source_repository: https://github.com/Guilsc/skills
+    source_path: baoyu-infographic/
+    source_revision: f23429b799c6b8f6ef6db22d8721687017366214
+    license: MIT
+    origin: duplicate
+    import_status: duplicate
+    runtime_status: unverified
+    retained_oob_locations:
+      - skills/creative/baoyu-infographic/
+      - profiles/olympus-os/skills/creative/baoyu-infographic/
+    notes: Selected copy not installed; retained the Hermes OOB port. Image-generation dependency is not exposed in this session.
+validation:
+  selected_skill_names_accounted_for: true
+  unselected_repository_skills_imported: false
+  existing_oob_content_overwritten: false
+  hermes_agent_or_realm_owner_profiles_modified: false
+  source_files_copied_verbatim: true
+  skill_assignments_or_auto_load_changed: false
+  hermes_core_inventory_list_verified: true
+  zeus_inventory_list_and_skill_views_verified: true
+  imported_skill_copies_present_in_other_named_profiles: false
+  phase_2_executed: false

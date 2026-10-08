@@ -1,0 +1,6 @@
+Built-in ImageGen. Reference: C:/Users/nomeusuario/Downloads/Image (1).jpg.
+Transparent background: true.
+
+Create a single project-ready transparent PNG asset for a dark neon particle architecture diagram. The supplied image is STYLE REFERENCE ONLY: emulate its beautifully recognizable human face in left-facing profile formed from discrete luminous point-cloud particles. Generate ONLY the isolated face and a short neck, entirely made of fine luminous dots, clear forehead, eye socket, nose, lips and chin silhouette. Palette icy white highlights, cyan #66e7ff and neon blue #53a2ff. Face facing LEFT, toward the governance node. Center the head tightly in a square composition with about 8% breathing room and a very short neck. The point-cloud form should remain recognizable when shown at 84px. Beautiful three-dimensional facial structure, denser particles outlining features, sparse dots in the back of the head. Genuine transparent background, including gaps between particles. No circuitry background, no text, no grid, no vignette, no solid skin, no solid colored background, no frame, no shoulders, no other objects. This is a human requester avatar, not a robot.
+
+Final UI treatment requested by user: white luminous particles. Applied via CSS grayscale(1) brightness(2.4), preserving the original PNG and its alpha.

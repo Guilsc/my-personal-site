@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T12:12:23.3095378Z",
+  "title": "Design System: Guilherme da Silva Costa — Particle Portfolio v2",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Near Black",
+        "tonalRamp": [
+          "oklch(15.0% 0.0026 286.03)",
+          "oklch(26.4% 0.0026 286.03)",
+          "oklch(37.9% 0.0026 286.03)",
+          "oklch(49.3% 0.0026 286.03)",
+          "oklch(60.7% 0.0026 286.03)",
+          "oklch(72.1% 0.0026 286.03)",
+          "oklch(83.6% 0.0026 286.03)",
+          "oklch(95.0% 0.0026 286.03)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Charcoal Panel",
+        "tonalRamp": [
+          "oklch(15.0% 0.0040 286.02)",
+          "oklch(26.4% 0.0040 286.02)",
+          "oklch(37.9% 0.0040 286.02)",
+          "oklch(49.3% 0.0040 286.02)",
+          "oklch(60.7% 0.0040 286.02)",
+          "oklch(72.1% 0.0040 286.02)",
+          "oklch(83.6% 0.0040 286.02)",
+          "oklch(95.0% 0.0040 286.02)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "tonalRamp": [
+          "oklch(15.0% 0.0074 80.72)",
+          "oklch(26.4% 0.0074 80.72)",
+          "oklch(37.9% 0.0074 80.72)",
+          "oklch(49.3% 0.0074 80.72)",
+          "oklch(60.7% 0.0074 80.72)",
+          "oklch(72.1% 0.0074 80.72)",
+          "oklch(83.6% 0.0074 80.72)",
+          "oklch(95.0% 0.0074 80.72)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Warm Ash",
+        "tonalRamp": [
+          "oklch(15.0% 0.0188 64.87)",
+          "oklch(26.4% 0.0188 64.87)",
+          "oklch(37.9% 0.0188 64.87)",
+          "oklch(49.3% 0.0188 64.87)",
+          "oklch(60.7% 0.0188 64.87)",
+          "oklch(72.1% 0.0188 64.87)",
+          "oklch(83.6% 0.0188 64.87)",
+          "oklch(95.0% 0.0188 64.87)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Construction Amber",
+        "tonalRamp": [
+          "oklch(15.0% 0.1603 56.82)",
+          "oklch(26.4% 0.1603 56.82)",
+          "oklch(37.9% 0.1603 56.82)",
+          "oklch(49.3% 0.1603 56.82)",
+          "oklch(60.7% 0.1603 56.82)",
+          "oklch(72.1% 0.1603 56.82)",
+          "oklch(83.6% 0.1603 56.82)",
+          "oklch(95.0% 0.1603 56.82)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "particle-rose": {
+        "role": "secondary",
+        "displayName": "Particle Rose",
+        "tonalRamp": [
+          "oklch(15.0% 0.2326 7.70)",
+          "oklch(26.4% 0.2326 7.70)",
+          "oklch(37.9% 0.2326 7.70)",
+          "oklch(49.3% 0.2326 7.70)",
+          "oklch(60.7% 0.2326 7.70)",
+          "oklch(72.1% 0.2326 7.70)",
+          "oklch(83.6% 0.2326 7.70)",
+          "oklch(95.0% 0.2326 7.70)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Warm Stroke",
+        "tonalRamp": [
+          "oklch(15.0% 0.0113 44.66)",
+          "oklch(26.4% 0.0113 44.66)",
+          "oklch(37.9% 0.0113 44.66)",
+          "oklch(49.3% 0.0113 44.66)",
+          "oklch(60.7% 0.0113 44.66)",
+          "oklch(72.1% 0.0113 44.66)",
+          "oklch(83.6% 0.0113 44.66)",
+          "oklch(95.0% 0.0113 44.66)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Pale Amber Focus",
+        "tonalRamp": [
+          "oklch(15.0% 0.0747 63.35)",
+          "oklch(26.4% 0.0747 63.35)",
+          "oklch(37.9% 0.0747 63.35)",
+          "oklch(49.3% 0.0747 63.35)",
+          "oklch(60.7% 0.0747 63.35)",
+          "oklch(72.1% 0.0747 63.35)",
+          "oklch(83.6% 0.0747 63.35)",
+          "oklch(95.0% 0.0747 63.35)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "button-ink": {
+        "role": "neutral",
+        "displayName": "Button Ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.0182 58.64)",
+          "oklch(26.4% 0.0182 58.64)",
+          "oklch(37.9% 0.0182 58.64)",
+          "oklch(49.3% 0.0182 58.64)",
+          "oklch(60.7% 0.0182 58.64)",
+          "oklch(72.1% 0.0182 58.64)",
+          "oklch(83.6% 0.0182 58.64)",
+          "oklch(95.0% 0.0182 58.64)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "action-hover": {
+        "role": "primary",
+        "displayName": "Warm Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.1244 60.82)",
+          "oklch(26.4% 0.1244 60.82)",
+          "oklch(37.9% 0.1244 60.82)",
+          "oklch(49.3% 0.1244 60.82)",
+          "oklch(60.7% 0.1244 60.82)",
+          "oklch(72.1% 0.1244 60.82)",
+          "oklch(83.6% 0.1244 60.82)",
+          "oklch(95.0% 0.1244 60.82)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "quiet-hover": {
+        "role": "neutral",
+        "displayName": "Quiet Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0219 57.69)",
+          "oklch(26.4% 0.0219 57.69)",
+          "oklch(37.9% 0.0219 57.69)",
+          "oklch(49.3% 0.0219 57.69)",
+          "oklch(60.7% 0.0219 57.69)",
+          "oklch(72.1% 0.0219 57.69)",
+          "oklch(83.6% 0.0219 57.69)",
+          "oklch(95.0% 0.0219 57.69)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "publication-hover": {
+        "role": "neutral",
+        "displayName": "Publication Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.0089 43.07)",
+          "oklch(26.4% 0.0089 43.07)",
+          "oklch(37.9% 0.0089 43.07)",
+          "oklch(49.3% 0.0089 43.07)",
+          "oklch(60.7% 0.0089 43.07)",
+          "oklch(72.1% 0.0089 43.07)",
+          "oklch(83.6% 0.0089 43.07)",
+          "oklch(95.0% 0.0089 43.07)"
+        ],
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      },
+      "hover-stroke": {
+        "tonalRamp": [
+          "oklch(15% 0.07 50)",
+          "oklch(26.4% 0.07 50)",
+          "oklch(37.9% 0.07 50)",
+          "oklch(49.3% 0.07 50)",
+          "oklch(60.7% 0.07 50)",
+          "oklch(72.1% 0.07 50)",
+          "oklch(83.6% 0.07 50)",
+          "oklch(95% 0.07 50)"
+        ],
+        "role": "neutral",
+        "displayName": "Warm Hover Stroke",
+        "rampPurpose": "Synthesized display metadata; not additional implementation tokens."
+      }
+    },
+    "evidence": {
+      "source": [
+        "portfolio.css",
+        "portfolio.js",
+        "index.html",
+        "direction-contract.md",
+        "PRODUCT.md"
+      ],
+      "review": [
+        "verification.json",
+        "detector-findings.json",
+        "finish-review.md",
+        ".impeccable/review/curatia-flow.png",
+        ".impeccable/review/mobile-flow.png"
+      ],
+      "limitations": [
+        "Documentation pass inspected source and supplied evidence, without independent browser tests.",
+        "Reduced-motion media emulation and timed canvas-stop observation remain untested; source behavior is distinguished.",
+        "Native capture dimensions and normalization are disclosed in PNG provenance sidecars."
+      ]
+    },
+    "breakpoints": [
+      {
+        "value": "1500px",
+        "query": "min-width",
+        "name": "wide"
+      },
+      {
+        "value": "1100px",
+        "query": "max-width",
+        "name": "compact-desktop"
+      },
+      {
+        "value": "850px",
+        "query": "max-width",
+        "name": "compact-menu"
+      },
+      {
+        "value": "600px",
+        "query": "max-width",
+        "name": "mobile"
+      },
+      {
+        "value": "360px",
+        "query": "max-width",
+        "name": "narrow"
+      }
+    ],
+    "typographyMeta": {
+      "title": {
+        "displayName": "Panel title",
+        "purpose": "Cards and evidence; publication/repository overrides documented."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Reading introductions."
+      },
+      "body": {
+        "displayName": "Reading copy",
+        "purpose": "18px base text, generally 70ch maximum."
+      },
+      "label": {
+        "displayName": "Supporting metadata",
+        "purpose": "13px categories, tags, dates."
+      },
+      "display": {
+        "displayName": "Professional name",
+        "purpose": "Home professional name; route titles use documented overrides."
+      }
+    },
+    "focus": {
+      "value": "3px solid var(--focus); outline-offset:5px",
+      "purpose": "Links, buttons and native selects."
+    },
+    "motion": [
+      {
+        "purpose": "Link and publication surface response.",
+        "value": "background .18s ease-out, border-color .18s ease-out",
+        "name": "panel-hover"
+      },
+      {
+        "purpose": "Decorative About dots; paused globally and disabled under reduced motion.",
+        "value": "3.6s ease-in-out infinite",
+        "name": "signal-pulse"
+      },
+      {
+        "purpose": "Approximate 30fps shared loop; static paused/reduced-motion geometry and hidden-tab suspension.",
+        "value": "33ms minimum paint interval",
+        "name": "canvas-paint"
+      }
+    ],
+    "process": {
+      "miniRadiusMobile": 34,
+      "ambientDesktop": 3200,
+      "note": "Canvas nuclei above separate opaque pills; stage order requires human approval before publishing. Components preview only labels.",
+      "stageColors": [
+        "#ff963d",
+        "#ffbf6f",
+        "#eb919d",
+        "#ff3979",
+        "#91ceca",
+        "#9facff",
+        "#c5a7ef"
+      ],
+      "ambientMobile": 1800,
+      "miniPoints": 360,
+      "centralPoints": 650,
+      "miniRadiusDesktop": 38
+    },
+    "shadows": []
+  },
+  "components": [
+    {
+      "kind": "button",
+      "name": "Primary action",
+      "description": "Warm work or Launch action.",
+      "refersTo": "button-primary",
+      "html": "<a href=\"#work\" class=\"ds-primary\">Explore my work</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border:1px solid transparent;border-radius:10px;background:var(--accent,#ff963d);color:#160e08;font-size:16px;font-weight:650;text-decoration:none;font-family:var(--body,'Hanken Grotesk',sans-serif);}.ds-primary:hover{background:#ffb16d;color:#160e08}.ds-primary:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "kind": "button",
+      "name": "Secondary action",
+      "description": "Source or catalog action.",
+      "refersTo": "button-secondary",
+      "html": "<a href=\"#source\" class=\"ds-secondary\">Source</a>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border:1px solid var(--border,#3a3330);border-radius:10px;background:var(--surface,#141416);color:var(--text,#f5f2ed);font-size:16px;font-weight:650;text-decoration:none;font-family:var(--body,'Hanken Grotesk',sans-serif);}.ds-secondary:hover{background:#30251d}.ds-secondary:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "description": "Quiet desktop capsule with active route.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary navigation\"><a href=\"#about\" aria-current=\"page\">About</a><a href=\"#expertise\">Expertise</a><a href=\"#articles\">Articles</a><a href=\"#projects\">Projects</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border:1px solid var(--border,#3a3330);border-radius:30px;background:var(--surface,#141416);font-family:var(--body,'Hanken Grotesk',sans-serif);}.ds-nav a{display:flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:24px;color:var(--muted,#c2b7ad);font-size:15px;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current]{background:#30251d;color:var(--text,#f5f2ed)}.ds-nav a:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}",
+      "kind": "nav",
+      "name": "Route navigation"
+    },
+    {
+      "kind": "chip",
+      "name": "Evidence tag",
+      "description": "Noninteractive source capability label.",
+      "refersTo": "tag",
+      "html": "<span class=\"ds-tag\">Business Analysis</span>",
+      "css": ".ds-tag{display:inline-block;padding:6px 12px;border:1px solid var(--border,#3a3330);border-radius:10px;color:var(--muted,#c2b7ad);font-size:13px;line-height:1.4;font-family:var(--body,'Hanken Grotesk',sans-serif);}"
+    },
+    {
+      "kind": "card",
+      "name": "Publication card",
+      "description": "Title-first linked source summary; original full text remains external.",
+      "refersTo": "publication-card",
+      "html": "<a href=\"#publication\" class=\"ds-post\"><h3>Published analysis</h3><span>Articles</span><p>Source-backed summary and original publication destination.</p><footer>06 Oct 2026 · LinkedIn</footer></a>",
+      "css": ".ds-post{display:flex;flex-direction:column;gap:20px;min-height:365px;padding:32px;background:#141416f5;border:1px solid var(--border,#3a3330);border-radius:16px;color:var(--text,#f5f2ed);text-decoration:none;transition:background .18s ease-out,border-color .18s ease-out;font-family:var(--body,'Hanken Grotesk',sans-serif);}.ds-post h3{font-family:var(--display,Manrope,sans-serif);font-size:25px;line-height:1.14;letter-spacing:-.03em;margin:0}.ds-post span{font-size:13px;color:var(--accent,#ff963d)}.ds-post p{font-size:17px;margin:0;color:var(--muted,#c2b7ad)}.ds-post footer{margin-top:auto;font-size:13px;color:var(--muted,#c2b7ad)}.ds-post:hover{background:#1d1816;border-color:#966542}.ds-post:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "kind": "input",
+      "name": "Stage comparison select",
+      "description": "Native control comparing documented process stages.",
+      "refersTo": "select",
+      "html": "<label class=\"ds-field\">Compare stage<select aria-label=\"Compare stage\"><option>Approval</option><option>Publishing</option></select></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:10px;color:var(--muted,#c2b7ad);font-size:14px;font-family:var(--body,'Hanken Grotesk',sans-serif);}.ds-field select{font:inherit;min-height:48px;padding:12px;border:1px solid var(--border,#3a3330);border-radius:10px;background:var(--surface,#141416);color:var(--text,#f5f2ed);caret-color:var(--accent,#ff963d)}.ds-field select:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}"
+    },
+    {
+      "description": "Opaque pill below a separate canvas nucleus; snippet previews label only, no live process.",
+      "html": "<button class=\"ds-stage\" aria-pressed=\"true\"><span class=\"ds-stage-label\"><span class=\"ds-dot\" aria-hidden=\"true\"></span>5 Approval</span></button>",
+      "css": ".ds-stage{width:160px;min-height:100px;padding:64px 0 0;border:0;background:transparent;display:flex;align-items:flex-end;justify-content:center;color:var(--text,#f5f2ed);font-size:15px;cursor:pointer;font-family:var(--body,'Hanken Grotesk',sans-serif);}.ds-stage-label{display:inline-flex;gap:8px;align-items:center;min-height:36px;padding:7px 12px;border:1px solid var(--border,#3a3330);border-radius:10px;background:#141416f5;line-height:1.4}.ds-dot{width:7px;height:7px;border-radius:50%;background:#91ceca}.ds-stage[aria-pressed=true] .ds-stage-label{border-color:var(--accent,#ff963d);background:#30251d}.ds-stage:focus-visible{outline:3px solid var(--focus,#ffd1a8);outline-offset:5px}",
+      "kind": "custom",
+      "name": "Process label"
+    }
+  ],
+  "narrative": {
+    "donts": [
+      "**Don't** represent particles or pulsing dots as an assistant, voice interface or live status.",
+      "**Don't** fabricate results, metrics, testimonials, credentials, availability or full article text.",
+      "**Don't** import Zoey branding, imagery, policies or animation code.",
+      "**Don't** turn source review or supplied screenshots into claims of independently verified motion or production readiness.\r"
+    ],
+    "rules": [
+      {
+        "body": "Atmosphere may attract attention; real work and source-backed writing carry the professional claim.",
+        "section": "colors",
+        "name": "The Evidence Rule"
+      },
+      {
+        "body": "Particle overlap is intentional; panels and text contrast must preserve readable foreground content.",
+        "section": "elevation",
+        "name": "The Reading Rule"
+      },
+      {
+        "body": "A contact link identifies its real destination; the mockup has no message-submission backend.",
+        "section": "components",
+        "name": "The Destination Rule"
+      }
+    ],
+    "overview": "Context becomes decision, and decision becomes construction. This professional portfolio gives source-backed work a warm, deliberate voice: near-black space, clear light text, strong Manrope headings and slowly moving amber-and-rose particle geometry. The full professional name, existing 14+ years statement, EPAM role and real portrait open the experience.\n\nThe nucleus supplies atmosphere while projects and writing supply evidence. Broad panels protect dense reading; alternating introductions and evidence lists lead into publication and repository catalogs. This independent v2 package extends the incumbent world, seed `f1aadb43`, under the user's pinned Zoey reference and `direction-contract.md`. It introduces no new identity and leaves the earlier owner toolkit separate. The comparison brief at `../site-comparison/next-version-brief.md` governs this surface; PRODUCT.md supplies durable professional truth.",
+    "dos": [
+      "**Do** keep actions amber and long reading text on protective dark surfaces.",
+      "**Do** preserve the real portrait, project facts, publication dates, summaries and original URLs.",
+      "**Do** retain pause, reduced motion, visible focus and compact bilingual navigation.",
+      "**Do** preserve reading order when columns stack and keep process nuclei separate from opaque labels.",
+      "**Do** derive feed counts from data and maintain saved-content, retry and empty states."
+    ],
+    "northStar": "Context, Decision, Construction",
+    "keyCharacteristics": [
+      "Warm action color against near-black surfaces.",
+      "Locally served Manrope and Hanken Grotesk.",
+      "Broad responsive panels and editorial publication hierarchy.",
+      "Independently controllable ambient and process particle geometry.",
+      "Bilingual routes with source-backed cases, feeds and explicit destinations."
+    ]
+  }
+}

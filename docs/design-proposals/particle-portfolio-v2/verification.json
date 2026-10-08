@@ -1,0 +1,202 @@
+{
+  "inspectionRounds": 2,
+  "desktopViewport": [
+    1440,
+    900
+  ],
+  "mobileViewport": [
+    390,
+    844
+  ],
+  "mobileFlowViewport": [
+    390,
+    1100
+  ],
+  "actualUserViewport": [
+    534,
+    524
+  ],
+  "horizontalOverflow": false,
+  "homePosts": 3,
+  "homeRepositoriesPerPage": 3,
+  "repositoryNextPage": [
+    "Bot Ecosystem",
+    "onboarding-mapping-analyst"
+  ],
+  "counts": {
+    "all": 31,
+    "repositories": 5,
+    "launch": 2,
+    "forks": 26,
+    "starred": 5
+  },
+  "articleFilterResult": 3,
+  "forkFilterResult": 26,
+  "launchTargets": [
+    "https://guilhermecosta.tech/curatia-content-engine",
+    "https://guilhermecosta.tech/ecosystem/"
+  ],
+  "contactTopicInMailto": "Applied AI",
+  "pause": {
+    "bodyClass": true,
+    "cssPulses": [
+      "paused",
+      "paused",
+      "paused"
+    ],
+    "canvasStops": "source reviewed: cancellation of RAF; no tick while paused/hidden"
+  },
+  "languages": [
+    "en",
+    "pt-BR"
+  ],
+  "languageFocusRestored": "PT",
+  "expertiseChapters": 4,
+  "expertiseActiveChapter": "Applied AI",
+  "curatiaComparison": "Approval comes before Publishing in the editorial lifecycle.",
+  "enterpriseEvidence": 4,
+  "olympusLaunchCount": 0,
+  "reducedMotion": "source verified; media emulation unavailable in browser API",
+  "screenshots": [
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/about-pt.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/about",
+      "savedAt": "2026-10-06T11:59:45.256452+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "about-pt.jpg",
+      "sha256": "1ea0bea1053d9e862833bd0789f4a386f71890211c0bc4a3cd67c66faf61294f"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/articles.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/articles",
+      "savedAt": "2026-10-06T11:59:42.969055+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "articles.jpg",
+      "sha256": "4b03deecae83cc34cc504fbc2ee53d4577d08b17c48160e80b0ab7d8e03e0487"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/curatia-flow.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/projects/curatia-content-engine#flow-title",
+      "savedAt": "2026-10-06T12:09:26.005719+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "curatia-flow.jpg",
+      "sha256": "e99b0fff61c789524d859b7202fccf23da14012db5874eea7b7ab9cd9f672fd3"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/desktop-full.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/",
+      "savedAt": "2026-10-06T11:58:06.476298+00:00",
+      "width": 1424,
+      "height": 5479,
+      "original": "desktop-full.jpg",
+      "sha256": "b5e1edf0dde966d1d96e55a42adbf3396d58610d9db43b09a67aaea19caad1ac"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/desktop.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/",
+      "savedAt": "2026-10-06T11:58:04.954986+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "desktop.jpg",
+      "sha256": "f5e111be082dcef6e2ae6b74d5a9a292ab8f5bdb697f190d811fbe1faf3f7d94"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/enterprise.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/projects/enterprise-transformation",
+      "savedAt": "2026-10-06T11:58:07.783449+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "enterprise.jpg",
+      "sha256": "4612fcbc9abd4a7a38a03fb8dfd8781ab6044bb96c98d6eba60e6ede93d62d38"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/expertise.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/expertise",
+      "savedAt": "2026-10-06T11:58:06.917325+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "expertise.jpg",
+      "sha256": "2fdc01a71fbbe6481042fdd185c2fa9bca1177ab7d95b22fb57d6836c2429520"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/mobile-flow.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/projects/curatia-content-engine#flow-title",
+      "savedAt": "2026-10-06T12:09:26.086340+00:00",
+      "width": 375,
+      "height": 1058,
+      "original": "mobile-flow.jpg",
+      "sha256": "1ca1730b6371fdd31730f69a87724b022de4d0e38f9963b4dba474b09da18893"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/mobile-full.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/",
+      "savedAt": "2026-10-06T11:56:18.174924+00:00",
+      "width": 374,
+      "height": 8208,
+      "original": "mobile-full.jpg",
+      "sha256": "8059f94f86ce77df07d243e39455ceb285c3672297aa92a4d9805bbd3a9a344e"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/mobile-projects.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/projects",
+      "savedAt": "2026-10-06T11:59:46.977519+00:00",
+      "width": 375,
+      "height": 812,
+      "original": "mobile-projects.jpg",
+      "sha256": "4969f1fb89388be1a561720ee5d05b992e275aa598ef9a3c66ef7677d6da2aaa"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/mobile.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/",
+      "savedAt": "2026-10-06T11:56:16.627184+00:00",
+      "width": 375,
+      "height": 812,
+      "original": "mobile.jpg",
+      "sha256": "67c948d76668754f3f3d59f71c370e6cd6c46332e558864b26a37fdc79eeb6b7"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/projects.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/projects",
+      "savedAt": "2026-10-06T11:59:44.064533+00:00",
+      "width": 1425,
+      "height": 891,
+      "original": "projects.jpg",
+      "sha256": "1cf38cad2de09151103f7c76a46184d4cbaff1ec59b9013619a6f6a98abd102a"
+    },
+    {
+      "file": "outputs/particle-portfolio-v2/.impeccable/review/user-current.png",
+      "source": "Unmodified in-app browser capture; lossless format normalization of native JPEG capture.",
+      "url": "http://127.0.0.1:5181/",
+      "savedAt": "2026-10-06T11:56:18.490131+00:00",
+      "width": 519,
+      "height": 509,
+      "original": "user-current.jpg",
+      "sha256": "1e3b99d6348856b9dab202b4216df858d39feb8c3219ef5c0cef30bf9e8a5780"
+    }
+  ],
+  "sourceHashes": {
+    "index.html": "89f7b30c51646499bed3e601489c6d2da9f10e03d400608e5ebdd21f99e4b25a",
+    "portfolio.css": "65a2fd2b2c752bf5b82c6a537cefb45296bad5c6fc1e6443f41be6dd11022c80",
+    "portfolio.js": "7c75a3e22953acb63b242007505f2cd5e2758c5c74db24ecec0b815483b0aefa",
+    "content.js": "45a50d7d8f2eb2e360fc2b3fc3cfb193c960ae5a51ec7197a7671f3bfd7c0e64"
+  },
+  "reviewerFixRound": {
+    "round": 1,
+    "scope": "Expose seven colored nuclei above labels and use mobile map space; recaptured desktop/mobile flow only."
+  }
+}
