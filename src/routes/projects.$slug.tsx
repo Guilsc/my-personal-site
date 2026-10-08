@@ -68,6 +68,18 @@ function ProjectDetail() {
     ...getProjectNarrative(project.slug, language),
   };
 
+  if (project.slug === "olympus-os") {
+    return (
+      <main className="min-h-screen bg-[#180b24]">
+        <iframe
+          title="Olympus OS interactive project"
+          src="/olympus-v2/index.html?route=%2Fprojects%2Folympus-os"
+          className="h-screen w-full border-0"
+        />
+      </main>
+    );
+  }
+
   return (
     <div className="portfolio-gallery min-h-screen bg-background text-foreground">
       <PortfolioHeader />
