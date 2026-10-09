@@ -49,7 +49,6 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus OS or other projects without belonging to any one of them.",
     repository: "https://github.com/Guilsc/bot-ecosystem",
-    launchUrl: "/ecosystem/",
     status: "BUILDING",
     tags: ["AI AGENTS", "REPOSITORIES", "VISUALIZATION", "EXPERIMENT"],
     role: "Product designer and builder",
