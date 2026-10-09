@@ -6,25 +6,25 @@ export type ExpertiseEvidence = { projectSlugs: string[]; career: string[]; care
 
 export const expertiseEvidence: Record<ExpertiseId, ExpertiseEvidence> = {
   "business-analysis": {
-    projectSlugs: ["curatia-content-engine", "olympus-os"],
+    projectSlugs: ["curatia-content-engine", "olympus"],
     career: ["EPAM Systems", "CI&T", "McFadyen Digital", "Wipro"],
     careerMonths: 92,
     signals: ["Requirements", "Process Design", "Stakeholder Alignment", "UAT", "Data Modeling"],
   },
   "product-strategy": {
-    projectSlugs: ["curatia-content-engine", "olympus-os"],
+    projectSlugs: ["curatia-content-engine", "olympus"],
     career: ["EPAM Systems", "CI&T", "McFadyen Digital"],
     careerMonths: 66,
     signals: ["Prioritization", "Product Delivery", "Discovery", "Governance", "Decision Design"],
   },
   "systems-qa": {
-    projectSlugs: ["bot-ecosystem", "olympus-os", "curatia-content-engine"],
+    projectSlugs: ["bot-ecosystem", "olympus", "curatia-content-engine"],
     career: ["EPAM Systems", "Wipro", "Bornlogic", "Jaycon Systems", "CINQ"],
     careerMonths: 122,
     signals: ["Quality Assurance", "Testing", "Edge Cases", "Integration", "System Dependencies"],
   },
   "applied-ai": {
-    projectSlugs: ["olympus-os", "bot-ecosystem", "curatia-content-engine"],
+    projectSlugs: ["olympus", "bot-ecosystem", "curatia-content-engine"],
     career: ["EPAM Systems"],
     careerMonths: 0,
     signals: ["AI Factory", "AI Agents", "Multi-Agent Systems", "Multi-Model Orchestration", "Google AI Studio", "Salesforce Agentforce", "Claude", "OpenAI", "Context & Memory", "Automation"],

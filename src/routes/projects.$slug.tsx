@@ -1,6 +1,6 @@
 import { getProjectNarrative } from "../content/project-narratives";
 import { PortfolioHeader } from "../components/portfolio-header";
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, Github, Lightbulb, Rocket, Tags } from "lucide-react";
 
 import { getPortfolioProject } from "../content/projects";
@@ -10,6 +10,9 @@ import { useLanguage } from "../lib/i18n";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: async ({ params }) => {
+    if (params.slug === "olympus-os") {
+      throw redirect({ to: "/projects/$slug", params: { slug: "olympus" }, replace: true });
+    }
     const curated = getPortfolioProject(params.slug);
     const repository = await getGitHubProject({ data: params.slug });
     if (!repository && !curated) throw notFound();
@@ -68,12 +71,12 @@ function ProjectDetail() {
     ...getProjectNarrative(project.slug, language),
   };
 
-  if (project.slug === "olympus-os") {
+  if (project.slug === "olympus") {
     return (
       <main className="min-h-screen bg-[#180b24]">
         <iframe
-          title="Olympus OS interactive project"
-          src="/olympus-v2/index.html?route=%2Fprojects%2Folympus-os"
+          title="Olympus interactive project"
+          src="/olympus-v2/index.html?route=%2Fprojects%2Folympus"
           className="h-screen w-full border-0"
         />
       </main>

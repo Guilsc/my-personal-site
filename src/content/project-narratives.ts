@@ -22,28 +22,28 @@ const portuguese: Record<string, Narrative> = {
       "Tornar a atividade de repositórios e agentes de programação mais compreensível que uma lista convencional de arquivos, commits e logs.",
     approach: [
       "Evoluí o conceito original do Bot Crossing para uma camada reutilizável de visualização.",
-      "Mantive a aplicação independente do Olympus OS para que ela possa visualizar outros repositórios.",
+      "Mantive a aplicação independente do Olympus para que ela possa visualizar outros repositórios.",
       "Integrei a aplicação ao deploy do portfólio sem eliminar sua separação como aplicação.",
     ],
     outcomes: [
       "Uma interface visual executável para explorar a atividade dos repositórios.",
-      "Uma aplicação reutilizável que pode apoiar o Olympus OS e outros repositórios.",
+      "Uma aplicação reutilizável que pode apoiar o Olympus e outros repositórios.",
     ],
     next: "Expandir sinais dos repositórios e visualizações da atividade dos agentes conforme os projetos evoluem.",
   },
-  "olympus-os": {
+  "olympus": {
     problem:
       "Coordenar agentes persistentes de IA sem concentrar responsabilidade, memória, governança e execução em um único assistente.",
     approach: [
-      "Defini limites explícitos de responsabilidade para agentes e Realms.",
-      "Separei contexto de trabalho, memória dos agentes e conhecimento compartilhado curado.",
-      "Desenhei skills reutilizáveis, políticas de ciclo de vida, caminhos de escalonamento e limites de aprovação humana.",
+      "Separei papéis canônicos, aliases narrativos e contratos de responsabilidade de cada domínio.",
+      "Defini Governor, Orchestrator e seis pares Domain/Owner declarativos, com limites explícitos.",
+      "Validei handoffs e decisões delimitadas em conversas isoladas no host externo.",
     ],
     outcomes: [
-      "Um modelo operacional documentado para equipes de agentes, com limites explícitos de autoridade e memória.",
-      "Autoavaliações que expõem limitações técnicas sem tratar instruções comportamentais como permissões efetivamente impostas.",
+      "Uma arquitetura modular documentada com seis contratos Domain/Owner e papéis declarativos validados.",
+      "Evidências de validação externa, sem alegar runtime persistente ou execução de produção.",
     ],
-    next: "Validar orquestração, aplicação de permissões, conhecimento compartilhado e observabilidade conforme a implementação evolui.",
+    next: "Evoluir para um runtime mínimo apenas por blocos aprovados, mantendo memória e capacidades compartilhadas fora do escopo atual.",
   },
 };
 export function getProjectNarrative(slug: string, language: Language): Partial<Narrative> {
