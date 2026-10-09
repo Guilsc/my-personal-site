@@ -93,7 +93,8 @@ export const portfolioProjects: PortfolioProject[] = [
       "Distinguishes host-side demonstrations from live production agent execution.",
       "Defers persistent memory, shared capabilities, and Workers until justified.",
     ],
-  },];
+  },
+];
 
 export function getPortfolioProject(slug: string) {
   return portfolioProjects.find((project) => project.slug === slug);
