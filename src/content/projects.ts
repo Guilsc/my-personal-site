@@ -26,7 +26,6 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "Curatia connects signal discovery, idea development, editorial research, creation, publishing, and post-publication learning in one governed workspace. It combines editorial intelligence with multi-channel execution while keeping approval and publishing as explicit human decisions.",
     repository: "https://github.com/Guilsc/curatia-content-engine",
-    launchUrl: "/curatia-content-engine",
     status: "ACTIVE",
     tags: ["AI", "EDITORIAL INTELLIGENCE", "CONTENT OPERATIONS", "SUPABASE"],
     role: "Product owner, workflow designer, and builder",
