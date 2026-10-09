@@ -26,7 +26,6 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "Curatia connects signal discovery, idea development, editorial research, creation, publishing, and post-publication learning in one governed workspace. It combines editorial intelligence with multi-channel execution while keeping approval and publishing as explicit human decisions.",
     repository: "https://github.com/Guilsc/curatia-content-engine",
-    launchUrl: "/curatia-content-engine",
     status: "ACTIVE",
     tags: ["AI", "EDITORIAL INTELLIGENCE", "CONTENT OPERATIONS", "SUPABASE"],
     role: "Product owner, workflow designer, and builder",
@@ -49,7 +48,6 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus OS or other projects without belonging to any one of them.",
     repository: "https://github.com/Guilsc/bot-ecosystem",
-    launchUrl: "/ecosystem/",
     status: "BUILDING",
     tags: ["AI AGENTS", "REPOSITORIES", "VISUALIZATION", "EXPERIMENT"],
     role: "Product designer and builder",
