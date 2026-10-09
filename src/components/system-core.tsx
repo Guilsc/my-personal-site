@@ -40,7 +40,7 @@ export function SystemCore() {
         arc(170, a, a + 0.58, "#70bca6", 3);
         arc(116, -a, -a + 0.85, "#b8d0d5", 1.5);
       }
-      const nodes = [[-157,-157], [171,-119], [171,151], [-166,151]];
+      const nodes: Array<[number, number]> = [[-157,-157], [171,-119], [171,151], [-166,151]];
       nodes.forEach(([x, y], i) => {
         c.beginPath(); c.strokeStyle = i === 2 ? "#d5b26e" : "#94dbbd";
         c.moveTo(x, y); c.lineTo(x * 0.58, y * 0.58);
@@ -72,7 +72,7 @@ export function SystemCore() {
       context.setTransform(dpr, 0, 0, dpr, 0, 0); draw();
     });
     resize.observe(element);
-    const intersection = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
+    const intersection = new IntersectionObserver(([entry]) => { if (entry) visible = entry.isIntersecting; sync(); });
     intersection.observe(element);
     reduced.addEventListener("change", sync);
     document.addEventListener("visibilitychange", sync);
