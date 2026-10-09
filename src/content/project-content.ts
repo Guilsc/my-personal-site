@@ -44,34 +44,34 @@ export const projectContent: Record<string, ProjectContentManifest> = {
       en: {
         eyebrow: "REPOSITORY VISUALIZATION TOOL",
         summary: "A reusable interface for turning software repositories into an explorable agent-driven world.",
-        description: "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus OS or other projects without belonging to any one of them.",
+        description: "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus or other projects without belonging to any one of them.",
         takeaways: ["Turns repository activity into a visual, explorable interface.", "Remains reusable instead of being coupled to a single agent system.", "Shares the personal-site deployment while keeping its own application boundary."],
         role: "Product designer and builder"
       },
       pt: {
         eyebrow: "FERRAMENTA DE VISUALIZAÇÃO DE REPOSITÓRIOS",
         summary: "Uma interface reutilizável que transforma repositórios de software em um universo explorável orientado por agentes.",
-        description: "Bot Ecosystem é uma evolução independente derivada do Bot Crossing, criada como uma camada visual reutilizável para explorar a atividade de agentes de código entre repositórios. Pode ser usado com Olympus OS ou outros projetos sem pertencer exclusivamente a nenhum deles.",
+        description: "Bot Ecosystem é uma evolução independente derivada do Bot Crossing, criada como uma camada visual reutilizável para explorar a atividade de agentes de código entre repositórios. Pode ser usado com Olympus ou outros projetos sem pertencer exclusivamente a nenhum deles.",
         takeaways: ["Transforma a atividade dos repositórios em uma interface visual e explorável.", "Permanece reutilizável em vez de ficar acoplado a um único sistema de agentes.", "Compartilha o deployment do site pessoal mantendo sua própria fronteira de aplicação."],
         role: "Product designer e builder"
       }
     }
   },
-  "olympus-os": {
+  "olympus": {
     sourceLanguage: "en",
     sourceHash: "curated-v1",
     translations: {
       en: {
         eyebrow: "MULTI-AGENT OPERATING SYSTEM",
-        summary: "An agent operating model for coordinated AI teams, with explicit ownership, memory boundaries, reusable skills, and governed workflows.",
-        description: "Olympus OS explores how persistent agents can work as a coherent team without collapsing responsibilities into one giant assistant. It separates agent-local operational memory from curated shared knowledge, gives domains clear owners, and uses reusable skills and lifecycle policies to make the system understandable and operable.",
+        summary: "A modular foundation for governed AI agent teams, with canonical roles, owned domains, and accountable handoffs.",
+        description: "Olympus is a clean rebuild of a governable, extensible agent architecture. Canonical roles are distinct from narrative aliases: Governor, Orchestrator, and Domain Owner. Six Domain/Owner contracts and host-side validation establish bounded decisions and handoffs. Persistent runtime, agent memory, Workers, and shared capabilities remain deferred.",
         takeaways: ["Makes agent ownership and responsibility explicit.", "Separates working context, agent memory, and curated shared knowledge.", "Treats skills, lifecycle policies, and governance as first-class architecture."],
         role: "Operating-model designer and agent-system architect"
       },
       pt: {
         eyebrow: "SISTEMA OPERACIONAL MULTIAGENTE",
-        summary: "Um modelo operacional de agentes para equipes coordenadas de IA, com responsabilidades explícitas, limites de memória, skills reutilizáveis e fluxos governados.",
-        description: "Olympus OS explora como agentes persistentes podem trabalhar como uma equipe coerente sem concentrar todas as responsabilidades em um único assistente. Ele separa a memória operacional local de cada agente do conhecimento compartilhado e curado, define responsáveis claros por domínio e usa skills reutilizáveis e políticas de ciclo de vida para tornar o sistema compreensível e operável.",
+        summary: "Uma fundação modular para equipes de agentes de IA governadas, com papéis canônicos, domínios responsáveis e handoffs claros.",
+        description: "Olympus é uma reconstrução limpa de uma arquitetura de agentes governável e extensível. Papéis canônicos são separados dos aliases narrativos: Governor, Orchestrator e Domain Owner. Seis contratos Domain/Owner e validações externas demonstram decisões e transferências de responsabilidade delimitadas. Runtime persistente, memória de agentes, Workers e capacidades compartilhadas permanecem adiados.",
         takeaways: ["Torna explícitas a responsabilidade e a propriedade de cada agente.", "Separa contexto de trabalho, memória do agente e conhecimento compartilhado curado.", "Trata skills, políticas de ciclo de vida e governança como elementos centrais da arquitetura."],
         role: "Designer do modelo operacional e arquiteto de sistemas de agentes"
       }

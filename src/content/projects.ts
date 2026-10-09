@@ -46,14 +46,14 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "A reusable interface for turning software repositories into an explorable agent-driven world.",
     description:
-      "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus OS or other projects without belonging to any one of them.",
+      "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus or other projects without belonging to any one of them.",
     repository: "https://github.com/Guilsc/bot-ecosystem",
     status: "BUILDING",
     tags: ["AI AGENTS", "REPOSITORIES", "VISUALIZATION", "EXPERIMENT"],
     role: "Product designer and builder",
     problem: "Make repository and coding-agent activity easier to understand than a conventional list of files, commits, and logs.",
-    approach: ["Evolved the original Bot Crossing concept into a reusable visualization layer.", "Kept the application independent from Olympus OS so it can visualize other repositories.", "Integrated the app into the portfolio deployment without collapsing its application boundary."],
-    outcomes: ["A launchable visual interface for exploring repository activity.", "A reusable project boundary that can support Olympus OS and other repositories."],
+    approach: ["Evolved the original Bot Crossing concept into a reusable visualization layer.", "Kept the application independent from Olympus so it can visualize other repositories.", "Integrated the app into the portfolio deployment without collapsing its application boundary."],
+    outcomes: ["A launchable visual interface for exploring repository activity.", "A reusable project boundary that can support Olympus and other repositories."],
     next: "Expand repository signals and agent activity views as the underlying projects evolve.",
     takeaways: [
       "Turns repository activity into a visual, explorable interface.",
@@ -62,28 +62,38 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
   },
   {
-    slug: "olympus-os",
-    name: "Olympus OS",
-    eyebrow: "MULTI-AGENT OPERATING SYSTEM",
+    slug: "olympus",
+    name: "Olympus",
+    eyebrow: "GOVERNED AGENT ARCHITECTURE",
     summary:
-      "An agent operating model for coordinated AI teams, with explicit ownership, memory boundaries, reusable skills, and governed workflows.",
+      "A modular foundation for governed AI agent teams, with canonical roles, owned domains, and accountable handoffs.",
     description:
-      "Olympus OS explores how persistent agents can work as a coherent team without collapsing responsibilities into one giant assistant. It separates agent-local operational memory from curated shared knowledge, gives domains clear owners, and uses reusable skills and lifecycle policies to make the system understandable and operable.",
+      "Olympus is a clean rebuild of a governable, extensible agent architecture. It separates canonical roles from narrative aliases and defines Governor, Orchestrator, and Domain Owner responsibilities. Six Domain/Owner contracts and host-side validation provide evidence for bounded decisions and handoffs. A persistent Olympus runtime, memory, Workers, and capabilities remain deferred.",
     repository: "https://github.com/Guilsc/olympus",
     status: "BUILDING",
-    tags: ["MULTI-AGENT", "AGENT ARCHITECTURE", "MEMORY", "GOVERNANCE"],
+    tags: ["MULTI-AGENT", "AGENT ARCHITECTURE", "DOMAINS", "GOVERNANCE"],
     role: "Operating-model designer and agent-system architect",
-    problem: "Coordinate persistent AI agents without collapsing ownership, memory, governance, and execution into one oversized assistant.",
-    approach: ["Defined explicit agent and Realm ownership boundaries.", "Separated working context, agent memory, and curated shared knowledge.", "Designed reusable Skills, lifecycle policies, escalation paths, and human approval boundaries."],
-    outcomes: ["A documented multi-agent operating model with explicit authority and memory boundaries.", "Self-checks that expose technical limitations instead of treating behavioral instructions as enforced permissions."],
-    next: "Validate orchestration, permission enforcement, shared knowledge, and observability as implementation matures.",
-    takeaways: [
-      "Makes agent ownership and responsibility explicit.",
-      "Separates working context, agent memory, and curated shared knowledge.",
-      "Treats skills, lifecycle policies, and governance as first-class architecture.",
+    problem: "Coordinate AI agent responsibilities, governance, planning, and specialist work without collapsing all authority into one assistant.",
+    approach: [
+      "Separated canonical architecture, optional Greek-mythology aliases, and future runtime instances.",
+      "Defined Governor, Orchestrator, and six distinct Domain/Owner contracts with bounded responsibilities.",
+      "Exercised the User → Governor → Orchestrator → Domain Owner → Result path in external host-side validation.",
     ],
-  },
-];
+    outcomes: [
+      "A versioned modular architecture with validated declarative roles and six Domain/Owner contracts.",
+      "Documented host-side validation and explicit limits: no persistent Olympus runtime or production dispatch.",
+    ],
+    next: "Review the validated foundations and develop a minimal local runtime only through approved architectural blocks.",
+    takeaways: [
+      "Makes governance, coordination, and specialist ownership separate responsibilities.",
+      "Keeps theme aliases independent of canonical architecture.",
+      "Maintains a clear Lead Owner and bounded handoffs across domains.",
+      "Preserves a human approval boundary and traceable review decisions.",
+      "Reuses documented contracts and validation evidence across initiatives.",
+      "Distinguishes host-side demonstrations from live production agent execution.",
+      "Defers persistent memory, shared capabilities, and Workers until justified.",
+    ],
+  },];
 
 export function getPortfolioProject(slug: string) {
   return portfolioProjects.find((project) => project.slug === slug);
