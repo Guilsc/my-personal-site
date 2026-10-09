@@ -71,7 +71,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "An agent operating model for coordinated AI teams, with explicit ownership, memory boundaries, reusable skills, and governed workflows.",
     description:
       "Olympus OS explores how persistent agents can work as a coherent team without collapsing responsibilities into one giant assistant. It separates agent-local operational memory from curated shared knowledge, gives domains clear owners, and uses reusable skills and lifecycle policies to make the system understandable and operable.",
-    repository: "https://github.com/Guilsc/olympus_OS",
+    repository: "https://github.com/Guilsc/olympus",
     status: "BUILDING",
     tags: ["MULTI-AGENT", "AGENT ARCHITECTURE", "MEMORY", "GOVERNANCE"],
     role: "Operating-model designer and agent-system architect",
