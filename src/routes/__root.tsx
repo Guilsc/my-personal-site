@@ -117,9 +117,8 @@ function RootComponent() {
   const routeQuery = location.searchStr ? `&${location.searchStr.replace(/^\?/, "")}` : "";
 
   // The polished portfolio bundle owns the public portfolio routes. Keep the
-  // two standalone applications on their existing route implementations.
+  // legacy Curatia routes and API handlers on their route implementations.
   const usesPortfolioV2 =
-    !pathname.startsWith("/ecosystem") &&
     !pathname.startsWith("/curatia-content-engine") &&
     !pathname.startsWith("/api");
 

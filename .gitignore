@@ -31,8 +31,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# Generated integration build and Impeccable scratch inputs
+# Temporary files and Impeccable scratch inputs
 .tmp/
-public/ecosystem/
 .impeccable/direction-*.txt
 .impeccable/gallery-brief.md

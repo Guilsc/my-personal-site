@@ -17,7 +17,7 @@ Galeria de trabalho, com prioridade para oportunidades profissionais e projetos/
 - polish: revisão independente, correção dos quatro achados materiais e verificação final.
 
 ## Validação
-- npm run build: passou, incluindo o build integrado do Bot Ecosystem. Corrigida a invocação de npm no Windows via CLI do Node, sem shell.
+- npm run build: passou na revisão original com a integração então existente do Bot Ecosystem. Essa integração foi removida; a aplicação agora tem deployment independente em https://bot-ecosystem.guilhermecosta.tech. Este registro histórico não valida a arquitetura atual.
 - ESLint nos arquivos alterados: zero erros; dois avisos anteriores de Fast Refresh em i18n.tsx.
 - npm run typecheck: ainda falha em código anterior da Curatia e em acessos a process.env do vite.config.ts; nenhum erro nos arquivos públicos alterados.
 - Lint completo anterior às alterações: 51 erros e 10 avisos, concentrados na Curatia e nos componentes existentes.
