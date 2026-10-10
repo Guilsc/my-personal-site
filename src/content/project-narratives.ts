@@ -23,7 +23,7 @@ const portuguese: Record<string, Narrative> = {
     approach: [
       "Evoluí o conceito original do Bot Crossing para uma camada reutilizável de visualização.",
       "Mantive a aplicação independente do Olympus OS para que ela possa visualizar outros repositórios.",
-      "Integrei a aplicação ao deploy do portfólio sem eliminar sua separação como aplicação.",
+      "Publiquei a aplicação de forma independente em seu próprio subdomínio, com link no portfólio.",
     ],
     outcomes: [
       "Uma interface visual executável para explorar a atividade dos repositórios.",

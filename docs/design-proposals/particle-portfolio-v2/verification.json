@@ -33,9 +33,9 @@
   "articleFilterResult": 3,
   "forkFilterResult": 26,
   "launchTargets": [
-    "https://guilhermecosta.tech/curatia-content-engine",
-    "https://guilhermecosta.tech/ecosystem/"
+    "https://guilhermecosta.tech/curatia-content-engine"
   ],
+  "launchTargetNote": "Bot Ecosystem's obsolete launch target was removed from this historical record after deployment separation. Consult the root README and current content metadata for live launch URLs; screenshots and source hashes remain historical evidence.",
   "contactTopicInMailto": "Applied AI",
   "pause": {
     "bodyClass": true,

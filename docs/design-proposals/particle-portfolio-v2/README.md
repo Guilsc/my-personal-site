@@ -35,5 +35,7 @@ For a portable snapshot preview, serve this folder as the web root with a static
 
 `finish-review.md` records the independent review disposition and its scope. `direction-contract.md` records the approved structure and signature interaction. DESIGN.md and the schema 2 design sidecar document the actual v2 routes, components, tokens and motion, preserving the approved particle world.
 
+Bot Ecosystem's launch URL and EN/PT deployment copy were updated after this historical review to match its separate deployment at https://bot-ecosystem.guilhermecosta.tech. Launch actions now preserve absolute URLs. The original screenshots and source hashes describe the earlier reviewed snapshot, not these later content changes; current architecture and validation instructions are in the repository root README.
+
 No merge, push to main or deployment is authorized by this package. Production stays unchanged. Any saved repository version is a separate docs proposal branch.
 

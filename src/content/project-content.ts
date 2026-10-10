@@ -45,14 +45,14 @@ export const projectContent: Record<string, ProjectContentManifest> = {
         eyebrow: "REPOSITORY VISUALIZATION TOOL",
         summary: "A reusable interface for turning software repositories into an explorable agent-driven world.",
         description: "Bot Ecosystem is an independent evolution derived from Bot Crossing, designed as a reusable visual layer for exploring coding-agent activity across repositories. It can be used with Olympus OS or other projects without belonging to any one of them.",
-        takeaways: ["Turns repository activity into a visual, explorable interface.", "Remains reusable instead of being coupled to a single agent system.", "Shares the personal-site deployment while keeping its own application boundary."],
+        takeaways: ["Turns repository activity into a visual, explorable interface.", "Remains reusable instead of being coupled to a single agent system.", "Runs on its own subdomain with a deployment independent of the portfolio."],
         role: "Product designer and builder"
       },
       pt: {
         eyebrow: "FERRAMENTA DE VISUALIZAÇÃO DE REPOSITÓRIOS",
         summary: "Uma interface reutilizável que transforma repositórios de software em um universo explorável orientado por agentes.",
         description: "Bot Ecosystem é uma evolução independente derivada do Bot Crossing, criada como uma camada visual reutilizável para explorar a atividade de agentes de código entre repositórios. Pode ser usado com Olympus OS ou outros projetos sem pertencer exclusivamente a nenhum deles.",
-        takeaways: ["Transforma a atividade dos repositórios em uma interface visual e explorável.", "Permanece reutilizável em vez de ficar acoplado a um único sistema de agentes.", "Compartilha o deployment do site pessoal mantendo sua própria fronteira de aplicação."],
+        takeaways: ["Transforma a atividade dos repositórios em uma interface visual e explorável.", "Permanece reutilizável em vez de ficar acoplado a um único sistema de agentes.", "É executado em seu próprio subdomínio, com deployment independente do portfólio."],
         role: "Product designer e builder"
       }
     }

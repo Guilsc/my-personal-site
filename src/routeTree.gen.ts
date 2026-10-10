@@ -11,9 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArticlesRouteImport } from './routes/articles'
-import { Route as BaContentEngineRouteImport } from './routes/ba-content-engine'
-import { Route as CuratiaContentEngineRouteImport } from './routes/curatia-content-engine'
 import { Route as ExpertiseRouteImport } from './routes/expertise'
+import { Route as ApiPublicationsRouteImport } from './routes/api/publications'
+import { Route as ApiRepositoriesRouteImport } from './routes/api/repositories'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 
@@ -27,19 +27,19 @@ const ArticlesRoute = ArticlesRouteImport.update({
   path: '/articles',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BaContentEngineRoute = BaContentEngineRouteImport.update({
-  id: '/ba-content-engine',
-  path: '/ba-content-engine',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CuratiaContentEngineRoute = CuratiaContentEngineRouteImport.update({
-  id: '/curatia-content-engine',
-  path: '/curatia-content-engine',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ExpertiseRoute = ExpertiseRouteImport.update({
   id: '/expertise',
   path: '/expertise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicationsRoute = ApiPublicationsRouteImport.update({
+  id: '/api/publications',
+  path: '/api/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRepositoriesRoute = ApiRepositoriesRouteImport.update({
+  id: '/api/repositories',
+  path: '/api/repositories',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -56,18 +56,18 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
-  '/ba-content-engine': typeof BaContentEngineRoute
-  '/curatia-content-engine': typeof CuratiaContentEngineRoute
   '/expertise': typeof ExpertiseRoute
+  '/api/publications': typeof ApiPublicationsRoute
+  '/api/repositories': typeof ApiRepositoriesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
-  '/ba-content-engine': typeof BaContentEngineRoute
-  '/curatia-content-engine': typeof CuratiaContentEngineRoute
   '/expertise': typeof ExpertiseRoute
+  '/api/publications': typeof ApiPublicationsRoute
+  '/api/repositories': typeof ApiRepositoriesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects': typeof ProjectsIndexRoute
 }
@@ -75,9 +75,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/articles': typeof ArticlesRoute
-  '/ba-content-engine': typeof BaContentEngineRoute
-  '/curatia-content-engine': typeof CuratiaContentEngineRoute
   '/expertise': typeof ExpertiseRoute
+  '/api/publications': typeof ApiPublicationsRoute
+  '/api/repositories': typeof ApiRepositoriesRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/': typeof ProjectsIndexRoute
 }
@@ -86,27 +86,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/articles'
-    | '/ba-content-engine'
-    | '/curatia-content-engine'
     | '/expertise'
+    | '/api/publications'
+    | '/api/repositories'
     | '/projects/$slug'
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/articles'
-    | '/ba-content-engine'
-    | '/curatia-content-engine'
     | '/expertise'
+    | '/api/publications'
+    | '/api/repositories'
     | '/projects/$slug'
     | '/projects'
   id:
     | '__root__'
     | '/'
     | '/articles'
-    | '/ba-content-engine'
-    | '/curatia-content-engine'
     | '/expertise'
+    | '/api/publications'
+    | '/api/repositories'
     | '/projects/$slug'
     | '/projects/'
   fileRoutesById: FileRoutesById
@@ -114,9 +114,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticlesRoute: typeof ArticlesRoute
-  BaContentEngineRoute: typeof BaContentEngineRoute
-  CuratiaContentEngineRoute: typeof CuratiaContentEngineRoute
   ExpertiseRoute: typeof ExpertiseRoute
+  ApiPublicationsRoute: typeof ApiPublicationsRoute
+  ApiRepositoriesRoute: typeof ApiRepositoriesRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
@@ -137,25 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArticlesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ba-content-engine': {
-      id: '/ba-content-engine'
-      path: '/ba-content-engine'
-      fullPath: '/ba-content-engine'
-      preLoaderRoute: typeof BaContentEngineRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/curatia-content-engine': {
-      id: '/curatia-content-engine'
-      path: '/curatia-content-engine'
-      fullPath: '/curatia-content-engine'
-      preLoaderRoute: typeof CuratiaContentEngineRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/expertise': {
       id: '/expertise'
       path: '/expertise'
       fullPath: '/expertise'
       preLoaderRoute: typeof ExpertiseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/publications': {
+      id: '/api/publications'
+      path: '/api/publications'
+      fullPath: '/api/publications'
+      preLoaderRoute: typeof ApiPublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/repositories': {
+      id: '/api/repositories'
+      path: '/api/repositories'
+      fullPath: '/api/repositories'
+      preLoaderRoute: typeof ApiRepositoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -178,9 +178,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticlesRoute: ArticlesRoute,
-  BaContentEngineRoute: BaContentEngineRoute,
-  CuratiaContentEngineRoute: CuratiaContentEngineRoute,
   ExpertiseRoute: ExpertiseRoute,
+  ApiPublicationsRoute: ApiPublicationsRoute,
+  ApiRepositoriesRoute: ApiRepositoriesRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
